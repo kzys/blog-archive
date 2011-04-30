@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=14" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Kindle 2</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article14">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/14-kindle-2" class="name">Kindle 2</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:3.935717,2.347468&amp;cht=p&amp;chp=0.418879' alt='23:19' /></h1>
+
+<div class="attr">
+  Posted at 2010/02/07 23:19,
+  Modified at 2010/02/08 00:25
+  </div>
+
+<div class="text">
+<p>Kindle 2 を買ったのです。</p>
+<p>2日に注文して4日に届いて、なのでまだ手探り状態。もとから入っていたものと、Kindle Store からダウンロードした &quot;Effective C++&quot; や &quot;Founders at Work&quot; のサンプルと、あと論文の A4 PDF を1つ入れている。</p>
+<p>Kindle Store のサンプル機能は、「立ち読み」から、好きなところをパラパラ拾い読みするというランダムアクセス性が失われた代わりに、電車と自宅とカフェ (いかないけど) で何日もかけて買う前の本を読む、という場所と時間の自由があたえられていて、なかなか新鮮。</p>
+<p>A4 の PDF は、縦横を回転させればなんとか読めるんじゃないかなあ、という甘い期待があったんだけど、やっぱり Kindle 2 ではきつかった。「無理!」ってのを人にみせるために入れてままにしてある。</p>
+<p>まわりでは Kindle DX を持っているひとが3人、Kindle 2 が2人いて、どっちも買う前に見せてもらった。DX の人の中には裁断機とスキャナで本を PDF にするところまでやっている人がいるので、それも見に行ったんだけど、ちょっと自分には無理だなあと思いました。</p>
+</div>
+<div class="comments" id="article14_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="14" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=21" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: 自宅 Linux サーバー</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article21">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/21-linux" class="name">自宅 Linux サーバー</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:2.583087,3.700098&amp;cht=p&amp;chp=3.036873' alt='01:44' /></h1>
+
+<div class="attr">
+  Posted at 2010/03/25 01:44,
+  Modified at 2010/03/26 01:07
+  </div>
+
+<div class="text">
+<p>『サーバー/インフラを支える技術』を読んだ。『Linux-DB システム/構築入門』よりは広く浅い感じで、各分野をざっと見渡せるので入門に良いと思う。もっと前に読んでおくべきだった。</p>
+<p>運用系の本を読むと Linux がほしくなる。ブログを書いたり生活するのは MacBook で、でもほかに</p>
+<ul>
+<li>Windows と Linux のデュアルブートな古いマシン</li>
+<li>8-p.info を置いてある Slicehost</li>
+<li>Amazon EC2 のインスタンス</li>
+</ul>
+<p>と Linux がはいったログインできるホストはあるんだけど、最初のはファンがうるさいので滅多に起動しない。残りはインターネット経由の海外サーバーなので、シェルにぱたぱた打ち込んでいると反応速度がもたつく感じがある。</p>
+<h2 id="article21_1" class="ah1 topic">購入</h2>
+<p>というわけで <a href="http://www.clevery.co.jp/">クレバリー</a> で新しいマシンを買った。</p>
+<pre>1.SST-SG05W
+価格：9,970円　×　数量：1　＝　合計：9,970円
+2.BOXD510MO
+価格：8,270円　×　数量：1　＝　合計：8,270円
+3.W2U800CQ-2GL5J
+価格：7,670円　×　数量：1　＝　合計：7,670円
+4.HDS721010CLA332
+
+価格：6,970円　×　数量：1　＝　合計：6,970円
+
+【お買上金額】
+商品金額合計：　　32,880円
+送料：　　　　525円
+手数料：　　　0円
+注文金額合計：　　33,405円
+</pre>
+<p>上から、ケース、マザーボード + CPU, メモリ (2GB x 2!), ハードディスク (1TB!) で、これが3万円とちょっとで買えたのでびっくりした。</p>
+<h2 id="article21_2" class="ah1 topic">インストール</h2>
+<p>ディストリビューションは Ubuntu Server Edition にした。.iso をダウンロードしてからドライブが無いことに気づいたけど、古いマシンにささっていた IDE なドライブを IDE-USB なケーブルでつないで乗り切る。</p>
+<div class="image image_normal image_normal3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1269446604-dualcore.png" alt="image:1:1269446604-dualcore.png" /></div>
+<p>デュアルコア + Hyper-Threading で4コアに見えて、動作音もしずか。良い感じ。</p>
+</div>
+<div class="comments" id="article21_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="21" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=13" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: CACM の MapReduce ばなし (後編)</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article13">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/13-cacm-mapreduce" class="name">CACM の MapReduce ばなし (後編)</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:5.803220,0.479966&amp;cht=p&amp;chp=-1.047198' alt='00:05' /></h1>
+
+<div class="attr">
+  Posted at 2010/02/05 00:05,
+  Modified at 2010/02/06 01:48
+  </div>
+
+<div class="text">
+<p><a href="http://blog.8-p.info/2010/12-cacm-mapreduce">前回</a> は Michael Stonebraker らの &quot;MapReduce and Parallel DBMSs: Friends or Foes?&quot; を紹介した。</p>
+<blockquote>
+<p>ひとつは MR と並列 DBMS を比較し、実際に Hadoop と商用の DBMS でベンチマークもとったけど DBMS のほうが速かったよ、という Michael Stonebraker らによる &quot;MapReduce and Parallel DBMSs: Friends or Foes?&quot;。これは、同著者ら (ただし 1st author はちがう) による &quot;A comparison of approaches to large-scale analysis&quot; の続きというかまとめ的な感じ。</p>
+</blockquote>
+<p>CACM に載っていたもうひとつが、Andrew Pavlo らの &quot;A comparison of approaches to large-scale analysis&quot; での MapReduce vs. 並列 DBMS に意義を申し立てる &quot;MapReduce: A Flexible Data Processing Tool&quot; だ。著者の Jeffery Dean, Sanjay Ghemawat は2004年のそもそもの MR 論文 (&quot;MapReduce: Simplified data processing on large clusters&quot;) を書いた Google のひとです。</p>
+<h2 id="article13_1" class="ah1 topic">MapReduce: A Flexible Data Processing Tool</h2>
+<p>著者らはまず、先の論文や Stonebaker, David Dewitt のブログ記事には MR に対する誤解があることを指摘し、さらに MR の利点を紹介。彼らの結論は特定の実装にもとづくもので、欠点も MR 一般に通じるものではない、という。</p>
+<h3 id="article13_1_1" class="ah2 topic">MapReduce のつかいかた</h3>
+<p>最初は「MR はそれ単体ですべてをやるものではないよ」というはなし。</p>
+<p>多くのシステムは顧客情報を RDBMS に、ログをファイルシステムにと、様々なストレージを組み合わせて構成されている。MR はこのような混成 (hetorogeneous) なシステムに、情報を分析するためのシンプルなモデルを提供するものだ。MR を新しい種類のストレージで動かすには、ユーザーが簡単な reader, writer を書いて拡張するだけでよく、実際に分散ファイルシステムやデータベース、Bigtable まで、様々なストレージが使えるようになっている。これに比べると、並列 DBMS は分析前にまずデータを INSERT しなくてはいけない。これは不便だし、おそらくは許容できないくらい遅いだろう。</p>
+<p>また、MR にはインデックスの利点をうけられないというが、インデックスがあるデータがあるなら、それを最初に使うことはできる。DBMS が元データならそこでインデックスのきく SELECT 文を書けばいいし、ログファイルならふつう日付をファイル名にいれてローテートさせるので、全ファイルを MR に渡して日付でしぼりこまなくても、あらかじめ特定のファイルだけを渡せばいい。</p>
+<p>次に、著者らは MR で実際に行っている (つまり Google でやっている) SQL で書けない複雑な処理を紹介していく:</p>
+<ul>
+<li>HTML の文章群からリンクをあつめて、それをリンク先でまとめる</li>
+<li>衛星写真をつなげつつも重複部分を省き、Google Earth むけの画像をつくる</li>
+<li>検索でつかう圧縮された転置インデックスをつくる</li>
+<li>世界中のすべての道路のつながりを処理して、Google Maps むけのタイル画像をつくる</li>
+<li>Sawzall や Pig Latin (Hadoop で使える) のような高級言語で書かれたプログラムを、耐障害性のあるかたちで並列実行する</li>
+</ul>
+<p>さらに、理論的には UDF で出来るといっても、実際の Pavlo らのベンチマークでは DBMS-X で UDF を使ったときにはバグをふみ、Vertica にはそもそも UDF 自体が無かった、というところにも触れている。</p>
+<h3 id="article13_1_2" class="ah2 topic">実装上の工夫</h3>
+<p>ここからは実装上の工夫のはなしが続く。</p>
+<p>まず、著者らは Pavlo らの主張するスキーマの有用性を認め、だから Google では MR でも大抵 Protocol Buffers を使っているよ、と続ける。それはそうですよね。</p>
+<p>次に、push vs. pull モデルのはなし。pull モデルがたくさん小さいファイルを生成したり、mapper と reducer の間で多くのディスクのシークがあるのは事実だ。しかし、Google の MR 実装ではバッチやソート、中間データのグルーピングや読み込みのスケジューリングなどの &quot;implementation tricks&quot; でそのコストを軽減させている。また、MR が push モデルなのは、決して耐障害性だけのためにあるものではない。実際に障害が起きることはそんなに多いわけではない。しかし、例えば Google のクラスタのスケジューラは、より優先度の高い MR タスクのために他のタスクを殺して場所をあけたりしてくれる。こういう際にも MR が自動的かつ部分的に再実行できることは重要になるという。</p>
+<p>Google が扱うデータ量は、あるいは Google 外でも、大量のデータを相手にしなくてはいけない局面は、日々拡大していてる。データ量が増えれば、MR のような耐障害性のあるシステムを必要とする人々も増えるだろう、と著者らはいう。</p>
+<p>最後に、Pavlo らの実行速度についての比較について:</p>
+<ul>
+<li>エンジニアが気をつけるべきところ: 起動のコストや読み込みの速度は実装の成熟度を表すもので、プログラミングモデルとは関係ない。起動コストは MR のワーカープロセスを立ち上げたままにして呼び出しごとに殺さないことで、読み込みの速度は Protocol Buffers のような効率的なフォーマットを使うことで改善できる。</li>
+<li>必要のないデータも読むのは MR では避けられない: そんなことはない (ここは前述のぶぶんの繰り返し)</li>
+<li>結果のマージ: マージは必須ではない。MR タスクの結果をさらに他の MR タスクに渡すときは、マージする必要は無い。</li>
+<li>データの読み込み: やっぱり並列 DBMS は遅い。INSERT し終わったものをいろいろなクエリで分析する場合には問題ないかもしれないけど、実際そういうことは少ないだろう。</li>
+</ul>
+<h2 id="article13_2" class="ah1 topic">おわり</h2>
+<p>というわけで Communication of the ACM の2010年1月号から MapReduce に関する2つの論文を紹介しました。ややすれちがい気味のところもあるけど面白くて、あと並列 DBMS というのは正直初めて知ったので勉強になりました。MySQL 上に似たようなの作れないかなあ。</p>
+<p>Vertica は今回だと旧勢力側だけど「<a href="http://www.vertica.com/_pdf/Vertica-Cost-Savings-DataSheet.pdf">Orace より安いぜ</a>」とか「<a href="http://www.infoq.com/jp/news/2007/09/row-vs-column-dbs">列ベースはださいぜ</a>」とか普段は挑戦者っぽい立ち位置なんですかね。使っている会社のなかには Mochi Media なんかもあり、<a href="http://twitter.com/etrepum/statuses/6041740912">Bob Ippolito 曰く</a>:</p>
+<blockquote>
+<p>Vertica works well for Mochi, both for ad-hoc and for on-line production queries. It's expensive but so is building your own.</p>
+</blockquote>
+<p>らしい。<a href="http://bob.pythonmac.org/archives/2008/09/29/ad-serving-in-erlang-cufp-2008/">Erlang のはなし</a> のなかにもごくわずかに出てきます。</p>
+<p>MapReduce は、Hadoop がやや残念だったのと、Google での細かな改良と実例が印象的。ただ Hadoop の実装がすごく良くなったとしても MapReduce モデルを使う損益分岐点はまだよくわからず。衛星写真とか日頃取り扱わないし、アクセスログみたいな文字列処理にはオーバースペックな気もします。</p>
+</div>
+<div class="comments" id="article13_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="13" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

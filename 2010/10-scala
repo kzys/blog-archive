@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=10" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: なんでこれから Scala?</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article10">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/10-scala" class="name">なんでこれから Scala?</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:3.612832,2.670354&amp;cht=p&amp;chp=-0.942478' alt='08:06' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/22 08:06,
+  Modified at 2010/01/22 23:00
+  </div>
+
+<div class="text">
+<p>去年から Scala を勉強していて、お正月には Martin Odersky の『Scala スケーラブルプログラミング』(コップ本、と呼ぶらしい) も読んだ。Scala はかなり良い。私が言語を選べる立場にあるときに、いままで好き好んで使っていた言語は Ruby だった。でも、これからは Scala も積極的に検討していこうと思っている。</p>
+<h2 id="article10_1" class="ah1 topic">プログラミングの間違いが静的にみつかる</h2>
+<p>Scala を推す一番の理由はここだ。型がちがうとか、引数の個数がちがうとか、存在しないメソッドを呼び出しているとか、そういう間違いは静的にみつかるべきだと最近は思っている。型をいちいち書くのはだるいけど、Scala には型推論があるので比較的だるさは軽減される。また、実行時例外として名高い NullPointerException についても、Option 型を適切につかうことで未然に防ぐことができる、と思う。</p>
+<p>自動テストで動的にみつける方法もあるけど、これは</p>
+<ul>
+<li>書かない人と同じコードベースで作業することがある</li>
+<li>書かないどころか、人の書いた物を失敗させても気にしない人もいる</li>
+<li>自分でも、ここは書きにくいな、と書かないことがある</li>
+</ul>
+<p>と、試してみたらいろいろ大変だった。原則としてテストは書くけど、テストのない場所におけるセーフティネットとして静的な検査もあるよ、というのはかなりありがたい。</p>
+<h2 id="article10_2" class="ah1 topic">Java の資産がつかえる</h2>
+<p>たとえば Tokyo Cabinet や memcached を使いたいといったときに、Java むけに用意されたライブラリを簡単に使える。Java のライブラリは、インターフェースが個人的に好みじゃないものもあるけど (最近は <a href="http://hc.apache.org/">Apache HttpComponents</a> がよくわからなかった) ライブラリ全体を書くのと、薄いラッパーですむのとだったら、断然後者のほうが楽だ。</p>
+<h2 id="article10_3" class="ah1 topic">Google AppEngine で動く</h2>
+<p>Scala は Google AppEngine for Java で動く。AppEngine はすごく便利で、エラーログすら見れないサーバーに FTP でアップロードしたファイルを CGI で、みたいな「はじめての Web プログラミング」をおじいちゃんの昔話にしうると思う。</p>
+<h2 id="article10_4" class="ah1 topic">便利な言語仕様</h2>
+<p>静的な検査は Java の文化を、次の2つは Java の VM をうけついでいる。Java と設計意図からして差異を感じるのは Scala の「便利」な言語仕様だ。if が値をかえしたり、return を省略できたり、匿名関数を _ で短く書けたり、val と書くだけで再代入できない変数をつくれたりする。ここらへんの「最初は混乱するかもしれないけどまあ慣れれば便利じゃん」というのは、個人的にはあまり Java っぽくないと思う。</p>
+<p>ちなみに再代入できる変数は var で一文字しかちがわない。Scala の短さを追い求める姿勢はやや過激で、例えば、いわゆる &quot;fold left&quot; が &quot;/:&quot;, &quot;fold right&quot; が &quot;:\&quot; という名前のメソッドとして定義されていたりする。最初にふれた本には「スラッシュの向きが木構造の左右の傾き方をグラフィカルに描いたものに似ている」と由来があった。</p>
+<h2 id="article10_5" class="ah1 topic">Perl?</h2>
+<p>そもそも Scala をやる理由を書こうと思ったのは <a href="http://d.hatena.ne.jp/tokuhirom/20100120/1263958061">それでも私が Perl5 を使いつづける理由または、Why I still use Perl5? 的な。</a> と <a href="http://d.hatena.ne.jp/kazuhooku/20100120/1263960313">それでも私が Perl を使いつづける理由</a> を読んだからだ。Perl は最近よく書いている。ただ、これからも使うかとか、人に勧めるかとかは、かなりつらい。</p>
+<p>理由は文法まわりが大きい。やっぱり「$@%* 」は気になる。行末の ; も、関数の頭で @_ から自分で引数をおろすのも面倒だ。コンテキストは失敗だった。ただ、使える環境は多いので書けるほうが生活上便利だとは思う。最近 ruby -e … とワンライナーで大作を書いたら Ruby がはいっていなくて悲しかった。Linux Standard Base に関していうと 3.2 では Perl と Python が、4.0 で Java がはいったらしい。</p>
+<p>CPAN については微妙な立場だ。たくさんモジュールはあるけど、実際に私が使うものはそんなに多くなく、個々のライブラリを単体でみれば他言語にも代わりになるものがあると思う。試しに Perl で有名なものについて Ruby での代替を表にしてみた。</p>
+<p>ここで Scala が出てこないのは勉強中だからです。</p>
+<table summary="table:1">
+<tr>
+<td>Perl</td>
+<td>Ruby</td>
+</tr>
+<tr>
+<td>AnyEvent</td>
+<td>EventMachine</td>
+</tr>
+<tr>
+<td>Catalyst</td>
+<td>Merb or Rails</td>
+</tr>
+<tr>
+<td>DBIx::Class</td>
+<td>DataMapper or Rails (ActiveRecord)</td>
+</tr>
+<tr>
+<td>DateTime, Time::Piece</td>
+<td>Time (言語の一部)</td>
+</tr>
+<tr>
+<td>List::Util</td>
+<td>Enumerable, Enumerator (言語の一部)</td>
+</tr>
+<tr>
+<td>Coro</td>
+<td>Fiber (言語の一部)</td>
+</tr>
+<tr>
+<td>WWW::Mechanize</td>
+<td>Mechanize</td>
+</tr>
+<tr>
+<td>Plack</td>
+<td>Rack</td>
+</tr>
+</table>
+<p>テストをつけておくと様々な OS x 様々なバージョンの Perl で実行してくれるとか、ミラーサイトが多いとか、そういう全体としての CPAN はまだすごい。&quot;7904 authors 17293 modules&quot; みたいな量については、前述の理由と、あと Catalyst::Plugin::* ブームとかもあったのであんまり。</p>
+</div>
+<div class="comments" id="article10_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="10" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

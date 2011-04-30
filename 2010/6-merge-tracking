@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=6" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Merge Tracking</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article6">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/6-merge-tracking" class="name">Merge Tracking</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:6.117379,0.165806&amp;cht=p&amp;chp=1.466077' alt='17:29' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/11 17:29,
+  Modified at 2010/01/15 00:57
+  </div>
+
+<div class="text">
+<p>年の瀬に内輪でライトニングトーク的な催しがあり、マージトラッキングについて話した。</p>
+<h2 id="article6_1" class="ah1 topic">ブランチとマージ</h2>
+<div class="image image_left image_left3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1263206218-branch-merge.png" alt="image:1:1263206218-branch-merge.png" /></div>
+<p>多人数で開発する場合、バージョン管理システムと、そのシステム上でのブランチの作成とマージは、必要不可欠だと思う。最近、<a href="http://code.flickr.com/blog/2009/12/02/flipping-out/">Flickr はブランチもマージもしない</a> というのを読んでだいぶ驚いたけど、こういうのはかなり稀だ。</p>
+<p>マージは面倒な作業だ。その面倒さは、あるソフトウェア x が xa, xb と分岐したときに、それを統合した x(a+b) をつくる、という行為自体がそもそも難しいというのもあるし、いい加減行ベースの diff が野蛮すぎるというのもあると思う。</p>
+<p>バージョン管理システムがもっとがんばれるのでは、というのもある。広く使われているバージョン管理システムである Subversion について、マージまわりの機能の貧弱さはよく指摘される。Linus Torvalds も <a href="http://www.youtube.com/watch?v=4XpnKHJAok8">Google で Git について講演した</a> 際に</p>
+<blockquote>
+<p>Merging in Subversion is a complete disaster. (Subversion のマージはマジでひどい)</p>
+</blockquote>
+<p>といっている。</p>
+<h2 id="article6_2" class="ah1 topic">マージトラッキング</h2>
+<p>Linus の講演は2007年3月におこなわれたもので、その4ヶ月後の OSCON では Subversion commiter である <a href="http://www.erenkrantz.com/oscon/OSCON%202007%20Subversion%20New%20Toys.pdf">Justin Erenkrantz の講演</a> でもふれられた。そして2008年、<a href="http://svn.haxx.se/users/archive-2008-06/0687.shtml">Subversion 1.5</a> にマージトラッキング機能が導入される。ちなみにマージトラッキングの必要性自体は Linus 関係なく以前からいわれていて、現在の設計のもととなった <a href="http://svn.haxx.se/dev/archive-2006-04/0916.shtml">Daniel Berlin のメール</a> は2006年に投稿されている。 </p>
+<p>マージトラッキングがあると、実際に、なにがどのように便利になるのだろうか。たとえば stable である trunk に新機能 foo を加えるにあたってブランチを作るとしよう。</p>
+<pre>% svn copy svn://example.com/app/trunk svn://example.com/app/branches/foo
+%
+</pre>
+<p>ここはいままでと変わらない。次に、foo ブランチでの開発をしているうちに trunk に大きめの変更が入ったので、それをブランチにとりこみたいとする。</p>
+<p>(foo が svn://example.com/app/branches/foo のワーキングコピーだと思ってください)</p>
+<pre>% cd foo
+% svn merge svn://example.com/app/trunk
+...
+% svn commit
+</pre>
+<p>マージの際にリビジョンを一切指定していないところに注目してほしい。これを実現可能にするのがマージトラッキングだ。</p>
+<p>さらに進んで、foo の開発が完了したので、これを trunk にいれるとする。</p>
+<p>(trunk は trunk のワーキングコピーです)</p>
+<pre>% cd trunk
+% svn merge --reintegrate svn://example.com/app/branches/foo
+...
+% svn commit
+</pre>
+<p>trunk の変更がとりこまれたブランチを、簡単に trunk に戻すことが出来る。</p>
+<p>注意点がひとつ。マージトラッキングを使うためにはクライアント、サーバー、レポジトリすべてが Subversion 1.5 以降である必要があり、Subversion をアップグレードしたら、レポジトリを svnadmin (1) で明示的にアップグレードしなくてはいけない。勝手に手元にあたらしい Subversion をいれてもマージトラッキングは使えるようにならない。</p>
+<p><a href="http://subversion.tigris.org/merge-tracking/func-spec.html">Functional Spec.</a> をみると、これは</p>
+<blockquote>
+<p>A repository 1.4.x- doesn't provide any way to retrieve inherited merge info for a path (regardless of client version).</p>
+</blockquote>
+<p>という理由らしい。mergeinfo には親からの「継承」がある。つまり trunk/src/hello.c は trunk/src の mergeinfo を引きついでいる。この親子関係を意識したプロパティの取得が、<a href="http://svn.collab.net/repos/svn/trunk/subversion/libsvn_ra_svn/protocol">svn protocol</a> 上に新しく定義された get-mergeinfo に (たぶん) あたり、そこで双方のアップグレードが必要なのだろう。</p>
+<p>というわけで、全国の root のかたは Subversion のアップグレードを検討していただければ幸いです。</p>
+<h2 id="article6_3" class="ah1 topic">実装</h2>
+<p>実装についてもすこし。Subversion には「プロパティ」という仕組みがあり、たとえば</p>
+<ul>
+<li>画像ファイルの svn:mime-type には image/gif</li>
+<li>chmod +x されたファイルの svn:executable には *</li>
+</ul>
+<p>が格納される。プロパティは自動で設定されるものもあるし、手動で設定するものもある。また、これはフォルダでも同様だ。例えば autoconf で管理されたプロジェクトだったら</p>
+<ul>
+<li>src の svn:ignore に Makefile</li>
+</ul>
+<p>みたいな設定を手動で追加するのはありがちだと思う。</p>
+<p>マージトラッキングでは、このプロパティとして新たに svn:mergeinfo というのが追加される。たとえば trunk の svn:mergeinfo に</p>
+<pre>
+/branches/foo:1-24
+/branches/bar:1-9,14-18,15
+</pre>
+<p>という値があったら、これは内部では</p>
+<pre>{
+  &quot;/branches/foo&quot; =&gt; [1..24]
+  &quot;/branches/bar&quot; =&gt; [1..9, 14..18, 25]
+}
+</pre>
+<p>このような、パスをキー、リビジョンのリストを値とした連想配列として扱われて</p>
+<ul>
+<li>/branches/foo のリビジョン1から24</li>
+<li>/branches/bar のリビジョン1から9, 14から18, 25</li>
+</ul>
+<p>は trunk にマージされてますよ、ということを表している。Subversion のサブコマンドのうち svn merge がこのプロパティを読み書きし、svn copy, svn rename のふたつが、複製やファイル名の変更に際に忘れず元ファイルのものを引き継ぐことで、マージトラッキングは実現されている。</p>
+<h2 id="article6_4" class="ah1 topic">Mercurial</h2>
+<p>Subversion の特徴として、コピーの多用が挙げられる。</p>
+<p>ブランチの作成はコピーだし、特定のリビジョンにタグを打つのもコピーだ。さらに、レポジトリは線形に進んでいく。ある changeset n の親は n-1 で、n の子は n+1 だ。線形に進むレポジトリの中で、ブランチとマージを繰り返すフォルダが、向きがあってループがないグラフ (これを DAG - Directed Acyclic Graph という) をつくっている。</p>
+<div class="image image_normal image_normal3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1263206225-svn-repos.png" alt="image:2:1263206225-svn-repos.png" /></div>
+<p>これに対して、Mercurial のような分散バージョン管理システムでは、DAG の個々のノードが、レポジトリ内のどこかのフォルダではなくレポジトリそのものになっている。</p>
+<div class="image image_normal image_normal3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1263206231-hg-repos.png" alt="image:3:1263206231-hg-repos.png" /></div>
+<p>たとえば Mercurial では、ある changeset の親は大抵ひとつなのだけど、マージを行ったときだけ親がふたついる changeset ができ、これを merge changeset と呼んでいる。</p>
+<p>このマージの扱いは、さすがに後生だけあってきれいだと思う。</p>
+<h2 id="article6_5" class="ah1 topic">おわり</h2>
+<p>というような話を7分程度でやりました。</p>
+<p>はなしのねらいはそこで使っている Subversion のアップグレードで、実装のはなしの前に「でもうちのは 1.4 です」で <a href="http://blogs.ign.com/Peer-IGN/2008/01/23/78041/">外人4コマ</a> をいれて一回落としたりしたのだけど、結局まだアップグレードはなされず。ちゃんと正規の手順でお願いしないとだめみたいです。</p>
+</div>
+<div class="comments" id="article6_comments">
+<div class="meta">2 comments</div>
+<div class="comment" id="article6_c1">
+<span class="owner">morita</span> :
+<span class="text">なるほど。プロパティだったとは。プロパティで実現するならサーバ更新は必要なさそうですが、必要なのはなぜなんでしょうね？</span>
+<span class="date">(2010/01/11 18:07)</span>
+</div>
+<div class="comment" id="article6_c2">
+<span class="owner">kzys</span> :
+<span class="text">いわれてみれば気になるので調べて追記しました。たぶん完全プロパティでやってたのが svnmerge.py なんじゃないかなあ。</span>
+<span class="date">(2010/01/11 19:18)</span>
+</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="6" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

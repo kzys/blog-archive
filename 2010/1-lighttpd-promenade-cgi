@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=1" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: lighttpd + promenade.cgi</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article1">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/1-lighttpd-promenade-cgi" class="name">lighttpd + promenade.cgi</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:1.675516,4.607669&amp;cht=p&amp;chp=3.455752' alt='00:48' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/02 00:48,
+  Modified at 2010/01/02 21:29
+  </div>
+
+<div class="text">
+<p>2010年は <a href="http://1978th.net/tokyopromenade/">Tokyo Promenade</a> を使うことにしました。今年もよろしくお願いします。</p>
+<p>8-p.info では、なんとなく <a href="http://www.lighttpd.net/">lighttpd</a> を使っています。lighttpd + TP だと</p>
+<ul>
+<li>lighttpd は GET から CGI を起動するにも環境変数 CONTENT_LENGTH に &quot;0&quot; をセットする</li>
+<li>TP は環境変数 CONTENT_LENGTH があると QUERY_STRING はみない</li>
+</ul>
+<p>という二つがあわさって、結果「クエリパラメータが GET で渡せない」という悲しいことになったので、TP 側に回避するコードをいれました。</p>
+<pre>diff -r cb9efd6d3dd5 promenade.c
+--- a/promenade.c       Thu Dec 03 01:36:18 2009 +0900
++++ b/promenade.c       Wed Dec 23 17:11:07 2009 +0900
+@@ -329,9 +329,12 @@
+   TCMAP *params = tcmpoolpushmap(mpool, tcmapnew2(TINYBNUM));
+   double now = tctime();
+   // read query parameters
+-  rp = getenv(&quot;CONTENT_LENGTH&quot;);
++  const char *method = getenv(&quot;REQUEST_METHOD&quot;);
+   bool post = false;
+-  if(rp){
++  if(method &amp;&amp; !strcmp(method, &quot;GET&quot;)){
++    const char *query = getenv(&quot;QUERY_STRING&quot;);
++    if(query) tcwwwformdecode(query, params);
++  } else if((rp = getenv(&quot;CONTENT_LENGTH&quot;))){
+     int clen = tcatoi(rp);
+     if(clen &gt; g_recvmax){
+       showerror(413, &quot;The entity body was too long.&quot;);
+@@ -344,9 +347,6 @@
+     }
+     tcwwwformdecode2(cbuf, clen, getenv(&quot;CONTENT_TYPE&quot;), params);
+     post = true;
+-  } else {
+-    const char *query = getenv(&quot;QUERY_STRING&quot;);
+-    if(query) tcwwwformdecode(query, params);
+   }
+   rp = getenv(&quot;HTTP_COOKIE&quot;);
+   if(rp) tcwwwformdecode(rp, params);
+
+</pre>
+</div>
+<div class="comments" id="article1_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="1" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

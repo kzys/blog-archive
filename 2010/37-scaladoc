@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=37" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Scaladoc のバグを直した</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article37">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/37-scaladoc" class="name">Scaladoc のバグを直した</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:0.619592,5.663593&amp;cht=p&amp;chp=4.607669' alt='00:59' /></h1>
+
+<div class="attr">
+  Posted at 2010/09/22 00:59,
+  Modified at 2010/09/22 01:08
+  </div>
+
+<div class="text">
+<p>Scala には Scaladoc というソフトウェアがあり、Javadoc や RDoc のように、Scala のソースコードからクラスやメソッドのマニュアルを生成できる。</p>
+<p>Scaladoc は Markdown や Textile のような <a href="http://lampsvn.epfl.ch/trac/scala/wiki/Scaladoc/AuthorDocs#Wikisyntax">文法</a> でマークアップができるんだけど、そこに小さいバグがあったので直してみた。</p>
+<ul>
+<li><a href="http://lampsvn.epfl.ch/trac/scala/changeset/23042">http://lampsvn.epfl.ch/trac/scala/changeset/23042</a></li>
+<li><a href="http://lampsvn.epfl.ch/trac/scala/changeset/23050">http://lampsvn.epfl.ch/trac/scala/changeset/23050</a></li>
+<li><a href="http://lampsvn.epfl.ch/trac/scala/changeset/23051">http://lampsvn.epfl.ch/trac/scala/changeset/23051</a></li>
+</ul>
+<p>無事とりこまれました。</p>
+<p>Scaladoc にはもともと自動テストというか単体テストというかが無くて、Gilles Dubochet さんとメールで相談して、あわせてそれも追加しています。</p>
+</div>
+<div class="comments" id="article37_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="37" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=20" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: REWORK</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article20">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/20-rework" class="name">REWORK</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:1.291544,4.991642&amp;cht=p&amp;chp=3.874631' alt='00:52' /></h1>
+
+<div class="attr">
+  Posted at 2010/03/16 00:52,
+  Modified at 2010/03/17 00:58
+  </div>
+
+<div class="text">
+<p>&quot;<a href="http://37signals.com/rework/">REWORK</a>&quot; を読んだ。著者の Jason Fried は 37signals の CEO, David Heinemeier Hansson は社員で、いうまでもなく Rails の作者。37signals は中小企業むけにいわゆるグループウェア的な Web アプリケーションを開発・運営している。</p>
+<p>&quot;REWORK&quot; では 37signals の「やりかた」というか「考えかた」というか、そういうものが、細かな節にわかれて説明されている。たとえば</p>
+<ul>
+<li>長期計画なんて予測なんだからそれにとらわれるないこと</li>
+<li>半分だめなものを作るなら半分の機能のものを作ったほうがいい</li>
+<li>ミーティングは毒だ</li>
+<li>マーケティングは会社と外部のあいだにつねにあり、特定の部だけの仕事じゃない</li>
+<li>雇用は慎重に</li>
+<li>会社っぽい言葉遣いはほどほどに</li>
+<li>他人の仕事に「なるはや」なんていうな</li>
+</ul>
+<p>こんな感じ。会社をはじめるときからやらないと難しいものもあるけど、個人的な行動指針として下からやれるものも多少はある。</p>
+<p>プログラマがよろこびそうなことばかりが書いてあるわけではない。たとえば、いわゆる「スタートアップ」には</p>
+<blockquote>
+<p>A business without a path to profit isn't a business, it's a hobby.</p>
+</blockquote>
+<p>と冷ややかだ。それでも、私にとって &quot;REWORK&quot; が魅力的なのは、それが良いものが作れそうに思えるところで、でも、こういうことがあまり世の中で一般的でないということも知っている。</p>
+<p>なので (原書の出版になぜか先立って) ハヤカワ新書 juice から『小さなチーム、大きな仕事』という題で訳が出たのは良かったと思う。ちゃんと売れて、影響力を発揮してほしい。「これはうちではむりだよ」というときにも、それと引き換えに得ている・提供しているものについて考えるのはいいと思う。抽象的一般論になるけど、X についてちゃんと理解するには not X を知ることが必要なのだ。</p>
+</div>
+<div class="comments" id="article20_comments">
+<div class="meta">4 comments</div>
+<div class="comment" id="article20_c1">
+<span class="owner">morita</span> :
+<span class="text">前にも一冊でていた気がしますが、書いてあることは結構違いますか？</span>
+<span class="date">(2010/03/16 08:25)</span>
+</div>
+<div class="comment" id="article20_c2">
+<span class="owner">oogatta</span> :
+<span class="text">先に読まれた！</span>
+<span class="date">(2010/03/16 22:07)</span>
+</div>
+<div class="comment" id="article20_c3">
+<span class="owner">kzys</span> :
+<span class="text">ちょっと書き直し。&quot;Getting Real&quot; にくらべて Web でソフトウェア開発ってしばりが無くなってるんですが、読んでて既視感はあります。</span>
+<span class="date">(2010/03/17 00:06)</span>
+</div>
+<div class="comment" id="article20_c4">
+<span class="owner">hanabokuro</span> :
+<span class="text">『小さなチーム、大きな仕事』をポチってみました</span>
+<span class="date">(2010/03/17 13:45)</span>
+</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="20" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=18" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: JavaScript とコールバック</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article18">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/18-javascript" class="name">JavaScript とコールバック</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:0.331613,5.951573&amp;cht=p&amp;chp=-1.361357' alt='13:02' /></h1>
+
+<div class="attr">
+  Posted at 2010/03/06 13:02,
+  Modified at 2010/03/06 13:10
+  </div>
+
+<div class="text">
+<p>JavaScript で XMLHttpRequest -&gt; レスポンスを parse -&gt; 取得した URI に XMLHttpRequest というありがちなものを書いていて、ありがちに関数がネストしていった。そろそろ Deferred (<a href="http://mochikit.com/doc/html/MochiKit/Async.html#fn-deferred">MochiKit</a> でも <a href="http://cho45.stfuawsc.com/jsdeferred/">JSDeferred</a> でも) の使い方を覚えなきゃだめかなあ、と思いながら、自分でなんとかする関数を書いた。</p>
+<pre>function compose() {
+    var result;
+    var i;
+    for (i = arguments.length-1; i &gt; -1; i--) {
+        result = (function (f, g) {
+            return function () {
+                f.apply(null,
+                        [g].concat(Array.prototype.slice.call(arguments)));
+            };
+        })(arguments[i], result || new Function);
+    }
+    return result;
+}
+</pre>
+<p>こんなふうに使う:</p>
+<pre>function get(uri, callback) {
+    var req = new XMLHttpRequest;
+    req.open('GET', uri, true);
+    req.onreadystatechange = function () {
+        if (req.readyState == 4 &amp;&amp; req.status == 200) {
+            callback(req.responseText);
+        }
+    };
+    req.send(null);
+}
+
+// In your application...
+    compose(
+        function (callback) {
+            get(anchor.href, callback);
+        },
+        function (callback, html) {
+            var m = html.match(PATTERN);
+            if (m) {
+                callback(m[0]);
+            }
+        },
+        function (callback, uri) {
+            get(uri, callback);
+        },
+        function (callback, js) {
+            var images = eval(js);
+            images.forEach(function (image) {
+                li.appendChild(createImage(image));
+            });
+        }
+    )();
+</pre>
+<p>ひさしぶりに JavaScript っぽいものが書けたので満足した。</p>
+</div>
+<div class="comments" id="article18_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="18" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

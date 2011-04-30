@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=42" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Facebook の BigPipe と TTI</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article42">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/42-facebook-bigpipe-tti" class="name">Facebook の BigPipe と TTI</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:1.143191,5.139995&amp;cht=p&amp;chp=4.607669' alt='01:59' /></h1>
+
+<div class="attr">
+  Posted at 2010/10/22 01:59,
+  Modified at 2010/10/22 03:42
+  </div>
+
+<div class="text">
+<p>Facebook のフロントエンドは結構かわったことをやっていて、例えば、ログイン後の http://www.facebook.com/home.php には</p>
+<pre>&lt;div id=&quot;pagelet_home_stream&quot;&gt;&lt;/div&gt;
+</pre>
+<p>みたいな空の HTML があり、その後に</p>
+<pre>&lt;script&gt;big_pipe.onPageletArrive({ … });&lt;/script&gt;
+&lt;script&gt;big_pipe.onPageletArrive({ … });&lt;/script&gt;
+...
+</pre>
+<p>と script 要素が何個もならんでいる。</p>
+<h2 id="article42_1" class="ah1 topic">BigPipe: Pipelining web pages for high performance</h2>
+<p>この仕組みは (変数名のとおり) BigPipe と呼ばれていて、彼ら自身が <a href="http://www.facebook.com/notes/facebook-engineering/bigpipe-pipelining-web-pages-for-high-performance/389414033919">BigPipe: Pipelining web pages for high performance</a> で解説している。</p>
+<p>かいつまんで説明しよう。通常、Web ページというのは</p>
+<ul>
+<li>ブラウザが http://example.com/foobar を要求する</li>
+<li>example.com のサーバーが /foobar にあるページを作るべく、MySQL などに問い合わせて、最終的には HTML にして送る</li>
+<li>ブラウザが送られてきた HTML をレンダリングする</li>
+</ul>
+<p>といった感じでユーザーに届く。さてここで、サーバーが MySQL などに問い合わせている間、ブラウザは何をしているんだろうか。なにもしていない。ここではサーバーがボトルネックになっている。一方で、レンダリングがはじまると今度はブラウザがボトルネックになる。</p>
+<p>サーバーの忙しさとブラウザの暇さ、あるいはその逆を (CPU の命令パイプラインのように) オーバーラップさせて全体の効率をあげる、というのが BigPipe の核となるアイデアだ。</p>
+<div class="image image_normal image_normal3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1287680982-bigpipe.png" alt="image:1:1287680982-bigpipe.png" /></div>
+<p>実際の実装は</p>
+<ul>
+<li>サーバーは HTML の外枠を送信したら、一回ソケットを flush して</li>
+<li>ブラウザはそれをレンダリングして、BigPipe の JavaScript を読み込む</li>
+<li>サーバーは「友達リスト」や「更新情報」といった個々の部品 (BigPipe ではこれを &quot;pagelet&quot; と呼ぶ) をひとつづつ<ul>
+<li>HTML まで作り、完成するごとに script 要素につめてブラウザに送信して、また flush し</li>
+<li>ブラウザは受信するごとに script 要素を実行し、既存の外枠の innerHTML に HTML をさしこんだり、CSS や画像、JavaScript のダウンロードをはじめる</li>
+</ul>
+</li>
+<li>こうして、サーバーが最初の HTML をすべて送信し終わったときには、ブラウザ側のレンダリングもそれなりに終わっている</li>
+</ul>
+<p>といった感じに動作する。iframe と multipart が合体したような感じ、という説明はわかりやすいんだかどうだか。</p>
+<h2 id="article42_2" class="ah1 topic">TTI: Time-to-Interact</h2>
+<p>Facebook が目指している「速さ」と、いままで Web ページで測っていた「速さ」には、ちょっと差がある。いままでは「ページの読み込み開始からレンダリング完了までに経過する時間」をいかに短くするかが勝負だったと思う。しかし、Facebook は「ページの読み込み開始から、ページ上でもっとも重要な部分が表示され、利用可能になるまで」というレンダリング途中の感覚値としての速さについても、考慮にいれている。</p>
+<p>彼らは <a href="http://www.facebook.com/note.php?note_id=307069903919">Making Facebook 2x Faster</a> でそれを TTI (Time-to-Interact) と呼んでいる。</p>
+<blockquote>
+<p>We call this metric Time-to-Interact (TTI for short), and it is our best sense of how long the user has to wait for the important contents of a page to become visible and usable. On our homepage, for example, TTI measures the time it takes for the newsfeed to become visible.</p>
+</blockquote>
+<p>いまどきの読み込み時間は、YSlow や Page Speed で簡単に測れるし、内訳をもとに点数も出してくれる。ついその数字を追ってしまうのは人の性だ。そんななかで</p>
+<ul>
+<li>それも大事だけど、この部分をこうすると UX 改善するんじゃないか、と問題を再定義して</li>
+<li>JavaScript でこういうふうにやれば TTI 短くなって UX 良くなるよね、と実装して</li>
+<li>JavaScript がオフでもそれなりに動くようにして (BigPipe が JSON ではなく HTML を返しているのは、このため + DOM が遅いから、だと思う)</li>
+<li>本番に投入して</li>
+<li>Facebook のあらゆるページで使えるようにして (たとえば、リクルートと提携して出来たという <a href="http://www.facebook.com/?sk=search">コネクションサーチ</a> も BigPipe を使っている)</li>
+</ul>
+<p>と、全部やっていくのを考えると、これはもう、アメリカの回線が遅いからとか、開発者の数が多いからとか、そういう問題じゃないなあと思いました。</p>
+</div>
+<div class="comments" id="article42_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="42" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=38" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Percolator の勉強 - 1. はじめに</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article38">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/38-percolator-1" class="name">Percolator の勉強 - 1. はじめに</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:5.087635,1.195551&amp;cht=p&amp;chp=-0.837758' alt='23:07' /></h1>
+
+<div class="attr">
+  Posted at 2010/09/27 23:07,
+  Modified at 2010/09/28 02:17
+  </div>
+
+<div class="text">
+<p>9月もおわり。10月といえば OSDI '10 で <a href="http://www.usenix.org/events/osdi10/tech/techAbstracts.html#Peng">Percolator</a> のはなしがあるので、いまのうちに予習をはじめることにした。</p>
+<h2 id="article38_1" class="ah1 topic">Caffeine</h2>
+<p>今年の6月、Google は Caffeine という新しいインデクシングシステムの完成をアナウンスした。<a href="http://googleblog.blogspot.com/2010/06/our-new-search-index-caffeine.html">Google Official Blog</a> いわく</p>
+<ul>
+<li>Web はサイズだけじゃなく、内容も豊かに、複雑になっている: 動画、画像、ニュース、リアルタイムな更新情報など。</li>
+<li>ユーザーの要求するレベルも高くなっている: 検索する側は適合度が高く新しい情報をみたいし、される側も更新がすぐ反映してほしい。</li>
+<li>いままでの Google のインデックスは更新頻度ごとに複数の階層にわかれていて、ページをクロールしても、それが検索結果に反映されるまでに期間があった。</li>
+<li>Caffeine では Web を部分ごとに分析してインデックスを常に更新している。誰かがページを更新してから、Google の検索結果に反映されるまでがはやくなる。</li>
+</ul>
+<p>ということらしい。</p>
+<h2 id="article38_2" class="ah1 topic">MapReduce を使ってない</h2>
+<p>それからしばらくたって、9月になってから <a href="http://www.theregister.co.uk/2010/09/09/google_caffeine_explained/">Caffeine は MapReduce を使ってない</a> という話がでてくる。The Register の Eisar Lipkovitz (Akamai -&gt; Google) への取材で</p>
+<ul>
+<li>Caffeine は MapReduce じゃなくて Bigtable を使っている。</li>
+<li>論文は来月の OSDI に出す。</li>
+<li>MapReduce でインデックスを作るのは、複数段のバッチ処理になっているのだけど、これは前段が終わるまで次の段がはじまらないし、どこかで詰まるとそれを待ってしまう。</li>
+<li>Caffeine では Bigtable 上の更新がそのままインデックスの更新になり、クロール結果がすぐに反映される。</li>
+<li>システムは GFS2 (社内では Colossus と呼んでいる) に支えられている。もともとの GFS ではだめだった。</li>
+<li>Colossus は Bigtable むけに設計されていてる。GFS の一般的な用途とは違う。</li>
+<li>MapReduce が終わるわけではない。Google の最大の MapReduce アプリケーションであるインデクシングまわりが移行した、というだけ。</li>
+</ul>
+<p>なんてことが明らかになった。The Register の最後の2段落が煽り気味のせいか、これは結構センセーショナルに伝えられたように思う。たとえば <a href="http://yebo-blog.blogspot.com/2010/09/googlemapreduce.html">Googleは既にMapReduceを使っていない</a> には</p>
+<blockquote>
+<p>MapReduceは結局データベースを知らない奴が書いたのさ</p>
+</blockquote>
+<p>なんてひとことまで引用されているけど、この発言者は MapReduce の宿敵 Michael Stonebraker 先生なので、まあ、適度にわりひいたほうが良いんじゃないかと。</p>
+<h2 id="article38_3" class="ah1 topic">Percolator</h2>
+<p>そして9月24日。参加者は OSDI の論文が読めるようになったのか、The Register に <a href="http://www.theregister.co.uk/2010/09/24/google_percolator/">続報</a> が出た。論文では Percolator という分散逐次情報処理システムが説明されているらしい。</p>
+<p>ただこの The Register の記事は、MapReduce だけは論文をみていて GFS, Bigtable は追ってなかった私にはちょっときびしかった。</p>
+<h2 id="article38_4" class="ah1 topic">予習</h2>
+<p>ということで Percolator の論文全体が公開される前に予習をしておこうと思う。</p>
+<p>MapReduce は</p>
+<ul>
+<li><a href="http://labs.google.com/papers/mapreduce.html">MapReduce: Simplified Data Processing on Large Clusters</a></li>
+<li><a href="http://cacm.acm.org/magazines/2010/1/55744-mapreduce-a-flexible-data-processing-tool/fulltext">MapReduce: A Flexible Data Processing Tool</a> <ul>
+<li>これは <a href="http://portal.acm.org/ft_gateway.cfm?id=1629197&amp;type=pdf&amp;coll=portal&amp;dl=ACM&amp;ip=114.22.21.169">MapReduce and Parallel DBMSs: Friend or Foe</a> への反論なのでこっちも読んだ方がいいかも</li>
+</ul>
+</li>
+</ul>
+<p>Bigtable は</p>
+<ul>
+<li><a href="http://labs.google.com/papers/bigtable.html">Bigtable: A Distributed Storage System for Structured Data</a></li>
+</ul>
+<p>GFS は</p>
+<ul>
+<li><a href="http://labs.google.com/papers/gfs.html">The Google File System</a></li>
+<li><a href="http://queue.acm.org/detail.cfm?id=1594206">GFS: Evolution on Fast-forward</a></li>
+</ul>
+<p>あたりを読めばいいのかなあ。ちなみに MapReduce のところに挙げた3つ以外は全部未読です。</p>
+</div>
+<div class="comments" id="article38_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="38" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

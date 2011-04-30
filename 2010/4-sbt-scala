@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=4" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: sbt で Scala の開発サイクルを速くする (前編)</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article4">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/4-sbt-scala" class="name">sbt で Scala の開発サイクルを速くする (前編)</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:1.195551,5.087635&amp;cht=p&amp;chp=3.979351' alt='00:53' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/06 00:53,
+  Modified at 2010/01/06 01:54
+  </div>
+
+<div class="text">
+<p><a href="http://blog.8-p.info/2010/2-fsc-ruby">fsc は速くなった</a> のだけど、コンパイルしたらテストしたいし、テストしたら普通に実行したい。コンパイルだけ速くなっても開発のサイクル全体はそんなに速くならないのでは、といまさら気づいた。scalac, fsc 同様に scala コマンドの実行のために Java VM をあげさげするのを減らす必要がある。</p>
+<p>Java VM のあげさげを減らすのは Java 界にも需要があるらしく、具体的な実装として、Ant を対話的にした <a href="http://www.antshell.org/|">antshell</a> や <a href="http://www.sdv.fr/pages/casa/html/sat.en.html">Ant Console</a> がある。Scala は Ant からも使えるので、これらもまま使えるはずだけど、実はページがどちらも消えてしまっていて試せていない。</p>
+<p>どうしようと探していたら <a href="http://code.google.com/p/simple-build-tool/">sbt</a> が良さげだった。</p>
+<h2 id="article4_1" class="ah1 topic">sbt - simple build tool</h2>
+<p>sbt は Scala で書かれていて、Scala で設定できるビルドツールだ。Ant とはちがいデフォルトで対話的に実行できる。</p>
+<p>実際に使ってみよう。</p>
+<pre>% mkdir hello
+% cd hello
+% sbt 
+Project does not exist, create new project? (y/N/s) : s
+:: retrieving :: sbt#boot
+        confs: [default]
+        2 artifacts copied, 0 already retrieved (9911kB/194ms)
+:: retrieving :: sbt#boot
+        confs: [default]
+        3 artifacts copied, 0 already retrieved (3409kB/27ms)
+[info] Building project scratch 1.0 using sbt.DefaultProject
+[info]    with sbt 0.5.6 and Scala 2.7.7
+[info] No actions specified, interactive session started. Execute 'help' for more information.
+&gt; 
+</pre>
+<p>最初の質問には s (scratch らしい) と答える。一度 Ctrl-D でぬけて sbt が作ったプロジェクトをみてみると、なんかいろいろフォルダが作られているのがわかる。</p>
+<pre>% find .
+.
+./project
+./project/boot
+./project/boot/scala-2.7.7
+./project/boot/scala-2.7.7/lib
+./project/boot/scala-2.7.7/lib/scala-compiler.jar
+./project/boot/scala-2.7.7/lib/scala-library.jar
+./project/boot/scala-2.7.7/sbt-0.5.6
+./project/boot/scala-2.7.7/sbt-0.5.6/ivy-2.0.0.jar
+./project/boot/scala-2.7.7/sbt-0.5.6/jsch-0.1.31.jar
+./project/boot/scala-2.7.7/sbt-0.5.6/sbt_2.7.7-0.5.6.jar
+./project/boot/scala-2.7.7/update.log
+./project/build.properties
+./target
+./target/.history
+%
+</pre>
+<p>このフォルダ構成は Maven と同じだと <a href="http://code.google.com/p/simple-build-tool/wiki/Setup">Setup</a> にはあった。ソースは src/main/scala/Hello.scala とかに置くらしいので、以下のようなものを用意した。</p>
+<pre>object Hello {
+  def main(args: Array[String]) {
+    println(&quot;hello world&quot;)
+  }
+}
+</pre>
+<p>(さっき終了させてしまったので sbt を立ち上げ直して) sbt に run と打ち込む。</p>
+<pre>% sbt
+[info] Building project scratch 1.0 using sbt.DefaultProject
+[info]    with sbt 0.5.6 and Scala 2.7.7
+[info] No actions specified, interactive session started. Execute 'help' for more information.
+&gt; run
+[info]
+[info] == copy-resources ==
+[info] == copy-resources ==
+[info]
+[info] == compile ==
+[info]   Source analysis: 1 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Compiling main sources...
+[info] Compilation successful.
+[info]   Post-analysis: 2 classes.
+[info] == compile ==
+[info]
+[info] == run ==
+[info] Running Hello ...
+hello world
+[info] == run ==
+[success] Successful.
+[info]
+[info] Total time: 3 s
+&gt;
+</pre>
+<p>動いた! というように、編集 -&gt; 立ち上げっぱなしの sbt で run と打ち込むほうが、シェルから scalac と scala を別々に実行するより速い。</p>
+<h2 id="article4_2" class="ah1 topic">トリガ</h2>
+<p>sbt には、さらに <a href="http://code.google.com/p/simple-build-tool/wiki/TriggeredExecution">Triggered Execution</a> という機能がある。アクションの前に「~」をつけると</p>
+<ul>
+<li>ファイルの更新をポーリング</li>
+<li>更新されたらアクションを実行</li>
+<li>ポーリングにもどる</li>
+</ul>
+<p>というループがまわるのだ。Rails だと ZenTest の autotest に似てますね。</p>
+<pre>&gt; ~run
+[info]
+[info] == compile ==
+[info]   Source analysis: 0 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Compiling main sources...
+[info] Nothing to compile.
+[info]   Post-analysis: 2 classes.
+[info] == compile ==
+[info]
+[info] == copy-resources ==
+[info] == copy-resources ==
+[info]
+[info] == run ==
+[info] Running Hello ...
+hello world
+[info] == run ==
+[success] Successful.
+[info]
+[info] Total time: 0 s
+Waiting for source changes... (press enter to interrupt)
+</pre>
+<p>この状態で、さっきの println に「!」を足してみた。すると</p>
+<pre>...
+Waiting for source changes... (press enter to interrupt)
+[info]
+[info] == compile ==
+[info]   Source analysis: 1 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Compiling main sources...
+[info] Compilation successful.
+[info]   Post-analysis: 2 classes.
+[info] == compile ==
+[info] 
+[info] == copy-resources ==
+[info] == copy-resources ==
+[info] 
+[info] == run ==
+[info] Running Hello ...
+hello world!
+[info] == run ==
+[success] Successful.
+[info] 
+[info] Total time: 1 s
+Waiting for source changes... (press enter to interrupt)
+</pre>
+<p>ファイルの更新を検知して、コンパイルと再実行が走る。速い。これが動いている端末とエディタとをならべて開発すると大分便利そうだ。</p>
+<p>もちろんテストも走らせられる (というかそれが主な目的だと思う) のだけど、それはまたあとで。</p>
+</div>
+<div class="comments" id="article4_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="4" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=35" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Play が良さそう</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article35">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/35-play" class="name">Play が良さそう</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:5.873033,0.410152&amp;cht=p&amp;chp=2.303835' alt='18:37' /></h1>
+
+<div class="attr">
+  Posted at 2010/09/12 18:37,
+  Modified at 2010/09/14 03:56
+  </div>
+
+<div class="text">
+<p>Scala むけの Web アプリケーションフレームワークで、Foursquare でも使われているという <a href="http://liftweb.net/">Lift</a> だけど、いまひとつぐっとこない。ほかの選択肢を探していたら <a href="http://www.playframework.org/">Play</a> というフレームワークが良さそうだった。</p>
+<h2 id="article35_1" class="ah1 topic">ステートレス、変更即反映、Servlet じゃない</h2>
+<p>Play は Java むけのフレームワークだ。ただ、Java で一般的なやりかたにはあんまりそっていない。ファイルのおきかたは Rails 風だし、雛形をつくるのは Maven じゃないし、パッケージ名は短く「play」だ。そしてなにより、Servlet をつかっていない。</p>
+<p>開発者の Guillaume Bort は自身のブログの <a href="http://iam.guillaume.bort.fr/post/558830013/why-there-is-no-servlets-in-play">Why there is no servlets in Play</a> という記事で</p>
+<ul>
+<li>Play はステートレスだ。</li>
+<li>ステートレスなおかげで、リロードするだけでコードの変更を反映する、ということができる。</li>
+<li>そもそも Web 自体もステートレスで、それが色々な利点をもたらしている。</li>
+<li>Servlet でステートレスもできる。ただ Servlet の利点である既存の Servlet Filter とかを使おうとすると、それらがセッションを使っていたりして Play と相性が悪い。</li>
+<li>さらにいうと Servlet コンテナの1リクエスト/スレッドモデルは古い。</li>
+</ul>
+<p>といろいろ理由をあげ「たぶん、Java にも Rack みたいな低レベルな API が必要で、Servlet の設計はよくなかった。」とむすんでいる。</p>
+<p>なお、war を生成して Servlet コンテナの元で走らせることも実はできる。ただ、コンテナなしのほうが <a href="http://www.playframework.org/documentation/1.0.3/deployment#aStandalonePlayapplicationa">The simplest and the more robust way</a> とされている。</p>
+<h2 id="article35_2" class="ah1 topic">スクリプト言語っぽい</h2>
+<p>Java で一般的なやりかたにはそってない Play だけど、スクリプト言語で、Rails 以降のフレームワークを知っているひとからすると、わりと普通だと思う。その普通を Java に持ち込んでいるところが面白いんだけど。</p>
+<p>ただ、<a href="http://www.playframework.org/documentation/1.0.3/5things">Five cool things you can do with Play</a> にある、メソッドのパラメータの仮引数名が、そのまま HTTP のクエリパラメータになる</p>
+<pre>// こういうリクエストから呼ばれる /articles/archive?date=08/01/08&amp;page=2
+public static void archive(Date date, Integer page) {
+...
+</pre>
+<p>とか、テンプレートに変数をひきわたすとその変数名で参照できる</p>
+<pre>Article article = Article.findById(id);
+User user = User.getConnected();
+// テンプレート側からは &quot;article&quot;, &quot;user&quot; で参照できる
+render(article, user);
+</pre>
+<p>とかは少しびっくりするかもしれない。</p>
+<h2 id="article35_3" class="ah1 topic">ニュース</h2>
+<p>最近 Digg のインターンが社内むけのダッシュボード (チケットからトラフィック、社員の Twitter でのつぶやき、最寄のバス停情報までを壁のディスプレイに表示する、らしい) を作った、という記事 (<a href="http://about.digg.com/blog/awacs">AWACS: A Monitoring Dashboards Platform</a>) を読んだのだけど、それは Play を使っている。<a href="http://www.playframework.org/community/testimonials">Play の採用事例</a>には知らないサイトが多いので、Digg というのはちょっと心強い。インターンのひとの社内向けソフトウェアなので、これをもって「Digg も Play を採用」というのはおおげさだろうけど。</p>
+<p>そしてなにより Play 1.1 だ。<a href="http://www.playframework.org/modules/scala">Play を Scala から使うためのモジュール</a> はいままでもあった。ただ Play 1.1 からはこれが一緒に配布されるようになる。<a href="http://www.playframework.org/documentation/1.1-trunk/scala">Scala support</a> いわく</p>
+<blockquote>
+<p>The 1.1 release of play will include support for the Scala programming language.</p>
+</blockquote>
+<p>Play 1.1 はまだベータだけど、リリースされたらなんか Scala でアプリケーションを書きたいなあと思っています。</p>
+</div>
+<div class="comments" id="article35_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="35" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

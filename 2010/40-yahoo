@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=40" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Yahoo にいま起きていること</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article40">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/40-yahoo" class="name">Yahoo にいま起きていること</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:2.487094,3.796091&amp;cht=p&amp;chp=3.141593' alt='01:45' /></h1>
+
+<div class="attr">
+  Posted at 2010/10/01 01:45,
+  Modified at 2010/10/10 23:11
+  </div>
+
+<div class="text">
+<p>Paul Graham の <a href="http://www.paulgraham.com/yahoo.html">What Happened to Yahoo</a> は、人に読めといわれているあいだに <a href="http://d.hatena.ne.jp/lionfan/20100815#1281830975">翻訳</a> がでたので、そっちを読んだ。まわりでも読んだひとは多いようで「メディア企業」という言い回しはやや流行った。</p>
+<p>Paul Graham は『ハッカーと画家』なんかに収録されている文章を書いていたことにくらべるとやや立場が変わっていて、最近の結論は全部「だからおまえら他人の会社で働いたりなんかしないで YC に来いよ」なのでは、と少しうがったみかたをしてしまう。</p>
+<p>まあそれはいいや。このはなしは、趣旨はわかりつつも、これをもって特定企業がどうこうというのは違うのかなあと、YUI チームの Ryan Groove の <a href="http://wonko.com/post/whats-happening-at-yahoo">What's happening at Yahoo!</a> を読んで思った。</p>
+<h2 id="article40_1" class="ah1 topic">What's happening at Yahoo!</h2>
+<p>Ryan Groove は「Paul Graham がいたのは、自分がはいるより前のことだから、そのころの Yahoo は知らないけど」といいながら「Yahoo にはハッカー中心の文化がない」というのに反論する。</p>
+<ul>
+<li>検索にエンジニアとしていたころは、プロダクトのいろんなレベルに直接かかわれた。すごいアイデアがあったら、話して回るより、作った結果をみせるようにいわれていた。スタートアップやちいさい企業じゃなくて、世界でも有数のインターネット企業でだよ。</li>
+<li>YUI チームでも、この星でも有数のフロントエンドエンジニアと、Yahoo だけじゃなく、世界中でも使われるオープンソースなライブラリを作っている。</li>
+</ul>
+<p>と例をあげ、ハッカー中心の文化もあるし、素晴らしい人々もいる、だから自分は Yahoo にいるんだよ、と主張している。コメント欄まで読んでいくと、<a href="http://wonko.com/post/whats-happening-at-yahoo#comment-6042">匿名のひと</a> が</p>
+<ul>
+<li>君は幸運だよ。検索は Inktomi 母体なので文化がちがうし、YUI はちいさくて目的がはっきりしてて Google が JS に本気になるまえからすごい人を採ってた。あと Flickr が、前ふたつほど技術的にすごいってわけではないけど、プロダクトにすごくちゃんとしてて、独特なやりかたですばやく仕事をまわしている。</li>
+<li>自分の Yahoo での経験は Paul Graham のにすごい似てたねえ。</li>
+</ul>
+<p>なんていっていて、数人のサンプルで考えるのも、また違うんだろうけど。</p>
+<p>ただ、日本の普通の会社のひとが「たしかに Yahoo は技術って感じじゃないよねえ」なんていっていると、もうね、おまえのとこは何 Slow を作ったんですかと。</p>
+</div>
+<div class="comments" id="article40_comments">
+<div class="meta">4 comments</div>
+<div class="comment" id="article40_c1">
+<span class="owner">ku</span> :
+<span class="text">外部には存在も知られてなかったけど自分がいたころは裏に独自の飛び道具がけっこうあっておもしろかったです。</span>
+<span class="date">(2010/10/07 03:03)</span>
+</div>
+<div class="comment" id="article40_c2">
+<span class="owner">kzys</span> :
+<span class="text">ex-Yahoo のひとは (Inc, Japan とも) まわりにいるんですが、話すと独自のものが色々あるみたいですね。PHP は何といっしょじゃないと、とか、DBM みたいなやつとか。</span>
+<span class="date">(2010/10/10 22:53)</span>
+</div>
+<div class="comment" id="article40_c3">
+<span class="owner">morita</span> :
+<span class="text">dbm みたいなやつは論文もありますよ http://research.yahoo.com/files/pnuts.pdf</span>
+<span class="date">(2010/10/11 10:42)</span>
+</div>
+<div class="comment" id="article40_c4">
+<span class="owner">kzys</span> :
+<span class="text">おー、ありがとうございます。牛の本の人だ。時系列的にこれがそれなのかはやや自信ないですが、これはこれで気になります。</span>
+<span class="date">(2010/10/11 19:14)</span>
+</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="40" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=17" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Foursquare が Scala + Lift で書き直された件</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article17">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/17-foursquare-scala-lift" class="name">Foursquare が Scala + Lift で書き直された件</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:1.675516,4.607669&amp;cht=p&amp;chp=3.455752' alt='00:48' /></h1>
+
+<div class="attr">
+  Posted at 2010/02/18 00:48,
+  Modified at 2010/02/18 01:09
+  </div>
+
+<div class="text">
+<p>Foursquare は位置情報系のサービスで、Google に買収されて</p>
+<blockquote>
+<p>It's no real secret that Google wasn't supporting dodgeball the way we expected. The whole experience was incredibly frustrating for us - especially as we couldn't convince them that dodgeball was worth engineering resources, leaving us to watch as other startups got to innovate in the mobile + social space.</p>
+</blockquote>
+<p>と <a href="http://www.flickr.com/photos/dpstyles/460987802/">Flickr に写真をのこして</a> 去っていった ex-Dodgeball の Dennis Crowley がやっている。それが最近 Scala + Lift で書き直されたというので、主導した Harry Heymann (彼も <a href="http://www.businessinsider.com/googles-last-dodgeball-employee-leaving-to-join-foursquare-2009-8">Dodgeball -&gt; Google -&gt; Foursquare</a>) の <a href="http://docs.google.com/present/view?id=0ATHAG0M-0vxXZGNicHozY2tfMjVjemNuczJjMg">foursquare.com &amp; scala/lift</a> というスライドを読んでみた。</p>
+<p>Foursquare はもともと Apache + MySQL + PHP で書かれていたのだけど、彼いわくそれは</p>
+<blockquote>
+<p>Written by someone who wasn't an engineer.  Poor code quality.</p>
+</blockquote>
+<p>だったらしい。スライドは短いので要約は無し。</p>
+<h2 id="article17_1" class="ah1 topic">Lift</h2>
+<p>Scala が良いのはわかっているけど Lift は</p>
+<blockquote>
+<p>Lift doesn't play very well with MySQL.  We switched to PostgreSQL, and had a disastrous downtime filled weekend fixing various bugs (mostly on the PHP side of things) that cropped up because of differences.  If you're starting a Lift project go with PostgreSQL from day 1</p>
+</blockquote>
+<p>とか</p>
+<blockquote>
+<p>Lift has stateful servers. Ultimately this will lead to challenges in production, though it hasn't been too bad so far.</p>
+</blockquote>
+<p>とか、まだちょっと微妙に思った。状態を持ってしまうことについて Harry Heymann の <a href="http://docs.google.com/present/view?id=dcbpz3ck_24f3v83ggz">The Lift Web Framework</a> というスライド (前述のスライドより古い) には</p>
+<blockquote>
+<p>Foursquare currently using nginx to route requests based on the session cookie.</p>
+</blockquote>
+<p>ともあった。スケーラビリティへの不安と「REST っぽいのがいけてる」という個人的な好みはあるんだけど、毛嫌いするほどのものではないんだろうか。</p>
+</div>
+<div class="comments" id="article17_comments">
+<div class="meta">3 comments</div>
+<div class="comment" id="article17_c1">
+<span class="owner">morita</span> :
+<span class="text">Servlet の state というか Session って実装によってはプロセス外に押し出せるんじゃ...とおもったらなぜか servlet の session を使わず lift 内に連想配列をもってますね(LiftSession.scala)。ショックです。Servlet の session を使わないのには事情がありそうですが、なんとかこいつをプロセス外に追いだせるよう pluggable に直すのは web+scala プログラマとしてちょうどいい挑戦なんじゃないでしょうか。Actor はさておき。REST ぽさは悩ましいけど、なんとか頑張れないのかなー。</span>
+<span class="date">(2010/02/20 00:41)</span>
+</div>
+<div class="comment" id="article17_c2">
+<span class="owner">kzys</span> :
+<span class="text">さすが読むの速い。Java で実績あるフレームワーク + glue としての Scala って構成に逃げようかと思ってたんだけど、ちょっと見てみます。</span>
+<span class="date">(2010/02/20 01:56)</span>
+</div>
+<div class="comment" id="article17_c3">
+<span class="owner">morita</span> :
+<span class="text">なるほど。Java のフレームワークを使うのはそれはそれで面白いのかも。</span>
+<span class="date">(2010/02/20 07:38)</span>
+</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="17" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

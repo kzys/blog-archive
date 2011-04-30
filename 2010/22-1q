@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=22" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: 1Q をふりかえる</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article22">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/22-1q" class="name">1Q をふりかえる</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:0.331613,5.951573&amp;cht=p&amp;chp=-1.361357' alt='01:02' /></h1>
+
+<div class="attr">
+  Posted at 2010/03/27 01:02,
+  Modified at 2010/03/27 09:55
+  </div>
+
+<div class="text">
+<p>仕事が Q (4半期) で区切られているので、個人の生活も Q で区切ってふりかえったりしようとしていたら、仕事のほうは半年で区切られるようになるとかなんとか。すこしあてがはずれた感じはあるけど、1Q をふりかえってみる。</p>
+<h2 id="article22_1" class="ah1 topic">Scala</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/2-fsc-ruby">fsc の速いクライアントを Ruby で書いた</a></li>
+<li><a href="http://blog.8-p.info/2010/4-sbt-scala">sbt で Scala の開発サイクルを速くする (前編)</a></li>
+<li><a href="http://blog.8-p.info/2010/5-sbt-scala">sbt で Scala の開発サイクルを速くする (後編)</a></li>
+<li><a href="http://blog.8-p.info/2010/9-scala-xml">Scala で XML を編集する</a></li>
+<li><a href="http://blog.8-p.info/2010/10-scala">なんでこれから Scala?</a></li>
+<li><a href="http://blog.8-p.info/2010/17-foursquare-scala-lift">Foursquare が Scala + Lift で書き直された件</a></li>
+</ul>
+<p>分類してみたら、Scala 関係のはなしが一番多かった。</p>
+<p>fsc と XML のはあんまり使っていなくて続きがない。sbt は Eclipse のような IDE ぬきで Scala を書くなら必須だと思う。あと、Foursqure のはなしを書いたときは「Lift はいいかな」と思っていたんだけど、コメントをもらったのもあって、2Q では Lift でなんか書いてみようかなあと気持ちがかたむいている。</p>
+<p>「なんでこれから Scala?」はいま読み返すと Perl のはなしが多い。私は Perl も書くけど、Perl のひとの Perl 好き (たとえば <a href="http://mt.endeworks.jp/d-6/2010/03/learn-perl-now.html">学生に Perl をすすめたり</a>) には、ちょっとついていけないと思うこともあって、ついこの類いを書いてしまう。</p>
+<h2 id="article22_2" class="ah1 topic">JavaScript</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/15-spidermonkey-jslint">SpiderMonkey で JSLint を動かす</a></li>
+<li><a href="http://blog.8-p.info/2010/16-google-chrome">Google Chrome で「保存したらリロード」</a></li>
+<li><a href="http://blog.8-p.info/2010/18-javascript">JavaScript とコールバック</a></li>
+</ul>
+<p>次に多かったのが JavaScript のはなし。でも、書いたなかで実際によく使っているのはコールバックだけだ。ChromeRepl は去年書いたことのほぼ焼き直しなんだけど、日本語で書いたからか、反応が去年よりよかったような。</p>
+<p>2Q は無視するのがつらいレベルに流行っている jQuery にむきあいたい。John Resig が Processing.js で <a href="http://github.com/jeresig/processing-js/blob/master/processing.js">Java のコードを正規表現で JavaScript にするメソッドに parse と名付けていた</a> のはこのさい忘れる。</p>
+<h2 id="article22_3" class="ah1 topic">Tokyo Promenade</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/1-lighttpd-promenade-cgi">lighttpd + promenade.cgi</a></li>
+<li><a href="http://blog.8-p.info/2010/3-procartmap">_procartmap</a></li>
+</ul>
+<p>Tokyo Promenade はふつうに使っている。</p>
+<h2 id="article22_4" class="ah1 topic">Kindle</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/14-kindle-2">Kindle 2</a></li>
+<li><a href="http://blog.8-p.info/2010/19-kindle-2-1">Kindle 2 (1ヶ月目)</a></li>
+</ul>
+<p>Kindle も通勤読書端末としてふつうに使っている。もうすこし家でも使うようにしたい。最近は &quot;Framework Design Guidelines&quot; を読んでいて、下線をひく機能にもなれてきた。いまのところ洋書端末としてしか使っていないけど、文芸春秋が PDF でくばっている <a href="http://www.bunshun.co.jp/cgi-bin/book_db/book_detail.cgi?isbn=9784166607235">ライフネット生命の新書</a> なんかも、いれてみるとかなり読める。日本語もいけるんだなあと認識をあらたにした。</p>
+<h2 id="article22_5" class="ah1 topic">仕事</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/11-passionate">Passionate</a></li>
+<li><a href="http://blog.8-p.info/2010/20-rework">REWORK</a></li>
+</ul>
+<p>「Passionate」は同時期に <a href="http://ukstudio.jp/2010/01/31/programmer_is_severe_job/">プログラマという職業は「ふつう」の人には厳しくないか</a> というのが話題をあつめていたのを、書いた後に知った。</p>
+<h2 id="article22_6" class="ah1 topic">CS</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/12-cacm-mapreduce">CACM の MapReduce ばなし (前編)</a></li>
+<li><a href="http://blog.8-p.info/2010/13-cacm-mapreduce">CACM の MapReduce ばなし (後編)</a></li>
+</ul>
+<p>&quot;Communications of the ACM&quot; は正直つみがち。ACM にはいったきっかけだった O'Reilly Safari もあんまり使っていないし。CS ばなしでいうと、最近は Russ Cox の正規表現3部作がおもしろい、と思う。<a href="http://swtch.com/~rsc/regexp/regexp3.html">Regular Expression Matching in the Wild</a> は読み終わって、いまは <a href="http://swtch.com/~rsc/regexp/regexp1.html">Regular Expression Matching Can Be Simple And Fast</a> の途中。</p>
+<h2 id="article22_7" class="ah1 topic">そのほか</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/6-merge-tracking">Merge Tracking</a></li>
+<li><a href="http://blog.8-p.info/2010/7-fbml">ビューティフル FBML</a></li>
+<li><a href="http://blog.8-p.info/2010/8-sgml-match-mode-el">sgml-match-mode.el</a></li>
+<li><a href="http://blog.8-p.info/2010/21-linux">自宅 Linux サーバー</a></li>
+</ul>
+<p>マージトラッキングは結局 svnmerge.py すら使っていない。Trac の diff 表示をつかってコードレビューをしたりしていると、rebase なしで trunk から変更をとりこんだりするのは見づらくてきつい。ただ、Joel Spolsky が <a href="http://local.joelonsoftware.com/wiki/分散バージョン管理で間違いないって、ベイビー">Mercurial に目覚めてたり</a>、時代のながれはきている感じはある。</p>
+<h2 id="article22_8" class="ah1 topic">2Q</h2>
+<p>2Q はなにかポップなものを作りたいなあ。最近見たものだと <a href="http://www.voiceofawareness.jp/">voice of awareness #kizuku</a> がかっこよかった。いまみたらでてくるツイートがだいぶ説教くさかったけど。あとは英語。2回目の TOEIC をちゃんと勉強してからうけたいと思う。</p>
+</div>
+<div class="comments" id="article22_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="22" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

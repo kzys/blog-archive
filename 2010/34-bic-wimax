@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=34" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: BIC WiMAX</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article34">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/34-bic-wimax" class="name">BIC WiMAX</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:2.661627,3.621558&amp;cht=p&amp;chp=-1.047198' alt='18:05' /></h1>
+
+<div class="attr">
+  Posted at 2010/09/12 18:05,
+  Modified at 2010/09/12 18:05
+  </div>
+
+<div class="text">
+<p>BIC WiMAX を契約したので、家のふつうのコンピュータからインターネットに物理的につなげない (iPhone 3G ですます) 生活も、いったん終わり。5月からなので4ヶ月とすこし続いたことになる。</p>
+<p>最近、引越しをしようとしていて</p>
+<ul>
+<li>引越し先にネットワーク環境をつくるなら WiMAX かなあ。外で使えるのは便利そうだし。</li>
+<li>住んで一年してつないだときに速度がでないことに気づくのは嫌だなあ。そのときに備えて部屋探しの基準にいれておきたい。</li>
+</ul>
+<p>というのがあり、やや衝動的に契約してしまった。</p>
+<p>土曜日に申し込んで、今日が日曜日なんだけど、結局この文章は新宿のカフェから送信している。なんかこのリズムはリズムで好きなんだよなあ。</p>
+<p>料金は4,480円/月の定額ではなく、380円/月から4,980円/月の範囲での従量課金のほうにしたし、マクドナルドの無線 LAN は無料で (いまヤフーに払っているお金を払わずに) 使えるようになるらしいので、いままでの生活を続ければ支出は同じくらいだしまあ、ということにしよう。</p>
+</div>
+<div class="comments" id="article34_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="34" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

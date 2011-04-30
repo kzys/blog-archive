@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=28" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Globalization</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article28">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/28-globalization" class="name">Globalization</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:4.171337,2.111848&amp;cht=p&amp;chp=0.733038' alt='12:22' /></h1>
+
+<div class="attr">
+  Posted at 2010/06/12 12:22,
+  Modified at 2010/06/12 12:22
+  </div>
+
+<div class="text">
+<p>NHK の番組が文庫本になった『ワーキングプア 日本を蝕む病』『ワーキングプア 解決への道』を読んだ。前者では国内の問題が、後者では海外や日本での対策が取材されている。</p>
+<p>2, 3の不幸が重なっただけで乗り越えられない格差の下へ落ちてしまうのは恐怖だし、アメリカやイギリス、日本の一部での対策をみると、政府や社会がなせる部分もあるのだろう。</p>
+<p>ただ、問題の一部は</p>
+<ul>
+<li>発展途上国の人々は先進国のような暮らしをもとめ</li>
+<li>企業は安い労働力をもとめ</li>
+<li>消費者は低価格で高品質のものをもとめ</li>
+</ul>
+<p>というながれのなかで不可避に進むもののようにも思う。どこかで悪人が搾取してるので、それをやっつけて解決、って種類のはなしではないだろう。</p>
+<h2 id="article28_1" class="ah1 topic">コンピュータ関連業の場合</h2>
+<p>「解決への道」のアメリカの事例では、開発部門がインドに移転されてクビになり、ファーストフード店で働く元プログラマーがでてくる。ホワイトカラーだって安全じゃないぜ、と。アメリカ IT 協会の理事は</p>
+<ul>
+<li>海外の労働力は、安いだけではなくて能力でも競争力をもっている</li>
+<li>企業は、国内のできない人々に研修をうけさせる余裕なんてない</li>
+</ul>
+<p>という。</p>
+<p>これは日本にもくるんだろうなあ。</p>
+<p>むかしは、企画者というか発注者というか、仕事相手が英語できないから、日本語という特殊技能で生き残ることもできるのかと少し思っていた。でも、Twitter, iPhone, Android みたいな「日本なんてメッセージカタログの翻訳だけやってればいいよ」が、上から下まで日本人が日本人のために作ったものに対してちゃんと競争力を持っているのをみると、うーん。</p>
+</div>
+<div class="comments" id="article28_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="28" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

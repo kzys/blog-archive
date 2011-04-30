@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=16" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Google Chrome で「保存したらリロード」</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article16">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/16-google-chrome" class="name">Google Chrome で「保存したらリロード」</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:0.287979,5.995206&amp;cht=p&amp;chp=4.398230' alt='23:57' /></h1>
+
+<div class="attr">
+  Posted at 2010/02/15 23:57,
+  Modified at 2010/02/16 00:08
+  </div>
+
+<div class="text">
+<p>去年に <a href="https://chrome.google.com/extensions/detail/dedppbpeendknnpchklgpdiiiodajgki">ChromeRepl</a> という Google Chrome 拡張を書いた。ChromeRepl は MozRepl のように、外部からたたける口を Google Chrome に空けてくれる。詳しくいうと Chrome には <a href="http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol">Google Chrome Developer Tools Protocol</a> というプロセス外から制御するためのプロトコルが元々あり、これの上に汎用 eval と console.log などを足すことが ChromeRepl の仕事になる。</p>
+<p>最近 Mac むけ Chrome でも beta なら拡張機能が使えるようになったので、今日は ChromeRepl のインストールから、実際どう便利かまでを簡単に説明してみようと思う。</p>
+<h2 id="article16_1" class="ah1 topic">インストール</h2>
+<p>まずはインストールから。ChromeRepl は核となるサーバー側と、それを便利に使うためのクライアント側にわかれている。</p>
+<p>サーバー側は <a href="https://chrome.google.com/extensions/detail/dedppbpeendknnpchklgpdiiiodajgki">拡張機能ギャラリー</a> から、クライアント側は <a href="http://gemcutter.org/gems/google-chrome-client">gemcutter</a> からインストールできる。</p>
+<pre>% gem install google-chrome-client
+Building native extensions.  This could take a while...
+Successfully installed json-1.2.0
+Successfully installed google-chrome-client-0.2
+2 gems installed
+Installing ri documentation for json-1.2.0...
+Installing ri documentation for google-chrome-client-0.2...
+Installing RDoc documentation for json-1.2.0...
+Installing RDoc documentation for google-chrome-client-0.2...
+%
+</pre>
+<p>クライアント側、サーバー側はどちらを先にインストールしても問題ない。</p>
+<h2 id="article16_2" class="ah1 topic">使い方</h2>
+<p>インストールがすんだら Chrome を引数つきで起動する。</p>
+<pre>% /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-shell-port=9222
+</pre>
+<p>次に、ほかのコンソールで chrome-repl を起動して、いろいろ入力してみる。</p>
+<pre>% chrome-repl
+Protocol version: 0.1
+&gt; chrome.tabs
+{&quot;onAttached&quot;=&gt;{&quot;eventName_&quot;=&gt;&quot;tabs.onAttached&quot;, &quot;listeners_&quot;=&gt;[]},
+ &quot;onCreated&quot;=&gt;{&quot;eventName_&quot;=&gt;&quot;tabs.onCreated&quot;, &quot;listeners_&quot;=&gt;[]},
+ &quot;onDetached&quot;=&gt;{&quot;eventName_&quot;=&gt;&quot;tabs.onDetached&quot;, &quot;listeners_&quot;=&gt;[]},
+ &quot;onMoved&quot;=&gt;{&quot;eventName_&quot;=&gt;&quot;tabs.onMoved&quot;, &quot;listeners_&quot;=&gt;[]},
+ &quot;onRemoved&quot;=&gt;{&quot;eventName_&quot;=&gt;&quot;tabs.onRemoved&quot;, &quot;listeners_&quot;=&gt;[]},
+ &quot;onSelectionChanged&quot;=&gt;
+  {&quot;eventName_&quot;=&gt;&quot;tabs.onSelectionChanged&quot;, &quot;listeners_&quot;=&gt;[]},
+ &quot;onUpdated&quot;=&gt;{&quot;eventName_&quot;=&gt;&quot;tabs.onUpdated&quot;, &quot;listeners_&quot;=&gt;[]}}
+&gt; chrome.tabs.create({ url: &quot;http://www.google.com/&quot; })
+nil
+&gt; 
+</pre>
+<p>chrome.tabs.create... で Chrome に新しいタブが開いたはずだ。こんな感じで chrome-repl に入力した JavaScript のコードは、即座に Chrome 上で実行される。</p>
+<h2 id="article16_3" class="ah1 topic">エディタと連携させる</h2>
+<p>最後にすこし応用。chrome-repl は対話的に使うほかに -e という引数でスクリプトを実行することもできる。</p>
+<p>たとえば Emacs と Chrome  で、むかし流行った「保存したらリロード」を実行するなら、こんな感じになるだろう。</p>
+<pre>(defun google-chrome-reload()
+  (if (eq major-mode 'html-mode)
+      (shell-command &quot;chrome-repl -e \&quot;chrome.tabs.getSelected(null, function (t) { chrome.tabs.executeScript(t.id, { code: 'location.reload()' }) });\&quot;&quot;)))
+(add-hook 'after-save-hook 'google-chrome-reload)
+</pre>
+<p>if の条件はもう少し考える余地があるけど、そこは本題ではないので、まあ。</p>
+</div>
+<div class="comments" id="article16_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="16" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

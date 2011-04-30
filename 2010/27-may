@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=27" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: May</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article27">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/27-may" class="name">May</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:0.095993,6.187192&amp;cht=p&amp;chp=4.607669' alt='11:59' /></h1>
+
+<div class="attr">
+  Posted at 2010/05/29 11:59,
+  Modified at 2010/05/29 11:59
+  </div>
+
+<div class="text">
+<p>5月はプロバイダとの契約がないまま過ごした。iPhone から Web をみることはできるので「断線」はいいすぎだけど、MacBook とかちゃんとしたコンピュータからはインターネットにつなげない。</p>
+<p>生活はだいぶ変わったと思う。読書と、部屋の片付けの時間は増えた。プログラミングには、正直いって不便なことも多いけど、環境設定のための設定のための設定、みたいな脱線と深追いは減った気がする。</p>
+<p>大きめの調べものや git clone など、つなぐ必要があるときは公衆無線 LAN のある場所に出向いている。マクドナルドの無線 LAN は、契約はしたものの、店舗や席によって品質に差が大きい。家の近くのマクドナルドの不安定さは想定外だった。東新宿駅の近所のマクドナルドは良い。</p>
+<p>マクドナルドをはなれると、新宿の BLUE SQUARE CAFE が</p>
+<ul>
+<li>無線が安定している</li>
+<li>いい席があるか外から確認しやすい</li>
+<li>ノートパソコン開いているひとが多くて浮かない</li>
+</ul>
+<p>ので気に入っている。遠いので週末しか行けないけど、まあ、毎日必須ならふつうにプロバイダと契約すればいいわけで。</p>
+<p>ただ、家からインターネットをあまり見ないようにしている、私の仕事はインターネット関係で、それはちょっと後ろめたい。自制心と集中力のなさを選択肢を減らすことでなんとかしようとしているだけで、インターネットが悪いとか嫌いとかではないんだけど。こうやってブログは書くわけだし。</p>
+</div>
+<div class="comments" id="article27_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="27" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

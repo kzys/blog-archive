@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=5" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: sbt で Scala の開発サイクルを速くする (後編)</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article5">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/5-sbt-scala" class="name">sbt で Scala の開発サイクルを速くする (後編)</a> <img src='http://chart.apis.google.com/chart?chs=40x40&amp;chd=t:5.707227,0.575959&amp;cht=p&amp;chp=-0.942478' alt='00:06' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/07 00:06,
+  Modified at 2010/01/07 01:17
+  </div>
+
+<div class="text">
+<p><a href="http://blog.8-p.info/2010/4-sbt-scala">sbt のはなし</a> の続きです。</p>
+<p>前回で、ソースコードを編集したらコンパイルと実行が走るところまでは出来た。今回は、ソースコードを編集したら用意しておいたテストコードが走るようにしたいと思う。現代のプログラマだったらテスト書きますよねふつう。</p>
+<p>Scala には標準のテストライブラリというのは無い。<a href="http://www.scala-lang.org/node/1209#program_testing">テストライブラリ自体はいくつかある</a> なかで、今回は <a href="http://www.scalatest.org/">ScalaTest</a> を使うことにした。</p>
+<h2 id="article5_1" class="ah1 topic">テストライブラリをいれる</h2>
+<p>まず jar をダウンロードして、というところから sbt は使えます。project/build/MyProject.scala を用意して</p>
+<pre>import sbt._
+
+class MyProject(info: ProjectInfo) extends DefaultProject(info) {
+  val scalaTest = &quot;org.scalatest&quot; % &quot;scalatest&quot; % &quot;1.0&quot;
+}
+</pre>
+<p>sbt 上で reload と打つと、プロジェクトの設定が再読み込みされる。</p>
+<pre>&gt; reload
+[info] 
+[info] Total session time: 9 s
+[info] Recompiling project definition...
+[info]    Source analysis: 1 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Building project scratch 1.0 using MyProject
+[info]    with sbt 0.5.6 and Scala 2.7.7
+[info] No actions specified, interactive session started. Execute 'help' for more information.
+&gt;
+</pre>
+<p>さっき書いた MyProject というクラスがプロジェクトの設定です。詳しくは <a href="http://code.google.com/p/simple-build-tool/wiki/BuildConfiguration">BuildConfiguration </a> をどうぞ。</p>
+<p>なお MyProject という名前はなんでもよく、それが sbt.DefaultProject 経由で sbt.Project トレイトを実装していることが重要。また &quot;org.scalatest&quot;, &quot;scalatest&quot;, &quot;1.0&quot; という文字列は <a href="http://www.scalatest.org/download">ScalaTest のダウンロードページ</a> にあって、このトリオが Java というか Maven 発祥のライブラリの識別子らしい。</p>
+<p>つぎに update と打ち込んでみる。</p>
+<pre>&gt; update
+[info]
+[info] == update ==
+[info] :: retrieving :: #scratch [sync]
+[info]  confs: [compile, runtime, test, provided, system, optional, sources, javadoc]
+[info]  1 artifacts copied, 0 already retrieved (1615kB/179ms)
+[info] == update ==
+[success] Successful.
+[info]
+[info] Total time: 2 s
+&gt;
+</pre>
+<p>これで lib_managed/ の下に ScalaTest の jar が配置されます。</p>
+<h2 id="article5_2" class="ah1 topic">テストを書く</h2>
+<p>そのまえに Hello.scala のテストが書きづらすぎるので直しておく。</p>
+<pre>object Hello {
+  val greeting = &quot;hello world&quot;
+
+  def main(args: Array[String]): Unit = {
+    println(greeting)
+  }
+}
+</pre>
+<p>だいぶ微妙ですがとりあえず。で、テストを src/test/scala/HelloSuite.scala に書く。</p>
+<pre>import org.scalatest.FunSuite
+
+class HelloSuite extends FunSuite {
+  test(&quot;&quot;&quot;traditional &quot;hello world&quot; from K&amp;R&quot;&quot;&quot;) {
+    assert(Hello.greeting === &quot;hello, world&quot;)
+  }
+}
+</pre>
+<p>テストを実行。</p>
+<pre>&gt; test
+[info]
+[info] == compile ==
+[info]   Source analysis: 1 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Compiling main sources...
+[info] Compilation successful.
+[info]   Post-analysis: 2 classes.
+[info] == compile ==
+[info]
+[info] == copy-test-resources ==
+[info] == copy-test-resources ==
+[info]
+[info] == copy-resources ==
+[info] == copy-resources ==
+[info]
+[info] == test-compile ==
+[info]   Source analysis: 1 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Compiling test sources...[info] Compilation successful.
+[info]   Post-analysis: 2 classes.[info] == test-compile ==
+[info][info] == test-start ==
+[info] == test-start ==
+[info][info] == HelloSuite ==
+[info] Test Starting - traditional &quot;hello world&quot; from K&amp;R
+org.scalatest.TestFailedException: &quot;hello[] world&quot; did not equal &quot;hello[,] world&quot; 
+        at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:278)
+        at HelloSuite.newAssertionFailedException(HelloSuite.scala:3)
+        at org.scalatest.Assertions$class.assert(Assertions.scala:363)
+        at HelloSuite.assert(HelloSuite.scala:3)
+...
+[error] Test Failed - traditional &quot;hello world&quot; from K&amp;R
+[info] == HelloSuite ==
+[info]
+[info] == test-finish ==
+[info] Run: 1, Passed: 0, Errors: 0, Failed: 1
+[info] == test-finish ==
+[info]
+[info] == test-cleanup ==
+[info] == test-cleanup ==
+[error] Error running HelloSuite: Test FAILED
+[error] Error running test: One or more subtasks failed
+[info]
+[info] Total time: 1 s
+&gt;
+</pre>
+<p>あ、K&amp;R にのってる &quot;hello world&quot; ってカンマあったんですねー、ってわざとらしいか。スタックトレースは一部省略しました。</p>
+<p>せっかくなのでここで test ではなく ~test と打ってから、Hello.scala にカンマを足してみよう。</p>
+<pre>&gt; ~test
+....
+[error] Test Failed - traditional &quot;hello world&quot; from K&amp;R
+[info] == HelloSuite ==
+[info]
+[info] == test-finish ==
+[info] Run: 1, Passed: 0, Errors: 0, Failed: 1
+[info] == test-finish ==
+[info]
+[info] == test-cleanup ==
+[info] == test-cleanup ==
+[error] Error running HelloSuite: Test FAILED
+[error] Error running test: One or more subtasks failed
+[info]
+[info] Total time: 0 s
+Waiting for source changes... (press enter to interrupt)
+[info]
+[info] == compile ==
+[info]   Source analysis: 1 new/modified, 0 indirectly invalidated, 0 removed.
+[info] Compiling main sources...
+[info] Compilation successful.
+[info]   Post-analysis: 2 classes.
+[info] == compile ==
+[info]
+[info] == test-compile ==
+[info]   Source analysis: 0 new/modified, 1 indirectly invalidated, 0 removed.
+[info] Compiling test sources...
+[info] Compilation successful.
+[info]   Post-analysis: 2 classes.
+[info] == test-compile ==
+[info]
+[info] == copy-resources ==
+[info] == copy-resources ==
+[info]
+[info] == copy-test-resources ==
+[info] == copy-test-resources ==
+[info]
+[info] == test-start ==
+[info] == test-start ==
+[info]
+[info] == HelloSuite ==
+[info] Test Starting - traditional &quot;hello world&quot; from K&amp;R
+[info] Test Succeeded - traditional &quot;hello world&quot; from K&amp;R
+[info] == HelloSuite ==
+[info]
+[info] == test-complete ==
+[info] == test-complete ==
+[info]
+[info] == test-finish ==
+[info] Run: 1, Passed: 1, Errors: 0, Failed: 0
+[info]
+[info] All tests PASSED.
+[info] == test-finish ==
+[info]
+[info] == test-cleanup ==
+[info] == test-cleanup ==
+[info]
+[info] == test ==
+[info] == test ==
+[success] Successful.
+[info]
+[info] Total time: 1 s
+Waiting for source changes... (press enter to interrupt)
+</pre>
+<p>成功。めでたしめでたし。</p>
+<h2 id="article5_3" class="ah1 topic">sbt どうよ</h2>
+<p>良いですね。</p>
+<p>フォルダをいちいちつくるのは少し大げさだけど、最近は <a href="http://search.cpan.org/dist/local-lib/">local::lib</a> とか <a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> とか、システム全体とは独立したライブラリ郡をプロジェクトごとに用意するのが流行っているので、そういうものだと思えばまあ。</p>
+</div>
+<div class="comments" id="article5_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="5" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>
