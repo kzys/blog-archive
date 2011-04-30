@@ -1,0 +1,105 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-07-25T23:19:42+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-07-25T23:19:42+09:00</h1>
+
+    <p>
+Leopard + GNU screen 問題つづき。
+</p>
+<p>
+<a class="ext-link" href="http://www.opensource.apple.com/darwinsource/10.5.4/screen-12/patches/"><span class="icon"></span>http://www.opensource.apple.com/darwinsource/10.5.4/screen-12/patches/</a> の screen.c.diff ってのが問題の patch です。ここらへんの patch があたった screen を make すると
+</p>
+<pre class="wiki">
+% wget http://www.opensource.apple.com/darwinsource/tarballs/other/screen-12.tar.gz
+% tar xf screen-12.tar.gz
+% cd screen-12
+% ls
+Makefile                screen/                 screen.plist
+patches/                screen-4.0.3.tar.gz
+% make
+Configuring screen...
+this is screen version 4.0.3
+checking for gcc... gcc
+...
+Building screen...
+CPP=&quot;gcc -E &quot; srcdir=/Users/kzys/screen-12/screen sh /Users/kzys/screen-12/screen/osdef.sh
+AWK=awk srcdir=/Users/kzys/screen-12/screen sh /Users/kzys/screen-12/screen/comm.sh
+AWK=awk srcdir=/Users/kzys/screen-12/screen sh /Users/kzys/screen-12/screen/term.sh
+gcc -c -I. -I/Users/kzys/screen-12/screen    -arch ppc -arch ppc64 -arch i386 -arch x86_64 -g -Os -pipe -mdynamic-no-pic -DRUN_LOGIN -fno-altivec  /Users/kzys/screen-12/screen/sc\
+reen.c
+/Users/kzys/screen-12/screen/screen.c:106:24: error: vproc_priv.h: No such file or directory
+/Users/kzys/screen-12/screen/screen.c:106:24: error: vproc_priv.h: No such file or directory
+/Users/kzys/screen-12/screen/screen.c:106:24: error: vproc_priv.h: No such file or directory
+/Users/kzys/screen-12/screen/screen.c: In function 'main':
+...
+lipo: can't open input file: /private/tmp/ccag3ag8.out (No such file or directory)
+make[1]: *** [screen.o] Error 1
+make: *** [build] Error 2
+%
+</pre>
+<p>
+こけて、vproc_priv.h は <a class="ext-link" href="http://www.opensource.apple.com/darwinsource/tarballs/apsl/launchd-258.12.tar.gz"><span class="icon"></span>launchd-258.12.tar.gz</a> にはいっている。launchd は ADC にはいってないとダウンロードできません。
+</p>
+<p>
+screen.c.diff が使っている _vprocmgr_move_subset_to_user を呼び出すちいさいプログラムは書けました。
+</p>
+<pre class="wiki">
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+#include &quot;libvproc_public.h&quot;
+#include &quot;libvproc_private.h&quot;
+
+#import &lt;Cocoa/Cocoa.h&gt;
+
+int main(int argc, char* argv[])
+{
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+    uid_t user = geteuid() ? geteuid() : getuid();
+    char* session_type = argv[1];
+
+    if (_vprocmgr_move_subset_to_user(user, session_type) == NULL) {
+        NSLog(@&quot;_vprocmgr_move_subset_to_user(%d, %s)\n&quot;,
+              user, session_type);
+    } else {
+        return 1;
+    }
+
+    NSLog(@&quot;pasteboard = %@&quot;, [NSPasteboard generalPasteboard]);
+    [pool release];
+
+    return 0;
+}
+</pre>
+<p>
+これに <a class="ext-link" href="http://developer.apple.com/technotes/tn2005/tn2083.html#TABLAUNCHAGENTSUBTYPES"><span class="icon"></span>Types of launchd agent</a> の Session Type を与えると
+</p>
+<pre class="wiki">
+% cc -I ~/launchd-258.12/launchd/src vprocmgr.m -framework Cocoa                      
+% ./a.out Aqua      
+2008-07-25 23:09:58.377 a.out[46550:10b] _vprocmgr_move_subset_to_user(501, Aqua)
+2008-07-25 23:09:58.379 a.out[46550:10b] pasteboard = &lt;NSPasteboard: 0x10afe0&gt;
+% ./a.out StandardIO
+2008-07-25 23:10:01.393 a.out[46554:10b] _vprocmgr_move_subset_to_user(501, StandardIO)
+2008-07-25 23:10:01.395 a.out[46554:10b] pasteboard = &lt;NSPasteboard: 0x10ab30&gt;
+% ./a.out Background
+2008-07-25 23:10:05.448 a.out[46558:10b] _vprocmgr_move_subset_to_user(501, Background)
+2008-07-25 23:10:05.450 a.out[46558:10b] pasteboard = (null)
+% ./a.out LoginWindow
+2008-07-25 23:10:12.608 a.out[46562:10b] _vprocmgr_move_subset_to_user(501, LoginWindow)
+2008-07-25 23:10:12.610 a.out[46562:10b] pasteboard = &lt;NSPasteboard: 0x10ab40&gt;
+% 
+</pre>
+<p>
+Background にするとペーストボードにアクセスできないのは再現できる。
+</p>
+  </div>
+</body>
+</html>

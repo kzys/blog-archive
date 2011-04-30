@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: To Search or Not to Search</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135141340">
+  <h2 class="entry-title"><a href="/articles/2006/09/30/to-search-or-not-to-search" title="To Search or Not to Search">To Search or Not to Search</a></h2>
+  <div class="published">
+    September 30th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://www.ideaxidea.com/archives/2006/09/post_141.html">「非」検索会議</a>に行ってきた。</p>
+
+<p>六本木駅は相変わらず地底奥深くにあるし、ヒルズは LL 階とか何進数だよそれって感じではあったけど、スタッフのひとたちのおかげで無事ヤフーまでたどりつく。エレベーターで茂木さんといっしょになってびびった。</p>
+    
+    
+    
+    <h3>橋本さん</h3>
+
+<ul>
+<li>自分が使っている「非検索」</li>
+<li>フィルタ: 検索結果のフィードなんかを Fresh Reader で読んでます。</li>
+<li>みんなに聞く: 検索語が思い浮かばないものが探せる。ブログで聞いてみたり、はてなの人力検索を使ってみたり。
+<ul>
+<li>おいしい中華をブログで聞く。おいしい店は混雑すると嫌なので、自分から情報開示していくひとは少ない。情報交換的な give &amp; take があるといい。</li>
+<li>デジタルハリウッド大学で、ダイビルの階段数を教室から出ずに求めさせてみたんだけど、みんなばらばらに考えさせて平均値をとってみたら結構あたった。話し合いは Wisdom of Crowds の多様性にマイナスかも。</li>
+</ul></li>
+<li>一覧してながめる: <a href="http://taggy.jp/">TAGGY</a> や <a href="http://popurls.com/">popurls</a> を使う。つい局所を追いがちなインターネットで、全体の流れ的なものが見れる。</li>
+</ul>
+
+<h3>田口さん</h3>
+
+<ul>
+<li>UI で意識していること。
+<ul>
+<li>プログラマやデザイナではなく Simplifier になりたい。</li>
+</ul></li>
+<li>理論や知識を紹介してから、ツールを選択肢の一つとして提供する。GTD のはなしをしてから「checkpad もよかったらどうぞ」</li>
+<li>使いはじめるまでの時間を最低限に。サインアップの登録項目は減らす。住所とかいらない。</li>
+<li>ごちゃごちゃしたものと比較してみる。</li>
+<li>どこかのだれかがやってる謎のサービスではこわい。開発の軌跡をブログを書いたり、質問のメールに自分で答えたりして、信頼をえる。</li>
+<li>ツールを使うことで、ちゃんとパフォーマンスをあげてほしい。リストは定期的なレビューが重要なので、追加欄は下につける。</li>
+<li>Devil's detail: ツメが甘いのはだめだよ。悪魔が細部にやどっちゃうよ。</li>
+</ul>
+
+<h3>増井さん</h3>
+
+<ul>
+<li>10月から Apple に転職!!!</li>
+<li>すべては「検索」なので、意識しない検索が「非検索」では。</li>
+<li>本棚.org: 本を持っている・いないの 0, 1 の行列だけでも、<a href="http://pitecan.com/Enzan/">本棚演算</a>でいろいろできる。</li>
+<li>全文検索: 基本的には便利だけど、文字情報しか検索できない。</li>
+<li>タグ: tDiary のたださんが「ノイズの少ない検索」としておすすめしている。たださんは PDF を iTunes で管理しているらしい。</li>
+<li><a href="http://pitecan.com/IndexJapan/">索引ナビゲータ</a>: タグづけは面倒なので自動タグづけをしてみた。でもあまり流行らなかった。</li>
+<li><a href="http://pitecan.com/wiki/">Wiki 掲示板</a>: in-place な編集つき。でも Wiki は「まとめよう」という意識がはたらきすぎて、ページが長くなりがち。数行のページとか作りにくいのが微妙。</li>
+<li>近傍検索: 位置情報や時間情報で近所のものをさがせるように。実行速度がいまひとつ遅い。</li>
+<li>AssocWiki: いま個人的に使っているシステム
+<ul>
+<li>リスト志向の Wiki。箇条書きのみ。</li>
+<li>in-place な編集つき。上の項目にフォーカスを移したり、折りたたみとかもできる。全体的にアウトラインエディタっぽい操作性。</li>
+<li>逆リンクは 2 hop 先まで表示。増井→人物→橋本が、増井→橋本とつなげられる。</li>
+<li>タグはそのままタイトルに。</li>
+<li>タグは使ってみたら便利だった。ごめんなさい。</li>
+</ul></li>
+</ul>
+
+<h3>茂木さん</h3>
+
+<ul>
+<li>Search and Choice: 人間は検索は苦手だけど、選ぶのは得意。検索結果もリストから選ばれることが大切だし、結局経済活動につながるのは選択。</li>
+<li>世界の open-end 性: 世界は日々変化している</li>
+<li>utility (効用) は瞬間、長期的には fitness (子孫を残すこと)。</li>
+<li>行動の結果ドーパミンが出ると、その行動が強化される。ドーパミンの経済学が行動を決める。</li>
+<li>嗜好性: 意識できる品質の高さと「またやりたい」と思うかは一緒ではない。品質の高いフランス料理と、また食べたい吉牛。</li>
+<li>携帯電話: 人間の関係性欲求を満たしてくれるから、みんな肌身離さず持っている。</li>
+<li>脳の中の抽象的な報酬構造による作用が重要。</li>
+<li>Google は「できることはなんでもやる」のがすごい。芸術とか絵画の感動とか、そういう届かないところがあることは意識しつつも、できることはなんでもやるべき。</li>
+<li>ロボット: 人間が出来ることを機械にやらせてもしょうがないかも。</li>
+<li>decision, choice and judgement</li>
+<li>行動経済学: 不確実性のもとの行動を説明する</li>
+<li>Anomalies 重要: オープンソースなんかの利他的行動は従来の経済学にとっては「例外」だけど、経済学を拡張して説明できるようにする。</li>
+<li>主体的・能動的であること自体の喜びというのがある。茂木さんは Amazon のレコメンデーションが嫌い。</li>
+<li>spam 重要: 脳はコンピュータとちがって spam をうまく扱える。ノイズ耐性ってだけじゃなくて、創造性みたいなものにつなげられる。</li>
+<li>utility = reward + action</li>
+</ul>
+
+<h3>会議</h3>
+
+<ul>
+<li>テーマはブログパーツを考える。</li>
+<li>とりあげられたもの:
+<ul>
+<li>新聞: ブログは会社で読みづらいから新聞としてお届け。自分の記事が新聞に！といっても一面は GIGAZINE でへこむ。</li>
+<li>上司: 上司からのアクセスのときのみ、文中のネガティブ言及がポジティブに変換される。</li>
+<li>朝起きられない: あのブログは何時から何時までしか読めない、というのを決めれば朝起きられるよ。</li>
+<li>ブログのパスワード忘れる: パスワード表示する。他人が勝手に更新してくれるのも便利。斜め上すぎると思ったら<a href="http://ma.la/">最速のひと</a>だった。さすがだ。</li>
+</ul></li>
+<li>増井さんと茂木さんでえらぶ個人賞は強まった出会い系的なやつに。考えたのは<a href="http://netafull.net/">ネタフル</a>のコグレさん。</li>
+</ul>
+
+<h3>そのほか</h3>
+
+<ul>
+<li>会議は会議というよりは大喜利だった。穴埋め式の用紙も、テンプレじゃなく前フリくらいの意識で書いたほうが良いかも。</li>
+<li><a href="http://d.hatena.ne.jp/nagayama/">はてながやまさん</a>と同じグループになった。</li>
+<li>客層がよくわからない。男女比は普通 (6:4〜7:3?) で、もっとマーケ・企画よりだと思ってたんだけど「GIGAZINE」「最速のひと」くらいは一応通じるっぽい。</li>
+<li>「増井さんが Apple に行くのはブログに載せないほうがいいかなー」と思って帰ったら moblog してるひとがいて吹いた。moblog のひとは記事消しちゃったみたいだけど、もう取り消せないレベルに広まっててブロガーこわい。</li>
+<li>茂木さんの話は知らない言葉を追うのでいっぱいいっぱい。茂木さんがどんどんヒートアップしていくのが面白かった。「それ脳もちださなくても説明できるんじゃね」と思うところもあったけど、そういうのはまず本読んでから考えよう。なんとなく食わず嫌いで一冊も読んでないので。</li>
+<li>休憩時間に「やはり原因は Yappo だった」系のはなしをしているひとがいた。Yappo さんてガチで負荷かけてる?</li>
+<li>百式の田口さんはサワヤカイケメンだった。写真 NG はこうやって「イケメンだった」と書かせるバズマーケティングじゃないかと。たぶん百式のバックナンバーに「隠すことで語りたくなる」とかある。</li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/09/30/to-search-or-not-to-search/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

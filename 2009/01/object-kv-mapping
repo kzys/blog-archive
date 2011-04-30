@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>オブジェクトを key-value ストアに直列化する - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry242">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/01/object-kv-mapping">オブジェクトを key-value ストアに直列化する</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-01-12 12:03    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>透過的に memcached を扱える OR マッパをみた。主な興味は「オブジェクトをどう直列化するか」にある。key はなにで value はなんなのか。</p>
+<h3>準備</h3>
+<p>まず、データベースを SQLite で作った。</p>
+<pre>
+% sqlite3 a.db
+SQLite version 3.4.0
+Enter ".help" for instructions
+sqlite&gt; create table books (id integer primary key, title, price);
+sqlite&gt; ^D%
+</pre>
+<h3>DBIx::MoCo</h3>
+<p>DBIx::MoCo ははてなが作って使っている OR マッパ。</p>
+<p>DBIx::MoCo クラスにはキャッシュががっちりくっついている。指定しない場合でも DBIx::MoCo::Cache::Dummy で <a href="http://c2.com/cgi/wiki?NullObject">Null Object パターン</a> になっているので if で分岐とか書かずにすむのはうれしい。</p>
+<p>まずこんなクラスを作ってみた。</p>
+<pre>
+package CacheLogger;
+use Cache::Null;
+use base qw(Cache::Null);
+
+use Data::Dumper;
+
+sub set {
+    my ($self, $key, $value) = @_;
+    print '[set] ', $key, "\n";
+    print Dumper($value);
+
+    shift-&gt;SUPER::set(@_);
+}
+
+sub get {
+    my ($self, $key) = @_;
+    print '[get] ', $key, "\n";
+
+    shift-&gt;SUPER::get(@_);
+}
+</pre>
+<p>これを cache_object で指定する。</p>
+<pre>
+use DBIx::MoCo;
+
+{
+    package A::DataBase;
+    use base qw(DBIx::MoCo::DataBase);
+
+    __PACKAGE__-&gt;dsn('dbi:SQLite:dbname=a.db');
+}
+
+{
+    package A::Book;
+    use base qw(DBIx::MoCo);
+    __PACKAGE__-&gt;db_object('A::DataBase');
+
+    __PACKAGE__-&gt;table('books');
+    __PACKAGE__-&gt;primary_keys(qw(id));
+}
+
+A::Book-&gt;cache_object(CacheLogger-&gt;new);
+
+my $book = A::Book-&gt;create(
+    title =&gt; 'Programming Perl',
+    price =&gt; 5565
+);
+print $book-&gt;title, " created.\n";
+
+my @books = A::Book-&gt;retrieve(title =&gt; 'Programming Perl');
+print $books[0]-&gt;price, ".\n";
+</pre>
+<p>ふつうはもっと User とか Publisher とか定義するはずで、その場合 A::Book のうち db_object を指定する部分を A::MoCo として抽出して Book, User, Publisher に A::MoCo を継承させる。今回は Book しかないのでまとめてしまった。</p>
+<pre>
+% perl -I ~/src/DBIx-MoCo-0.18/lib a.pl
+[set] A::Book-id-1
+$VAR1 = bless( {
+                 'changed_cols' =&gt; {},
+                 'object_id' =&gt; 'A::Book-id-1',
+                 'id' =&gt; 1,
+                 'title' =&gt; 'Programming Perl',
+                 'price' =&gt; 5565
+               }, 'A::Book' );
+Programming Perl created.
+[get] A::Book-title-Programming Perl
+[set] A::Book-id-1
+$VAR1 = bless( {
+                 'changed_cols' =&gt; {},
+                 'object_id' =&gt; 'A::Book-id-1',
+                 'id' =&gt; '1',
+                 'title' =&gt; 'Programming Perl',
+                 'price' =&gt; '5565'
+               }, 'A::Book' );
+5565
+%
+</pre>
+<p>key はクラス名 + カラム名 + そのカラムの値、value はだいぶごちゃごちゃしてる。</p>
+<p>DBIx::MoCo::create は Class::Trigger で after_create というトリガーを呼んでいる。ここで store_self_cache が呼ばれてインスタンスがキャッシュされる。データベースの列ではなく $self そのものがキャッシュされるんですね。</p>
+<p>store_self_cache は POD 曰く</p>
+<blockquote><p>Stores self instance for all own <em>possible</em> object ids.</p></blockquote>
+<p>じゃあ possible なものを増やしてみよう。</p>
+<pre>
+{
+    package A::Book;
+    use base qw(DBIx::MoCo);
+    __PACKAGE__-&gt;db_object('A::DataBase');
+
+    __PACKAGE__-&gt;table('books');
+    __PACKAGE__-&gt;primary_keys(qw(id));
+    <strong>__PACKAGE__-&gt;unique_keys(qw(title));</strong>
+}
+</pre>
+<p>(books テーブルをクリアしてから) 再実行。</p>
+<pre>
+% perl -I ~/src/DBIx-MoCo-0.18/lib a.pl
+[set] A::Book-id-1
+$VAR1 = bless( {
+                 'changed_cols' =&gt; {},
+                 'object_id' =&gt; 'A::Book-id-1',
+                 'id' =&gt; 1,
+                 'title' =&gt; 'Programming Perl',
+                 'price' =&gt; 5565
+               }, 'A::Book' );
+[set] A::Book-title-Programming Perl
+$VAR1 = bless( {
+                 'changed_cols' =&gt; {},
+                 'object_id' =&gt; 'A::Book-id-1',
+                 'id' =&gt; 1,
+                 'title' =&gt; 'Programming Perl',
+                 'price' =&gt; 5565
+               }, 'A::Book' );
+Programming Perl created.
+[get] A::Book-title-Programming Perl
+[set] A::Book-id-1
+$VAR1 = bless( {
+                 'changed_cols' =&gt; {},
+                 'object_id' =&gt; 'A::Book-id-1',
+                 'id' =&gt; '1',
+                 'title' =&gt; 'Programming Perl',
+                 'price' =&gt; '5565'
+               }, 'A::Book' );
+[set] A::Book-title-Programming Perl
+$VAR1 = bless( {
+                 'changed_cols' =&gt; {},
+                 'object_id' =&gt; 'A::Book-id-1',
+                 'id' =&gt; '1',
+                 'title' =&gt; 'Programming Perl',
+                 'price' =&gt; '5565'
+               }, 'A::Book' );
+5565
+%
+</pre>
+<p>set が増えていて value は同じ。空間効率より時間効率をとったのか、わりと富豪っぽい。</p>
+<h3>Data::ObjectDriver</h3>
+<p>Data::ObjectDriver は Six Apart です。名前が長いので以下 DOD とします。</p>
+<p>DOD には Cache::set / Cache::get をつかうものが無く CacheLogger はそのままではうまく使えない。環境変数 DOD_DEBUG でログを出せるので、そっちを使った。</p>
+<pre>
+use strict;
+use warnings;
+
+{
+    package A::Book;
+    use base qw(Data::ObjectDriver::BaseObject);
+    use Data::ObjectDriver::Driver::DBI;
+    use Data::ObjectDriver::Driver::Cache::Memcached;
+    use Cache::Memcached;
+
+    my $driver = Data::ObjectDriver::Driver::DBI-&gt;new(
+        dsn => 'dbi:SQLite:dbname=a.db'
+    );
+
+    $driver = Data::ObjectDriver::Driver::Cache::Memcached-&gt;new(
+        cache    =&gt; Cache::Memcached-&gt;new({ servers =&gt; ['localhost:11211'] }),
+        fallback =&gt; $driver
+    );
+
+    __PACKAGE__-&gt;install_properties({
+        driver      =&gt; $driver,
+        datasource  =&gt; 'books',
+        columns     =&gt; [qw(id title price)],
+        primary_key =&gt; 'id',
+    });
+}
+
+my $book = A::Book-&gt;new(
+    title =&gt; 'Programming Perl',
+    price =&gt; 5565
+);
+$book-&gt;save;
+print $book-&gt;title, " created.\n";
+
+my @books = A::Book-&gt;search({ title =&gt; 'Programming Perl' });
+print $books[0]-&gt;price, "\n";
+</pre>
+<p>Data::ObjectDriver::Driver::Cache::Memcached が <a href="http://c2.com/cgi/wiki?DecoratorPattern">Decorator パターン</a> になっているのがかっこいい。Driver は普通はわけるんだろうけど MoCo と同様に Book にまとめている。</p>
+<pre>
+% DOD_DEBUG=1 perl -I ~/src/Data-ObjectDriver-0.05/lib a.pl
+$VAR1 = 'INSERT INTO books
+(title, price)
+VALUES (?, ?)
+';
+$VAR2 = {
+  'title' =&gt; 'Programming Perl',
+  'price' =&gt; 5565
+};
+ in file a.pl line 32
+Programming Perl created.
+$VAR1 = 'SELECT books.id
+FROM books
+WHERE (books.title = ?)
+';
+$VAR2 = [
+  'Programming Perl'
+];
+ in file a.pl line 35
+$VAR1 = 'MEMCACHED_GET_MULTI ?';
+$VAR2 = [
+  'A::Book:1'
+];
+ in file a.pl line 35
+$VAR1 = 'SELECT books.id, books.title, books.price
+FROM books
+WHERE (books.id IN (?))
+';
+$VAR2 = [
+  '1'
+];
+ in file a.pl line 35
+$VAR1 = 'MEMCACHED_ADD ?';
+$VAR2 = [
+  'A::Book:1',
+  {
+    'columns' =&gt; {
+      'id' =&gt; '1',
+      'title' =&gt; 'Programming Perl',
+      'price' =&gt; '5565'
+    }
+  }
+];
+ in file a.pl line 35
+5565
+%
+</pre>
+<p>create ではキャッシュは関係なく、select でプライマリキーからその他のカラムを取得するためにキャッシュを使っている。</p>
+<p>キャッシュの key にカラム名は無い。Data::ObjectDriver::Driver::BaseCache::cache_key と DBIx::MoCo::object_ids を比べると、そもそも DOD は MoCo の様に複数の key に同じ value を set したりはしなそうだ。一方 MoCo に無くて DOD にあるものとして、キャッシュの「バージョン」を指定する仕組みが挙げられる。</p>
+<h3>粒度おおきめ</h3>
+<p>どちらも思ったより粒度が大きかった。例えば value をカラムごとにばらばらに保存すれば、それぞれの expire を細かく制御できて理論上は柔軟性があがるけど、そういうことはしないのかな。確かに、その柔軟性は必要かといわれると自信がない。</p>
+<p><a href="http://d.hatena.ne.jp/kazuk_i/20081021/1224564880">スケールするサイトのアーキテクチャ考</a> で紹介されている High Scalability の <a href="http://highscalability.com/bunch-great-strategies-using-memcached-and-mysql-better-together">A Bunch of Great Strategies for Using Memcached and MySQL Better Together</a> でも MySQL にキャッシュがあるのに memcached を使う理由の一つに</p>
+<blockquote><p>The query cache is row based. Memcached can cache any type of data you want and it isn&#8217;t limited to caching database rows. Memcached can cache complex complex objects that are directly usable without a join.</p></blockquote>
+<p>として、さらに「Miscellaneous」では</p>
+<blockquote><p>Don&#8217;t think row-level (database) caching, think complex objects.</p></blockquote>
+<p>と主張している。books が publisher_id で publishers にむすびついているなら publishers.name もひいていれておけ、とかそういうことでしょうか。</p>
+<h3>参考</h3>
+<p>MoCo, DOD の使い方はそれぞれ <a href="http://www.slideshare.net/naoya1977/introduction-to-moco">Introduction to DBIx::MoCo</a>, <a href="http://nekokak.org/presen/yapcasia2008/">Perl OR Mappers</a> を参考にしました。ありがとうございます。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="242" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

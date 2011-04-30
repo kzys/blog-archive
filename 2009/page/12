@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+   <div class="main">
+    <div class="entry" id="entry705">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/05/test-apache2-released">Test::Apache2 をリリースした</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-05-09 06:26    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p><a href="http://search.cpan.org/dist/Test-Apache2/">Test::Apache2</a> を CPAN にリリースしました。初 CPAN モジュール！焦って 0.02 まで送っちゃったので、そのうち 0.02 が出てくるはず。</p>
+<h3>これはなに?</h3>
+<p>Test::Apache2 を使うと mod_perl ハンドラのテストがこんな風に書ける。</p>
+<pre>
+use Test::More tests =&gt; 1;
+use Test::Apache2;
+
+my $server = Test::Apache2::Server-&gt;new;
+$server-&gt;location('/myapp', {
+    PerlResponseHandler =&gt; 'MyAppHandler',
+});
+
+my $resp = $server-&gt;get('/myapp');
+is($resp-&gt;content, 'hello world');
+</pre>
+<p>まず Test::Apache2::Server という Facade 的なオブジェクトに、テストしたいハンドラ (ここでは MyAppHandler) を登録する。次に $server にリクエストを送ると、対応するハンドラが呼ばれて HTTP::Response が返ってくる。これで、あとはその中身をチェックすればいい。</p>
+<p>Apache::Test との最大の違いは Apache のプロセスが起動しないところにある。Test::More とかが use されているのと同じ Perl 処理系のプロセスの中で、</p>
+<ul>
+<li>ハンドラを new して</li>
+<li>Apache2::RequestRec にはコンストラクタがないので、代わりの Test::Apache2::RequestRec を new して</li>
+<li>それをハンドラのインスタンスにわたして</li>
+</ul>
+<p>というかたちでテストが進んでいく。</p>
+<p>なので速い、けど mod_perl 特有の問題とかはあんまり再現できない。</p>
+<h3>あるべき設計と中間層のコスト</h3>
+<p>本当なら、mod_perl ハンドラを</p>
+<ul>
+<li>リクエストをとってレスポンスを返す関数</li>
+<li>それを Apache2::RequestRec とつなぐ関数</li>
+</ul>
+<p>と分割しておいて、テストは前者に対して書く、というのがあるべき設計だろう。</p>
+<p>ただ、中間層をもうけるには作業的なコストがかかるし、作業が完了しても、それを走らせるところで計算機的なコストがかかる (なにもしないよりは CPU やメモリは食いますよね)。そこらへんを払いたくないけど、テストがないのは<strong>ない</strong>という場合に Test::Apache2 は便利なんじゃないかと思う。</p>
+<h3>今後</h3>
+<p>リリースしてみたものの、実際には色々メソッドが足りなかったりする。</p>
+<p>Test::Apache2::Server には get があるのに post, put, delete が無いし、Test::Apache2::RequestRec は Apache2::RequestRec にあるメソッドが全部あるわけではないので、しばらくはそういう地味なところを埋めていく予定です。レポジトリは <a href="http://bitbucket.org/kzys/test-apache2/">Bitbucket</a> にあります。</p>
+<p>Test::Apache2::RequestRec 単体の、new できる Apache2::RequestRec としての使い方ももうちょっと考えたいなあ。<a href="http://googletesting.blogspot.com/2009/01/tott-keep-your-fakes-simple.html">Google Testing Blog</a> には </p>
+<blockquote><p>This highly-focused fake is easy and quick to write, and makes the test much simpler and more readable.</p></blockquote>
+<p>とあって、Test::Apache2::RequestRec は highly-focused ではないんだけど、実際に Apache2::RequestRec を Test::MockObject でちまちま作るのはすごいだるいので、そういう場面も救えるようにしたい。</p>
+</div>
+</div>
+<div class="entry" id="entry673">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/05/april-kpt">4月の KPT</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-05-02 11:21    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>3月に Try として断線と早起きの「記録」をあげた。やや抜けがあるものの、一ヶ月ぶん記録がたまったので Processing で可視化してみた。</p>
+<div class="eyecatch"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/05/april.png" alt="Chart" title="Chart" width="640" height="200" /></div>
+<p>灰色の線が起床時刻 (縦が長いほど遅い)、横軸が日 (4/1-4/30) で、水色の丸がインターネットにつないだ日をあらわす。線がないところは記録できていない日だ。</p>
+<p>レコーディングダイエットみたいなものなのか、記録することは、わりと早起きにつながっていたと思う。</p>
+<p>今回は「起きたらエディタに時間を書く」としてたんだけど、これは面倒だったのと、記録は仕事でも要求されて困っているので、そのためのソフトウェアを書くかなあ。</p>
+<h3>Keep</h3>
+<ul>
+<li>ブログ: 書いてます。英語の出来ないプログラマというのもいよいよどうかと思って、英語 (のようなもの) で書くことが多かった。英語で記事を書いて、英語で元ネタにコメントして、みたいにしたおかげで <q><a href="http://use.perl.org/~Ovid/journal/38785">To generate the latter graph, I used a modification of kzys&#8217;s code to list methods for each class.</a></q> なんてなるのはとても楽しい。</li>
+</ul>
+<h3>Problem</h3>
+<ul>
+<li>パッチを送っていない: そもそも外に送ったメールの量自体も少なかった。前に Nu という Mac OS X で動く Lisp 処理系にパッチを送ったんだけど、それは <a href="http://github.com/timburks/nu/commit/6f19959841de8821af52e57c01e3e6616ee00b56">とりこまれた</a> ので良かった。</li>
+<li>本を読んでいない: 前回の Try にいれた「本を買わない」は達成できたんだけど、じゃあ積んでるものをちゃんと読めたかというと、それほどでもなかった。フルタイムで働くようになってから読む量より買う量が増えているので、隔月で買わない月にするのはわりと良い気がする。</li>
+</ul>
+<h3>Try</h3>
+<ul>
+<li>パッチを送る: 書きたいものはそれなりにあるので、時間をみつけてなんとかしたい。</li>
+<li>Test::Apache2 を CPAN にあげる: PAUSE のアカウントはとった。</li>
+<li>断線と起床時刻を一ヶ月分ちゃんと記録する: 前述のとおり、ぬけはあったけど意味はあると思ったので、再挑戦する。</li>
+</ul>
+</div>
+</div>
+<div class="entry" id="entry660">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/04/test-apache2">My new project: Test::Apache2</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-04-29 20:46    </div>
+    <div class="tags yui-u">
+      <a href="http://blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+  </div>
+  <div class="body"><p>It&#8217;s hard to test mod_perl handler. Because some mod_perl related class (ex. Apache2::RequestRec) can&#8217;t be created easily under plain Perl environment.</p>
+<p>My predecessor wrote a test that uses real Apache with hard-coded hostname and port number. However I don&#8217;t like the way because it&#8217;s troublesome to run. And <a href="http://mt.endeworks.jp/d-6/2008/03/apache-test-starters.html">Daisuke Maki-san introduced Apache::Test</a> and said &#8220;超絶簡単。&#8221;. But I think it&#8217;s complicated, not easy for me.</p>
+<h3>We really need REAL APACHE?</h3>
+<p>We really need to run real Apache for testing mod_perl handler? My answer is no. So I&#8217;m writing <a href="https://bitbucket.org/kzys/test-apache2/">Test::Apache2</a>, easy and fast test harness of mod_perl handler.</p>
+<p>Test::Apache2 still unstable and not documented. Please wait a moment.</p>
+</div>
+</div>
+    <div class="paginate">
+      <a href="http://blog.8-p.info/2009/page/11" >Newer</a>      <a href="http://blog.8-p.info/2009/page/13" >Older</a>    </div>
+  </div>
+  <div class="sidebar"><h2>About me and this blog</h2>
+<p>
+  All articles are written by <a href="http://8-p.info/me/">加藤和良</a>.
+  A few are <a href="/2009/tag/lang-en">written in English</a>.
+</p>
+
+<ul>
+  <li>
+    <h2>Recent articles</h2>
+    <ul>	<li><a href='http://blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+</ul>
+  </li>
+</ul>
+
+<ul><li id="linkcat-2" class="linkcat"><h2>Links</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://collisions.doppac.cc/">collisions.doppac.cc</a></li>
+<li><a href="http://googletesting.blogspot.com/">Google Testing Blog</a></li>
+<li><a href="http://www.grafikcache.com/">Grafikcache</a></li>
+<li><a href="http://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="http://someru.blog74.fc2.com/">Hang Reviewers High</a></li>
+<li><a href="http://labs.ideo.com/">IDEO Labs</a></li>
+<li><a href="http://blog.makezine.com/">MAKE: Blog</a></li>
+<li><a href="http://d.hatena.ne.jp/KZR/">Radium Software</a></li>
+<li><a href="http://steps.dodgson.org/">steps to phantasien</a></li>
+
+	</ul>
+</li>
+</ul>
+
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+</p>
+</div>
+</div>
+
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

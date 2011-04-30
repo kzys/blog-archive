@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Creammonkey needs "sandbox"</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135629240">
+  <h2 class="entry-title"><a href="/articles/2006/07/10/creammonkey-needs-sandbox" title="Creammonkey needs &quot;sandbox&quot;">Creammonkey needs &quot;sandbox&quot;</a></h2>
+  <div class="published">
+    July 10th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Creammonkey に、ユーザースクリプトから keychain にアクセスする変更を加えたソースコードをもらっていて、さっき返信した。</p>
+
+<p>GM_xmlhttpRequest, GM_setValue とかそのへんを実装するとなると、いわゆる "sandbox" というか、ユーザースクリプトからアクセスできて、ページ上からはアクセスできない関数ってのをつくらなきゃいけない。</p>
+
+<p>Creammonkey (Obj-C) 側で "ランダムで長い文字列_xmlhttpRequest" を定義しておいて、</p>
+
+<pre><code>function () {
+  var GM_xmlhttpRequest = ランダムで長い文字列_xmlhttpRequest;
+
+  (ユーザースクリプト...)
+}</code></pre>
+
+<p>を eval するとかは思いついたけど、これでいけるかなぁ。</p>
+
+<p>ページ上から呼ばれるとまずい関数を実装する事自体、Creammonkey 側にバグがあったときにリスクが大きすぎるので、正直あんまりやりたくない。そもそも Safari に XPath が無い時点で Greasemonkey 互換は無理なわけだし。</p>
+
+<p>もらった変更版は、メタデータの部分で呼び出す関数名を指定して、keychain にアクセスするためのオブジェクトを引数に渡すようになっていた。ページ上に同名の関数がある場合は、ユーザースクリプトを eval する前にそれを削除することで、ユーザースクリプト以外からのアクセスを断ってるんだけど、そこで race condition があるとかなんとか。</p>
+
+<p>あー、「needs a  "sandbox"」って書くべきだったかも。メールに冠詞つけてなかったな。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/creammonkey" rel="tag" title="creammonkey">creammonkey</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/07/10/creammonkey-needs-sandbox/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

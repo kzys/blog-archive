@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>『Linux-DB システム 構築/運用入門』を読んだ - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry1497">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/10/linux-db-system">『Linux-DB システム 構築/運用入門』を読んだ</a>
+    (3)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-10-24 21:37    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>最近 MySQL まわりで困ることが多くなってきたので、<a href="http://d.hatena.ne.jp/kazuhooku/20090915/1252992493">kazuhoのメモ置き場</a> や <a href="http://blog.nomadscafe.jp/2009/09/linux-db.html">blog.nomadscafe.jp</a> で勧められていた『Linux-DB システム 構築/運用入門』を読んだ。</p>
+<p>本書がカバーする範囲は広い。実際に私がさわる場所は7, 8, 9章の memcached やアプリケーションパーティショニング、インデックス、そして14章の負荷テストのあたりだけだ。でも、その前の章で出てくる DRBD やロードバランサは、自分がさわる場所の前後左右に、後の章に出てくるファイルシステムやスケジューラは、これも自分がさわる場所の下にあるわけで、知っておくべきだしわかるのは楽しい。</p>
+<p>いろいろハイテクもあったので、実験用に自宅 Linux サーバーでもたてようかと少し思った。8-p.info も Debian GNU/Linux で動いてはいるけど、これは Slicehost という海外の VPS だからか、コマンドを打ち込んだりするにはネットワーク的に遠くて遅い。</p>
+<h3>抽象化</h3>
+<p>例えばハードディスクというのは通電していなくてもデータが消えない回転する円盤で、それを抽象化してファイルシステムがあり、さらに抽象化した上には RDBMS がある。その上でアプリケーションを書いている人が「ランダムリードはシークが」とかいうのは変な気もするけど、下では相変わらず円盤が回転して、遅かったり速かったりするんだからしょうがない。</p>
+<p>『Joel on Software』にはここらへんをあつかった「漏れのある抽象化の法則」という章があり、こう書いてあった。</p>
+<blockquote><p>そういうわけで、抽象化は私たちが作業する時間を減らしてはくれるが、私たちが学ぶ時間までは節約してくれないのだ。</p></blockquote>
+<p>確かに、このくらいの割り切ったつきあいが良い気はします。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+<div id="comments">
+
+<div class="comment">
+  <h3 class="alt" id="comment-4029">
+    <img alt='' src='http://www.gravatar.com/avatar/b87835f6ff6133690eac77c67f97e225?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    hiroki  </h3>
+  <p>基本的には、ＳＱＬは集合に対する宣言なので、<br />
+オプティマイザ層なりエスティメイタが適切にすべてを挙動させるべきなんだけど<br />
+アプリケーションとしてのデータのカーディナリティなどに関しての知識はアプリケーションプログラマのほうが持っているので、<br />
+どのような実行計画が適切なのかという判断はアプリケーションプログラマができるべきであるべきだとは思う。</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-4035">
+    <img alt='' src='http://www.gravatar.com/avatar/7828b45f8396aa361d85cead01fd99ca?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    <a href='http://8-p.info/' rel='external nofollow' class='url'>KATO Kazuyoshi</a>  </h3>
+  <p>「べき」は難しいなあ。抽象化レイヤは漏れの無いようにしたいし、プログラマは全部を知っててほしい。</p>
+<p>現実の問題としては、抽象化に漏れがあったときにおこることが厳しすぎるので、そこらへんなんとかしたいですね。例外つかむことなり、止まらないで遅れるだけにするなり。</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-4095">
+    <img alt='' src='http://www.gravatar.com/avatar/b87835f6ff6133690eac77c67f97e225?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    hiroki  </h3>
+  <p>&#8220;基本的には&#8221;ね。<br />
+たとえばＳＳＤになったくらいで、ＳＱＬ文を変える必要があるアーキテクチャは不思議な気がする。</p>
+<p>現実的には、抽象化の漏れはあり続けるので、<br />
+最近はapacheやperl5vmも勉強してます。</p>
+<p>でも全員が知る必要はないはず。それが技術だし。DBAが要求されるスペックに対して答えられる手段を提供できればいい。</p>
+</div>
+</div>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="1497" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

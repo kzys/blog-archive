@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Part-time Programmer</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135124280">
+  <h2 class="entry-title"><a href="/articles/2006/08/26/part-time-programmer" title="Part-time Programmer">Part-time Programmer</a></h2>
+  <div class="published">
+    August 26th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>プログラマのバイトをはじめた。今日まで試用期間で、無事採用。</p>
+
+<p>わかったこと:</p>
+
+<ul>
+<li>みんなスーツを着ていない。</li>
+<li>趣味プロジェクトだと、とりあえず動いたら満足して止めちゃったり、ちょっとつまずいたらあきらめたりするけど、「仕事だ」ということになると、動いても時間があるうちは次を考えたり、つまづいてもいろいろ手を尽くしたりする。結果、成果の質があがったり、覚えられる技術が増えるので良い。</li>
+<li>趣味プロジェクトでも最低作業時間(最低でもn日間はこれだけをやる)を決めると良いかもしれない。</li>
+<li>ディスプレイが広いのはとても良い。</li>
+<li>いろんな人に会えば、一人くらい声をかけてくれる人がいるので、分母増やすの重要。</li>
+<li>分母増やすことを考えると、無料のイベントがいろいろある東京近郊は有利だ。</li>
+</ul>
+
+<p>で、明日は Lightweight Language Ring。どれだけプログラミング好きなんだよっていう。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/job" rel="tag" title="job">job</a></li>
+      
+      <li><a href="/tags/life" rel="tag" title="life">life</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/08/26/part-time-programmer/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

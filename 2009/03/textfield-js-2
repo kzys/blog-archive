@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>JavaScript でプレースホルダ、の続き - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry526">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/03/textfield-js-2">JavaScript でプレースホルダ、の続き</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-03-20 16:38    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>前々回の <a href="http://blog.8-p.info/2009/03/textfield-js">JavaScript でプレースホルダつき入力欄を作る</a> の続き。バグを直してテストを足したものを <a href="http://github.com/kzys/textfield.js/tree/master">GitHub</a> に置いてみた。</p>
+<h3>バグ修正</h3>
+<p>まずはコメントで教えてもらったバグのはなしから。</p>
+<blockquote><p>これを本気でやるなら、親をたどってform要素のonsubmitもフックしないといけなくなるんですけど<br />このブログのUIだとfocusなしで検索することができないようになってるんですね。</p></blockquote>
+<p>前回の実装には、なにも入力していないときに submit ボタンをクリックすると、プレースホルダとして表示されている値がそのままサーバーに送信されてしまうという問題があった。今回はコンストラクタ (initialize メソッド) に以下のようなコードを足して修正している。</p>
+<pre>
+        var form = TextField.formOf(element);
+        if (! form) {
+            return;
+        }
+        $(form).observe('submit', function () {
+            if (! this._changed) {
+                this._element.value = '';
+            }
+        }.bindAsEventListener(this));
+</pre>
+<h3>テスト</h3>
+<p>だんだんコードがいりくんで来たのでテストも書いてみた。テストフレームワークには UnittestJS を使っている。前述の submit や WebKit 対策の unload では、テストが走っているページの中に一段 iframe をきって、そこで遷移をともなうテストを走らせている。</p>
+<h3>他の選択肢: jQuery と HTML 5</h3>
+<p>jQuery で、というのを書いたひとは多かった。</p>
+<ul>
+<li><a href="http://less.carbonfairy.org/post/84833081/jquery">jQueryでプレースホルダつき入力欄を作る</a></li>
+<li><a href="http://d.hatena.ne.jp/syttru/20090308/1236534434">JavaScriptでプレースホルダつき入力欄を作る(JQuery実装)</a></li>
+<li><a href="http://d.hatena.ne.jp/syttru/20090309/1236610401">JQueryでプレースホルダつき入力欄その２</a></li>
+<li><a href="http://d.hatena.ne.jp/cyokodog/20090310/jQueryPlaceFolder01">レイヤーベースのプレースホルダ付き入力欄を作る</a></li>
+</ul>
+<p>なお HTML 5 では、こういうものをいちいち JavaScript で書かなくて良くなるらしい。</p>
+<p><a href="http://b.hatena.ne.jp/vantguarde/20090308#bookmark-12431708">はてなブックマーク - vantguarde - 2009年3月8日</a></p>
+<blockquote><p>
+それplaceholder属性でできるよ <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#the-placeholder-attribute">http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#the-placeholder-attribute</a>
+</p></blockquote>
+<p>知りませんでした。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="526" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

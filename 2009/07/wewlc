@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう) - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry1052">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/07/wewlc">『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-07-25 09:21    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>&#8220;Working Effectively with Legacy Code&#8221; の邦訳『レガシーコード改善ガイド』が出たので、買って読んでいる。原著は数年前に買って読んで、去年は読書会にも参加した本だ。やっぱり日本語でよめるのは良い。まわりのひとにも勧めやすくなった。</p>
+<p>本書での「レガシーコード」の定義は、表紙にもあるとおり単純に「テストのないコード」を指す。なので、その「改善」も単に「テストを書く」ことだ。</p>
+<h3>デザインパターン、YAGNI, テスト</h3>
+<p>ソフトウェアをずっと書いていると、増えたコードを重く感じるようになる。締切もお金もかかってなかった趣味プログラマだったころはすぐ (いまよりすぐ) くじけて、設計がどうこう、みたいなものに救いを求めた。</p>
+<p>最初にふれたのはデザインパターンだった。GoF の原典は難しかったので結城浩さんの本で勉強した。ためにはなったし、いま人と話すときには役に立っているけど、当時書いていたものにポジティブな影響を与えていたかというと怪しい。増えたコードに名前がついているのはやや安心できたけど、まあ、安心と安全はちがう。</p>
+<p>ちがうとわかってからしばらくは YAGNI (You Aren&#8217;t Gonna Need It) というか、必要最低限で素朴な設計を心がけていた。コード量をちいさくおさえるのと、予測をやめたのと、再利用性信仰から抜けたのは良かったけど、素朴さだけでなにかに勝つのは難しかった。</p>
+<p>テストはそのあとだ。YAGNI は eXtreme Programming の用語だそうで、なのでテストとは同時に導入するべきなんだけど、そうはいかなかった。いまは「コードは本番で利用され、テストで再利用される。その二回に耐えられるのが良いコード」くらいの基準で、守れたり、守れなかったりしている。</p>
+<h3>テストは難しい</h3>
+<p>実際のところテストは難しい。スタックやリンクリストならテストを書くのも簡単だと思うけど、そこから毎日の仕事には距離がある。</p>
+<p>私が最近「Scala には型が」みたいなことをいうのには、テストが書いてなかったり、書きづらかったりするコードを見すぎたのがある。型はテストを代替できないけど、たとえばインターフェースの不一致くらいなら、どんなコードについても検出することができる。</p>
+<p>どんなコードについても、というのが重要だ。テストは書く側に設計を要求しすぎるし、かといって、得意なひとが後から書く、というのも難しい。よく、テストを最初に書くとか、テスト駆動開発みたいなことがいわれるのも、テスト無しでつくられたコードにはじめてテストを書くことの困難さを象徴してる気がする。</p>
+<h3>困難に挑む</h3>
+<p>『レガシーコード改善ガイド』の著者、Michael Feathers はその困難に挑んでいる。「テストのない」を「レガシー」と直結させるところからして決意は明らかだ。</p>
+<p>本書の<a href="https://www.seshop.com/Detail.asp?pid=10900&#038;mode=spec">章のタイトルからして泣ける2部</a>に出てくるコードはどれもリアリティ (遅れているプロジェクトに人を追加することで、継承のことで、コピーアンドペーストのことだ) のある酷さで、対抗する側も private を protected にしてみたり、奥底の if の状況を printf デバッグする代わりにそのクラスに public 変数を足してみたり、理解するためにリファクタリングしてからそれを捨ててみたり、わりと手段を問わない。</p>
+<p>良い本だと思う。まず技術的に参考になるし、手段を問わない大戦感には、なんというか、熱意がある。</p>
+<p>私の多少のテスト好きは、前に職場にいたひとの影響が強い。入社してしばらくして (big bang rewrite をあきらめたあたりで) そのひとは自動テストを書きはじめた。独自プロトコルで話すクライアントとサーバーをなぜか WEBrick がとりもつそのシステムは、いま思うとやや凝りすぎな気もするし、速くはなかったし、比較関数は assert しかなかったし、私の仮想環境上の Linux で動かすにはちょっと修正が必要だったけど、ともあれ、そこには熱意があった。</p>
+<p>そんなことを思い出したりしました。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="1052" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

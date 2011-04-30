@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Mac の Skype に iTunes で再生してる曲を表示</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133674830">
+  <h2 class="entry-title"><a href="/articles/2006/12/17/mac-skype-itunes" title="Mac の Skype に iTunes で再生してる曲を表示">Mac の Skype に iTunes で再生してる曲を表示</a></h2>
+  <div class="published">
+    December 17th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://d.hatena.ne.jp/arikui/20061208#1165532299">Fuck食場</a> のがかっこいいのでまねしてみた。</p>
+
+<pre><code>on idle
+    updateSkype()
+    return 30
+end idle
+
+on updateSkype()
+    set str to "(Not playing now...)"
+
+    tell application "iTunes"
+        if (player state) is playing then
+            set str to (name of current track) &amp; " / " &amp; (artist of current track)
+        end if
+    end tell
+
+    tell application "Skype"
+        send command "SET PROFILE MOOD_TEXT " &amp; str script name "NowPlayingOnSkype"
+    end tell
+end updateSkype
+</code></pre>
+
+<p>スクリプトエディタで、フォーマットを「アプリケーション」にして「実行後、自動で終了しない」にチェックをいれて保存。できたファイルをダブルクリックすれば起動する。スクリプトの再編集はメニューバーの Edit から。</p>
+
+<p>Mac から使える Skype API は、ミニ言語を文字列でわたさなきゃいけないのが微妙だと思う。これは <a href="https://developer.skype.com/Docs/ApiDoc/AppleScript">AppleScript</a> だけじゃなくて <a href="https://developer.skype.com/Docs/ApiDoc/Cocoa">Cocoa</a>, <a href="https://developer.skype.com/Docs/ApiDoc/Carbon">Carbon</a> でもおなじ。あと <a href="https://developer.skype.com/Docs/ApiDoc/SET_AVATAR">SET AVATAR</a> が実装されていないので、画像は変更できない。</p>
+
+<p>on idle で30秒ごとにポーリングしているところも、iTunes から NSDistributedNotificationCenter 経由で com.apple.iTunes.playerInfo をうけとるようにしたいんだけど、AppleScript から notification まわりはさわれないようだ。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+      <li><a href="/tags/skype" rel="tag" title="skype">skype</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/12/17/mac-skype-itunes/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

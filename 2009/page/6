@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+   <div class="main">
+    <div class="entry" id="entry1290">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/09/yapcasia-2009">YAPC::Asia 2009 スタッフ日記</a>
+    (2)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-09-13 09:38    </div>
+    <div class="tags yui-u">
+      <a href="http://blog.8-p.info/2009/tag/yapcasia2009" rel="tag">yapcasia2009</a>    </div>
+  </div>
+  <div class="body"><p><a href="http://conferences.yapcasia.org/ya2009/">Yet Another Perl Conference Asia 2009</a> にスタッフとして参加してきた。</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3975578395/" title="YAPC::Asia Tokyo 2009 by kzys, on Flickr"><img src="http://farm3.static.flickr.com/2572/3975578395_5269f0f334.jpg" width="375" height="500" alt="YAPC::Asia Tokyo 2009" /></a></div>
+<h3>0日目</h3>
+<p>この YAPC は2日間だけど、もちろん1日目の朝に準備をはじめていては間に合わないのと、前夜祭があるのとで、前日にもいろいろ作業がある。</p>
+<p>私は、Tシャツの数を数えたり、大学から借りた無地の立て看板を運び、ポスターをはりつけたり、協賛企業からのノベルティをトートバッグに詰めたりを手伝っていた。ふりかえると、この日が一番大変だった。lestrrat さんが体調を崩されて不在だったので一時はどうなることかと思ったけど zigorou さん、k.daiba さんの活躍でなんとか乗り切った感がある。</p>
+<p>前夜祭の受付はかなり慌てた。来場者のかたに印刷してもらったバーコードを読み込み、対応する名札をわたす、という作業が詰まり気味で、だいぶ列を作らせてしまった。前夜祭後は懇親会で、その後はゴミなどの片付け。</p>
+<h3>1日目</h3>
+<p>朝に看板を移動してから、受付のお手伝い。前日の名札は実は50音順に分けられていて、しかし50音は出現頻度のばらつきが大きく、結果だめなハッシュ関数の連想配列のように線形探索が発生することが多々あった。この日は名札を連番であらかじめふられた ID 順に分け直してくれた方がいて、検索速度がだいぶ改善された。</p>
+<p>昼間はサンドイッチの配布。直前で飲み物がないことに気づき、生協のひとに協力してもらった。サンドイッチは少し余りがちだった。</p>
+<p>その後はノベルティのトートバッグをまた少しだけ作って補充したり、懇親会への移動の案内 (といっても目立つように iPhone を首から下げて発光させつつ曲がり角に立つくらいだけど) をしたり。</p>
+<h3>2日目</h3>
+<p>この日は会期中かなり平和だった。sartak の発表で質問したし jrockway - lestrrat は座って聞いていた。質問の「複数の Role 間でメソッドの衝突が検出できても $self->{foobar} がかぶるのは検出できないじゃん」というのはあまり伝わらなかったけど、あとで lestrrat さんに話したら「直接 $self にアクセスせずメソッド経由でアクセスしないとだめ」ということだった。 </p>
+<p>会場の撤収もそれなりに手際よく進んだんだけど、プロジェクターとスクリーンの発送で、コンビニに断られ佐川に断られ右往左往。</p>
+<p>その後スタッフ打ち上げ後にほかの二次会 (?) に合流。解散後は終電がなく池袋で始発を待った。</p>
+<h3>まとめ</h3>
+<p>3日間おつかれさまでした。JPA 主催になって初の YAPC のせいか色々大変だった、といっても YAPC そのものへの参加が2回目、こういうイベントにスタッフとして参加するのははじめてなので、どのくらいが JPA 主催になって変わって、どのくらいが YAPC に継続して存在する問題で、という大変さの主因の分別はよくわからない。</p>
+<p>ただ、もうちょっとこうできたはず、というのは打ち上げでも色々あがっていた。</p>
+<p>もちろん、大変さだけじゃなくて楽しさもある。普段参加していたものの裏側をみれるし、Perl hacker なひとと話す機会もふえて距離が縮む。私は3日すべてスタッフとして参加したけど、メールでは「どの日これますか?」という調整もあったので、ここまでがっつり拘束されなくとも (少なくとも今年は) スタッフになれました。</p>
+<p>一方、発表が聞きづらく技術的収穫が限定されるのも事実なので、誰にでも無差別に勧められるかというと微妙なところ。「話す機会」云々については、インターネットに文章を書いてると「読んでます」といわれる (個体として認識される) 可能性が高まるので、そっちをがんばったほうがいいとは思う。個人的に身近な人々には「お客さんを脱したいならいっそ発表を目指してほしい」です :)</p>
+<p>さて、来年は</p>
+<ul>
+<li>YAPC の会場設営以前を手伝う</li>
+<li>LT でも YAPC じゃなくてもいいので発表する</li>
+</ul>
+<p>のを目指します。<a href="http://blog.8-p.info/2008/50">去年</a>もそのまえも書いたことそれなりに達成してるんだよねこれ。</p>
+</div>
+</div>
+<div class="entry" id="entry1264">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/09/clickatell-sms">Clickatell 経由で SMS を送信する</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-09-09 03:02    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>すこしまえに、Gmail の新規登録に SMS による認証が追加されたらしい。日本では必要ないはずだけどヘルプは日本語化されている。</p>
+<p><a href="http://mail.google.com/support/bin/answer.py?hl=jp&#038;answer=114129">SMS account verification</a></p>
+<blockquote><p>Gmail アドレスを登録するには、SMS 機能を搭載した携帯電話が必要となります。 携帯電話をお持ちでない場合は、友だちの携帯電話でコードを受け取ることができます。</p>
+<p>Gmail へのこの新しい登録方法を提供することにした理由の 1 つは、ユーザーを保護し、不正使用を防止するためです。Google は、迷惑メールや不正使用からの保護を重視しています。ユーザーの皆様からは、Gmail には迷惑メールがあまり届かないというお言葉をいただいています。Google では、迷惑メール送信者が迷惑メールを送信または配信したり、Gmail アドレスを取得（迷惑メール送信者はさまざまなアドレスを使用して迷惑メールを送信します）したりできないよう、数多くの対策を講じています。作成するアドレス数は携帯電話番号ごとに制限できるため、携帯電話に招待コードを送信するのもこの対策の一環です。</p>
+</blockquote>
+<p>SMS を送信するにはいくつか方法がある。</p>
+<p>一番簡単なのはメールアドレスが SMS の受け口になっているキャリアだ。残念ながら日本には無いのだけど、たとえば AT&amp;T は電話番号@txt.att.net にメールを送るとその電話番号に SMS として送られるらしい。LiveJournal の <a href="http://www.livejournal.com/tools/textmessage.bml?mode=details">Send a Text Message</a> にまとまっている。</p>
+<p>次に簡単なのが HTTP や SOAP 経由で SMS を送ってくれるサードパーティのサービスを利用すること。たとえば <a href="http://www.clickatell.com/">Clickatell</a> なんかがあげられる。</p>
+<p>大変そうなのが、自分で電話に AT コマンドを送ったり、キャリアの SMS センターに直接つなぐ方法。<a href="http://www.kannel.org/">Kannel</a> は両方、<a href="http://raa.ruby-lang.org/project/ruby-sms/">ruby-sms</a> は前者のみの機能を提供しているようだけど、あまり理解に自信は無い。</p>
+<h3>Clickatell</h3>
+<p>Clickatell を使うと、こんな感じで SMS が送信できる。</p>
+<pre>
+% curl 'http://api.clickatell.com/http/sendmsg?user=[ユーザー名]&amp;password=[パスワード]&amp;api_id=[API ID]&amp;to=[電話番号]&amp;text=[本文]'; echo
+ID: [16進数っぽい30桁超の値]
+%
+</pre>
+<p>スクリーンショットをとりながらユーザー登録、とかやらなかったので大幅に手順を省略しました。</p>
+<p>SMS の送信は有料なので注意が必要だ。Clickatell の場合まずクレジットを買って、SMS の送信のたびにクレジットが減っていく、というシステムをとっている。クレジットはまとめて買うと多少割引もある。実際の値段については <a href="http://www.clickatell.com/pricing/message_cost.php">Message Pricing</a> を参照。</p>
+<p>ちなみに、クレジットを PayPal で買うときは反映にすこし時間がかかるので、あせって複数回買ったりするのはやめましょう。はい、やりましたとも。</p>
+<h3>日本で SMS 認証は流行るのか?</h3>
+<p>無理なんではないかと。</p>
+<p>まず、日本でいう「SMS」は「電話番号だけでとどくアレ」くらいの意味で、海外 (というか GSM 圏) でいう SMS より意味が広い。キャリア間の相互運用性が低い中、キャリア外から送ることは難しいと思う。<a href="http://www.clickatell.com/pricing/standard_mt_coverage.php">Clickatell の対応表</a> には KDDI の文字があるけど、これが C メールを指すかというと微妙 (未実験)。</p>
+<p>つぎに、日本の携帯電話の HTTP まわりには、契約者や電話番号などにひもづいた ID をリクエストヘッダにつけて送信するという風習があって、それが不正使用対策としてよく使われているという事情がある。最初に引用した Gmail のニーズは、これで代用できそうだ。</p>
+<p>そもそも SMS が送れるのか、送れたとして、事業者にとって ID より便利なのか、という二つを考えると、SMS  をつかった認証は流行らない気がする。</p>
+<p><a href="http://takagi-hiromitsu.jp/diary/20080710.html">日本のインターネットが終了する日</a> でいわれているように、ID の送信はプライバシー上の問題が大きいので、それとくらべると SMS 認証のほうが良さげだ。でもたぶん使われないし、SMS そのものも今後ふつうの電子メールや XMPP あたりに置き換えられていく技術のように思いました。</p>
+</div>
+</div>
+<div class="entry" id="entry1224">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/09/devel-nytprof">Devel::NYTProf を読む</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-09-05 05:27    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Devel::NYTProf は Perl むけのプロファイラだ。機能が豊富で、HTML による結果出力がきれいで、プロファイラ自身のオーバーヘッドが少ない、ということで最近の Perl 界隈では事実上の標準プロファイラになっていると思う。</p>
+<div class="eyecatch"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/09/nytprof.png" alt="Devel::NYTProf" title="Devel::NYTProf" width="600" height="160"/></div>
+<p>Perl にはもともとデバッガ用のインターフェースがある。perldoc perldebguts で低レベルな詳細が perldoc DB で (暫定的なものとされているけど) 高レベルなインターフェースが確認できる。後者からすこし引用しておこう。</p>
+<blockquote><p>Perl debug information is frequently required not just by debuggers, but also by modules that need some &#8220;special&#8221; information to do their job properly, like profilers.</p></blockquote>
+<p>Devel::NYTProf もこれを使用している、だけではなかった。</p>
+<h3>ソースツリー</h3>
+<ul class="hier">
+<li>Changes</li>
+<li>HACKING</li>
+<li>INSTALL</li>
+<li>MANIFEST</li>
+<li>META.yml</li>
+<li>Makefile.PL</li>
+<li><strong>NYTProf.xs</strong></li>
+<li>README</li>
+<li>benchmark.pl</li>
+<li class="dir">bin/
+<ul>
+<li>nytprofcg</li>
+<li>nytprofcsv</li>
+<li><strong>nytprofhtml</strong></li>
+</ul>
+</li>
+<li class="dir">demo/</li>
+<li class="dir">lib/
+<ul>
+<li class="dir">Devel/
+<ul>
+<li class="dir">NYTProf/</li>
+<li><strong>NYTProf.pm</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>perftest.pl</li>
+<li>ppport.h</li>
+<li class="dir">t/</li>
+<li>typemap</li>
+<li class="dir">xt/</li>
+</ul>
+<p>Devel::NYTProf のうちの計測部分は C で書かれた NYTProf.xs にある。HTML 出力部分は lib/ 以下ではなく bin/nytprofhtml にあり Template::Toolkit や HTML::Template にたよらない男らしいコードだった。</p>
+<p>use すると読み込まれる lib/Devel/NYTProf.pm にコードはほとんど無い。</p>
+<pre>
+package Devel::NYTProf;
+
+our $VERSION = '2.10';
+
+package    # hide the package from the PAUSE indexer
+    DB;
+
+# Enable specific perl debugger flags.
+# Set the flags that influence compilation ASAP so we get full details
+# (sub line ranges etc) of modules loaded as a side effect of loading
+# Devel::NYTProf::Core (ie XSLoader, strict, Exporter etc.)
+# See "perldoc perlvar" for details of the $^P ($PERLDB) flags
+
+$^P = 0x010     # record line range of sub definition
+    | 0x100     # informative "file" names for evals
+    | 0x200;    # informative names for anonymous subroutines
+
+# XXX hack, need better option handling
+my $use_db_sub = ($ENV{NYTPROF} &amp;&amp; $ENV{NYTPROF} =~ m/\buse_db_sub=1\b/);
+
+$^P |= 0x002    # line-by-line profiling via DB::DB (if $DB::single true)
+    |  0x020    # start (after BEGINs) with single-step on
+    if $use_db_sub;
+
+require Devel::NYTProf::Core;    # loads XS
+
+if ($use_db_sub) {               # install DB::DB sub
+    *DB = ($] &lt; 5.008008)
+        ? sub { goto &#038;DB_profiler }    # workaround bug in old perl versions (slow)
+        : \&#038;DB_profiler;
+}
+
+init_profiler();                       # provides true return value for module
+</pre>
+<p>perldbguts に登場する DB::DB は、環境変数 NYTPROF に設定がないと使われないのがわかる。では、NYTProf はどこで時間を測定してるんだろうか。</p>
+<h3>フック</h3>
+<p>NYTProf.pm にあった DB::init_profiler は NYTProf.xs の末尾のほうにある</p>
+<pre>
+MODULE = Devel::NYTProf     PACKAGE = DB
+
+...
+
+int
+init_profiler()
+    C_ARGS:
+    aTHX
+</pre>
+<p>から </p>
+<pre>
+/* Initial setup */
+static int
+init_profiler(pTHX)
+{
+
+...
+
+    /* redirect opcodes for statement profiling */
+    Newxc(PL_ppaddr_orig, OP_max, void *, orig_ppaddr_t);
+    Copy(PL_ppaddr, PL_ppaddr_orig, OP_max, void *);
+    if (profile_stmts &amp;&amp; !use_db_sub) {
+        PL_ppaddr[OP_NEXTSTATE]  = pp_stmt_profiler;
+        PL_ppaddr[OP_DBSTATE]    = pp_stmt_profiler;
+#ifdef OP_SETSTATE
+        PL_ppaddr[OP_SETSTATE]   = pp_stmt_profiler;
+#endif
+        if (profile_leave) {
+            PL_ppaddr[OP_LEAVESUB]   = pp_leaving_profiler;
+            PL_ppaddr[OP_LEAVESUBLV] = pp_leaving_profiler;
+            PL_ppaddr[OP_LEAVE]      = pp_leaving_profiler;
+            PL_ppaddr[OP_LEAVELOOP]  = pp_leaving_profiler;
+            PL_ppaddr[OP_LEAVEWRITE] = pp_leaving_profiler;
+            PL_ppaddr[OP_LEAVEEVAL]  = pp_leaving_profiler;
+            PL_ppaddr[OP_LEAVETRY]   = pp_leaving_profiler;
+            PL_ppaddr[OP_DUMP]       = pp_leaving_profiler;
+            PL_ppaddr[OP_RETURN]     = pp_leaving_profiler;
+            /* natural end of simple loop */
+            PL_ppaddr[OP_UNSTACK]    = pp_leaving_profiler;
+            /* OP_NEXT is missing because that jumps to OP_UNSTACK */
+            /* OP_EXIT and OP_EXEC need special handling */
+            PL_ppaddr[OP_EXIT]       = pp_exit_profiler;
+            PL_ppaddr[OP_EXEC]       = pp_exit_profiler;
+        }
+    }
+
+    /* redirect opcodes for caller tracking */
+    if (!sub_callers_hv)
+        sub_callers_hv = newHV();
+    if (!pkg_fids_hv)
+        pkg_fids_hv = newHV();
+    PL_ppaddr[OP_ENTERSUB] = pp_entersub_profiler;
+</pre>
+<p>につながっている。そう、コメントにある通り、Devel::NYTProf は Perl VM のディスパッチテーブルを書き換え、計測用の関数をあいだにはさんでいる。</p>
+<p>複数種の命令に同じ関数をあてて大丈夫なのか心配なので pp_stmt_profiler, pp_leaving_profiler, pp_exit_profiler まで追ってみると</p>
+<pre>
+static OP *
+pp_stmt_profiler(pTHX)                            /* handles OP_DBSTATE, OP_SETSTATE, etc */
+{
+    OP *op = run_original_op(PL_op-&gt;op_type);
+    DB_stmt(aTHX_ NULL, op);
+    return op;
+}
+
+static OP *
+pp_leaving_profiler(pTHX)                         /* handles OP_LEAVESUB, OP_LEAVEEVAL, etc */
+{
+    OP *op = run_original_op(PL_op-&gt;op_type);
+    DB_leave(aTHX_ op);
+    return op;
+}
+
+static OP *
+pp_exit_profiler(pTHX)                            /* handles OP_EXIT, OP_EXEC, etc */
+{
+    DB_leave(aTHX_ NULL);                         /* call DB_leave *before* run_original_op() */
+    if (PL_op-&gt;op_type == OP_EXEC)
+        finish_profile(aTHX);                     /* this is the last chance we'll get */
+    return run_original_op(PL_op-&gt;op_type);
+}
+</pre>
+<p>現在実行中の命令はグローバル変数 PL_op で参照できるので問題ないようだ。pp_entersub_profiler はすこし入り組んでいるので省略。</p>
+<p>DB_stmt, DB_leave なんて名前の関数が内部でしか使われていないのは、VM に手を入れる手法が開発のごく初期には無かった (DB を使う手法が最初にあった) せいかもしれない。Devel::NYTProf の HISTORY からすこし引用しておく。</p>
+<blockquote><p>Then he went a little crazy and added a slew of new features, in addition to per‐sub and per‐block timing and subroutine caller tracking. These included the ’opcode interception’ method of profiling, ultra‐fast and robust inclusive subroutine timing, doubling performance, &#8230;</p></blockquote>
+<h3>計測</h3>
+<p>フックがしかけられれば、そこから計測をすればいい。pp_leaving_profiler, pp_exit_profiler から DB_leave にいくと</p>
+<pre>
+    /* measure and output end time of previous statement
+     * (earlier than it would have been done)
+     * and switch back to measuring the 'calling' statement
+     */
+    DB_stmt(aTHX_ NULL, op);
+</pre>
+<p>pp_stmt_profiler とおなじかたちで DB_stmt を呼び出していた。</p>
+<p>DB_stmt は以下のことをやっている。</p>
+<ul>
+<li>現在の時刻 - 前の時刻を計算</li>
+<li>それを書き出し</li>
+<li>現在の時刻を保存</li>
+</ul>
+<p>コードのうち、該当する部分だけを抜き出すとこうなる。</p>
+<pre>
+DB_stmt(pTHX_ COP *cop, OP *op)
+{
+...
+    if (usecputime) {
+...
+    }
+    else {
+        get_time_of_day(end_time);
+        get_ticks_between(start_time, end_time, elapsed, overflow);
+    }
+
+    if (last_executed_fid) {
+
+        output_tag_int((unsigned char)((profile_blocks)
+                        ? NYTP_TAG_TIME_BLOCK : NYTP_TAG_TIME_LINE), elapsed);
+        output_int(last_executed_fid);
+        output_int(last_executed_line);
+...
+    }
+
+    if (usecputime) {
+...
+    }
+    else {
+        get_time_of_day(start_time);
+    }
+...
+}
+</pre>
+<p>get_time_of_day は第1引数、get_ticks_between は第3, 4引数を破壊するマクロなのがわかりづらい。fid は file id なので、これで各ファイルの行について、前の命令をぬけてから (run_original_op の後に DB_stmt を呼んでいるので) 今回の命令を実行し終わるまでにかかった時間がわかる。</p>
+<h3>プロファイル結果のファイルサイズ</h3>
+<p>ちょっと余談。NYTProf.xs には zlib による圧縮が組み込まれている。さらにいうと圧縮前のファイルもバイナリ形式だし、整数は Procotol Buffers や SWF のように桁数に応じてバイト長が変わる。fread でさくっと読めるような形式じゃない。</p>
+<p>圧縮の理由については <a href="http://blog.timbunce.org/2008/10/03/nytprof-204-gives-you-90-smaller-data-files/">NYTProf 2.04 gives you 90% smaller data files</a> に説明がある。</p>
+<blockquote><p>One of the major drawbacks of statement-level profiling is the volume of data it generates while profiling your code. For every statement executed the profiler streams out the file id, the line number, and the time spent. For every statement! When trying to profile a full application doing real work the volume of data generated quickly becomes impractical to deal with. Multi-gigabyte files are common.</p></blockquote>
+<h3>まとめと関連</h3>
+<p>Devel::NYTProf は Perl むけのプロファイラで、VM をフックすることでプロファイルのオーバーヘッドをちいさくしている。ちなみに、プロファイラの結果も圧縮されるのでちいさい。</p>
+<p>個人的には VM のディスパッチテーブルなんて static でファイルスコープにしておきたいけど、公開されてるってことは変更されることも、たぶん設計の意図のうちなんだろう。</p>
+<p>なお、Perl の VM については <a href="http://d.hatena.ne.jp/tokuhirom/20090331/1238514697">Perl5 フレキシビリティ</a>、プロファイラ全般については <a href="http://www.dodgson.org/omo/t/?date=20070823">プロファイラのしくみ</a> が参考になります。</p>
+</div>
+</div>
+    <div class="paginate">
+      <a href="http://blog.8-p.info/2009/page/5" >Newer</a>      <a href="http://blog.8-p.info/2009/page/7" >Older</a>    </div>
+  </div>
+  <div class="sidebar"><h2>About me and this blog</h2>
+<p>
+  All articles are written by <a href="http://8-p.info/me/">加藤和良</a>.
+  A few are <a href="/2009/tag/lang-en">written in English</a>.
+</p>
+
+<ul>
+  <li>
+    <h2>Recent articles</h2>
+    <ul>	<li><a href='http://blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+</ul>
+  </li>
+</ul>
+
+<ul><li id="linkcat-2" class="linkcat"><h2>Links</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://collisions.doppac.cc/">collisions.doppac.cc</a></li>
+<li><a href="http://googletesting.blogspot.com/">Google Testing Blog</a></li>
+<li><a href="http://www.grafikcache.com/">Grafikcache</a></li>
+<li><a href="http://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="http://someru.blog74.fc2.com/">Hang Reviewers High</a></li>
+<li><a href="http://labs.ideo.com/">IDEO Labs</a></li>
+<li><a href="http://blog.makezine.com/">MAKE: Blog</a></li>
+<li><a href="http://d.hatena.ne.jp/KZR/">Radium Software</a></li>
+<li><a href="http://steps.dodgson.org/">steps to phantasien</a></li>
+
+	</ul>
+</li>
+</ul>
+
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+</p>
+</div>
+</div>
+
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

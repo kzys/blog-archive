@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Skype 便利</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137477020">
+  <h2 class="entry-title"><a href="/articles/2006/07/09/skype" title="Skype 便利">Skype 便利</a></h2>
+  <div class="published">
+    July 9th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Skype は「なんか未来っぽいけど自分には関係のないもの」だと思っていたんだけど、使ってみたら便利だった。</p>
+
+<p>チャットと違って、ウィンドウフォーカスもキーボードで打つ内容も Skype 無しの状態とまったく変わらないってところが良い。作業しながら話せるので楽だ。</p>
+
+<p>それだけじゃ電話と変わらないけど、URI を送りたいときは音声と並行してテキストチャットを開けば良いし、そもそも無料だしってことで、やっぱり電話よりも便利。</p>
+
+<p>問題はマイクと、コンピュータに向かって話す風景が普及してないってところか。後輩を誘ってみたらマイク持ってなかった。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/skype" rel="tag" title="skype">skype</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/07/09/skype/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

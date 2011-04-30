@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Ruby で GAINER</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134632950">
+  <h2 class="entry-title"><a href="/articles/2007/08/18/ruby-gainer" title="Ruby で GAINER">Ruby で GAINER</a></h2>
+  <div class="published">
+    August 18th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://www.flickr.com/photos/kzys/1159836420/" title="Photo Sharing"><img src="http://farm2.static.flickr.com/1278/1159836420_2a72f3d23f_m.jpg" width="240" height="180" alt="Red" /></a>
+<a href="http://www.flickr.com/photos/kzys/1159836928/" title="Photo Sharing"><img src="http://farm2.static.flickr.com/1077/1159836928_9731c77ad2_m.jpg" width="240" height="180" alt="Green" /></a>
+<a href="http://www.flickr.com/photos/kzys/1158983219/" title="Photo Sharing"><img src="http://farm2.static.flickr.com/1287/1158983219_05a5d3a1f4_m.jpg" width="240" height="180" alt="Blue" /></a></p>
+
+<p>GAINER を買った。初台の ICC だと GAINER の完成品と Software Design 2007年3月号の GAINER 記事で使っているパーツ一式 (ブレッドボードや LED など) とをまとめて買えるので、かなり敷居が低い。売り場はレジの所です。</p>
+
+<p>PICkit 1 を放置したまま GAINER とか、ちょっとダメな大人っぽいんだけど、PIC (or AVR) を使って回路を組むのと GAINER を使うのとでは位置づけがちがうので、両方持っているのも無駄というわけではない。</p>
+
+<p>PIC の場合プログラムは PIC 上で走るので、C なり機械語なりで省資源に作って、PIC に
+書き込んでという手順を踏まなきゃいけない。一方、GAINER はコンピュータと電子回路とを USB でつなぐ glue でしかないので、プログラムそのものは普段使っているコンピュータ上で走る。好きな言語で富豪的に書けるし、書き込みも無いというかできない。</p>
+
+<p>個人的には Ruby で書きたいので <a href="http://svn.8-p.info/public/misc/gainer.rb">gainer.rb</a> というのを書いてみた。</p>
+
+<p>たとえばデジタル出力につないだ R, G, B の LED を順に点灯させるのが、こんな風に書けます。</p>
+
+<pre><code>require 'gainer'
+
+g = Gainer::Serial.new(ARGV.shift)
+g.reboot
+g.configuration = 1
+
+n = 0b001
+loop do
+  g.digital_out(n)
+  if n &amp; 0b100 == 0
+    n &lt;&lt;= 1
+  else
+    n = 0b001
+  end
+  sleep(0.5)
+end
+</code></pre>
+
+<p>まだ GAINER の機能全体のうちごくわずかしか使えないし、入力は非同期でとるほうが良い気がする。これからやります。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/diy" rel="tag" title="diy">diy</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">1 Response to &#8220;Ruby で GAINER&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-133344560">
+			<cite><span>omo</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133344560" title="">August 18th, 2007 at 02:39 PM</a></small>
+			<p>自由研究ぽくてよいですね</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

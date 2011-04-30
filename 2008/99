@@ -1,0 +1,20 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-17T11:41:24+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-17T11:41:24+09:00</h1>
+
+    <p>
+DreamHost にドメインもサーバーも任せていた 8-p.info, blog.8-p.info, hg.8-p.info, svn.8-p.info を、ドメインは全部 VALUE DOMAIN に、サーバーは 8-p.info だけ Slicehost に引越中。メールサーバーはこわいので 8-p.info には置かず、VALUE DOMAIN で Gmail に転送することにした。
+</p>
+<p>
+こういう作業をすると、おれのインターネット理解の浅さを実感する。HTTP は分かっているつもりだけど DNS は全然だめだ。
+</p>
+  </div>
+</body>
+</html>

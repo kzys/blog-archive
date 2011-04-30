@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>Google Chrome の UI テスト (実装編) - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry217">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/01/chrome-ui-test">Google Chrome の UI テスト (実装編)</a>
+    (2)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-01-11 15:38    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>GUI をもつソフトウェアのテストに関心があるので Google Chrome というか Chromium の UI テストをみていた。</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3186303725/" title="Chromium TestShell by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3351/3186303725_9ffd2c4e13_o.jpg" width="640" height="480" alt="Chromium TestShell" /></a></div>
+<h3>ビルドと実行</h3>
+<p>Chromium の UI テストはいまのところ Mac では試せない。実行はできるものの、テストケースが含まれていない。</p>
+<pre>
+% ./xcodebuild/Debug/ui_tests
+[==========] Running 0 tests from 0 test cases.
+[==========] 0 tests from 0 test cases ran.
+[  PASSED  ] 0 tests.
+%
+</pre>
+<p><a href="http://dev.chromium.org/developers/how-tos/build-instructions-windows">Windows でも Express じゃない Visual Studio が必要</a> なので、淡々とソースを読んだ。</p>
+<h3>ファイル</h3>
+<p>Chromium には testing/ とか chrome/test/ とかそれっぽいフォルダがある。testing/ には <a href="http://code.google.com/p/googletest/">Google C++ Testing Framework</a> (以下、<a href="http://dev.chromium.org/developers/testing">Chromium Developer Documentation の Testing のページ</a> にならって gtest と略す) が、chrome/test/ には後述する AutomationProxy などテストにだけ使うコードやファイルが置かれている。実際の個々のコードに対するテストコードは、元コードと同じフォルダにおく流儀のようだ。</p>
+<pre>
+% ls -d **/*unittest*.c* | wc -l
+     312
+% ls -d **/*uitest*.c* | wc -l
+      36
+% ls -d **/*uitest*.c*
+chrome/app/chrome_main_uitest.cc
+chrome/browser/browser_focus_uitest.cc
+chrome/browser/browser_uitest.cc
+chrome/browser/crash_recovery_uitest.cc
+chrome/browser/download/download_uitest.cc
+chrome/browser/download/save_page_uitest.cc
+chrome/browser/errorpage_uitest.cc
+chrome/browser/history/redirect_uitest.cc
+chrome/browser/iframe_uitest.cc
+chrome/browser/images_uitest.cc
+chrome/browser/interstitial_page_uitest.cc
+chrome/browser/locale_tests_uitest.cc
+chrome/browser/login_prompt_uitest.cc
+chrome/browser/metrics_service_uitest.cc
+chrome/browser/printing/printing_layout_uitest.cc
+chrome/browser/renderer_host/resource_dispatcher_host_uitest.cc
+chrome/browser/sanity_uitest.cc
+chrome/browser/session_history_uitest.cc
+chrome/browser/sessions/session_restore_uitest.cc
+chrome/browser/ssl_uitest.cc
+chrome/browser/tab_restore_uitest.cc
+chrome/browser/unload_uitest.cc
+chrome/browser/view_source_uitest.cc
+chrome/browser/views/constrained_window_impl_interactive_uitest.cc
+chrome/browser/views/find_bar_win_interactive_uitest.cc
+chrome/browser/views/find_bar_win_uitest.cc
+chrome/common/logging_chrome_uitest.cc
+chrome/common/net/cache_uitest.cc
+chrome/common/pref_service_uitest.cc
+chrome/test/automation/automation_proxy_uitest.cc
+chrome/test/ui/history_uitest.cc
+chrome/test/ui/inspector_controller_uitest.cc
+chrome/test/ui/layout_plugin_uitest.cpp
+chrome/test/ui/npapi_uitest.cpp
+chrome/test/ui/omnibox_uitest.cc
+chrome/test/ui/sandbox_uitests.cc
+%
+</pre>
+<h3>chrome/app/chrome_main_uitest.cc</h3>
+<p>とりあえず先頭にあった chrome_main_uitest.cc を読んでみる。</p>
+<pre>
+typedef UITest ChromeMainTest;
+
+// Launch the app, then close the app.
+TEST_F(ChromeMainTest, AppLaunch) {
+  // If we make it here at all, we've succeeded in retrieving the app window
+  // in UITest::SetUp()--otherwise we'd fail with an exception in SetUp().
+
+  if (UITest::in_process_renderer()) {
+    EXPECT_EQ(1, UITest::GetBrowserProcessCount());
+  } else {
+    // We should have two instances of the browser process alive -
+    // one is the Browser and the other is the Renderer.
+    EXPECT_EQ(2, UITest::GetBrowserProcessCount());
+  }
+}
+</pre>
+<p>TEST_F, EXPECT_EQ あたりは gtest でおなじみだろう。TEST_F の第一引数になっている ChromeMainTest == UITest は gtest の testing::Test を継承している。</p>
+<p>in_process_renderer() は変数の値を返すだけ (chrome/test/ui/ui_test.h, chrome/test/ui/ui_test.cc) だし、GetBrowserProcessCount() は OS にプロセス数を問い合わせる (chrome/test/ui/ui_test.h, base/process_util_win.cc) だけだ。</p>
+<p>次のテストはさらに短い。</p>
+<pre>
+// Make sure that the testing interface is there and giving reasonable answers.
+TEST_F(ChromeMainTest, AppTestingInterface) {
+  int window_count = 0;
+  EXPECT_TRUE(automation()-&gt;GetBrowserWindowCount(&#038;window_count));
+  EXPECT_EQ(1, window_count);
+
+  EXPECT_EQ(1, GetTabCount());
+}
+</pre>
+<p>が、内側の仕組みはだいぶ複雑になっている。</p>
+<h3>AutomationProxy</h3>
+<p>いままでちゃんと見ていなかったけど、実は一連のテストはブラウザとは別のプロセスで走っている。</p>
+<pre>
+void UITest::SetUp() {
+  if (!use_existing_browser_) {
+    AssertAppNotRunning(L"Please close any other instances "
+                        L"of the app before testing.");
+  }
+
+  InitializeTimeouts();
+  LaunchBrowserAndServer();
+}
+
+...
+
+void UITest::LaunchBrowserAndServer() {
+#if defined(OS_WIN)
+  // Set up IPC testing interface server.
+  server_.reset(new AutomationProxy(command_execution_timeout_ms_));
+
+  LaunchBrowser(launch_arguments_, clear_profile_);
+  if (wait_for_initial_loads_)
+    ASSERT_TRUE(server_-&gt;WaitForInitialLoads());
+  else
+    Sleep(2000);
+
+  automation()-&gt;SetFilteredInet(true);
+#else
+  // TODO(port): depends on AutomationProxy.
+  NOTIMPLEMENTED();
+#endif
+}
+</pre>
+<p>別プロセスであるブラウザにウィンドウ数などを問い合わせるためのクラスが AutomationProxy だ。</p>
+<p>server_.reset(new AutomationProxy(&#8230;)) は server_ がいわゆるスマートポインタ (base/scoped_ptr.h) なのでこうなっている。おおまかにいえば server_ = new AutomationProxy(&#8230;) だ。</p>
+<p>automation() は server_ のさす AutomationProxy のインスタンスを返して (chrome/test/ui/ui_test.h) いる。</p>
+<p>実際に GetBrowserWindowCount をみてみよう。</p>
+<pre>
+bool AutomationProxy::GetBrowserWindowCount(int* num_windows) {
+  if (!num_windows) {
+    NOTREACHED();
+    return false;
+  }
+
+  IPC::Message* response = NULL;
+  bool is_timeout = true;
+  bool succeeded = SendAndWaitForResponseWithTimeout(
+      new AutomationMsg_BrowserWindowCountRequest(0), &#038;response,
+      AutomationMsg_BrowserWindowCountResponse::ID,
+      command_execution_timeout_ms_, &#038;is_timeout);
+  if (!succeeded)
+    return false;
+
+  if (is_timeout) {
+    DLOG(ERROR) &lt;&lt; "GetWindowCount did not complete in a timely fashion";
+    return false;
+  }
+
+  void* iter = NULL;
+  if (!response-&gt;ReadInt(&#038;iter, num_windows)) {
+    succeeded = false;
+  }
+
+  delete response;
+  return succeeded;
+}
+</pre>
+<p>AutomationMsg_BrowserWindowCountRequest, AutomationMsg_BrowserWindowCountResponse::ID のあたりは chrome/test/automation/automation_messages_internal.h で延々と定義されている。</p>
+<pre>
+// By using a start value of 0 for automation messages, we keep backward
+// compatability with old builds.
+IPC_BEGIN_MESSAGES(Automation, 0)
+  ...
+  // This message requests the number of browser windows that the app currently
+  // has open.  The parameter in the response is the number of windows.
+  IPC_MESSAGE_ROUTED0(AutomationMsg_BrowserWindowCountRequest)
+  IPC_MESSAGE_ROUTED1(AutomationMsg_BrowserWindowCountResponse, int)
+  ...
+IPC_END_MESSAGES(Automation)
+</pre>
+<p>お、リクエストとレスポンスが別々だ。</p>
+<p>ちなみに automation_messages_internal.h には多重読み込みをふせぐ #ifndef なガードが無くて、automation_messages.h で</p>
+<pre>
+// Two-pass include of render_messages_internal.  Preprocessor magic allows
+// us to use 1 header to define the enums and classes for our render messages.
+#define IPC_MESSAGE_MACROS_ENUMS
+#include "chrome/test/automation/automation_messages_internal.h"
+
+#ifdef IPC_MESSAGE_MACROS_LOG_ENABLED
+#  undef IPC_MESSAGE_MACROS_LOG
+#  define IPC_MESSAGE_MACROS_CLASSES
+#include "chrome/test/automation/automation_messages_internal.h"
+
+#  undef IPC_MESSAGE_MACROS_CLASSES
+#  define IPC_MESSAGE_MACROS_LOG
+#include "chrome/test/automation/automation_messages_internal.h"
+#else
+// No debug strings requested, just define the classes
+#  define IPC_MESSAGE_MACROS_CLASSES
+#include "chrome/test/automation/automation_messages_internal.h"
+#endif
+</pre>
+<p>と3回も include している。じつは chrome/common/ipc_message_macros.h では IPC_MESSAGE_ROUTE<em>n</em> も3回定義されていて、ここらへんプリプロセッサ愛好家には見物かもしれない。</p>
+<p>閑話休題。AutomationProxy::SendAndWaitForResponseWithTimeout は AutomationProxy::Send から<br />
+Channel::Send, Channel::ChannelImpl::Send とすすむ。</p>
+<pre>
+bool Channel::ChannelImpl::Send(Message* message) {
+  chrome::Counters::ipc_send_counter().Increment();
+#ifdef IPC_MESSAGE_DEBUG_EXTRA
+  DLOG(INFO) &lt;&lt; "sending message @" &lt;&lt; message &lt;&lt; " on channel @" &lt;&lt; this
+             &lt;&lt; " with type " &lt;&lt; message-&gt;type()
+             &lt;&lt; " (" << output_queue_.size() &lt;&lt; " in queue)";
+#endif
+
+#ifdef IPC_MESSAGE_LOG_ENABLED
+  Logging::current()-&gt;OnSendMessage(message, L"");
+#endif
+
+  output_queue_.push(message);
+  // ensure waiting to write
+  if (!waiting_connect_) {
+    if (!output_state_.is_pending) {
+      if (!ProcessOutgoingMessages(NULL, 0))
+        return false;
+    }
+  }
+
+  return true;
+}
+
+...
+
+bool Channel::ChannelImpl::ProcessOutgoingMessages(
+    MessageLoopForIO::IOContext* context,
+    DWORD bytes_written) {
+  ...
+
+  // Write to pipe...
+  Message* m = output_queue_.front();
+  BOOL ok = WriteFile(pipe_,
+                      m-&gt;data(),
+                      m-&gt;size(),
+                      &#038;bytes_written,
+                      &#038;output_state_.context.overlapped);
+  if (!ok) {
+    DWORD err = GetLastError();
+    if (err == ERROR_IO_PENDING) {
+      output_state_.is_pending = true;
+
+#ifdef IPC_MESSAGE_DEBUG_EXTRA
+      DLOG(INFO) &lt;&lt; "sent pending message @" &lt;&lt; m &lt;&lt; " on channel @" &lt;&lt;
+                    this &lt;&lt; " with type " &lt;&lt; m-&gt;type();
+#endif
+
+      return true;
+    }
+    LOG(ERROR) &lt;&lt; "pipe error: " &lt;&lt; err;
+    return false;
+  }
+
+  ...
+}
+</pre>
+<p>Win32 API の WriteFile でプロセス間の通信を行っているようだ。</p>
+<h3>まとめ</h3>
+<p>設計面の関心からはじまったので、本当は個々のテストを見るべきなんだけど、なぜか実装を追いすぎました。深さじゃなくて幅優先するべきだった。</p>
+<p>仕組みとしてはかなりごついので、すぐさま自分のプロジェクトに同等の仕組みを用意するのは大変そうだ。ただ、ごつさは C++ の所為もある気がしていて、リフレクション系の機能がある言語ならもっとさっぱりするかもしれない。</p>
+<p>テストは投資に対するリターンが良いので、ごつくてもやるべきですかそうですか。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+<div id="comments">
+
+<div class="comment">
+  <h3 class="alt" id="comment-15">
+    <img alt='' src='http://www.gravatar.com/avatar/7d63a0ba4d1e79b105db00b4ca8f0df6?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    morita  </h3>
+  <p>リフレクションある系の言語や win32 でない GUI framework では、<br />
+大抵 GUI テストの自動化ツールがオープンソースである気がします。<br />
+あと chrome がごついのは C++ のせいの他に、マルチプロセスのアーキテクチャだからというのはありそうです。<br />
+ライブラリなら関数を呼べば済むわけで・・・<br />
+この例だけみると GUI のテストというよりサーバプログラムのテストですね。</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-16">
+    <img alt='' src='http://www.gravatar.com/avatar/7828b45f8396aa361d85cead01fd99ca?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    <a href='http://8-p.info/' rel='external nofollow' class='url'>kzys</a>  </h3>
+  <p>「Google といえばテスト」で見たんですが、たしかに Chrome は特殊だったかも。</p>
+<p>Win32 でないものを探したら Dogtail, QTestLib とかみつけました。Dogtail はアクセシビリティ API つかってて粒度おおきめ、QTestLib はイベント送ったり signal/slot 使ったりで粒度小さめ。</p>
+<p>あと PragProg から &#8220;Scripted GUI Testing with Ruby&#8221; なんてものがでてました。<br />
+<a href="http://www.pragprog.com/titles/idgtr/scripted-gui-testing-with-ruby" rel="nofollow">http://www.pragprog.com/titles/idgtr/scripted-gui-testing-with-ruby</a></p>
+</div>
+</div>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="217" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

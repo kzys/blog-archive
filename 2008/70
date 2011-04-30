@@ -1,0 +1,29 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-07-23T00:19:17+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-07-23T00:19:17+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://yui.yahooapis.com/2.5.2/build/reset/reset.css"><span class="icon"></span>http://yui.yahooapis.com/2.5.2/build/reset/reset.css</a>
+</p>
+<p>
+YUI Rest CSS は
+</p>
+<pre class="wiki">
+html{color:#000;background:#FFF;}
+</pre>
+<p>
+しているので注意。ページ全体の背景色を変更するときは body ではなく html に background-color を指定する必要がある。
+</p>
+<p>
+body に background-color を指定しても (ブラウザに縦スクロールバーが出ないくらいに) body が短いと、ページ全体が塗りつぶされず下に白色の部分が残る。 
+</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: cp, ditto, CpMac とゆかいな Finder</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137043210">
+  <h2 class="entry-title"><a href="/articles/2006/10/26/cp-ditto-cpmac-finder" title="cp, ditto, CpMac とゆかいな Finder">cp, ditto, CpMac とゆかいな Finder</a></h2>
+  <div class="published">
+    October 26th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://d.hatena.ne.jp/lurker/20061024/1161693389">技術メモ帳 - MacOSXでのファイルコピーは ditto コマンドを使用した方がいいらしい</a> に</p>
+
+<blockquote>
+    <p>hugo-sb 『10.4からは、cpもリソースフォークに対応している筈なんですが。』</p>
+</blockquote>
+
+<p>というコメントがあって、そういえばそんなことを読んだ気もしたので、深追いしてみた。</p>
+    
+    
+    
+    <h3>初級編</h3>
+
+<p>Safari で、アドレスバーの favicon やページ上のリンクを Finder にドロップしてみると、ファイルが作られる。ダブルクリックするとページが開くので、どこかに URI を記録しているはずなんだけど、ファイルの中身は空だ。</p>
+
+<pre><code>% ls -l 8-p.info.webloc
+-rw-r--r--   1 kzys  kzys  0 10 26 01:04 8-p.info.webloc
+</code></pre>
+
+<p>実は URI はリソースフォークに記録されている。</p>
+
+<pre><code>% /Developer/Tools/DeRez 8-p.info.webloc
+...
+data 'url ' (256, "8-p.info.webloc") {
+        $"6874 7470 3A2F 2F38 2D70 2E69 6E66 6F2F"            /* http://8-p.info/ */
+};
+
+data 'TEXT' (256, "8-p.info.webloc") {
+        $"6874 7470 3A2F 2F38 2D70 2E69 6E66 6F2F"            /* http://8-p.info/ */
+};
+...
+</code></pre>
+
+<p>リソースフォークには 8-p.info.webloc/rsrc, 8-p.info.webloc/..namedfork/rsrc でアクセスできる。</p>
+
+<pre><code>% od -c 8-p.info.webloc/rsrc
+0000000   \0  \0 001  \0  \0  \0 001   x  \0  \0  \0   x  \0  \0  \0 256
+...
+% od -c 8-p.info.webloc/..namedfork/rsrc
+0000000   \0  \0 001  \0  \0  \0 001   x  \0  \0  \0   x  \0  \0  \0 256
+...
+% sum 8-p.info.webloc/{rsrc,..namedfork/rsrc} 
+22433 1 8-p.info.webloc/rsrc
+22433 1 8-p.info.webloc/..namedfork/rsrc
+</code></pre>
+
+<p>cp, ditto, CpMac, cat でそれぞれコピーしてみる。</p>
+
+<pre><code>% cp 8-p.info.webloc cp.webloc
+% ditto 8-p.info.webloc ditto.webloc
+% /Developer/Tools/CpMac 8-p.info.webloc CpMac.webloc
+% cat 8-p.info.webloc &gt; cat.webloc
+</code></pre>
+
+<p>それぞれの .webloc をダブルクリックしていくと、エラーになるのは cat.webloc だけなので、cp でもリソースフォークは保存されていることがわかる。</p>
+
+<h3>応用編</h3>
+
+<p>アイコンについて考える。</p>
+
+<pre><code>% touch a.zip
+</code></pre>
+
+<p>空ファイルだけど、Finder は拡張子しか見ていないので .zip のアイコンで表示する。ここで Finder 上で右クリックして「このアプリケーションで開く」を変更すると、アイコンも変わる。</p>
+
+<p>どのアプリケーションで開くかはリソースフォークの usro という部分に記録されている。</p>
+
+<pre><code>% /Developer/Tools/DeRez a.zip
+data 'usro' (0) {
+        $"0000 0030 2F41 7070 6C69 6361 7469 6F6E"            /* ...0/Application */
+        $"732F 5374 7566 6649 7420 3130 2E30 2F53"            /* s/StuffIt 10.0/S */
+        $"7475 6666 4974 2045 7870 616E 6465 722E"            /* tuffIt Expander. */
+        $"6170 7000 9493 94FF 9493 94FF 9493 94FF"            /* app.???????????? */
+...
+</code></pre>
+
+<p>Finder から「このアプリケーションで開く」を変更して a.zip のアイコンが変わったことを確認したら、Finder を開いたまま Terminal からコピーしてみる。</p>
+
+<pre><code>% cp a.zip cp.zip
+% ditto a.zip ditto.zip
+% /Developer/Tools/CpMac a.zip CpMac.zip
+% cat a.zip &gt; cat.zip
+</code></pre>
+
+<p>cp.zip と cat.zip がアイコンの変化を引き継がない。cat.zip は当然だけど cp.zip が引き継がないのはおかしい。</p>
+
+<pre><code>% killall Finder
+</code></pre>
+
+<p>ところが、Finder を再起動してみると cp.zip もちゃんとアイコンが変わっている。</p>
+
+<h3>結論</h3>
+
+<ul>
+<li>cp, ditto, CpMac はどれもリソースフォークをみている</li>
+<li>Finder のキャッシュ的な何かが悪さをしているんだと思う</li>
+</ul>
+
+<p>ちなみに、Mac OS X のソースコードの一部は <a href="http://www.opensource.apple.com/darwinsource/">Apple - Darwin - Releases</a> にあります。公開されているソースすら読まないようでは全然深追いになっていないわけで、<a href="http://0xcc.net/pub/osm2006/">深追イスト</a>への道は厳しい。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/10/26/cp-ditto-cpmac-finder/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

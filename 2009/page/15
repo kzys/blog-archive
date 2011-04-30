@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+   <div class="main">
+    <div class="entry" id="entry449">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/03/textfield-js">JavaScript でプレースホルダつき入力欄を作る</a>
+    (3)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-03-08 09:25    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>JavaScript で input 要素にプレースホルダをつけるようにして、このブログの右上につけてみた。</p>
+<div class="eyecatch"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/03/placeholder.png" alt="Placeholder" title="Placeholder" width="640" height="200" class="alignnone size-full wp-image-452" /></div>
+<p>ユーザーが入力するべきものを入力欄自身に表示するこのインターフェース、調べたら <a href="http://ui-patterns.com/pattern/InputPrompt">Input Prompt</a> と呼ぶ向きもあるらしい。</p>
+<p>ここではその実装と設計 (というほどおおげさなものじゃないけど) について、制作過程の細々とした考えを文章化してみます。</p>
+<h3>インターフェースを決める</h3>
+<p>どこかで見たことある部品なので、入力欄がページの読者に提供するインターフェースは、もうかたまっている。</p>
+<ul>
+<li>入力前は説明文を、灰色かなにかで表示する</li>
+<li>フォーカスがあたると説明文が消える</li>
+<li>入力後はそのまま、なにも入力されていなければ説明文が再び表示される</li>
+</ul>
+<p>ページの作者に提供するインターフェースはこうした。</p>
+<pre>
+var field = new TextField($('searchKeyword'));
+field.setPlaceholder('Search');
+</pre>
+<p>「説明文」を setPlaceholder で設定する。また、説明文を表示しているときは input 要素に placeholder クラスをあてて、説明文の色は CSS 経由で設定してもらうことにする。</p>
+<p>細かいところだと、TextField のコンストラクタにはページ上の要素そのものを渡すようにしている。Google Maps の <a href="http://code.google.com/intl/ja/apis/maps/documentation/introduction.html#GMap2">GMap2</a> と同じだ。たまに、SWFObject の <a href="http://code.google.com/p/swfobject/wiki/api">swfobject.registerObject</a> のような、文字列で ID 属性を渡すことを要求するものがあるけど、これをされると動的に生成した要素を引数にあたえづらい。</p>
+<pre>
+var input = document.createElement('input');
+var field = new TextField(input);
+</pre>
+<p>特別な事情がない場合は、要素そのものがとれるようにするべきだと思う。</p>
+<h3>ライブラリを選ぶ</h3>
+<p>JavaScript は様々なブラウザ間の差異とか、よくやる処理に対して便利なショートカットがないとか、面倒なところがいくつかある。この面倒は、<a href="http://prototypejs.org/">Prototype</a>, <a href="http://mochikit.com/">MochiKit</a>, <a href="http://jquery.com/">jQuery</a> など既存のライブラリでだいたい回避できる。自分でゼロから書いて面倒に対処するのも勉強にはなるけど、勉強がすんだ後はやっぱり有名なライブラリにのったほうが、あとから読む人に優しい。</p>
+<p>最近は jQuery が流行っているけど、私は Prototype のほうが好きだ。今回も Prototype を使った。</p>
+<p>InfoQ の <a href="http://www.infoq.com/jp/news/2009/01/prototype-vs-jquery">Prototype vs. jQuery</a> で紹介されている <a href="http://blog.thinkrelevance.com/2009/1/12/why-i-still-prefer-prototype-to-jquery">Why I still prefer Prototype to jQuery</a> では、コメント欄に <a href="http://mootools.net/">MooTools</a> を推すひとがちらほらいた。</p>
+<h3>プライベート</h3>
+<p>プライベートな変数・メソッドは JavaScript でも区別するべきなので、いくつかの変数・メソッドには名前の先頭に &#8220;_&#8221; をつけている。クロージャをつかって外から呼び出すことを本気で防止するとか、そういうことはしていない。設計の意図をしめす意味での、紳士協定としての区別があれば十分だと思う。</p>
+<h3>ソースコード</h3>
+<p>最後にソースコードをはっておきます。著作権とかは主張しないので、自由につかってください。</p>
+<pre>
+var TextField = Class.create({
+    initialize: function (element) {
+        this._element = $(element);
+        this._placeholder = '';
+        this._changed = this._element.value != '';
+
+        this._element.observe('focus', this._onfocus.bindAsEventListener(this));
+        this._element.observe('blur',  this._onblur.bindAsEventListener(this));
+        this._element.observe('change', function () {
+            this._changed = true;
+        }.bindAsEventListener(this));
+
+        Event.observe(window, 'unload', this._unload.bindAsEventListener(this));
+    },
+
+    _onfocus: function () {
+        if (! this._changed) {
+            this._element.value = '';
+        }
+        this._showPlaceholder(false);
+    },
+
+    _onblur: function () {
+        if (this._element.value == '') {
+            this._changed = false;
+        }
+        this._showPlaceholder(true);
+    },
+
+    _unload: function () {
+        if (! this._changed) {
+            this._element.value = '';
+        }
+    },
+
+    setPlaceholder: function (str) {
+        this._placeholder = str;
+        this._showPlaceholder(true);
+    },
+
+    _showPlaceholder: function (flag) {
+        if (flag &#038;&#038; ! this._changed) {
+            this._element.value = this._placeholder;
+            this._element.addClassName('placeholder');
+        } else {
+            this._element.removeClassName('placeholder');
+        }
+    }
+});
+</pre>
+<h3>まとめ</h3>
+<p>とりとめないけど、今回主張したことを並べてみた。</p>
+<ul>
+<li>引数は ID 属性ではなく、要素そのものを渡せるようにしよう</li>
+<li>既存のライブラリを使おう</li>
+<li>プライベートは (がんばって呼べなくすることまでやらなくても) 区別はしよう</li>
+</ul>
+<p>JavaScript はいわれるほど変な言語ではない。今回のソースコードも (Prototype の Class.create のおかげもあって) 他言語ができれば JavaScript が読めなくてもわかるレベルにおさまっていると思う。</p>
+<p>ふつうにやりましょう。</p>
+<h3>追記</h3>
+<p>Safari で遷移後に戻ったときにプレースホルダが残ってしまう問題があったため、unload まわりのコードを追加しました。こういうのが続くとふつう説がゆらぐのでなんとかしないと。ええと、WebKit はフォームの状態を保存するのです。</p>
+</div>
+</div>
+<div class="entry" id="entry425">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/02/life">2月の反省と近況</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-02-28 23:06    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>はじめは文章で書いていたんだけど KPT にした。</p>
+<h3>Keep</h3>
+<ul>
+<li>ブログ: Class::Sniff のはなしを <a href="http://use.perl.org/comments.pl?sid=42344&#038;cid=67535">作者の Curtis さんに見せた</a> のが一番良かった</li>
+<li>パッチ: 手元においてあったパッチを <a href="http://groups.google.com/group/funnel-dev-talk-ja/browse_thread/thread/cbdf7edb901ed8bd">Funnel にとりこんでもらった</a></li>
+</ul>
+<h3>Problem</h3>
+<ul>
+<li>生活全体が乱れがちで「平日自宅でのインターネットをひかえる」も、くじけていた</li>
+</ul>
+<h3>Try</h3>
+<ul>
+<li>早起き</li>
+<li>プログラマ以外の人に見せられるものを作る</li>
+</ul>
+<p>Try は出来る範囲を考えて少なめにしました。そのうちイテレーションとか切り出しそうだ。</p>
+</div>
+</div>
+<div class="entry" id="entry414">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/02/class-sniff-combine_graphs">New Class::Sniff has &#8220;combine_graphs&#8221;</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-02-22 22:37    </div>
+    <div class="tags yui-u">
+      <a href="http://blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+  </div>
+  <div class="body"><p>Previously I wrote &#8220;merge_graph&#8221; method to <a href="http://blog.8-p.info/2009/02/class-sniff">drawing inheritance tree with Class::Sniff</a>. But now, new Class::Sniff shipped with &#8220;combine_graphs&#8221; method and make obsolete my code :D</p>
+<p>So I rewrite my two scripts:</p>
+<pre>
+use strict;
+use warnings;
+use Class::Sniff;
+
+sub package_of {
+    my ($path) = @_;
+
+    if ($path !~ m|/?lib/(.*)\.pm$|) {
+      die;
+    }
+
+    my $result = $1;
+    $result =~ s|/|::|g;
+    return $result;
+}
+
+my @sniffs = map {
+    my $package = package_of($_);
+    eval "use $package";
+
+    Class::Sniff-&gt;new({ class =&gt; $package });
+} @ARGV;
+
+my $sniff = pop @sniffs;
+print $sniff-&gt;combine_graphs(@sniffs)-&gt;as_graphviz;
+</pre>
+<pre>
+use strict;
+use warnings;
+use Class::Sniff;
+
+sub package_of {
+    my ($path) = @_;
+
+    if ($path !~ m|/?lib/(.*)\.pm$|) {
+      die;
+    }
+
+    my $result = $1;
+    $result =~ s|/|::|g;
+    return $result;
+}
+
+sub new_methods {
+    my ($sniffer) = @_;
+    my %count_of;
+
+    for my $method ($sniffer-&gt;methods) {
+        $count_of{$method}++;
+    }
+
+    my $klass = $sniffer-&gt;target_class;
+    for my $method (keys %{ $sniffer-&gt;exported-&gt;{ $klass } }) {
+        $count_of{$method}--;
+    }
+
+    grep { $_ } map {
+        my $method = $_;
+
+        ($count_of{$method} &gt; 0)? $method : undef;
+    } (keys %count_of);
+}
+
+my @sniffs = map {
+    my $package = package_of($_);
+    eval "use $package";
+
+    Class::Sniff-&gt;new({ class =&gt; $package });
+} @ARGV;
+
+my $labels = join "\n", map {
+    my @methods = new_methods($_);
+
+    my $label = '{\N\n|' . join('\l', sort @methods) . '\l}';
+    $label =~ s/"/\\"/g;
+
+    sprintf('"%s" [label="%s"]', $_-&gt;target_class, $label);
+} @sniffs;
+
+my $sniff = pop @sniffs;
+my $graphviz = $sniff-&gt;combine_graphs(@sniffs)-&gt;as_graphviz;
+
+# it's dirty...
+$graphviz =~ s/}/$labels }/g;
+$graphviz =~ s/shape=box/shape=record/g;
+
+print $graphviz;
+</pre>
+<p>And update <a href="http://gist.github.com/61684">my gist</a> with second.</p>
+</div>
+</div>
+    <div class="paginate">
+      <a href="http://blog.8-p.info/2009/page/14" >Newer</a>      <a href="http://blog.8-p.info/2009/page/16" >Older</a>    </div>
+  </div>
+  <div class="sidebar"><h2>About me and this blog</h2>
+<p>
+  All articles are written by <a href="http://8-p.info/me/">加藤和良</a>.
+  A few are <a href="/2009/tag/lang-en">written in English</a>.
+</p>
+
+<ul>
+  <li>
+    <h2>Recent articles</h2>
+    <ul>	<li><a href='http://blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+</ul>
+  </li>
+</ul>
+
+<ul><li id="linkcat-2" class="linkcat"><h2>Links</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://collisions.doppac.cc/">collisions.doppac.cc</a></li>
+<li><a href="http://googletesting.blogspot.com/">Google Testing Blog</a></li>
+<li><a href="http://www.grafikcache.com/">Grafikcache</a></li>
+<li><a href="http://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="http://someru.blog74.fc2.com/">Hang Reviewers High</a></li>
+<li><a href="http://labs.ideo.com/">IDEO Labs</a></li>
+<li><a href="http://blog.makezine.com/">MAKE: Blog</a></li>
+<li><a href="http://d.hatena.ne.jp/KZR/">Radium Software</a></li>
+<li><a href="http://steps.dodgson.org/">steps to phantasien</a></li>
+
+	</ul>
+</li>
+</ul>
+
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+</p>
+</div>
+</div>
+
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

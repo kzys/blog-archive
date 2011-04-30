@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: del.icio.us の IME まわりをましに</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134942770">
+  <h2 class="entry-title"><a href="/articles/2006/12/20/del-icio-us-ime" title="del.icio.us の IME まわりをましに">del.icio.us の IME まわりをましに</a></h2>
+  <div class="published">
+    December 20th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>del.icio.us の "edit in place" な編集機能には、日本語入力の「確定」で IME にわたした enter を編集終了の enter と勘違いするという、いかにも ASCII 圏らしいバグがある。</p>
+
+<p>わりと困るので <a href="http://8-p.info/userscript/delicious-ime.user.js">delicious-ime.user.js</a> というのを書いてみた。</p>
+    
+    
+    
+    <p>del.icio.us の JavaScript は難読化されていないので普通に読める。ファイルは <a href="http://del.icio.us/ui/static/lib.js">http://del.icio.us/ui/static/lib.js</a>, <a href="http://del.icio.us/ui/static/delicious.js">http://del.icio.us/ui/static/delicious.js</a> のふたつ。lib.js にある create という関数が DOM の要素生成に使われていて、要素の属性は niceExtend という関数で設定している。個人的には関数名に nice とか good とかつけるのは良くないと思う。</p>
+
+<p>JavaScript でキーイベントをうけとるには onkeypress, onkeydown, onkeyup と3つあって、それぞれ</p>
+
+<ul>
+<li>onkeypress: IME の enter に反応しない</li>
+<li>onkeyup: 反応する</li>
+<li>onkeydown: Firefox は反応して Safari だとしない</li>
+</ul>
+
+<p>という違いがある。ここでは niceExtend に細工をしかけて、onkeydown には enter をすべて無視させつつ、onkeypress にきた enter は onkeydown に投げるようにした。</p>
+
+<p>関係ないけど <a href="http://del.icio.us/ui/static/delicious.js">http://del.icio.us/ui/static/delicious.js</a> の先頭には</p>
+
+<pre><code>document.onclick = function(e){
+    e = e||window.event
+    var t = e.target||e.srcElement
+    if (t.onclick) return;
+    var r = true
+    if(t.className){
+        t.className.splitrim(' ').each(function(c){
+            if(onclicks[c]) {
+                onclicks[c].call(t, e)
+                r = false
+    }})}
+    return r
+}
+</code></pre>
+
+<p>なんて記述があって LDR の元ネタっぽいと思う。あと</p>
+
+<pre><code>obj.func(x);
+</code></pre>
+
+<p>と</p>
+
+<pre><code>var f = obj.func;
+f.call(obj, x);
+</code></pre>
+
+<p>が等価であることをいまさら知った。JavaScript のこういうところが好き。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/javascript" rel="tag" title="javascript">javascript</a></li>
+      
+      <li><a href="/tags/socialbookmark" rel="tag" title="socialbookmark">socialbookmark</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">2 Responses to &#8220;del.icio.us の IME まわりをましに&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-134134620">
+			<cite><span>tomomi</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134134620" title="">January 5th, 2007 at 06:42 PM</a></small>
+			<p>具体的にはどうすればいいんでしょう？
+パソコン初心者のわたしにはその先がよく分からないです。。
+よろしければ教えてください。</p>
+		</li>
+  
+		<li class="" id="comment-134075170">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134075170" title="">January 7th, 2007 at 02:43 PM</a></small>
+			<p>お使いのブラウザはなんでしょうか？もし Firefox なら、以下のページがわかりやすいと思います。</p>
+
+<p><a href="http://hatenagreasemonkey.g.hatena.ne.jp/keyword/%E3%82%B0%E3%83%AA%E3%83%BC%E3%82%B9%E3%83%A2%E3%83%B3%E3%82%AD%E3%83%BC%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9">はてなグリースモンキー - グリースモンキーの使い方</a></p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/12/20/del-icio-us-ime/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

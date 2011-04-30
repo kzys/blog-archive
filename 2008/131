@@ -1,0 +1,36 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-10-19T20:27:13+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-10-19T20:27:13+09:00</h1>
+
+    <p>
+AtomPub には edited 要素があることを教えてもらった。
+</p>
+<p>
+<a class="ext-link" href="http://gihyo.jp/dev/feature/01/atompub/0003"><span class="icon"></span>http://gihyo.jp/dev/feature/01/atompub/0003</a>
+</p>
+<blockquote class="citation">
+<p>
+ フィードに含まれるエントリの中には，app:editedという要素が入っているかもしれません。これは，最終更新日時を示すものです。atom:updatedも似たような要素ですが，重要な変更が行われた日時を指すもので，必ずしも全ての更新が対象ではありません。
+</p>
+</blockquote>
+<p>
+<a class="ext-link" href="http://cdivilly.wordpress.com/2007/08/31/time-values-in-atompub/"><span class="icon"></span>http://cdivilly.wordpress.com/2007/08/31/time-values-in-atompub/</a>
+</p>
+<blockquote class="citation">
+<p>
+ In summary atom:updated is a value determined by the user, app:edited is determined by the server, some clients (e.g. a feed reader) will be interested in atom:updated, other clients (e.g. a blog editor) will be interested in app:edited.
+</p>
+</blockquote>
+<p>
+そんなに細々と制御しなくても、と思う。
+</p>
+  </div>
+</body>
+</html>

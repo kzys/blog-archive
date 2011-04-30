@@ -1,0 +1,20 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-24T23:06:25+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-24T23:06:25+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://github.com/kzys/memcacheb/tree/master"><span class="icon"></span>http://github.com/kzys/memcacheb/tree/master</a>
+</p>
+<p>
+最近 memcacheb というのを作りはじめました。Web ブラウザから memcached の中身をのぞける Web アプリケーションで、いまのところ表示と削除ができます。作成と更新はこれから。
+</p>
+  </div>
+</body>
+</html>

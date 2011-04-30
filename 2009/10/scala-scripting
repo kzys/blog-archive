@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>Scala で書き捨てスクリプト - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry1425">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/10/scala-scripting">Scala で書き捨てスクリプト</a>
+    (3)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-10-02 07:39    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Scala は良いと思う。でも最近書いてなかったので、アクセスログのリファラを数えるという (変数に型のないようなスクリプト言語でさくっとすます類いの) 作業をやってみた。</p>
+<pre>
+% cat access.log
+...
+127.0.0.1 blog.8-p.info - [19/Jul/2009:06:23:26 +0000] "GET /2009/wp-content/themes/b8i/ALL.js HTTP/1.1" 200 90381 "http://blog.8-p.info/2009/03/textfield-js" "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; ja-jp) AppleWebKit/530.19.2 (KHTML, like Gecko) Version/4.0.2 Safari/530.19"
+127.0.0.1 blog.8-p.info - [19/Jul/2009:06:23:27 +0000] "GET /favicon.ico HTTP/1.1" 200 894 "http://blog.8-p.info/2009/03/textfield-js" "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; ja-jp) AppleWebKit/530.19.2 (KHTML, like Gecko) Version/4.0.2 Safari/530.19"
+...
+% scala a.scala access.log
+...
+(7,http://www.tumblr.com/dashboard)
+(8,http://twitturls.com/)
+(8,http://www.reddit.com/r/ja/)
+...
+%
+</pre>
+<p>満足した。</p>
+<h3>最初に動いたコード</h3>
+<pre>
+import java.io._
+import scala.util.matching.Regex
+
+class File(path: String) extends Iterator[String] {
+  val reader = new BufferedReader(new FileReader(path))
+  var line: String = reader.readLine
+
+  def hasNext(): Boolean = {
+    if (line == null) {
+      line = reader.readLine
+    }
+    return line != null
+  }
+
+  def next(): String = {
+    val result = line
+    line = null
+    return result
+  }
+}
+
+val file = new File(args(0))
+val pattern = new Regex("(.+?) (.+?) - \\[(.+?)\\] \"(.+?)\" (\\d+) (\\d+) \"(.+?)\" \"(.+?)\"")
+var countOf: Map[String, Int] = Map()
+for (ln &lt;- file) {
+  pattern.findFirstMatchIn(ln) match {
+    case Some(m) =&gt; {
+      val from = m.group(7)
+      if (m.group(2) == "blog.8-p.info" &amp;&amp; from != "-" &amp;&amp;
+        from.indexOf("http://blog.8-p.info/") != 0) {
+        countOf += from -&gt; (countOf.getOrElse(from, 0) + 1)
+      }
+    }
+    case None =&gt; ;
+  }
+}
+
+print(countOf.map((pair) =&gt; {
+  pair._2 -&gt; pair._1
+}).toList.sort((a, b) =&gt; {
+  a &lt; b
+}).mkString("\n") + "\n")
+</pre>
+<p>個々の処理は必要十分な記述量だと思うけど File クラスはないなあ&#8230;</p>
+<p>今回の敗因はログに UTF-8 として不正な文字列 (C 言語っぽく書くと &#8220;GET /uldq\xc9\xcc\xd2\xb5\xb0\xe6\xb1\xbe\x2e.rar HTTP/1.1&#8243; というものだった) があったことで、この行で Scala.io.Source#getLines が java.nio.BufferUnderflowException を吐いてしまうため直接 java.io. をさわることになった。</p>
+<p>しかし Scala では代入が値を返さないので</p>
+<pre>
+while ((ln = reader.readLine) != null) {
+</pre>
+<p>と書けず、break もないので</p>
+<pre>
+while (true) {
+  ln = reader.readLine;
+  if (ln == null) {
+    break;
+  }
+</pre>
+<p>ともいかず、とはいえフラグ変数は嫌だったのでクラスにまとめたという経緯がある。</p>
+<p>あと、正規表現はリテラルがほしい。\ は文字列でも正規表現でもメタキャラクタなので、正規表現のパーサに \ を渡すために \\ と書くのは Emacs-Lisp みたいで手間だった。</p>
+<h3>短くした</h3>
+<p>書き捨てなので動いたところで終わるのだけど、すこし調べたら短くできた。</p>
+<pre>
+import java.io._
+import scala.util.matching.Regex
+
+val reader = new BufferedReader(new FileReader(args(0)))
+val pattern = new Regex("""(.+?) (.+?) - \[(.+?)\] "(.+?)" (\d+) (\d+) "(.+?)" "(.+?)""" + "\"") // "
+var countOf: Map[String, Int] = Map()
+var ln = ""
+while ({ ln = reader.readLine; ln != null }) {
+  pattern.findFirstMatchIn(ln) match {
+    case Some(m) =&gt; {
+      val from = m.group(7)
+      if (m.group(2) == "blog.8-p.info" &amp;&amp; from != "-" &amp;&amp;
+        from.indexOf("http://blog.8-p.info/") != 0) {
+        countOf += from -&gt; (countOf.getOrElse(from, 0) + 1)
+      }
+    }
+    case None =&gt; ;
+  }
+}
+
+print(countOf.map((pair) =&gt; {
+  pair._2 -&gt; pair._1
+}).toList.sort((a, b) =&gt; {
+  a &lt; b
+}).mkString("\n") + "\n")
+</pre>
+<p>while で代入文の返り値を使えないのは <a href="http://d.hatena.ne.jp/syttru/20080322/1206212125">Scalaでファイル操作</a> を参考に書きなおした。ln のスコープがちょっといやかなあ。でも File クラスがいないのは見た目いい。</p>
+<p>正規表現は &quot;&quot;&quot; の文字列リテラルをつかってエスケープを減らしてみた。<a href="http://lampsvn.epfl.ch/trac/scala/ticket/1000">&quot;&quot;&quot; でくくられた文字列は &quot; で終われない</a> のと、Emacs の色づけを直すための // &#8221; がださい。</p>
+<h3>&#8221; が連続しなければいい</h3>
+<pre>
+val pattern = new Regex("""^(.+?) (.+?) - \[(.+?)\] "(.+?)" (\d+) (\d+) "(.+?)" "(.+?)"$""")
+</pre>
+<p>先頭と末尾に明示的にマッチさせて、見た目の不自然さを減らしてみた。</p>
+<h3>他言語との比較: Ruby</h3>
+<p>コメントをもらいました。</p>
+<blockquote><p>ためしに perl や ruby も書いて比べてみるの希望。</p></blockquote>
+<p>まず Ruby で書いてみました。</p>
+<pre>
+count_of = Hash.new do
+  0
+end
+PATTERN = /^(.+?) (.+?) - \[(.+?)\] "(.+?)" (\d+) (\d+) "(.+?)" "(.+?)"$/
+
+File.open(ARGV[0]) do |f|
+  f.each do |ln|
+    if ln =~ PATTERN
+      from = $7
+      if $2 == 'blog.8-p.info' and from != '-' and
+          from !~ %r{^http://blog.8-p.info/}
+        count_of[from] += 1
+      end
+    end
+  end
+end
+
+puts(count_of.map do |k, v|
+       [v, k]
+     end.sort.map do |ary|
+       ary.join("\t")
+     end.join("\n"))
+</pre>
+<p>基本的には Scala のべた移植で、変更している部分は</p>
+<ul>
+<li>Ruby で「文字列の先頭にある部分文字列がある?」というのをみるには String#index より正規表現を使いがち</li>
+<li>Array#join は再帰的に配列をなめてしまうので map に、あと明示的に Object#inspect よりはタブ区切りにするだろう</li>
+</ul>
+<p>という2つです。見た目はすっきりしたなあ。ただし速度は遅いです。</p>
+<pre>
+% ls -lh access.log
+-rw-r--r--  1 kzys  staff   169M 10  1 21:27 access.log
+% ruby -v
+ruby 1.8.7 (2008-08-11 patchlevel 72) [universal-darwin10.0]
+% time ruby a.rb access.log
+...
+ruby a.rb access.log  28.61s user 0.63s system 97% cpu 30.128 total
+% time scala a.scala access.log
+...
+scala a.scala access.log  14.19s user 0.65s system 83% cpu 17.742 total
+%
+</pre>
+<p>time(1) で測るのは今回のユースケースではいいけど、たとえば Web アプリケーションならプロセスの起動時間なんて無視して単位時間あたりにさばけるリクエスト数で速い/遅いをいうべきだと思います。</p>
+<h3>他言語との比較: Perl</h3>
+<p>つぎに Perl です。</p>
+<pre>
+use strict;
+use warnings;
+
+my %count_of;
+my $PATTERN = qr/^(.+?) (.+?) - \[(.+?)\] "(.+?)" (\d+) (\d+) "(.+?)" "(.+?)"$/;
+
+open(my $file, '&lt;', $ARGV[0]);
+while (my $ln = &lt;$file&gt;) {
+    if ($ln =~ $PATTERN) {
+        my $from = $7;
+        if ($2 eq 'blog.8-p.info' and $from ne '-' and
+                $from !~ qr{^http://blog.8-p.info/}) {
+            $count_of{$from} += 1
+        }
+    }
+}
+close($file);
+
+print((join "\n", map {
+    join "\t", @$_;
+} sort {
+    $a-&gt;[0] &lt;=&gt; $b-&gt;[0];
+} map {
+    [ $count_of{$_} =&gt; $_ ];
+} keys %count_of), "\n");
+</pre>
+<p>基本的には Ruby に my とか ; とかつけた感じです。配列 (arrayref) に対して大小関係をとれなかったので、なかを直接みてみます。しかしこれが速くて。</p>
+<pre>
+% perl -v
+
+This is perl, v5.10.0 built for darwin-thread-multi-2level
+(with 2 registered patches, see perl -V for more detail)
+
+Copyright 1987-2007, Larry Wall
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using "man perl" or "perldoc perl".  If you have access to the
+Internet, point your browser at http://www.perl.org/, the Perl Home Page.
+
+% time perl a.pl access.log
+...
+perl a.pl access.log  5.88s user 0.33s system 95% cpu 6.519 total
+%
+</pre>
+<p>すごいなあ。どこで差がついたかはまた後で調べたいです。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+<div id="comments">
+
+<div class="comment">
+  <h3 class="alt" id="comment-2862">
+    <img alt='' src='http://www.gravatar.com/avatar/7d63a0ba4d1e79b105db00b4ca8f0df6?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    morita  </h3>
+  <p>ためしに perl や ruby も書いて比べてみるの希望。</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-2905">
+    <img alt='' src='http://www.gravatar.com/avatar/7828b45f8396aa361d85cead01fd99ca?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    <a href='http://8-p.info/' rel='external nofollow' class='url'>KATO Kazuyoshi</a>  </h3>
+  <p>ちょっと追記した。Perl 速い&#8230;</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-2926">
+    <img alt='' src='http://www.gravatar.com/avatar/7d63a0ba4d1e79b105db00b4ca8f0df6?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    morita  </h3>
+  <p>おーありがとうございます。コンパイル時間いれても scala の方がはやいとは。しかも perl が&#8230;<br />
+計らなければわからんもんですねえ。</p>
+</div>
+</div>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="1425" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

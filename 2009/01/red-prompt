@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>コマンドが失敗したらプロンプトを赤くする - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry133">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/01/red-prompt">コマンドが失敗したらプロンプトを赤くする</a>
+    (2)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-01-02 22:14    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3159130375/" title="Prompt (VGA) by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3131/3159130375_facaca635c_o.png" width="640" height="480" alt="Prompt (VGA)" /></a></div>
+<p>しばらく前から、コマンドの終了ステータスをプロンプトの色に反映させるようにしている。</p>
+<h3>終了ステータスとは</h3>
+<p>C言語なら</p>
+<pre>
+int main(int argc, char* argv[])
+{
+    ...
+    return 0;
+}
+</pre>
+<p>この return している 0 が終了ステータス。この整数値の下位 8bit がプロセスの終了時に親 (そのプロセスを起動したプロセス) にわたる。</p>
+<p>終了ステータスの指定方法はいろいろある。C言語の場合 main 関数の戻り値以外にも exit 関数の引数でも指定できる。Ruby, Perl の場合、そもそも main 関数は無くて exit 関数に引数を与える方法だけがつかえる。</p>
+<p>この値はシェル上で $? で参照できる。</p>
+<pre>
+% perl -e 'exit(0xdead)'; echo $?
+173
+%
+</pre>
+<p>慣例として、正常終了のときは 0 を返すことになっている。</p>
+<pre>
+% ls /etc/passwd
+/etc/passwd
+% echo $?
+0
+% ls /etc/passwdddd
+ls: /etc/passwdddd: No such file or directory
+% echo $?
+1
+%
+</pre>
+<p>ファイルが存在して無事表示できたので 0, ファイルが存在しなかったときは 1 を返しているのがわかる。ここではこの二種類しか観測できなかったけど、例えば grep だと 2 もあります。</p>
+<pre>
+% echo hello | grep hello
+hello
+% echo $?
+0
+% echo hello | grep helo
+% echo $?
+1
+% echo hello | grep
+Usage: grep [OPTION]... PATTERN [FILE]...
+Try `grep --help' for more information.
+% echo $?
+2
+%
+</pre>
+<p>パターンにマッチする行が見つかったら 0, 見つからなければ 1, そもそもそれ以前の問題 (引数が足りない) の場合 2 を返している。</p>
+<h3>プロンプトの色を変える</h3>
+<p>やっと本題。zsh だと ~/.zshrc にこんな感じで書くと良い。</p>
+<pre>
+autoload -U colors
+colors
+PROMPT="%{$fg[green]%}%#%{$reset_color%} "
+
+precmd () {
+  PROMPT="%{%(?.$fg[green].$fg[red])%}%#%{$reset_color%} "
+}
+</pre>
+<p>%(?.foo.bar) ってところで条件分岐しているだけです。くわしくは zshmisc (1) の &#8220;Conditional substrings&#8221; を参照。なので、色以外も切り替えられます。</p>
+<pre>
+PROMPT="('-')/ "
+precmd () {
+  PROMPT="(%(?.'-'.;_;))/ "
+}
+</pre>
+<p>うん。</p>
+<pre>
+('-')/ echo hello
+hello
+('-')/ echoo hello
+zsh: command not found: echoo
+(;_;)/ echo hello
+hello
+('-')/
+</pre>
+<p>かわいすぎた。</p>
+<h3>追記</h3>
+<p><a href="http://b.hatena.ne.jp/LukeSilvia/20090103#bookmark-11511163">はてなブックマーク - @lukesilvia.bookmarks</a></p>
+<blockquote><p>RPROMPT 使っている場合は、%{$reset_color%} のしないと、RPROMPT が手前にずれる</p></blockquote>
+<p>というコメントを読んで、PROMPT 中のエスケープシーケンスを %{ &#8230; %} でかこっていない部分に気づいたので「プロンプトの色を変える」の最初の例を修正しました。</p>
+<pre>
+% echo -n $fg[green] | hexdump -c
+0000000 033   [   3   2   m
+0000005
+% echo -n $fg[red] | hexdump -c
+0000000 033   [   3   1   m
+0000005
+% echo -n $reset_color | hexdump -c
+0000000 033   [   0   0   m
+0000005
+%
+</pre>
+<p>ここらへんは全部エスケープ (033) が含まれてます。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+<div id="comments">
+
+<div class="comment">
+  <h3 class="alt" id="comment-11">
+    <img alt='' src='http://www.gravatar.com/avatar/2c7045d7eae9494b6ff2e24e03c5e265?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    Dubhead  </h3>
+  <p>面白いアイディアと思います。<br />
+UbuntuのZsh 4.3.6で試したところ、Ctrl-C入力で赤プロンプトになっちゃいますが、<br />
+これ何とかなりませんかね&#8230;</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-12">
+    <img alt='' src='http://www.gravatar.com/avatar/7828b45f8396aa361d85cead01fd99ca?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    <a href='http://8-p.info/' rel='external nofollow' class='url'>kzys</a>  </h3>
+  <p>私がつかっている Mac と Linux でもなります。<br />
+そういうものだと受け入れてましたが、なぜそうなるかは気になるので、時間ができたときに調べてみます。</p>
+</div>
+</div>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="133" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>UnittestJS でクロスブラウザテスト - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry164">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/01/unittest-js">UnittestJS でクロスブラウザテスト</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-01-04 15:27    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3165787984/" title="Prototype by kzys, on Flickr"><img src="http://farm2.static.flickr.com/1023/3165787984_13c7c7b70a_o.png" width="640" height="480" alt="Prototype" /></a></div>
+<p>Prototype のテストまわりのライブラリが、<a href="http://github.com/sstephenson/prototype/commit/52a781ae2a9a078d38869e8a7f76d9561fb31d8a">12月頃 UnittestJS に置き換えられた</a>。「置き換え」というか「既存のテストまわりに名前をつけて独立させた」というほうが正確。<a href="http://github.com/tobie/unittest_js/tree/master">レポジトリも独立した</a>。</p>
+<h3>Prototype のテストを実行する</h3>
+<p>UnittestJS がどんなものかは Prototype のテストを実行してみるのがわかりやすい。</p>
+<pre>
+% git clone git://github.com/sstephenson/prototype.git
+...
+% cd prototype
+% git submodule init
+Submodule 'vendor/caja_builder' (git://github.com/tobie/unittest_js_caja_builder.git) registered for path 'vendor/caja_builder'
+Submodule 'vendor/unittest_js' (git://github.com/tobie/unittest_js.git) registered for path 'vendor/unittest_js'
+% git submodule update
+Initialized empty Git repository in /Users/kzys/prototype/vendor/caja_builder/.git/
+...
+Submodule path 'vendor/caja_builder': checked out 'aeda517c2e82db92bc88d56ed68fa4ce05f487a9'
+Initialized empty Git repository in /Users/kzys/prototype/vendor/unittest_js/.git/
+...
+Submodule path 'vendor/unittest_js': checked out 'd0d28f58f127796c9cf916bd4f1c95f90b9a3fdc'
+% rake test
+(in /Users/kzys/prototype)
+
+Skipping Chrome, not supported on this OS.
+
+Started tests in Firefox.
+......................
+Finished in 34.785718 seconds.
+349 tests, 2238 assertions, 0 failures, 0 errors.
+
+Skipping Internet Explorer, not supported on this OS.
+
+Skipping Konqueror, not supported on this OS.
+
+Started tests in Opera.
+.....F..............F.
+Finished in 15.284949 seconds.
+  Failures: /tmp/dom_test.html, /tmp/selector_test.html
+311 tests, 2005 assertions, 6 failures, 0 errors.
+
+Started tests in Safari.
+......................
+Finished in 12.315652 seconds.
+358 tests, 2299 assertions, 0 failures, 0 errors.
+
+%
+</pre>
+<p>端末上はこんな感じだけど、実際に実行してみるとブラウザ (Mac だと Firefox, Opera, Safari) が順に起動して、localhost に Web サーバーが起動して、サーバーからテストが記述された HTML を読み込んで、テストの結果をサーバーに投げて、とかなりさわがしい。</p>
+<p>そのさわがしいクロスブラウザでの JavaScript の実行が「rake test」だけでできるのは便利そうだ。</p>
+<h3>自分のコードをテストする</h3>
+<p>自分のコードのテストもこの上で実行したい、というわけで独立した UnittestJS を使ってみる。</p>
+<p>Prototype の Rakefile をみながら、サーバーを起動する Ruby スクリプトを書く。これを a.rb とする。</p>
+<pre>
+require 'unittest_js'
+
+runner = UnittestJS::WEBrickRunner::Runner.new(:test_dir => '.')
+runner.add_test('a.html')
+UnittestJS::Browser::SUPPORTED.each do |browser|
+  runner.add_browser(browser.to_sym)
+end
+runner.run
+</pre>
+<p>a.html はこんなかんじ。成功するものをひとつ、失敗するものをひとつ書いておく。</p>
+<pre>
+&lt;html&gt;
+&lt;body&gt;
+  &lt;div id="testlog"&gt;&lt;/div&gt;
+  &lt;script src="assets/prototype.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;script src="assets/unittest.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript"&gt;
+    new Test.Unit.Runner({
+        testFoo: function(){
+            this.assertEqual('foo', 'foo');
+        },
+        testBar: function(){
+            this.assertEqual('bar', 'foo');
+        }
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>実行してみる。</p>
+<pre>
+% git clone git://github.com/tobie/unittest_js.git
+...
+% cd unittest_js
+% vi a.rb
+...
+% vi a.html
+...
+% ls
+LICENSE         a.html          assets/         templates/
+README          a.rb            lib/
+% ruby -I lib a.rb
+
+Skipping Chrome, not supported on this OS.
+
+Started tests in Firefox.
+F
+Finished in 0.545872 seconds.
+  Failures: /unittest_js/a.html
+2 tests, 1 assertions, 1 failures, 0 errors.
+
+Skipping Internet Explorer, not supported on this OS.
+
+Skipping Konqueror, not supported on this OS.
+
+Started tests in Opera.
+F
+Finished in 0.599746 seconds.
+  Failures: /unittest_js/a.html
+2 tests, 1 assertions, 1 failures, 0 errors.
+
+Started tests in Safari.
+F
+Finished in 0.334798 seconds.
+  Failures: /unittest_js/a.html
+2 tests, 1 assertions, 1 failures, 0 errors.
+
+%
+</pre>
+<p>2テスト x 3ブラウザが無事実行できた。</p>
+<h3>テストは Ruby に依存しません</h3>
+<p>ちなみに、Ruby とかを持ち出さず a.html をそのままブラウザで開いてもテストは実行される。この場合テスト結果が端末に出力されたりはしない。</p>
+<p>Ruby から UnittestJS::WEBrickRunner::Runner を起動した場合、ブラウザ側では「http://localhost:4711/unittest_js/a.html?t=1231051048.106773&#038;resultsURL=http://localhost:4711/results」のような URI が読み込まれる。unittest.js の Test.Unit.Runner は、この resultsURL が与えられた場合だけ、テスト結果をそこに投げている。</p>
+<h3>それ Selenium で</h3>
+<p>できるんでしょうか? 調べていないです。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="164" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

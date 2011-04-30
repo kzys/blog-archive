@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: APMT2</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136311770">
+  <h2 class="entry-title"><a href="/articles/2006/06/18/apmt2" title="APMT2">APMT2</a></h2>
+  <div class="published">
+    June 18th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://www.flickr.com/photos/kzys/171170979/" title="Photo Sharing"><img src="http://static.flickr.com/55/171170979_970de8ce29_m.jpg" width="240" height="180" alt="APMT2 Box" /></a></p>
+
+<p><a href="http://www.apmt.jp/">APMT2</a> に行ってきました。面白かった。</p>
+
+<p>Rinzen はグラフィックより。王道で完成度が高くてきれい。東急ハンズをすごいほめてた。</p>
+
+<p>Marcos はコンピュータよりで、ちょっとアウェイ気味だった気もするけど(だって regular expression をレギュラーエクスプレッションて訳されてたし。それは正規表現だ！)実践的というか、実装してみたくなるのでよかったと思う。ボロノイ図は使い道が思いついていないけどなんか楽しいよねこれ？みたいなことを言ってたのでたぶんいいやつだ。</p>
+
+<p>Evan は両立している感じ。自分のプロジェクトに毎回 HIPHOP 風のドキュメンタリーフィルムを撮ってるのがかっこよかった。やることなすこと軽犯罪っぽいけどまだ捕まったことは無いらしい。</p>
+
+<p>で、例によってログを書きますが、デザイン系イベント界隈ではこういうのって無しだったりするんでしょうか？ Evan Roth も「オープンソース！」とかいってたことだし、怒られないといいな……。</p>
+    
+    
+    
+    <h3><a href="http://www.rinzen.com/">Rinzen</a></h3>
+
+<ul>
+<li>オーストラリアの出身の5人のデザインスタジオ。今日はそのなかからドイツに住んでる二人。あ、サッカーの話はケンカになるからしないよ。</li>
+<li>RMX プロジェクト。他のアーティストとの共作。リミックス。The Designers Republic とかとも。</li>
+<li>印刷は好き。印刷物のにおいも好き。</li>
+<li>最近はなめらかな線 (fluid っていってた) とか、キャラクターとかに凝ってるらしい。</li>
+<li>ニッポンはキャラクターの国だから来るのは好きだよ。</li>
+<li>ハンドメイドも好き。真っ白なぬいぐるみの RMX プロジェクトもやったけど、縫い物とかはじめてってアーティストのつくるものは面白い。</li>
+<li>ドイツに移住して、いごこちの悪さというか慣れない感じがクリエイティビティを加速するところがあるかも。
+<ul>
+<li>いごこちの悪さと言えば東京はどう？</li>
+<li>日本語ができないとねー。でもハンズは天国！ドイツにも欲しい！</li>
+</ul></li>
+<li>オーストラリアには季節感がうすいので、「季節」はおとぎばなしの中のものだった。ドイツの季節感が新鮮。</li>
+</ul>
+
+<h3><a href="http://www.marumushi.com/">Marcos Weskamp</a></h3>
+
+<ul>
+<li>日本に住んで8年目。日本語もできるけど、専門の話はやっぱり英語で。</li>
+<li>むかしはアクリルで絵を描いたりしていた。いまみたいな情報デザインはネットにはいってから。</li>
+<li>プログラミングを本格的にはじめたのは5年(！)くらい前。</li>
+<li>Information Visualization: わかりやすく、みやすく、インタラクティブ。
+<ul>
+<li>日本人の名字の統計をテキストデータ→XML→棒グラフとみせる。さらに県ごとのデータを加えてマップに。</li>
+<li>IPパケットをアニメーションするグラフ(ネットワーク)に。</li>
+<li>Information Visualization は分析ではない。生態系的なものを見せたい。</li>
+<li>Golan Levin 曰く「再組織化で新しい視点を」</li>
+</ul></li>
+<li>newsmap: Google News の RSS と、あと HTML を正規表現で読んでる。RSS だけだと "related" とかがないのでダメ
+<ul>
+<li>treemap: 面を垂直に3分割、それぞれを水平に3分割、さらに垂直に……、とやって小さい四角形のサイズを変えていけばできるらしい。</li>
+<li>時間 (1分) の treemap による visualization</li>
+</ul></li>
+<li>dentsu.com: トップのアニメーションは電通のビルのエレベータのリアルタイム(！)な visualization。</li>
+<li>flickergraph: つながっているノードはつないで、つながっていないノードははじくように。</li>
+<li>ボロノイ図: いま遊び中</li>
+<li>最近ポスターをやったときに、ここでインタラクティブにしたい！とか思った。紙上のデータはある意味死んでいる。</li>
+<li>現代はあらゆるログがとられているので visualization のネタには困らないと思う。</li>
+<li>visualization における日本語の見た目: newsmap に日本語版が無いのはデバイスフォントじゃ嫌だから。日本人はローマ字が好き、外人は漢字が好きというのはあると思う。でも……難しいね。</li>
+</ul>
+
+<h3><a href="http://www.ni9e.com/">ni9e [Evan Roth]</a></h3>
+
+<ul>
+<li>GRAFFITI 2.0</li>
+<li>graffiti はコンピュータの hack と似ている。"hacking urban systems"
+<ul>
+<li>ストリート: 偽物の道路標識を作っている人(名前失念), Mark Jenkins, Banksy</li>
+<li>ギーク: <a href="http://www.opensorcery.net/velvet-strike/">Velvet-Strike</a>, <a href="http://www.bikesagainstbush.com/blog/">Bikes Against Bush</a>, <a href="http://www.vkn.lv/index.php?parent=525#">Graffiti Walk Cycle</a></li>
+</ul></li>
+<li>郵便局の USPS ステッカーをつかったプロジェクトをいくつか。
+<ul>
+<li>all city council: 名前とか住所とかが書いてあるステッカーを禁止な場所に貼ると、貼った人じゃなくて名前の人が捕まるという(だめな)法律が NYC で通っちゃたから、市役所のページから所員の写真とか名前を集めてステッカーにして貼りまくる。</li>
+<li>open source graffiti; 書き順つきとか、再帰的ステッカーとか。</li>
+<li>まっさらなステッカーに「ブッシュ反対」のメッセージを小さく印刷して、それをこっそり郵便局に戻してくる。</li>
+</ul></li>
+<li>typographic illustration: graffiti より前。曲に合わせて歌詞で歌手を書いたり、自分のタグで絵を書いたり。</li>
+<li>graffiti taxonomy: 街の graffiti の文字を A なら A だけ集めてカタログ化したポスターを作って、それを街にまた貼る。いままでより広い層が反応してくれた。文字が書き足されたり、Flickr に経過写真がアップされたり、いろいろ feedback があった。</li>
+<li>graffiti analysis: graffiti のモーションキャプチャー。ペンにペンライトをつけて暗視カメラでライトの軌跡を記録する。時間軸を z 軸にして 3D モデルに。彫刻みたい。記録したら再生できるので、車のバッテリーから電源をとって、街に投影したり。</li>
+<li><a href="http://eyebeam.org/">EYEBEAM</a>: NPO。成果物は全部オープンソース。LED Throwies とか。</li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/art" rel="tag" title="art">art</a></li>
+      
+      <li><a href="/tags/design" rel="tag" title="design">design</a></li>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/06/18/apmt2/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: 37signals にはいるか、なるか</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135231840">
+  <h2 class="entry-title"><a href="/articles/2007/04/27/37signals" title="37signals にはいるか、なるか">37signals にはいるか、なるか</a></h2>
+  <div class="published">
+    April 27th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>37signals の <a href="http://gettingreal.37signals.com/GR_jpn.php">Getting Real の日本語訳</a> を読んだ。とてもおもしろいし、あこがれるけど、「仕様書とか設計とかあとでいいんちゃう」みたいな Paul Graham 的「癒し系」もあって少しあぶない。</p>
+
+<p>例えば「機能がないことの価値」だ。最近そういう意図を表明する人も多いけど、ちょっとでしゃばりというか、こだわりすぎというか、Steve Jobs を目指して、たいして旨くもないのにやたら頑固な(そして頑固さが旨くなさを支える)ラーメン屋の親父みたいになるのは嫌だと思う。</p>
+
+<p>Steve Jobs は自分よりセンスが良いだろうというのはもちろんだし、Jobs はデザインもプログラミングもしないところも気になる。個性と、実際に実装する人とのあいだには、一定の距離が必要なんじゃないだろうか。</p>
+
+<p>あるいは、アノニマスなデザインというやつを目指したいのかもしれない。</p>
+
+<p>37signals はいりたい！となったあとにちょっと思い出したこと。Google 社員の <a href="http://www.aoky.net/articles/steve_yegge/i_take_it_all_back_send_me_your_money.htm">全部取り消すから金をくれ!</a> に良いことが書いてあって</p>
+
+<blockquote>
+    <p>そしてあなたがGoogleにいるのでない場合、多くの優れたエンジニアがそうであるわけだが、それでもGoogle的というのがどういうことなのか、あなたはわかっているだろう! それは「最低」の反対ということだ。あなたの組織やチームや小さなキュービクルの袋小路が非Google的だというなら、修正することだ! Google性はGoogleに限定されることではない。現在たまたまGoogleで広く見られるというにすぎない。</p>
+</blockquote>
+
+<p>37signals 性というのも 37signals に限定されるものではないんだろう、というか "Getting Real" はそれを限定しないための本なわけだ。</p>
+
+<p>なんか作ろう。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/job" rel="tag" title="job">job</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/04/27/37signals/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

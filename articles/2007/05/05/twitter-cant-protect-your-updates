@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Twitter can't protect your updates</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135011180">
+  <h2 class="entry-title"><a href="/articles/2007/05/05/twitter-cant-protect-your-updates" title="Twitter can't protect your updates">Twitter can't protect your updates</a></h2>
+  <div class="published">
+    May 5th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Twitter の "Protect my updates" というのは、あまりあてにならない。</p>
+
+<p>Twitter には固定 URI を GET すると JSON を返す API があるので</p>
+
+<ul>
+<li>http://twitter.com/statuses/friends.json で friends 一覧をとって</li>
+<li>http://twitter.com/statuses/user_timeline.json?id=XXX で利用者ごとのタイムラインをとって</li>
+<li>それを XMLHttpRequest かなにかでそれを送信</li>
+</ul>
+
+<p>なんてスクリプトを書いた HTML を自分のサイトに置いて、あとは Twitter にログインしている JavaScript を実行するブラウザをさそいこめば、"Protect my updates" なひとのメッセージもとることができるからだ。ちょっとまえの Gmail のコンタクトリスト問題に似ている。</p>
+
+<p>だから "Protect my updates" して信頼できる友達だけ add しているからといっても、あんまりまずいことは書かない方がいい。ちなみに同条件下のブラウザで引数無しの http://twitter.com/statuses/user_timeline.json をとれば <a href="http://www.fladdict.net/blog-jp/archives/2005/12/mixi.php">fladdict.net blog: MIXIを使った、トラフィックの個人追跡システム</a> みたいなことも出来る。</p>
+
+<p>Direct Message のほうは、クッキーつきの GET では 401 Unauthorized になって Authorization: もつけないとだめなあたりをみると、Twitter 側はわかってやっているのだろうけど、利用者側にわかられているかは微妙なように思う。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/twitter" rel="tag" title="twitter">twitter</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/05/05/twitter-cant-protect-your-updates/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+   <div class="main">
+    <div class="entry" id="entry217">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/01/chrome-ui-test">Google Chrome の UI テスト (実装編)</a>
+    (2)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-01-11 15:38    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>GUI をもつソフトウェアのテストに関心があるので Google Chrome というか Chromium の UI テストをみていた。</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3186303725/" title="Chromium TestShell by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3351/3186303725_9ffd2c4e13_o.jpg" width="640" height="480" alt="Chromium TestShell" /></a></div>
+<h3>ビルドと実行</h3>
+<p>Chromium の UI テストはいまのところ Mac では試せない。実行はできるものの、テストケースが含まれていない。</p>
+<pre>
+% ./xcodebuild/Debug/ui_tests
+[==========] Running 0 tests from 0 test cases.
+[==========] 0 tests from 0 test cases ran.
+[  PASSED  ] 0 tests.
+%
+</pre>
+<p><a href="http://dev.chromium.org/developers/how-tos/build-instructions-windows">Windows でも Express じゃない Visual Studio が必要</a> なので、淡々とソースを読んだ。</p>
+<h3>ファイル</h3>
+<p>Chromium には testing/ とか chrome/test/ とかそれっぽいフォルダがある。testing/ には <a href="http://code.google.com/p/googletest/">Google C++ Testing Framework</a> (以下、<a href="http://dev.chromium.org/developers/testing">Chromium Developer Documentation の Testing のページ</a> にならって gtest と略す) が、chrome/test/ には後述する AutomationProxy などテストにだけ使うコードやファイルが置かれている。実際の個々のコードに対するテストコードは、元コードと同じフォルダにおく流儀のようだ。</p>
+<pre>
+% ls -d **/*unittest*.c* | wc -l
+     312
+% ls -d **/*uitest*.c* | wc -l
+      36
+% ls -d **/*uitest*.c*
+chrome/app/chrome_main_uitest.cc
+chrome/browser/browser_focus_uitest.cc
+chrome/browser/browser_uitest.cc
+chrome/browser/crash_recovery_uitest.cc
+chrome/browser/download/download_uitest.cc
+chrome/browser/download/save_page_uitest.cc
+chrome/browser/errorpage_uitest.cc
+chrome/browser/history/redirect_uitest.cc
+chrome/browser/iframe_uitest.cc
+chrome/browser/images_uitest.cc
+chrome/browser/interstitial_page_uitest.cc
+chrome/browser/locale_tests_uitest.cc
+chrome/browser/login_prompt_uitest.cc
+chrome/browser/metrics_service_uitest.cc
+chrome/browser/printing/printing_layout_uitest.cc
+chrome/browser/renderer_host/resource_dispatcher_host_uitest.cc
+chrome/browser/sanity_uitest.cc
+chrome/browser/session_history_uitest.cc
+chrome/browser/sessions/session_restore_uitest.cc
+chrome/browser/ssl_uitest.cc
+chrome/browser/tab_restore_uitest.cc
+chrome/browser/unload_uitest.cc
+chrome/browser/view_source_uitest.cc
+chrome/browser/views/constrained_window_impl_interactive_uitest.cc
+chrome/browser/views/find_bar_win_interactive_uitest.cc
+chrome/browser/views/find_bar_win_uitest.cc
+chrome/common/logging_chrome_uitest.cc
+chrome/common/net/cache_uitest.cc
+chrome/common/pref_service_uitest.cc
+chrome/test/automation/automation_proxy_uitest.cc
+chrome/test/ui/history_uitest.cc
+chrome/test/ui/inspector_controller_uitest.cc
+chrome/test/ui/layout_plugin_uitest.cpp
+chrome/test/ui/npapi_uitest.cpp
+chrome/test/ui/omnibox_uitest.cc
+chrome/test/ui/sandbox_uitests.cc
+%
+</pre>
+<h3>chrome/app/chrome_main_uitest.cc</h3>
+<p>とりあえず先頭にあった chrome_main_uitest.cc を読んでみる。</p>
+<pre>
+typedef UITest ChromeMainTest;
+
+// Launch the app, then close the app.
+TEST_F(ChromeMainTest, AppLaunch) {
+  // If we make it here at all, we've succeeded in retrieving the app window
+  // in UITest::SetUp()--otherwise we'd fail with an exception in SetUp().
+
+  if (UITest::in_process_renderer()) {
+    EXPECT_EQ(1, UITest::GetBrowserProcessCount());
+  } else {
+    // We should have two instances of the browser process alive -
+    // one is the Browser and the other is the Renderer.
+    EXPECT_EQ(2, UITest::GetBrowserProcessCount());
+  }
+}
+</pre>
+<p>TEST_F, EXPECT_EQ あたりは gtest でおなじみだろう。TEST_F の第一引数になっている ChromeMainTest == UITest は gtest の testing::Test を継承している。</p>
+<p>in_process_renderer() は変数の値を返すだけ (chrome/test/ui/ui_test.h, chrome/test/ui/ui_test.cc) だし、GetBrowserProcessCount() は OS にプロセス数を問い合わせる (chrome/test/ui/ui_test.h, base/process_util_win.cc) だけだ。</p>
+<p>次のテストはさらに短い。</p>
+<pre>
+// Make sure that the testing interface is there and giving reasonable answers.
+TEST_F(ChromeMainTest, AppTestingInterface) {
+  int window_count = 0;
+  EXPECT_TRUE(automation()-&gt;GetBrowserWindowCount(&#038;window_count));
+  EXPECT_EQ(1, window_count);
+
+  EXPECT_EQ(1, GetTabCount());
+}
+</pre>
+<p>が、内側の仕組みはだいぶ複雑になっている。</p>
+<h3>AutomationProxy</h3>
+<p>いままでちゃんと見ていなかったけど、実は一連のテストはブラウザとは別のプロセスで走っている。</p>
+<pre>
+void UITest::SetUp() {
+  if (!use_existing_browser_) {
+    AssertAppNotRunning(L"Please close any other instances "
+                        L"of the app before testing.");
+  }
+
+  InitializeTimeouts();
+  LaunchBrowserAndServer();
+}
+
+...
+
+void UITest::LaunchBrowserAndServer() {
+#if defined(OS_WIN)
+  // Set up IPC testing interface server.
+  server_.reset(new AutomationProxy(command_execution_timeout_ms_));
+
+  LaunchBrowser(launch_arguments_, clear_profile_);
+  if (wait_for_initial_loads_)
+    ASSERT_TRUE(server_-&gt;WaitForInitialLoads());
+  else
+    Sleep(2000);
+
+  automation()-&gt;SetFilteredInet(true);
+#else
+  // TODO(port): depends on AutomationProxy.
+  NOTIMPLEMENTED();
+#endif
+}
+</pre>
+<p>別プロセスであるブラウザにウィンドウ数などを問い合わせるためのクラスが AutomationProxy だ。</p>
+<p>server_.reset(new AutomationProxy(&#8230;)) は server_ がいわゆるスマートポインタ (base/scoped_ptr.h) なのでこうなっている。おおまかにいえば server_ = new AutomationProxy(&#8230;) だ。</p>
+<p>automation() は server_ のさす AutomationProxy のインスタンスを返して (chrome/test/ui/ui_test.h) いる。</p>
+<p>実際に GetBrowserWindowCount をみてみよう。</p>
+<pre>
+bool AutomationProxy::GetBrowserWindowCount(int* num_windows) {
+  if (!num_windows) {
+    NOTREACHED();
+    return false;
+  }
+
+  IPC::Message* response = NULL;
+  bool is_timeout = true;
+  bool succeeded = SendAndWaitForResponseWithTimeout(
+      new AutomationMsg_BrowserWindowCountRequest(0), &#038;response,
+      AutomationMsg_BrowserWindowCountResponse::ID,
+      command_execution_timeout_ms_, &#038;is_timeout);
+  if (!succeeded)
+    return false;
+
+  if (is_timeout) {
+    DLOG(ERROR) &lt;&lt; "GetWindowCount did not complete in a timely fashion";
+    return false;
+  }
+
+  void* iter = NULL;
+  if (!response-&gt;ReadInt(&#038;iter, num_windows)) {
+    succeeded = false;
+  }
+
+  delete response;
+  return succeeded;
+}
+</pre>
+<p>AutomationMsg_BrowserWindowCountRequest, AutomationMsg_BrowserWindowCountResponse::ID のあたりは chrome/test/automation/automation_messages_internal.h で延々と定義されている。</p>
+<pre>
+// By using a start value of 0 for automation messages, we keep backward
+// compatability with old builds.
+IPC_BEGIN_MESSAGES(Automation, 0)
+  ...
+  // This message requests the number of browser windows that the app currently
+  // has open.  The parameter in the response is the number of windows.
+  IPC_MESSAGE_ROUTED0(AutomationMsg_BrowserWindowCountRequest)
+  IPC_MESSAGE_ROUTED1(AutomationMsg_BrowserWindowCountResponse, int)
+  ...
+IPC_END_MESSAGES(Automation)
+</pre>
+<p>お、リクエストとレスポンスが別々だ。</p>
+<p>ちなみに automation_messages_internal.h には多重読み込みをふせぐ #ifndef なガードが無くて、automation_messages.h で</p>
+<pre>
+// Two-pass include of render_messages_internal.  Preprocessor magic allows
+// us to use 1 header to define the enums and classes for our render messages.
+#define IPC_MESSAGE_MACROS_ENUMS
+#include "chrome/test/automation/automation_messages_internal.h"
+
+#ifdef IPC_MESSAGE_MACROS_LOG_ENABLED
+#  undef IPC_MESSAGE_MACROS_LOG
+#  define IPC_MESSAGE_MACROS_CLASSES
+#include "chrome/test/automation/automation_messages_internal.h"
+
+#  undef IPC_MESSAGE_MACROS_CLASSES
+#  define IPC_MESSAGE_MACROS_LOG
+#include "chrome/test/automation/automation_messages_internal.h"
+#else
+// No debug strings requested, just define the classes
+#  define IPC_MESSAGE_MACROS_CLASSES
+#include "chrome/test/automation/automation_messages_internal.h"
+#endif
+</pre>
+<p>と3回も include している。じつは chrome/common/ipc_message_macros.h では IPC_MESSAGE_ROUTE<em>n</em> も3回定義されていて、ここらへんプリプロセッサ愛好家には見物かもしれない。</p>
+<p>閑話休題。AutomationProxy::SendAndWaitForResponseWithTimeout は AutomationProxy::Send から<br />
+Channel::Send, Channel::ChannelImpl::Send とすすむ。</p>
+<pre>
+bool Channel::ChannelImpl::Send(Message* message) {
+  chrome::Counters::ipc_send_counter().Increment();
+#ifdef IPC_MESSAGE_DEBUG_EXTRA
+  DLOG(INFO) &lt;&lt; "sending message @" &lt;&lt; message &lt;&lt; " on channel @" &lt;&lt; this
+             &lt;&lt; " with type " &lt;&lt; message-&gt;type()
+             &lt;&lt; " (" << output_queue_.size() &lt;&lt; " in queue)";
+#endif
+
+#ifdef IPC_MESSAGE_LOG_ENABLED
+  Logging::current()-&gt;OnSendMessage(message, L"");
+#endif
+
+  output_queue_.push(message);
+  // ensure waiting to write
+  if (!waiting_connect_) {
+    if (!output_state_.is_pending) {
+      if (!ProcessOutgoingMessages(NULL, 0))
+        return false;
+    }
+  }
+
+  return true;
+}
+
+...
+
+bool Channel::ChannelImpl::ProcessOutgoingMessages(
+    MessageLoopForIO::IOContext* context,
+    DWORD bytes_written) {
+  ...
+
+  // Write to pipe...
+  Message* m = output_queue_.front();
+  BOOL ok = WriteFile(pipe_,
+                      m-&gt;data(),
+                      m-&gt;size(),
+                      &#038;bytes_written,
+                      &#038;output_state_.context.overlapped);
+  if (!ok) {
+    DWORD err = GetLastError();
+    if (err == ERROR_IO_PENDING) {
+      output_state_.is_pending = true;
+
+#ifdef IPC_MESSAGE_DEBUG_EXTRA
+      DLOG(INFO) &lt;&lt; "sent pending message @" &lt;&lt; m &lt;&lt; " on channel @" &lt;&lt;
+                    this &lt;&lt; " with type " &lt;&lt; m-&gt;type();
+#endif
+
+      return true;
+    }
+    LOG(ERROR) &lt;&lt; "pipe error: " &lt;&lt; err;
+    return false;
+  }
+
+  ...
+}
+</pre>
+<p>Win32 API の WriteFile でプロセス間の通信を行っているようだ。</p>
+<h3>まとめ</h3>
+<p>設計面の関心からはじまったので、本当は個々のテストを見るべきなんだけど、なぜか実装を追いすぎました。深さじゃなくて幅優先するべきだった。</p>
+<p>仕組みとしてはかなりごついので、すぐさま自分のプロジェクトに同等の仕組みを用意するのは大変そうだ。ただ、ごつさは C++ の所為もある気がしていて、リフレクション系の機能がある言語ならもっとさっぱりするかもしれない。</p>
+<p>テストは投資に対するリターンが良いので、ごつくてもやるべきですかそうですか。</p>
+</div>
+</div>
+<div class="entry" id="entry191">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/01/refactoring">テストぬきリファクタリング</a>
+    (2)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-01-09 20:35    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>開発者だけでできる自動化されたテスト (単体テストでも Selenium でも) なしの書き換えを「リファクタリング」というのは用語の誤用とまでいえるのか調べていた。</p>
+<blockquote><p>単体テストを書かずに行っている「その行為」をリファクタリングと呼ぶのはやめてほしい。</p></blockquote>
+<p>と <a href="http://kakutani.com/20040809.html#p01">角谷さんが書かれている</a> のと、Martin Fowler の <a href="http://capsctrl.que.jp/kdmsnr/wiki/bliki/?RefactoringMalapropism">リファクタリングの誤用</a> はみつけたんだけど、いまひとつ確信がもてない。</p>
+<p>で「単体テストを書かずに行っている「その行為」をリファクタリングと呼ぶのはやめてほしい。/ 正確な定義ではなさそう」とはてなブックマークに書いたら</p>
+<blockquote><p>id:kzys 「正確な定義」には記述されてないけど「堅実なテストは、リファクタリングをする上で欠かせない事前条件」(『リファクタリング』p.89)で、この条件は定義(pp.53-54)から導かれると思いますが、そういうことでなく?</p></blockquote>
+<p>と、<a href="http://b.hatena.ne.jp/kakutani/20090107#bookmark-11565943">直々にコメントをいただいて</a>しまいました。びっくりした。</p>
+<p>原典はまえ図書館で借りて通読したきりなので、読み返してみます。「コピペの繰り返しはプログラミングじゃないよ&#8230;」くらいの温度で「リファクタリングじゃない」とは思います。</p>
+<p>ただ、わざわざテストの無いものまで「リファクタリング」と呼ぶ理由も無いですね。「コードの整理」でいいのかも。</p>
+</div>
+</div>
+<div class="entry" id="entry164">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/01/unittest-js">UnittestJS でクロスブラウザテスト</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-01-04 15:27    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3165787984/" title="Prototype by kzys, on Flickr"><img src="http://farm2.static.flickr.com/1023/3165787984_13c7c7b70a_o.png" width="640" height="480" alt="Prototype" /></a></div>
+<p>Prototype のテストまわりのライブラリが、<a href="http://github.com/sstephenson/prototype/commit/52a781ae2a9a078d38869e8a7f76d9561fb31d8a">12月頃 UnittestJS に置き換えられた</a>。「置き換え」というか「既存のテストまわりに名前をつけて独立させた」というほうが正確。<a href="http://github.com/tobie/unittest_js/tree/master">レポジトリも独立した</a>。</p>
+<h3>Prototype のテストを実行する</h3>
+<p>UnittestJS がどんなものかは Prototype のテストを実行してみるのがわかりやすい。</p>
+<pre>
+% git clone git://github.com/sstephenson/prototype.git
+...
+% cd prototype
+% git submodule init
+Submodule 'vendor/caja_builder' (git://github.com/tobie/unittest_js_caja_builder.git) registered for path 'vendor/caja_builder'
+Submodule 'vendor/unittest_js' (git://github.com/tobie/unittest_js.git) registered for path 'vendor/unittest_js'
+% git submodule update
+Initialized empty Git repository in /Users/kzys/prototype/vendor/caja_builder/.git/
+...
+Submodule path 'vendor/caja_builder': checked out 'aeda517c2e82db92bc88d56ed68fa4ce05f487a9'
+Initialized empty Git repository in /Users/kzys/prototype/vendor/unittest_js/.git/
+...
+Submodule path 'vendor/unittest_js': checked out 'd0d28f58f127796c9cf916bd4f1c95f90b9a3fdc'
+% rake test
+(in /Users/kzys/prototype)
+
+Skipping Chrome, not supported on this OS.
+
+Started tests in Firefox.
+......................
+Finished in 34.785718 seconds.
+349 tests, 2238 assertions, 0 failures, 0 errors.
+
+Skipping Internet Explorer, not supported on this OS.
+
+Skipping Konqueror, not supported on this OS.
+
+Started tests in Opera.
+.....F..............F.
+Finished in 15.284949 seconds.
+  Failures: /tmp/dom_test.html, /tmp/selector_test.html
+311 tests, 2005 assertions, 6 failures, 0 errors.
+
+Started tests in Safari.
+......................
+Finished in 12.315652 seconds.
+358 tests, 2299 assertions, 0 failures, 0 errors.
+
+%
+</pre>
+<p>端末上はこんな感じだけど、実際に実行してみるとブラウザ (Mac だと Firefox, Opera, Safari) が順に起動して、localhost に Web サーバーが起動して、サーバーからテストが記述された HTML を読み込んで、テストの結果をサーバーに投げて、とかなりさわがしい。</p>
+<p>そのさわがしいクロスブラウザでの JavaScript の実行が「rake test」だけでできるのは便利そうだ。</p>
+<h3>自分のコードをテストする</h3>
+<p>自分のコードのテストもこの上で実行したい、というわけで独立した UnittestJS を使ってみる。</p>
+<p>Prototype の Rakefile をみながら、サーバーを起動する Ruby スクリプトを書く。これを a.rb とする。</p>
+<pre>
+require 'unittest_js'
+
+runner = UnittestJS::WEBrickRunner::Runner.new(:test_dir => '.')
+runner.add_test('a.html')
+UnittestJS::Browser::SUPPORTED.each do |browser|
+  runner.add_browser(browser.to_sym)
+end
+runner.run
+</pre>
+<p>a.html はこんなかんじ。成功するものをひとつ、失敗するものをひとつ書いておく。</p>
+<pre>
+&lt;html&gt;
+&lt;body&gt;
+  &lt;div id="testlog"&gt;&lt;/div&gt;
+  &lt;script src="assets/prototype.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;script src="assets/unittest.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript"&gt;
+    new Test.Unit.Runner({
+        testFoo: function(){
+            this.assertEqual('foo', 'foo');
+        },
+        testBar: function(){
+            this.assertEqual('bar', 'foo');
+        }
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>実行してみる。</p>
+<pre>
+% git clone git://github.com/tobie/unittest_js.git
+...
+% cd unittest_js
+% vi a.rb
+...
+% vi a.html
+...
+% ls
+LICENSE         a.html          assets/         templates/
+README          a.rb            lib/
+% ruby -I lib a.rb
+
+Skipping Chrome, not supported on this OS.
+
+Started tests in Firefox.
+F
+Finished in 0.545872 seconds.
+  Failures: /unittest_js/a.html
+2 tests, 1 assertions, 1 failures, 0 errors.
+
+Skipping Internet Explorer, not supported on this OS.
+
+Skipping Konqueror, not supported on this OS.
+
+Started tests in Opera.
+F
+Finished in 0.599746 seconds.
+  Failures: /unittest_js/a.html
+2 tests, 1 assertions, 1 failures, 0 errors.
+
+Started tests in Safari.
+F
+Finished in 0.334798 seconds.
+  Failures: /unittest_js/a.html
+2 tests, 1 assertions, 1 failures, 0 errors.
+
+%
+</pre>
+<p>2テスト x 3ブラウザが無事実行できた。</p>
+<h3>テストは Ruby に依存しません</h3>
+<p>ちなみに、Ruby とかを持ち出さず a.html をそのままブラウザで開いてもテストは実行される。この場合テスト結果が端末に出力されたりはしない。</p>
+<p>Ruby から UnittestJS::WEBrickRunner::Runner を起動した場合、ブラウザ側では「http://localhost:4711/unittest_js/a.html?t=1231051048.106773&#038;resultsURL=http://localhost:4711/results」のような URI が読み込まれる。unittest.js の Test.Unit.Runner は、この resultsURL が与えられた場合だけ、テスト結果をそこに投げている。</p>
+<h3>それ Selenium で</h3>
+<p>できるんでしょうか? 調べていないです。</p>
+</div>
+</div>
+    <div class="paginate">
+      <a href="http://blog.8-p.info/2009/page/17" >Newer</a>      <a href="http://blog.8-p.info/2009/page/19" >Older</a>    </div>
+  </div>
+  <div class="sidebar"><h2>About me and this blog</h2>
+<p>
+  All articles are written by <a href="http://8-p.info/me/">加藤和良</a>.
+  A few are <a href="/2009/tag/lang-en">written in English</a>.
+</p>
+
+<ul>
+  <li>
+    <h2>Recent articles</h2>
+    <ul>	<li><a href='http://blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+</ul>
+  </li>
+</ul>
+
+<ul><li id="linkcat-2" class="linkcat"><h2>Links</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://collisions.doppac.cc/">collisions.doppac.cc</a></li>
+<li><a href="http://googletesting.blogspot.com/">Google Testing Blog</a></li>
+<li><a href="http://www.grafikcache.com/">Grafikcache</a></li>
+<li><a href="http://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="http://someru.blog74.fc2.com/">Hang Reviewers High</a></li>
+<li><a href="http://labs.ideo.com/">IDEO Labs</a></li>
+<li><a href="http://blog.makezine.com/">MAKE: Blog</a></li>
+<li><a href="http://d.hatena.ne.jp/KZR/">Radium Software</a></li>
+<li><a href="http://steps.dodgson.org/">steps to phantasien</a></li>
+
+	</ul>
+</li>
+</ul>
+
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+</p>
+</div>
+</div>
+
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

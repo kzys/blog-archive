@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Matz's favorite JavaScript book (in 2001)</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136947890">
+  <h2 class="entry-title"><a href="/articles/2006/02/09/matzs-favorite-javascript-book-in-2001" title="Matz's favorite JavaScript book (in 2001)">Matz's favorite JavaScript book (in 2001)</a></h2>
+  <div class="published">
+    February 9th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://oku.edu.mie-u.ac.jp/~okumura/blog/node/472">奥村先生のブログ</a>の久野先生がかっこよかったので思い出した。</p>
+
+<p><a href="http://www.amazon.co.jp/o/ASIN/4756138713/8pinfo-22/ref=nosim"><img src="http://images.amazon.com/images/P/4756138713.01.MZZZZZZZ.jpg" alt="入門 JavaScript"></a></p>
+
+<p><a href="http://shugo.net/jit/20011203.html">Journal InTime - JavaScript</a></p>
+
+<blockquote>
+    <p>「CGI/HTMLでほにゃららみたいなことできないですよね」とまつもとさんに聞くと「JavaScriptならできるよ」とのこと。</p>
+    
+    <p>まつもとさんからそういう言葉を聞くとは! (最近久野先生のJavaScript本を愛読されているらしい。)</p>
+</blockquote>
+
+<p>むかし、<a href="http://sourceforge.net/projects/pwgen/">pwgen</a> という「覚えやすい」パスワードを生成するプログラムを <a href="http://8-p.info/pwgen/">JavaScript    に移植</a>したときに読んでました。
+2001年発行なので Ajax の A の字もないし、辞書としては微妙なのですが、JavaScript がプロトタイプ方式のオブジェクト指向言語とかしっかり書いてあるのでおすすめ。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/book" rel="tag" title="book">book</a></li>
+      
+      <li><a href="/tags/javascript" rel="tag" title="javascript">javascript</a></li>
+      
+      <li><a href="/tags/ruby" rel="tag" title="ruby">ruby</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/02/09/matzs-favorite-javascript-book-in-2001/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

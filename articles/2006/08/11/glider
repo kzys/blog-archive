@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Glider</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136194910">
+  <h2 class="entry-title"><a href="/articles/2006/08/11/glider" title="Glider">Glider</a></h2>
+  <div class="published">
+    August 11th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://fragments.g.hatena.ne.jp/keyword/cnc::漢字イングリッシュ">断片部 - cnc::漢字イングリッシュ</a>で ASIAN KANG-FU GENERATION に「無限グライダー」という曲があるのを知った。無限 + グライダーなんて組み合わせをみると、ライフゲームが思い浮かぶんだけど、関係あるんだろうか。</p>
+
+<p>はじめてライフゲームをみたとき、何が面白いのかよくわからなかった。中公新書の『数理パズル』(絶版だって！)を読みながら自分で WonderWitch 上で実装して、代表的なパターンを入力して遊んだりしていくうちに「加算して比較するくらいで、なんでこんな動きになるんだ！」というふうな面白さはわかった。</p>
+
+<p>シミュレーションの面白さには、どのくらい前提知識が必要なんだろう。ライフゲームの場合は、ソースコードの単純さと動作の複雑さに「すごい！」となった。「このソースコードならこのくらいかな」という予測を上回っていたからだ。物理シミュレーションも「コンピュータ上の仮想世界はこのくらいかな」を知っているから、その予測を上回る本物っぽさが面白いんじゃないんだろうか。</p>
+
+<p>Heaven Seven という 64k intro がある。リアルタイムでレイトレーシングをして、アニメーションして、音楽もついて、それが当然 64kb に収まっているんだけど、これを技術的な面から面白がるには「レイトレーシングの計算時間はこのくらいかな」「64kb に入るものはこのくらいかな」とか、そういったことについての前提知識がいると思う。</p>
+
+<p>シミュレーション単体で普通の人をどうこう、というのが間違いで「ピタゴラ装置が作れますよ」とか、もっと進めて「ピタゴラ装置を作ってください」というゴールつきのゲームにしないとダメなのかも。まとまらない。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/simulation" rel="tag" title="simulation">simulation</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/08/11/glider/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

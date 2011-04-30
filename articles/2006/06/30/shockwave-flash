@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Shockwave Flash はフリーじゃなかった</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135465440">
+  <h2 class="entry-title"><a href="/articles/2006/06/30/shockwave-flash" title="Shockwave Flash はフリーじゃなかった">Shockwave Flash はフリーじゃなかった</a></h2>
+  <div class="published">
+    June 30th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Shockwave Flash は仕様書が Web で読めるから、たとえば再生なんかもがんばればできるんじゃないか？というのは勘違いだった。</p>
+
+<p><a href="http://www.adobe.com/licensing/developer/">Adobe - Player Licensing</a> によれば、</p>
+
+<blockquote>
+    <p>Here is a brief summary of the rights granted by this license:</p>
+    
+    <ul>
+    <li>This license grants the Licensee access to the SWF file format specification to aid in the creation of software which creates SWF files.</li>
+    <li>This license does not permit the usage of the specification to create software which supports SWF file playback.</li>
+    <li>The SWF output from the Licensee software must create content which renders error free in the latest publicly available version of Adobe Flash Player.</li>
+    </ul>
+</blockquote>
+
+<p>仕様書読んで再生しちゃダメらしい。書き出しだけアリで、その書き出したファイルを再生するソフトウェアは Adobe + Macromedia 様から授かりなさいと。</p>
+
+<p><a href="http://opentechpress.jp/desktop/06/02/15/0538200.shtml">Open Tech Press | Gnashに注力するFree Software Foundation</a></p>
+
+<blockquote>
+    <p>Flashの仕様は「オープン」または「フリー」である、という記述をときどき見かける。Macromedia ― とその跡を受けたAdobe ― が、ソフトウェア開発キット（SDK）を無償で提供しているからであろう。しかし、これは間違いである。このSDKのライセンスでは、代替Flashプレーヤの開発が明示的に禁止されている。Adobeが認めているのは、サードパーティのソフトウェアによるFlash互換のコンテンツ作成だけである。したがって、あらゆるフリーFlashプレーヤは、SWFフォーマットをリバースエンジニアリングによって解読しなければならない。</p>
+</blockquote>
+
+<p>仕様書あるのにリバースエンジニアリングせざるをえないなんて、人類全体のリソースの無駄づかいだと思う。ffmpeg の Flash Video 再生とかもリバースエンジニアリングでがんばってるんですかね？</p>
+
+<p>さて、本文とは関係ないですが、今日はこれから Shibuya.js にいってきますよ。楽しみ。デジハリじゃなくて IIJ なので要注意。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/flash" rel="tag" title="flash">flash</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/06/30/shockwave-flash/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

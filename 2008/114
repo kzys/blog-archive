@@ -1,0 +1,25 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-09-03T10:22:47+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-09-03T10:22:47+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://googlemac.blogspot.com/2008/09/platforms-and-priorities.html"><span class="icon"></span>http://googlemac.blogspot.com/2008/09/platforms-and-priorities.html</a>
+</p>
+<blockquote class="citation">
+<p>
+ The initial public beta release of Chromium (the open source project for Google Chrome) builds and runs on Microsoft Windows, but we are actively working on versions for Mac OS X and Linux as well.
+</p>
+</blockquote>
+<p>
+<a class="ext-link" href="http://src.chromium.org/svn/trunk/"><span class="icon"></span>http://src.chromium.org/svn/trunk/</a> から checkout できるっぽい。Google の開発手法に興味がある人々には <a class="ext-link" href="http://dev.chromium.org/developers/testing"><span class="icon"></span>http://dev.chromium.org/developers/testing</a> とか <a class="ext-link" href="http://codereview.chromium.org/"><span class="icon"></span>http://codereview.chromium.org/</a> とか良いかも。
+</p>
+  </div>
+</body>
+</html>

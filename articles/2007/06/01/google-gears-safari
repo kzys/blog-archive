@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Google Gears は Safari もそのうち</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134817000">
+  <h2 class="entry-title"><a href="/articles/2007/06/01/google-gears-safari" title="Google Gears は Safari もそのうち">Google Gears は Safari もそのうち</a></h2>
+  <div class="published">
+    June 1st, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Google Gears を Safari で動かしたら有名になれるかなぁ、と思ったら SVN trunk にはちゃんと Safari むけのコードがありました。</p>
+
+<p><a href="http://google-gears.googlecode.com/svn/trunk/gears/base/safari/">Revision 5: /trunk/gears/base/safari</a></p>
+
+<p>base 以外のフォルダにも、ぱらぱら safari があります。書くまえに気づいて良かった。</p>
+
+<h3>追記</h3>
+
+<p><a href="http://googlemac.blogspot.com/2007/05/google-gears-for-webkit.html">Official Google Mac Blog: Google Gears for WebKit</a></p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/google" rel="tag" title="google">google</a></li>
+      
+      <li><a href="/tags/safari" rel="tag" title="safari">safari</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/06/01/google-gears-safari/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

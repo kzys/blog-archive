@@ -1,0 +1,26 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-07-18T00:33:02+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-07-18T00:33:02+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://hg.8-p.info/dotfile/file/d1217a2209f5/emacs#l145"><span class="icon"></span>http://hg.8-p.info/dotfile/file/d1217a2209f5/emacs#l145</a>
+</p>
+<p>
+Objective-C も Xcode はほとんど使わず Emacs で書いています。
+</p>
+<p>
+<a class="ext-link" href="http://www.foldr.org/~michaelw/objective-c/objc-c-mode.el"><span class="icon"></span>http://www.foldr.org/~michaelw/objective-c/objc-c-mode.el</a> をつかうとメソッドの : がそろうようにインデントできる。
+</p>
+<p>
+あと、ヘッダの拡張子が .h で素の C とかぶるので、@end がふくまれていたら objc-mode で開くよう magic-mode-alist も設定した。
+</p>
+  </div>
+</body>
+</html>

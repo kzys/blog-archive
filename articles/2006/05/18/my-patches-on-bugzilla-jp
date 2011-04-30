@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: My patches on Bugzilla-jp</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136616740">
+  <h2 class="entry-title"><a href="/articles/2006/05/18/my-patches-on-bugzilla-jp" title="My patches on Bugzilla-jp">My patches on Bugzilla-jp</a></h2>
+  <div class="published">
+    May 18th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://bugzilla.mozilla.gr.jp/show_bug.cgi?id=4573"> Bug  4573 - [Mac] IME APIの実装</a></p>
+
+<blockquote>
+    <p>Intel Macが入手できたので、ビルドに成功したらこのバグの検証をしてみます。</p>
+    
+    <p>もうしばらくお待ちください。</p>
+</blockquote>
+
+<p>Mozilla Japan の中野さんが <a href="http://www.d-toybox.com/studio/weblog/show.php?mode=single&amp;id=2006051200">Mac を入手された</a>らしい。</p>
+
+<p>ひさびさに Mozilla 周辺をみてみたら、<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=332579">Bug 332579 - Improve Mac event handling for 1.8.1</a> で日本語入力全滅してたみたいで、とりあえずの patch を <a href="http://bugzilla.mozilla.gr.jp/show_bug.cgi?id=5156"> Bug  5156 - [trunk] 20060511以降のnightly buildで日本語の入力が出来ない</a> になげた。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mozilla" rel="tag" title="mozilla">mozilla</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/05/18/my-patches-on-bugzilla-jp/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-06-05T22:24:18+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-06-05T22:24:18+09:00</h1>
+
+    <p>
+Perl の実装のごく一部を読みました。文法のぐだぐだを発見的手法で解決してる Perl やばい。
+</p>
+<p>
+<a class="ext-link" href="http://8-p.info/perl-interpolation/"><span class="icon"></span>http://8-p.info/perl-interpolation/</a>
+</p>
+  </div>
+</body>
+</html>

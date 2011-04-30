@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: はてなブックマークに Migemo</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136085820">
+  <h2 class="entry-title"><a href="/articles/2006/12/23/migemo" title="はてなブックマークに Migemo">はてなブックマークに Migemo</a></h2>
+  <div class="published">
+    December 23rd, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>日本語タグを入力しているときに Migemo っぽく補完したい。ぐぐると <a href="http://i.hatena.ne.jp/idea/5603">はてなアイデア - タグ入力支援スクリプトにmigemo機能をつけ、IMEがoffのままでの日本語タグ入力を簡単にする</a> はみつかったけど、実装はないみたいなので書いてみた。</p>
+
+<p><a href="http://8-p.info/userscript/hateb-migemo.user.js">hateb-migemo.user.js</a></p>
+
+<p>はてなダイアリーキーワードを使っているので、まずははてなブックマークむけ。クロスドメイン通信があるので Creammonkey では動きません。</p>
+    
+    
+    
+    <p>処理はオリジナルの Migemo とは逆向き。用途がタグの補完なら候補文字列は有限個なので、ローマ字列からありうる候補文字列すべてを生成するのではなくて、候補文字列からローマ字列を生成してる。</p>
+
+<p>かなからローマ字の変換は一文字一対応の安易なもので「ぁ」は「xa」で「la」にならないし、「にゃ」は「nya」にならない。ここはもうちょっと直したい。</p>
+
+<p>ふりがなは <a href="http://d.hatena.ne.jp/keyword/はてなキーワードAPI">はてなキーワードAPI</a> から取得している。GM_xmlhttpRequest でリクエストして GM_setValue, GM_getValue でキャッシュ。リクエストごとの間隔とかは無くて、初回起動時はリクエストを連続で投げてしまうので、ちょっと負荷が心配。心配とか書くなら実装しろというはなしだ。</p>
+
+<p>はてなダイアリーキーワードのふりがなは、たとえばタグの50音順ソートなんかにも使えるので、はてな社にはもっと活用してほしい。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/hatena" rel="tag" title="hatena">hatena</a></li>
+      
+      <li><a href="/tags/javascript" rel="tag" title="javascript">javascript</a></li>
+      
+      <li><a href="/tags/socialbookmark" rel="tag" title="socialbookmark">socialbookmark</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/12/23/migemo/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

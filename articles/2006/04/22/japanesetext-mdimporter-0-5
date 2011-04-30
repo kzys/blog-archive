@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: JapaneseText.mdimporter 0.5</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135094410">
+  <h2 class="entry-title"><a href="/articles/2006/04/22/japanesetext-mdimporter-0-5" title="JapaneseText.mdimporter 0.5">JapaneseText.mdimporter 0.5</a></h2>
+  <div class="published">
+    April 22nd, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><strong>(4/23 追記: すみません、なぜか 0.3 をアップロードしていました。差し替え。)</strong></p>
+
+<p><a href="http://8-p.info/Spotlight/#JapaneseText">JapaneseText.mdimporter</a> 0.5 をリリースしました。</p>
+
+<p>主な変更点は</p>
+
+<ul>
+<li>特定のファイルで落ちる問題を修正</li>
+<li>エンコーディングの判別アルゴリズムを <a href="http://practical-scheme.net/gauche/">Gauche</a> からもらってきたものに変更</li>
+</ul>
+
+<p>です。</p>
+    
+    
+    
+    <p>「落ちる」というのはメールで指摘があって patch もいただいていたのですが、問題の判別アルゴリズム自体が、あまり性能評価とかを真面目にやっていないものなので、この機会に書き換えることにしました。</p>
+
+<p>といっても、<a href="http://pub.cozmixng.org/~the-rwiki/rw-cgi.rb?cmd=view;name=%A4%BF%A4%E0%A4%E9%3A%3A%C6%FC%CB%DC%B8%EC%CA%B8%BB%FA%A5%B3%A1%BC%A5%C9%A4%CE%BC%AB%C6%B0%C8%BD%C4%EA">The RWiki - たむら::日本語文字コードの自動判定</a> で知った Gauche のコードを組み込むだけですが。Gauche の ext/charconv/{guess.c, guess_tab}.c は</p>
+
+<ul>
+<li>ライセンスが BSD ライセンス</li>
+<li>ファイルは2個だけ</li>
+<li>ほとんど素の C で書かれていて、Gauche に依存する部分はごくわずか</li>
+</ul>
+
+<p>なので、かなり扱いやすいです。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+      <li><a href="/tags/spotlight" rel="tag" title="spotlight">spotlight</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">2 Responses to &#8220;JapaneseText.mdimporter 0.5&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-137419520">
+			<cite><span>fu7mu4</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-137419520" title="">April 24th, 2006 at 03:41 PM</a></small>
+			<p>使わせてもらって感謝しています。ところで、ダウンロードすると、ファイル名がJapaneseText-0-1.5.dmg.gzとなってますがこれでいいんですか？</p>
+		</li>
+  
+		<li class="" id="comment-137335950">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-137335950" title="">April 24th, 2006 at 08:54 PM</a></small>
+			<p>手元の Safari で試してみましたが JapaneseText-0.5.dmg.gz でダウンロードできました。
+サーバー側で特別な処理はしていないはずなので、ブラウザ側の問題じゃないかと思います。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/04/22/japanesetext-mdimporter-0-5/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

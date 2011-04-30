@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: ruby が --enable-shared じゃなかった</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135465190">
+  <h2 class="entry-title"><a href="/articles/2006/12/17/ruby-enable-shared" title="ruby が --enable-shared じゃなかった">ruby が --enable-shared じゃなかった</a></h2>
+  <div class="published">
+    December 17th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>--enable-shared じゃない ruby で RubyCocoa の apple-unstable を使おうとしたら、ruby が死んで困った。</p>
+
+<pre><code>% ruby -r osx/cocoa -e ''
+/usr/local/stow/ruby-1.8.5/lib/ruby/site_ruby/1.8/powerpc-darwin8.8.0/rubycocoa.bundle: [BUG] Bus Error
+ruby 1.8.5 (2006-08-25) [powerpc-darwin8.8.0]
+
+zsh: abort      ruby -r osx/cocoa -e ''
+</code></pre>
+
+<p>gdb でみると RubyCocoa のなかからよばれた ruby_init がなにかしている。ruby_init は ruby 本体からよばれる一度目に仕事をして、それ以降は return するだけのはずなので、これはあやしい。</p>
+
+<p>ruby-1.8.5/eval.c の ruby_init で initialized を printf させてみた。</p>
+
+<pre><code>void
+ruby_init()
+{
+    static int initialized = 0;
+    static struct FRAME frame;
+    static struct iter iter;
+    int state;
+
+    fprintf(stderr, "initialized = %d (at %x)\n", initialized, &amp;initialized);
+    if (initialized)
+        return;
+    initialized = 1;
+</code></pre>
+
+<p>make しなおして ruby を実行してみる。</p>
+
+<pre><code>% ruby -r 'osx/cocoa' -e ''
+initialized = 0 (at b2534)
+initialized = 0 (at 5caaf0)
+/usr/local/stow/ruby-1.8.5/lib/ruby/site_ruby/1.8/powerpc-darwin8.8.0/rubycocoa.bundle: [BUG] Bus Error
+ruby 1.8.5 (2006-08-25) [powerpc-darwin8.8.0]
+
+zsh: abort      ruby -r 'osx/cocoa' -e ''
+</code></pre>
+
+<p>ruby はひとつのプロセスにひとつのインタプリタのはずだし、複数回初期化するのはなんかまずそうだ。ruby を --enable-shared で作り直してから RubyCocoa も作り直してみたら、個人的に納得できる動きになった。</p>
+
+<pre><code>% ruby -r 'osx/cocoa' -e '' 
+initialized = 0 (at 2bb0cc)
+initialized = 1 (at 2bb0cc)
+</code></pre>
+
+<p>しかし、<a href="http://kimuraw.txt-nifty.com/d/2006/08/singlemod_again.html">きりかノート: [rubycocoa-deve:375] -Wl,-single_module のノロイ、ふたたび</a>を読むと --enable-shared なしでもうまく動くべき、というようなことが書かれていて迷う。</p>
+
+<p>とりあえず動かせた、というところまでメモしておく。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+      <li><a href="/tags/ruby" rel="tag" title="ruby">ruby</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/12/17/ruby-enable-shared/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

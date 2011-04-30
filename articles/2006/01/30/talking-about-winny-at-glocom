@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Talking about Winny at GLOCOM</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137229150">
+  <h2 class="entry-title"><a href="/articles/2006/01/30/talking-about-winny-at-glocom" title="Talking about Winny at GLOCOM">Talking about Winny at GLOCOM</a></h2>
+  <div class="published">
+    January 30th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>28日はGLOCOM+LSEの「P2Pインフラストラクチャ研究会」に行ってきました。</p>
+
+<p>GLOCOMにいく道順をお巡りさんにたずねたとき「さっきも聞かれたなー」なんていわれたり、公文俊平氏のはじめの挨拶の際に「研究会でこんなにひとがくることは珍しい」なんて発言があったりと、かなり大勢の(普段とは違う)人達が集まっていたようです。</p>
+
+<p>せっかくいろいろメモしたのでここに公開しますが、正確性/網羅性は期待しないでください。ソースとして引用したりはお勧めしません。主催者側でビデオもまわしてたみたいなので、議事録かなにかが公開されるといいのですが。</p>
+    
+    
+    
+    <h3>金子勇「『Winnyの技術』を元に当時の到達点を明らかにする」</h3>
+
+<p>タイトルの通り『Winnyの技術』をベースとしたはなしでした。ちなみに、この発表だけは紙の資料の配布無しで録音も禁止。</p>
+
+<ul>
+<li>Winny1 はファイル共有システム、Winny2 は大規模匿名掲示板である。</li>
+<li>Freenet から Winny1 にうけつがれたものは匿名性であり、システムとしては別物。</li>
+<li>Winny1 での匿名性とは、要するに多段 proxy である。多段 proxy にキャッシュをもたせることで効率も向上する。</li>
+<li>データ本体を body、body のハッシュ値を key とする。key は push でとにかく拡散、body は pull で要求に応じて転送する。</li>
+<li>検索はザルだが、自動ダウンロードがあり、これが peer を起動させたままにする動機になっている。</li>
+<li>P2P で 2ch のようなものを実装するという試みはいろいろやられている。Winny1 は技術的検証・興味で開発したが、Winny2は義務感のようなもので開発した。</li>
+<li>Winny1 ではファイルの内容は書き換わらないという前提があったのでbody のハッシュ値をそのまま key に出来たが、掲示板では追記があるのでそうはいかない。</li>
+<li>変更されるファイルの同期が必要。現状の Winny2 ではスレッドの管理を1ノードに固定し、それをマスタとすることで同期問題を単純化している。</li>
+<li>ソースコードを公開するとしても、匿名性は多段中継というアーキテクチャに支えられているものなので(BBSを除いては)低下しない。しかし、改造されたフリーライダーの増加は効率を下げる可能性がある。</li>
+<li>ただ、BitTorrent のようなソースコードを公開したまま効率を保つシステムもでてきたので、実現は可能なはず。</li>
+<li>管理可能性についても、現在出来ていないのは技術的な問題であり、管理は可能なはず。</li>
+</ul>
+
+<h3>高木浩光「『P2P』は本当に必要か」</h3>
+
+<p><a href="http://d.hatena.ne.jp/HiromitsuTakagi/20040516/p1">市民の安全を深刻に害し得る装置としてのWinny</a>、および<a href="http://d.hatena.ne.jp/HiromitsuTakagi/20040608/p1">良心に蓋をさせ、邪な心を解き放つ ―― ファイル放流システム</a>をベースとしたはなしでした。</p>
+
+<ul>
+<li>「P2P」と書く際には、peer-to-peer ではなく person-to-person を指しているのではないか。</li>
+<li>NewsGroup の peer は組織だが、Winnyなどでは個人である。</li>
+</ul>
+
+<h3>濱野智史「Winny その社会性の中心 - 『脱社会性』をめぐる試論」</h3>
+
+<p>個人的にはパネルの中ではいちばんおもしろかったです。畑違いの分野で、宮台真司も東浩紀も読んだこと無いせいかもしれませんが。</p>
+
+<ul>
+<li>WinMX などではチャットのコミュニケーションやファイルの「交換」が行われていたが、Winny にはそれがない。</li>
+<li>自分が犯罪行為を犯しているという自覚的選択(コミットメント)がないシステムである。</li>
+<li>「コミットメントのなさ」を、宮台真司氏のいう「脱社会性」として読み替える。</li>
+<li>ポストWinnyを考えるためには、脱社会性と反社会性はいっしょくたにするべきではない。</li>
+<li>Google AdSence はコミットしてないひと(一見さん)が、ビジネスをささえる仕組みである。</li>
+<li>SNS は「安全」といわれているが、脱社会的存在は排除されてしまう。</li>
+<li>コミットメントさせないコントロールとは環境管理型権力である。これからの社会を考えるとき、脱社会的存在を排除するのか？包摂するのか？</li>
+<li>ソーシャルウェア: 数百万規模のユーザー数と社会的影響力が取りざたされるソフトウェア or コミュニティ</li>
+<li>ソーシャルウェアには、社会的最適化がほどこされる。Winnyのそれは脱社会性やひきこもり的感性に最適化されている。</li>
+</ul>
+
+<h3>山根信二「ハッカー的観点からの考察」</h3>
+
+<p>ハッカー的となっていますが、どちらかといえばCSPR的という感じがしました。キャプテンクランチは今後の長距離電話業界について考えたりはしないはず。</p>
+
+<ul>
+<li>現在の日本の専門家の発言しなさは1980年代のアメリカと似た状況にある。</li>
+<li>1980年代はコンピュータ専門家が社会的発言をするのは避けられていた。CSPRやRMSなど。</li>
+<li>1991年にはPGPの作者がCSPRに接触してから発表している。PGP作者のようなアマチュアへの窓口があり、専門家の知見を結集して取り組む時代になっている。</li>
+<li>Just for Fun では捕まってしまうが、アメリカ的な「憲法的価値・観点」という議論は日本ではうそ臭くなりがちである。</li>
+<li>技術には価値観や思想を埋め込むことが出来る。</li>
+<li>WWW も Tim Berners-Lee の「論文の無許諾コピーの蔓延させる意図」が埋め込まれている。</li>
+<li>日本でそれを一番考えているのが京都府警だ。</li>
+<li>Winnyには日本のネット社会に最適化されている。</li>
+</ul>
+
+<h3>大谷卓史「Winny からその後へ - 情報倫理学/史的アプローチ」</h3>
+
+<p>ここらへんで「朝まで生テレビ」をみてたのが効いてきました。正直ちょっと寝てた。気がついたら発表終了の拍手がしたくらいなので発表資料から。</p>
+
+<ul>
+<li>剽窃や盗用への非難は帰結主義的考慮のみではない。我々は作品を人格の一部と感じる。</li>
+<li>日常的に道徳的な人間も、インターネット内では非道徳的に振舞うことがありえる。</li>
+<li>リベラルな民主主義の前提である「道徳的な自立的存在者」という人間像への挑戦。</li>
+<li>受容可能なP2Pファイル共有システム。公平な課金と情報コントロール。</li>
+<li>ソフトウェアはテキスト、実行バイナリは道具。ソフトウェアのソースコードと言論・表現の自由。</li>
+</ul>
+
+<h3>ディスカッション</h3>
+
+<ul>
+<li>東「脱社会性についてどう考えるか？」</li>
+<li>高木「脱社会性はそれほどよいものとは思えない。Winnyのアーキテクチャに善悪は無いが、利用者が知らなすぎた。情報開示がもっとあれば使わないユーザーもいたはず。」</li>
+<li>濱野「ユーザーはコミットすべきなのか？脱社会性はアナーキーではない。市場経済も匿名的な側面はある。」</li>
+<li>東「技術者倫理としてはどうか？」</li>
+<li>大谷「個人的には Winny のようなものを作るのは軽率だと思う。」</li>
+<li>山根「技術者倫理に訴えるのも限界がある。次のソフトウェアを作るのもアマチュアであり、だれもがソフトウェアを作れる(ある種)アナーキーな世界を我々は選択してしまった。」</li>
+<li>東「その場合 CSPR はどうするべきなのか。作るなというのか？理論武装をしろというのか？」</li>
+<li>高木「著作権侵害はそれほど問題ではない。さまざまなコンテンツと接触する機会が増えたのは良かった。プライバシー侵害はよくない。大学で無限 fork() させてマシンを落としたことがある。技術者なら止められない技術への恐怖心はあるはず。」</li>
+<li>東「Winnyは人をある方向に向けるアーキテクチャであるが、そういったソフトウェアついては？利用者に知らせるべきこととは？」</li>
+<li>高木「それはソフトウェアにかぎったことではない。ただ Winny の場合は知る知らないでの落差が大きい。」</li>
+<li>大谷「開発者の責任というが、CSPRや専門家のような当事者以外の発言も重要である。」</li>
+<li>東「日本に専門家集団がいないのが問題か？」</li>
+<li>高木「セキュリティホール memo 周辺では『Winny はえぐい』というはなしはあったが、対外的になにかをいうことはなかった。」</li>
+<li>東「ポスト Winny は？オープンソースならよいのか？」</li>
+<li>山根「それほどかわらない。ソースコードをだせばレビューがされるというものではない。」</li>
+<li>大谷「ソースコードと開発プロセスが公開されればいいというものではない。」</li>
+<li>高木「ソースコード公開は技術的に面白いという類のはなしであり、社会的な影響には違いは無いだろう。」</li>
+<li>会場から「匿名でソフトウェアを発表した点についていわれることもあるが、ジャーナリストなどが匿名で発表することはそれほど珍しいことではない。」</li>
+</ul>
+
+<h3>感想とか</h3>
+
+<p>「インフラをつくるひとは、そのうえを流れるものには責任を持たない」というのはプログラマ側からすれば安全安心なはなしです。TCP/IPをつくったひとにインターネットで起こるありとあらゆることの責任をとらせるのは無茶ですし、電話でも郵便でもテレビでもそうです。ラッダイド運動も嫌いです。</p>
+
+<p>ただ「最初にデータを放流する人が悪い！おれは悪くない！」を声高に主張するのもどうも無責任な気がするというか。むかし、PGPのソースコードを「出版」して輸出禁止をすりぬけるとかありましたが、人間がインタプリトする情報と機械がインタプリトする情報をいっしょくたにするのも間違ってる気がします。</p>
+
+<p>P2P にかぎらず、YouTube とか Google Video あたりにも黒いデータはいっぱいあります。大学でカジュアルコピーな会話を耳にしたりとか。できるだけ作ったひとの意思を尊重したいと思っているのですが、こういうのって武器商人が平和を訴えてるようにみえたりするのかと思うと、ちょっと気が重いです。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+      <li><a href="/tags/p2p" rel="tag" title="p2p">p2p</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/01/30/talking-about-winny-at-glocom/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

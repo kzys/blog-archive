@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Creammonkey の名前問題</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132937500">
+  <h2 class="entry-title"><a href="/articles/2007/09/16/creammonkey" title="Creammonkey の名前問題">Creammonkey の名前問題</a></h2>
+  <div class="published">
+    September 16th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>また名前の話をします。</p>
+
+<ul>
+<li><a href="http://www.moongift.jp/2007/09/greasekelly/">MOONGIFT: » SafariにもGreaseMonkeyを「Greasekelly」:オープンソースを毎日紹介</a></li>
+<li><a href="http://d.hatena.ne.jp/tanemori/20070916/GoogleReaderTheme">soundscape out -  Google Reader Theme 1.2をSafari 3 Public betaで使う</a></li>
+</ul>
+
+<p>いまごろになって <a href="http://blog.8-p.info/articles/2007/03/29/greasekelly">Greasekelly</a> が取り上げられてびっくりしているのですが、<a href="https://sourceforge.net/projects/greasekelly/">SourceForge.net: Greasekelly</a> にある通り</p>
+
+<blockquote>
+    <p>As of 2007-05-02 16:11, this project is no longer under active development.</p>
+</blockquote>
+
+<p>というわけで Greasekelly という名前は止めました。SourceForge.net は消す申請から実際に消されるまでにかなり期間があるのです。</p>
+
+<p>名前が決まらないんだよねー、とリリースをのばすのは芸術家気取りで迷惑だと思ったので、とりあえず Creammonkey のまま開発は継続しています。あと数回はリリースする予定です。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/creammonkey" rel="tag" title="creammonkey">creammonkey</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

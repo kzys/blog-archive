@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>Class::Sniff で継承木をかく - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry375">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/02/class-sniff">Class::Sniff で継承木をかく</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-02-11 08:04    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p class="eyecatch"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/02/class-sniff.png" alt="Class hierarchy of Remedie" /></p>
+<p>「Look for class composition code smells」をうたう <a href="http://search.cpan.org/dist/Class-Sniff/">Class::Sniff</a> で継承木を書いてみた。</p>
+<h3>Class::Sniff</h3>
+<p>以下のスクリプトは引数にクラスをとり、その情報を表示する。</p>
+<pre>
+use strict;
+use warnings;
+use Class::Sniff;
+
+my $sniffer = Class::Sniff-&gt;new({ class => shift });
+print $sniffer-&gt;graph-&gt;as_ascii, "\n", $sniffer-&gt;report;
+</pre>
+<p>この記事用にクラスをつくってもあんまり面白くないと思ったので、今回は Remedie を使ってみた。Remedie::Server::RPC::Player を引数に与えてみる。</p>
+<pre>
+% ls
+Changes         MANIFEST        Makefile.PL     bin/            lib/            t/
+HACKING         MANIFEST.SKIP   README          extlib/         root/           xt/
+% perl -I lib -MRemedie::Server::RPC::Player ~/1.pl Remedie::Server::RPC::Player
++------------------------------+
+|        Moose::Object         |
++------------------------------+
+  ^
+  |
+  |
++------------------------------+
+|     Remedie::Server::RPC     |
++------------------------------+
+  ^
+  |
+  |
++------------------------------+
+| Remedie::Server::RPC::Player |
++------------------------------+
+Report for class: Remedie::Server::RPC::Player
+
+Overridden Methods
+.---------+-------------------------------------------------------------------.
+| Method  | Class                                                             |
++---------+-------------------------------------------------------------------+
+| blessed | Remedie::Server::RPC::Player                                      |
+|         | Remedie::Server::RPC                                              |
+| confess | Remedie::Server::RPC::Player                                      |
+|         | Remedie::Server::RPC                                              |
+| meta    | Remedie::Server::RPC::Player                                      |
+|         | Remedie::Server::RPC                                              |
+|         | Moose::Object                                                     |
+| new     | Remedie::Server::RPC::Player                                      |
+|         | Remedie::Server::RPC                                              |
+|         | Moose::Object                                                     |
+'---------+-------------------------------------------------------------------'
+Exported Subroutines
+.-------------------------+-----------+---------------------------------------.
+| Class                   | Method    | Exported From Package                 |
++-------------------------+-----------+---------------------------------------+
+| Remedie::Server::RPC    | blessed   | Scalar::Util                          |
+|                         | class_has | MooseX::ClassAttribute                |
+|                         | confess   | Carp                                  |
+| Remedie::Server::RPC::- | SEEK_CUR  | Fcntl                                 |
+| Player                  | SEEK_END  | Fcntl                                 |
+|                         | SEEK_SET  | Fcntl                                 |
+|                         | blessed   | Scalar::Util                          |
+|                         | confess   | Carp                                  |
+|                         | dir       | Path::Class                           |
+|                         | file      | Path::Class                           |
+|                         | mkdtemp   | File::Temp                            |
+|                         | mkstemp   | File::Temp                            |
+|                         | mkstemps  | File::Temp                            |
+|                         | mktemp    | File::Temp                            |
+|                         | tmpfile   | File::Temp                            |
+|                         | tmpnam    | File::Temp                            |
+'-------------------------+-----------+---------------------------------------'
+Duplicate Methods (Experimental)
+.--------------------------------------+--------------------------------------.
+| Method                               | Duplicated In                        |
++--------------------------------------+--------------------------------------+
+| Remedie::Server::RPC::Player::play_- | Remedie::Server::RPC::Player::play   |
+| inline                               |                                      |
+| Remedie::Server::RPC::blessed        | Remedie::Server::RPC::Player::bless- |
+|                                      | ed                                   |
+| Remedie::Server::RPC::meta           | Remedie::Server::RPC::Player::meta   |
+| Remedie::Server::RPC::Player::SEEK_- | Remedie::Server::RPC::Player::SEEK_- |
+| CUR                                  | SET                                  |
+|                                      | Remedie::Server::RPC::Player::SEEK_- |
+|                                      | END                                  |
+| Remedie::Server::RPC::confess        | Remedie::Server::RPC::Player::confe- |
+|                                      | ss                                   |
+'--------------------------------------+--------------------------------------'
+Long Methods (experimental)
+.------------------------------------+----------------------------------------.
+| Method                             | Approximate Length                     |
++------------------------------------+----------------------------------------+
+| Moose::Object::BUILDARGS           | 166                                    |
+| Moose::Object::meta                | 602                                    |
+| Remedie::Server::RPC::Player::meta | 417                                    |
+| Remedie::Server::RPC::Player::new  | 651                                    |
+| Remedie::Server::RPC::attr_cache   | 650                                    |
+| Remedie::Server::RPC::conf         | 645                                    |
+| Remedie::Server::RPC::meta         | 417                                    |
+| Remedie::Server::RPC::new          | 651                                    |
+'------------------------------------+----------------------------------------'
+%
+</pre>
+<p>前半の継承を Moose::Object まで辿ったものを graph メソッドが、後半の上書きしているメソッドのリストから長いメソッドのリストまでを report が出力している。Moose に対応しきれていないのがすこし気になるけど、ここでは深追いしない。</p>
+<h3>Graph::Easy のグラフをまとめる</h3>
+<p>Class::Sniff は個々のクラスに焦点をあわせているけど、次は個々のクラスに関する情報をまとめてシステム全体の継承木を書いてみる。</p>
+<p>Class::Sniff の graph メソッドは Graph::Easy のインスタンスを返している。Graph::Easy はノードとエッジをもったふつうのグラフで、さらに GraphViz 形式での出力もある。Graph::Easy のインスタンス同士をつないで、ひとつのグラフを作ってみた。</p>
+<pre>
+use strict;
+use warnings;
+use Class::Sniff;
+
+sub package_of {
+    my ($path) = @_;
+
+    if ($path !~ m|/?lib/(.*)\.pm$|) {
+      die;
+    }
+
+    my $result = $1;
+    $result =~ s|/|::|g;
+    return $result;
+}
+
+sub merge_graph {
+    my ($result, $graph) = @_;
+
+    my @edges = $graph-&gt;edges;
+    foreach my $edge (@edges) {
+        my ($source, $target) = $edge-&gt;nodes;
+        $result-&gt;add_edge_once($source-&gt;name, $target-&gt;name);
+    }
+}
+
+my $graph;
+
+for my $path (@ARGV) {
+    my $package = package_of($path);
+    eval "use $package";
+
+    my $sniffer = Class::Sniff-&gt;new({ class => $package });
+
+    if ($graph) {
+        merge_graph($graph, $sniffer-&gt;graph);
+    } else {
+        $graph = $sniffer-&gt;graph;
+    }
+}
+
+print $graph-&gt;as_graphviz;
+</pre>
+<p>引数はひとつのクラスではなく複数のファイル名にした。パスからクラス名を作りそれを use してから Class::Sniff にまわしている。</p>
+<pre>
+% perl -I lib ~/2.pl lib/**/*.pm | dot -Tpng -o ~/remedie-2.png
+Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.8/darwin-thread-multi-2level/B/Concise.pm line 501.
+Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.8/darwin-thread-multi-2level/B/Concise.pm line 504.
+Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.8/darwin-thread-multi-2level/B/Concise.pm line 507.
+Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.8/darwin-thread-multi-2level/B/Concise.pm line 497.
+Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.8/darwin-thread-multi-2level/B/Concise.pm line 497.
+Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.8/darwin-thread-multi-2level/B/Concise.pm line 497.
+Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.8/darwin-thread-multi-2level/B/Concise.pm line 497.
+%
+</pre>
+<p>生成した <a href="http://blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-2.png">Remedie の継承木</a> の PNG は 8692&#215;443px の巨大なものだけど、ソースを地道に読むより、全体の見通しという意味では良いと思う。</p>
+<h3>メソッドも表示する</h3>
+<p>ここまでくるとメソッドも表示したくなってくる。クラス名とメソッドのリストとを水平線で区切るとか、そういう凝ったことを GraphViz でやるには node の shape を record に指定する。</p>
+<p><a href="http://www.graphviz.org/doc/info/shapes.html">Node Shapes</a></p>
+<blockquote><p>These are specified by shape values of &#8220;record&#8221; and &#8220;Mrecord&#8221;. The structure of a record-based node is determined by its label, which has the following schema: (snip)</p></blockquote>
+<p>ただ、これを Graph::Easy から指定する方法がわからなかったので、Graph::Easy をあきらめて直接 .dot ファイルを生成してしまった。</p>
+<pre>
+use strict;
+use warnings;
+use Class::Sniff;
+
+sub package_of {
+    my ($path) = @_;
+
+    if ($path !~ m|/?lib/(.*)\.pm$|) {
+      die;
+    }
+
+    my $result = $1;
+    $result =~ s|/|::|g;
+    return $result;
+}
+
+sub new_methods {
+    my ($sniffer) = @_;
+    my %count_of;
+
+    for my $method ($sniffer-&gt;methods) {
+        $count_of{$method}++;
+    }
+
+    my $klass = $sniffer-&gt;target_class;
+    for my $method (keys %{ $sniffer-&gt;exported-&gt;{ $klass } }) {
+        $count_of{$method}--;
+    }
+
+    grep { $_ } map {
+        my $method = $_;
+
+        ($count_of{$method} &gt; 0)? $method : undef;
+    } (keys %count_of);
+}
+
+my $graph;
+
+print &lt;&lt;END;
+digraph GRAPH_0 {
+  node [ shape=record ];
+END
+
+for my $path (@ARGV) {
+    my $package = package_of($path);
+    eval "use $package";
+
+    my $sniffer = Class::Sniff-&gt;new({ class =&gt; $package });
+
+    my @methods = new_methods($sniffer);
+    my $label = "{$package|" . join('\l', sort @methods)  . '\l}';
+    $label =~ s/"/\\"/g;
+    print qq["$package" [label="$label"]\n];
+
+    my @parents = $sniffer-&gt;parents;
+    foreach my $c (@parents) {
+        print qq["$package" -&gt; "$c"\n];
+    }
+}
+
+print &lt;&lt;END;
+}
+END
+</pre>
+<p><a href="http://blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-3.png">Remedie の継承木 + メソッド</a> はさらに大きく 15024&#215;1483px になった。このスクリプトはなにかに使えそうなので <a href="http://gist.github.com/61684">Gist</a> に置いてみました。</p>
+<h3>参考と関連</h3>
+<dl>
+<dt><a href="http://d.hatena.ne.jp/T-ABYSS/20070301/1172768153">GraphvizでER図を書く方法</a></dt>
+<dd>GraphViz の使い方を参考にしました</dd>
+<dt><a href="http://usuilog.blogspot.com/2006/12/perlumlumlclasssimple.html">UMLシーケンス図の自動生成(UML::Sequence)</a></dt>
+<dt><a href="http://d.hatena.ne.jp/T-ABYSS/20070301/1172768153">UMLクラス図の自動生成(UML::Class::Simple)</a></dt>
+<dd>この記事をかいている途中に知りました。まだ試していません。</dd>
+<dt><a href="http://use.perl.org/~miyagawa/journal/friends/rss">miyagawa&#8217;s Friends&#8217; Journals</a></dt>
+<dd>Class::Sniff の存在はこの RSS を読んでいて知りました。<a href="http://use.perl.org/~miyagawa/journal/">Journal of miyagawa (1653)</a> から discovery できます。</dd>
+</dl>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="375" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

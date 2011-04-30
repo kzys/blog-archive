@@ -1,0 +1,32 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-07T01:21:35+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-07T01:21:35+09:00</h1>
+
+    <p>
+第三回 WEwLC 読書会懇親会
+</p>
+<ul><li>ペンギン本読んだ。Python は紙媒体に書くのにコンパクトだしリスト内包表記も統計むき便利。でもレコメンとか計算多いので実際にやるとしたら遅い。
+</li><li>「delicious がっかり」「Google ブックマーク便利」「自作だろー」
+</li><li>会社コードと自分コードと</li></ul>
+<ul><li>『エンジニアのためのWord再入門講座』のひとはもともとは UNIX のひと</li></ul>
+<ul><li>Excel カンファレンスはプレゼンテーションも Excel しばりで
+</li><li>MagicPoint のひとは、いまは <a class="ext-link" href="http://www.mew.org/~kazu/proj/goby/"><span class="icon"></span>別の WYSIWYG なプレゼンツール</a> を作っている
+</li><li>less プレゼンってあったよね</li></ul>
+<ul><li>Prophet が Perl だったので読むのをあきらめた
+</li><li>CPAN Author は別に審査も無いのに「一人前として認められた」感があるのがすごい。livedoor が手当だしたりしてるからかな。</li></ul>
+<ul><li>弾さんでプログラマ出世マンガ「現在は執筆活動など」
+</li><li>Object Mentor, Inc. での Michael の立ち位置を妄想
+</li><li>サンプルコードの無意味なバリエーションはやっぱり実話に基づいているのか</li></ul>
+<p>
+時間がたつと忘れがち。
+</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Plagger 0.7.17 for Mac</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134814800">
+  <h2 class="entry-title"><a href="/articles/2007/05/06/plagger-0-7-17-for-mac" title="Plagger 0.7.17 for Mac">Plagger 0.7.17 for Mac</a></h2>
+  <div class="published">
+    May 6th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Plagger 0.7.17 の <a href="http://8-p.info/Plagger/">Mac むけバイナリパッケージ</a> を作りました。</p>
+
+<p>いままで配布していたのは 0.7.11 でしたが、CPAN にある最新は 0.7.17 なので、それに追従しました。<a href="http://blog.8-p.info/articles/2006/09/12/plagger-mac-0-7-11-2">Plagger 0.7.11 のバイナリパッケージを出した</a> のが10月で、3月に <a href="http://blog.8-p.info/articles/2007/03/22/plagger">ビルドを自動化したとき</a> に、</p>
+
+<blockquote>
+    <p>で、これを書いてから、2006年12月以来 Plagger が CPAN にリリースされていないことに気づく。更新必要ない……。</p>
+</blockquote>
+
+<p>と書いた理由は自分でもよくわかりません。どこをみてそう判断したんだろう。</p>
+
+<p>ビルド自動化のスクリプトは <a href="http://svn.8-p.info/public/plagger-mac/">http://svn.8-p.info/public/plagger-mac/</a> に置きました。まだ ub-cc とか微妙に自分の環境に依存した部分があるので、あとで直します。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/plagger" rel="tag" title="plagger">plagger</a></li>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/05/06/plagger-0-7-17-for-mac/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

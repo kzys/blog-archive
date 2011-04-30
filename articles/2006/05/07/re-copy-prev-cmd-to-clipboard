@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Re: copy-prev-cmd-to-clipboard</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134900680">
+  <h2 class="entry-title"><a href="/articles/2006/05/07/re-copy-prev-cmd-to-clipboard" title="Re: copy-prev-cmd-to-clipboard">Re: copy-prev-cmd-to-clipboard</a></h2>
+  <div class="published">
+    May 7th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <ul>
+<li><a href="http://naoya.g.hatena.ne.jp/naoya/20060507/1146972873">naoyaグループ - naoyaの日記 -  直前にうったコマンドをクリップボードに</a></li>
+<li><a href="http://d.hatena.ne.jp/ysano2005/20060507/1146984859">CMS researcher - zsh: 直前にうったコマンドをクリップボードに(Mac OS X限定)</a></li>
+<li><a href="http://naoya.g.hatena.ne.jp/naoya/20060507/1146989742">naoyaグループ - naoyaの日記 -  クリップボードにコピーショートカット</a></li>
+</ul>
+
+<p>はてなはやいよはてな。でもみんな perl 好きすぎ。</p>
+
+<pre><code>copy-prev-cmd-to-clipboard () {
+  history -n -1 | tr -d "\n" | pbcopy
+}
+zle -N copy-prev-cmd-to-clipboard
+bindkey '^k' copy-prev-cmd-to-clipboard
+</code></pre>
+
+<p>zsh の履歴は history で参照できるというのは<a href="http://0xcc.net/unimag/3/">横着プログラミング 第3回: 履歴マニア</a>から。あと ^k は ^k そのものを入力 (Emacs でいう C-q C-k) せずに ^, k と二文字で書いても大丈夫です。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/shell" rel="tag" title="shell">shell</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/05/07/re-copy-prev-cmd-to-clipboard/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

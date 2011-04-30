@@ -1,0 +1,29 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-04-14T07:10:35+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-04-14T07:10:35+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://code.google.com/p/tombloo/"><span class="icon"></span>http://code.google.com/p/tombloo/</a>
+</p>
+<p>
+「ライセンスはMIT Licenseと表示されていますが、このプロジェクトで作成された全ての部分はパブリックドメインです。」
+</p>
+<p>
+機械可読なデータで嘘をつくのは止めて！と思って Google Code みてたらパブリックドメインってライセンスとして選択できないらしい。なるほど。
+</p>
+<p>
+<a class="ext-link" href="http://groups.google.com/group/google-code-hosting/browse_thread/thread/a8bf8b048314f380"><span class="icon"></span>http://groups.google.com/group/google-code-hosting/browse_thread/thread/a8bf8b048314f380</a>
+</p>
+<p>
+でも「Please do not upload public domain software and label it &quot;MIT&quot; licensed.  That is a violation of our terms of service.」らしいですよ。
+</p>
+  </div>
+</body>
+</html>

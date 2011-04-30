@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Safari is evil</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136979740">
+  <h2 class="entry-title"><a href="/articles/2006/04/30/safari-is-evil" title="Safari is evil">Safari is evil</a></h2>
+  <div class="published">
+    April 30th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>Internet Explorer の CSS 実装に怒る人は Safari の JavaScript 実装にも怒るべきだ、と思ったんだけど、シェアがあるのにバグがあるから困るわけで、シェアが無くてバグがあるなら無視すればいい気がしてきた。</p>
+
+<p>そのくらいひどいです。</p>
+    
+    
+    
+    <h3>正規表現で "//" のエスケープが使えない</h3>
+
+<p><a href="http://www.fladdict.net/blog-jp/archives/2005/05/post_63.php">fladdict.net blog: 今見ているサイト内で「はてなブックマーク」されてるエントリ一覧を表示するブックマークレット</a></p>
+
+<blockquote>
+    <p>さっそく使ってみようとしたらsafariのおバカが…</p>
+    
+    <p>matchで引っかかっているようです．正規表現中のスラッシュのエスケープ(//)をバックスラッシュ(\/)に変更したら動きました．他のブラウザではふつうに動くのになぁ．一応ご報告です．</p>
+</blockquote>
+
+<h3>"?" より前の "\" は "/" になる</h3>
+
+<p>これで <a href="http://fuba.s7.xrea.com/20060430015658.html">Bookmarklet、なぜかSafariで読めないな… - openfb</a> が解決すると思った人は Safari を甘くみています。</p>
+
+<p><a href="http://avantbard.com/avantblog/?p=626">AvantBlog  » Blog Archive   » Safari Backslash Replacement Bug</a></p>
+
+<blockquote>
+    <p>In the href value of any anchor tag (link), all backslash characters appearing BEFORE a question mark character get replaced with forwardslash characters</p>
+</blockquote>
+
+<p><a href="javascript:alert('\\ is backslash');">javascript:alert('\ is backslash');</a> をクリックして実行すると「"\" is backslash」なのに、ブックマークツールバーに登録して実行すると「"//" is backslash」になります。</p>
+
+<p>"?" さえあればいいので <a href="javascript:/*?*/alert('\\ is backslash');">javascript:/*?*/alert('\ is backslash');</a> で回避できるけど、これでなんとかなることに逆にひく。</p>
+
+<h3>存在するのに動作はしないメソッドがある</h3>
+
+<p><a href="http://www.remus.dti.ne.jp/~a-satomi/nikki/2005/06a.html#d27n03">ねこめしにっき（2005年6月）</a></p>
+
+<blockquote>
+    <p>event.stopPropagation() や event.preventDefault() とか、メソッド自体は明らかに存在してるのに、いざ使ってみると何も起きないの。ウソ実装イクナイ！</p>
+</blockquote>
+
+<p>なんでこういうことするかね。</p>
+
+<h3>矢印キーの keyCode が変</h3>
+
+<p>上下左右は 38, 40, 37, 39 ではなくて 63232, 63233, 63234, 63235 です。</p>
+
+<p>矢印キーというメジャーなキーで、一回テーブルをひけば解決しそうな問題だけに、もはや悪意すら感じます。</p>
+
+<h3>まとめ</h3>
+
+<p><a href="http://www.mac.com/web/ja/Blog/425954F3-DF73-4B9B-94AC-20EE4BDE374C.html">最新のブラウザをお使いですか？</a></p>
+
+<blockquote>
+    <p>Web テクノロジーが進化するにつれて、 新しい技術が要求するものを表示できるようにブラウザも歩調を合わせて進化しなければなりません。アップルが、 ユーザエクスペリエンスの向上に必要な新しい技術に対応できると考えているブラウザは、 Safari 1.2以降、 Firefox 1.0.4以降、 および Windows 用の Internet Explorer 6 以降です。</p>
+    
+    <p>(中略) </p>
+    
+    <p>もしアップルが推奨するブラウザを使っていて機能しないサイトを見つけたら、 苦情を申し立てましょう。 そのサイトが、 Web 上でもっとも進化したものに対応できるブラウザでもうまく機能しないのはなぜなのか、 サイトオーナーに説明を求めるとよいでしょう。</p>
+</blockquote>
+
+<p>へー。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/bug" rel="tag" title="bug">bug</a></li>
+      
+      <li><a href="/tags/javascript" rel="tag" title="javascript">javascript</a></li>
+      
+      <li><a href="/tags/safari" rel="tag" title="safari">safari</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/04/30/safari-is-evil/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

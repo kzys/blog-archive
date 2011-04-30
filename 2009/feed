@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	>
+
+<channel>
+	<title>blog.8-p.info</title>
+	<atom:link href="http://blog.8-p.info/2009/feed" rel="self" type="application/rss+xml" />
+	<link>http://blog.8-p.info/2009</link>
+	<description>加藤和良 (1984年うまれ) の個人的なブログです。</description>
+	<pubDate>Sun, 13 Dec 2009 12:44:23 +0000</pubDate>
+	<generator>http://wordpress.org/?v=2.7.1</generator>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+			<item>
+		<title>さよなら WordPress</title>
+		<link>http://blog.8-p.info/2009/12/wordpress</link>
+		<comments>http://blog.8-p.info/2009/12/wordpress#comments</comments>
+		<pubDate>Sun, 13 Dec 2009 00:32:31 +0000</pubDate>
+		<dc:creator>KATO Kazuyoshi</dc:creator>
+		
+		<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://blog.8-p.info/2009/?p=1706</guid>
+		<description><![CDATA[この WordPress は /2009/index.php といった具合にインストールしてあるので、今月いっぱいでおわり。
+WordPress は流行っているのでさわれたのは良かった。ループのなかのローカル変数であるべきものに the_post() でさわれるとか、自動アップデートの名の下に FTP のパスワードを要求するとか、ノリは危なげ。そこらへんとうまくつきあえれば (ex. 前者はあきらめ、後者は避ける) あらゆる機能があって便利ではある。
+今年に変えたこと
+「Web プログラマだったらブログ読むよね書くよね (ついでにいうと JavaScript はできるよね)」というのが狭い世界の話だったんだなー、という反省が2008年ごろにあって、2009年は Web に書く文章をちょっと変えた年だった。いままで私はどこか「日記というかメモみたいなもので、でも公開してだれかの役に立ったらいいですね」みたいな、がんばってないですよ、というポーズをとるところがあったんだけど、そういうのは止めにした。
+文章は丁寧に長めになったし、前だったら書かなかった背景のはなしも足した。あと、誰と知り合いとかわかりづらくして、内輪感を減らすようにもしてみた。それで、ここ数年の記事ごとのブックマーク数をグラフにしたのが下の画像だ。
+
+一番下の背景が白いところが2009年で、2本突き出ているのは zsh と JavaScript のはなし。ただ「じゃあ次も同じはなしを」というほどの引き出しは無く、どう書くかは他人を意識しても、なにを書くかは相変わらず自分の興味のままに決めていた。
+2007-2008年ごろの一時期、もっと静的で更新時間順でない「しっかりした」ものにあこがれていたんだけど、挫折した。さらに前には Twitter や Tumblr もやっていたんだけど、あきた。いまのところ私にはブログくらいが合っているように思う。
+]]></description>
+			<content:encoded><![CDATA[<p>この WordPress は /2009/index.php といった具合にインストールしてあるので、今月いっぱいでおわり。</p>
+<p>WordPress は流行っているのでさわれたのは良かった。ループのなかのローカル変数であるべきものに the_post() でさわれるとか、自動アップデートの名の下に FTP のパスワードを要求するとか、ノリは危なげ。そこらへんとうまくつきあえれば (ex. 前者はあきらめ、後者は避ける) あらゆる機能があって便利ではある。</p>
+<h3>今年に変えたこと</h3>
+<p>「Web プログラマだったらブログ読むよね書くよね (ついでにいうと JavaScript はできるよね)」というのが狭い世界の話だったんだなー、という反省が2008年ごろにあって、2009年は Web に書く文章をちょっと変えた年だった。いままで私はどこか「日記というかメモみたいなもので、でも公開してだれかの役に立ったらいいですね」みたいな、がんばってないですよ、というポーズをとるところがあったんだけど、そういうのは止めにした。</p>
+<p>文章は丁寧に長めになったし、前だったら書かなかった背景のはなしも足した。あと、誰と知り合いとかわかりづらくして、内輪感を減らすようにもしてみた。それで、ここ数年の記事ごとのブックマーク数をグラフにしたのが下の画像だ。</p>
+<div class="eyecatch"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/12/all.png" alt="はてなブックマーク数" /></div>
+<p>一番下の背景が白いところが2009年で、2本突き出ているのは zsh と JavaScript のはなし。ただ「じゃあ次も同じはなしを」というほどの引き出しは無く、どう書くかは他人を意識しても、なにを書くかは相変わらず自分の興味のままに決めていた。</p>
+<p>2007-2008年ごろの一時期、もっと静的で更新時間順でない「しっかりした」ものにあこがれていたんだけど、挫折した。さらに前には Twitter や Tumblr もやっていたんだけど、あきた。いまのところ私にはブログくらいが合っているように思う。</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.8-p.info/2009/12/wordpress/feed</wfw:commentRss>
+		</item>
+		<item>
+		<title>ChromeRepl released</title>
+		<link>http://blog.8-p.info/2009/12/chrome-repl-released</link>
+		<comments>http://blog.8-p.info/2009/12/chrome-repl-released#comments</comments>
+		<pubDate>Fri, 11 Dec 2009 12:49:53 +0000</pubDate>
+		<dc:creator>KATO Kazuyoshi</dc:creator>
+		
+		<category><![CDATA[Uncategorized]]></category>
+
+		<category><![CDATA[lang-en]]></category>
+
+		<guid isPermaLink="false">http://blog.8-p.info/2009/?p=1700</guid>
+		<description><![CDATA[Today, I released ChromeRepl on the Extensions Gallery.
+ChromeRepl is is heavily inspired from MozRepl. However Google Chrome can&#8217;t speak the telnet protocol. So I released google-chrome-client library (in Ruby) too. The library includes &#8220;chrome-repl&#8221; command.
+I think the installation process is complicated. However, ChromeRepl brings the power of UNIX to Google Chrome. Please try!
+]]></description>
+			<content:encoded><![CDATA[<p>Today, I released ChromeRepl on the <a href="https://chrome.google.com/extensions/detail/dedppbpeendknnpchklgpdiiiodajgki">Extensions Gallery</a>.</p>
+<p>ChromeRepl is is heavily inspired from MozRepl. However Google Chrome can&#8217;t speak the telnet protocol. So I released <a href="http://gemcutter.org/gems/google-chrome-client">google-chrome-client</a> library (in Ruby) too. The library includes &#8220;chrome-repl&#8221; command.</p>
+<p>I think the installation process is complicated. However, ChromeRepl brings the power of UNIX to Google Chrome. Please try!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.8-p.info/2009/12/chrome-repl-released/feed</wfw:commentRss>
+		</item>
+		<item>
+		<title>Hatena&#8217;s routing problem</title>
+		<link>http://blog.8-p.info/2009/12/hatena</link>
+		<comments>http://blog.8-p.info/2009/12/hatena#comments</comments>
+		<pubDate>Thu, 10 Dec 2009 17:30:07 +0000</pubDate>
+		<dc:creator>KATO Kazuyoshi</dc:creator>
+		
+		<category><![CDATA[Uncategorized]]></category>
+
+		<category><![CDATA[lang-en]]></category>
+
+		<guid isPermaLink="false">http://blog.8-p.info/2009/?p=1684</guid>
+		<description><![CDATA[Hatena released &#8220;Hatena Bookmark for iPhone&#8221;. Great!
+However, the URI of the page is http://b.hatena.ne.jp/touch and I found id:touch. So he (or she?) probably can&#8217;t use Hatena Bookmark.
+Hatena made same mistake on Hatena Bookmark News and Ashika. I like their short URI better than &#8220;foobar.php?id=baz&#8221;. But this namespace collision is not good.
+]]></description>
+			<content:encoded><![CDATA[<p>Hatena released &#8220;Hatena Bookmark for iPhone&#8221;. Great!</p>
+<p>However, the URI of the page is <a href="http://b.hatena.ne.jp/touch">http://b.hatena.ne.jp/touch</a> and I found <a href="http://www.hatena.ne.jp/touch/fans">id:touch</a>. So he (or she?) probably can&#8217;t use Hatena Bookmark.</p>
+<p>Hatena made same mistake on <a href="http://i.hatena.ne.jp/idea/23484">Hatena Bookmark News</a> and <a href="http://kossori.g.hatena.ne.jp/bbs/6/1">Ashika</a>. I like their short URI better than &#8220;foobar.php?id=baz&#8221;. But this namespace collision is not good.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.8-p.info/2009/12/hatena/feed</wfw:commentRss>
+		</item>
+		<item>
+		<title>Test::Synchronized released</title>
+		<link>http://blog.8-p.info/2009/12/test-synchronized</link>
+		<comments>http://blog.8-p.info/2009/12/test-synchronized#comments</comments>
+		<pubDate>Tue, 08 Dec 2009 16:26:08 +0000</pubDate>
+		<dc:creator>KATO Kazuyoshi</dc:creator>
+		
+		<category><![CDATA[Uncategorized]]></category>
+
+		<category><![CDATA[lang-en]]></category>
+
+		<guid isPermaLink="false">http://blog.8-p.info/2009/?p=1650</guid>
+		<description><![CDATA[Tim Bray wrote on his article Concur.next that:
+No longer; Next year’s system will do more computing all right, but by giving you more CPUs, running at this year’s speed, to work with.
+Perl&#8217;s multi-core support is good old-fashioned fork(2). It&#8217;s not sexy, but it works. So recently I began to use &#8220;prove -j9&#8243;. But some of [...]]]></description>
+			<content:encoded><![CDATA[<p>Tim Bray wrote on his article <a href="http://www.tbray.org/ongoing/When/200x/2009/09/27/Concur-dot-next">Concur.next</a> that:</p>
+<blockquote><p>No longer; Next year’s system will do more computing all right, but by giving you more CPUs, running at this year’s speed, to work with.</p></blockquote>
+<p>Perl&#8217;s multi-core support is good old-fashioned fork(2). It&#8217;s not sexy, but it works. So recently I began to use &#8220;prove -j9&#8243;. But some of our project&#8217;s tests are not works correctly under the &#8220;prove&#8221; command.</p>
+<p>For example, our cron script has tests that create and remove a log file.</p>
+<ul>
+<li>foo.t open and create a log file.</li>
+<li>foo.t write something to the file.</li>
+<li>foo.t remove the file.</li>
+</ul>
+<ul>
+<li>bar.t open and create a new log file.</li>
+<li>bar.t write something to the file.</li>
+<li>bar.t remove the file.</li>
+</ul>
+<p>And it&#8217;s not works at the same time.</p>
+<ul>
+<li>foo.t open and create a log file.</li>
+<li>bar.t open the log file.</li>
+<li>foo.t write something to the file.</li>
+<li>bar.t write something to the file, too.</li>
+<li>foo.t remove the file.</li>
+<li>bar.t <em>can&#8217;t</em> remove the file.</li>
+</ul>
+<p>I can modify the code to fix it. However, I&#8217;m lazy and impatient. So I wrote a simple lock system named Test::Synchronized.</p>
+<p>Test::Synchronized provides a giant lock to your tests. When you add &#8220;use Test::Synchronized;&#8221; on both foo.t and bar.t.</p>
+<ul>
+<li>foo.t create a lock directory.</li>
+<li>foo.t open and create a log file.</li>
+<li>bar.t can&#8217;t create the lock directory. So bar.t wait the end of foo.t.</li>
+<li>foo.t write something to the file.</li>
+<li>foo.t remove the file.</li>
+<li>foo.t remove the lock directory.</li>
+<li>bar.t create a new lock directory.</li>
+<li>bar.t open and create a new log file.</li>
+<li>&#8230;</li>
+</ul>
+<p>It&#8217;s not sexy, but it works :)</p>
+<p>I released 0.01 on <a href="http://bitbucket.org/kzys/test-synchronized/">Bitbucket</a> and CPAN already. Enjoy!</p>
+<h3>0.02</h3>
+<p>Tokuhiro-san (aka tokuhirom) blogged about <a href="http://d.hatena.ne.jp/tokuhirom/20091209/1260330943">some bugs and problems of Test::Synchronized</a>. So I fixed and released 0.02 now. Thanks a lot. </p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.8-p.info/2009/12/test-synchronized/feed</wfw:commentRss>
+		</item>
+		<item>
+		<title>11月をふりかえる</title>
+		<link>http://blog.8-p.info/2009/11/26</link>
+		<comments>http://blog.8-p.info/2009/11/26#comments</comments>
+		<pubDate>Thu, 26 Nov 2009 13:09:02 +0000</pubDate>
+		<dc:creator>KATO Kazuyoshi</dc:creator>
+		
+		<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://blog.8-p.info/2009/?p=1642</guid>
+		<description><![CDATA[11月は早かった。さっきはじまったような気がする。ぼんやりしている間に25歳になっていて、しかし25歳らしいことをしているかといわれると、目もあてられない。
+私はなにがしたいんだろうなあ。
+行ったライブ: Easel presents「neco眠る vs あらかじめ決められた恋人たちへ」(渋谷 O-Nest)
+すごく混んでいた。前半は neco 眠るで、後半があら恋。neco 眠るはぜんぜんノイズよりでなく、楽しくて良かったので思わず CD まで買ってしまった。新しいひとの CD 買うのは久しぶり。あら恋はあいかわらずかっこよかった。
+出た飲み会: chromiumExtensionDevCon
+Google Chrome / Chromium をネタにした飲み会。Twitter ユーザー中心っぽかったけど気にせずまざる。Chrome (PNG と pixel で一致をみるテストはだめだ / タイルなウィンドウマネージャつかってるから Glen ボタンみえない / w3m + WebKit / &#8230;) から関係ないこと (X は悪くない / Scala はコンパイルが遅い / &#8230;) まで、いろいろ話せて楽しかった。元同僚とも会ったので二次会はスタバ。
+出展したイベント: Make: Tokyo Meeting 04
+これについてはいろいろ書くことがあるので後で。
+]]></description>
+			<content:encoded><![CDATA[<p>11月は早かった。さっきはじまったような気がする。ぼんやりしている間に25歳になっていて、しかし25歳らしいことをしているかといわれると、目もあてられない。</p>
+<p>私はなにがしたいんだろうなあ。</p>
+<h3>行ったライブ: Easel presents「neco眠る vs あらかじめ決められた恋人たちへ」(渋谷 O-Nest)</h3>
+<p>すごく混んでいた。前半は neco 眠るで、後半があら恋。neco 眠るはぜんぜんノイズよりでなく、楽しくて良かったので思わず CD まで買ってしまった。新しいひとの CD 買うのは久しぶり。あら恋はあいかわらずかっこよかった。</p>
+<h3>出た飲み会: <a href="http://atnd.org/events/1888">chromiumExtensionDevCon</a></h3>
+<p>Google Chrome / Chromium をネタにした飲み会。Twitter ユーザー中心っぽかったけど気にせずまざる。Chrome (PNG と pixel で一致をみるテストはだめだ / タイルなウィンドウマネージャつかってるから Glen ボタンみえない / w3m + WebKit / &#8230;) から関係ないこと (X は悪くない / Scala はコンパイルが遅い / &#8230;) まで、いろいろ話せて楽しかった。元同僚とも会ったので二次会はスタバ。</p>
+<h3>出展したイベント: <a href="http://www.oreilly.co.jp/mtm/04/">Make: Tokyo Meeting 04</a></h3>
+<p>これについてはいろいろ書くことがあるので後で。</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.8-p.info/2009/11/26/feed</wfw:commentRss>
+		</item>
+	</channel>
+</rss>

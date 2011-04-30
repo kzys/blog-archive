@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Shibuya.js Technical Talk #01</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136070770">
+  <h2 class="entry-title"><a href="/articles/2006/04/15/shibuya-js-technical-talk-01" title="Shibuya.js Technical Talk #01">Shibuya.js Technical Talk #01</a></h2>
+  <div class="published">
+    April 15th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://shibuyajs.org/articles/2006/03/27/shibuya-js-technical-talk-1">Shibuya.js Technical Talk #1</a>に行ってきた。</p>
+
+<p>見たのはえとさんの途中あたりから。あと、隣が otsune さんだった(おおつねさんと呼ばれていた)のでちょっと話した。</p>
+    
+    
+    
+    <h3>最後に生き残るのは JavaScript かもな</h3>
+
+<ul>
+<li>JavaScript は「俺ってばすげー」感が足りないので LL じゃない！</li>
+<li>require (というかライブラリ) とテスト環境重要。</li>
+<li>それがあればサーバーサイドだって JavaScript になるかも？</li>
+</ul>
+
+<h3>Prototype.js は遅い!? JavaScript の高速化</h3>
+
+<ul>
+<li>高速なウニみたいになってるかっこいいひとが。</li>
+<li>JavaScript は処理系側の最適化がしょぼいから、人力で最適化するよ。</li>
+<li>バッドノウハウくさいのでグッドラッパーとして JavaScript  コンパイラがほしいと思った。</li>
+</ul>
+
+<h3>はてなよりシャープでしょ→目の付けどころが scriptaculous.js</h3>
+
+<ul>
+<li>ネタがすごい。芸歴の長さを感じた。</li>
+<li>URI に "?" があると動的コンテンツっぽくあつかわれてキャッシュがきかない可能性があるから "#" のほうがいいよ。</li>
+<li>script.aculo.us の "?" 以降のうけとり方はエグい。</li>
+<li>Mozilla のキャッシュアルゴリズムをみて Squid が思い出せるのはすごい。</li>
+</ul>
+
+<h3>Agile Web Development with 萌ディタ</h3>
+
+<ul>
+<li>アイドルだ。</li>
+<li>Webrick で Proxy たててリモートのファイルを差し替えるのは良さげ。</li>
+<li>右上の GyaO は<a href="http://internet.watch.impress.co.jp/cda/news/2006/03/28/11402.html">
+相互リンク
+</a>ではないらしい。</li>
+</ul>
+
+<h3>RJS Template, Jemplate</h3>
+
+<ul>
+<li>RJS: サーバーから JavaScript を返してブラウザがそれを eval</li>
+<li>dRuby で breakpoint かっこいい。</li>
+<li>Jemplate: Template Toolkit っぽい構文の pure JavaScript テンプレート</li>
+<li>Template Toolkit はミニ言語のかおりがするからあんまり好みじゃないと思った。</li>
+</ul>
+
+<h3>Lightning Talks</h3>
+
+<h4>JavaScript を関数的っぽく</h4>
+
+<ul>
+<li>Scheme とか Haskell にあるようなのを JavaScript でやるよ。こういうのには MochiKit がいいよ。</li>
+</ul>
+
+<h4>GreaseMonkey を XPath で楽に</h4>
+
+<ul>
+<li>document.evalute は引数が沢山あってめんどうなので $X という wrapper を書いたよ。</li>
+</ul>
+
+<h4>しんスロットでくるくるストーン</h4>
+
+<ul>
+<li>ラスタスクロールとか Keynote っぽいキューブがぐるっとなるやつを JavaScript でやるよ。</li>
+<li>キューブすげー。しかしなぜ JavaScript で。</li>
+</ul>
+
+<h4>モテル! XUL!</h4>
+
+<ul>
+<li>XUL だと UI が簡単に作れるので空いた時間でモテ活動。</li>
+<li>アニメーションをすぱっと切るのは「服なんて着れれば良いんだよ」と同じ方向性な気が。</li>
+</ul>
+
+<h4>ブラクラの歴史 (live)</h4>
+
+<ul>
+<li>途中そわそわしたけど、ブラウザ落ちる→レポート送信でなんかほっとした。</li>
+<li>声も姿もなかったので youpy さんは人じゃないよ説は継続の方向で。</li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+      <li><a href="/tags/javascript" rel="tag" title="javascript">javascript</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/04/15/shibuya-js-technical-talk-01/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

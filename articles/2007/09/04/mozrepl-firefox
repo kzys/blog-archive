@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: MozRepl でテストつき Firefox プログラミング</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134656440">
+  <h2 class="entry-title"><a href="/articles/2007/09/04/mozrepl-firefox" title="MozRepl でテストつき Firefox プログラミング">MozRepl でテストつき Firefox プログラミング</a></h2>
+  <div class="published">
+    September 4th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>アルバイト先のひとがテスト好きなので、影響されて『Working Effectively With Legacy Code』を読んでいる。英語は得意ではないので、ちゃんと読めているかというとあやしいのだけど。</p>
+
+<p>Firefox の拡張も単体テストを書きつつ作っていくのが良いかと思って、<a href="http://svn.8-p.info/public/mozrepl-test/trunk">mozrepl-test</a> というのを書いてみた。</p>
+
+<h3>つかいかた</h3>
+
+<p>config.rb を環境にあわせて適切に編集した後 make して、できた mozrepl-test を PATH の通ったフォルダに置いてください。</p>
+
+<p>こんなテストコードを</p>
+
+<pre><code>JSAN.use('Test.Simple');
+
+plan({ tests: 4 });
+ok(1 == 1);
+ok(2 != 2);
+ok(3 == 3);
+</code></pre>
+
+<p>a.js として保存して MozRepl を起動した状態で</p>
+
+<pre><code>% mozrepl-test a.js
+1..4
+ok 1
+not ok 2
+#     Failed test
+ok 3
+# Looks like you planned 4 tests but only ran 3.
+</code></pre>
+
+<p>こう実行できます。mozrepl-test は引数に渡されたファイルを順に eval するので、</p>
+
+<pre><code>% mozrepl-test lib.js test-lib.js
+</code></pre>
+
+<p>といった感じで自分は使っています。</p>
+
+<h3>今後の課題</h3>
+
+<p>ブラウザのグローバルな環境を汚染しまくりなので、なんとかしたい。</p>
+
+<h4>9/5 追記</h4>
+
+<p><a href="http://blog.8-p.info/articles/2007/09/05/mozrepl-test">なんとかした</a></p>
+
+<h3>実装</h3>
+
+<p>そもそも MozRepl が含まれている Mozlab には MozUnit というテストフレームワークがあるし、MDC にもそれとは別に <a href="http://developer.mozilla.org/en/docs/Writing_xpcshell-based_unit_tests">Writing xpcshell-based unit tests</a> という文章がある。じゃあなんで自分で作るかというと、</p>
+
+<ul>
+<li>テストフレームワークそのものはクロスブラウザ開発でも使える</li>
+<li>シェルから実行できて、実行結果を標準出力に吐く</li>
+<li>そこそこ手軽に使いはじめられる</li>
+</ul>
+
+<p>なものが欲しかったからで、前述の二つはこの条件を満たせなかった。もちろん、自作してみたかったというのも少なからずあるけど。</p>
+
+<p>実行環境は Firefox + MozRepl で、Ruby から telnet でつないで JavaScript を流し込んでいる。Firefox の ChromeWindow 上で実行されるので、各種 XPCOM がまじったコードも通る。</p>
+
+<p>テストフレームワークには、<a href="http://openjsan.org/">JSAN</a> (プロジェクトのほう) にある Test.Simple, Test.More を使った。この二つが共用している Test.Builder はブラウザだけじゃなく Director MX 2004 でも動くようにできていて、このとき出力には trace 関数を使用している。</p>
+
+<p>JSAN (ライブラリのほう) は本物ではなく <a href="http://svn.mochikit.com/mochikit/trunk/tests/">MochiKit の SVN</a> にある FakeJSAN.js を使った。FakeJSAN.js は SpiderMonkey にある load 関数でローカルのファイルを読み込もうとする。</p>
+
+<p>というわけで、repl.print を呼び出す trace と、repl.load を呼び出す load をそれぞれ定義して、FakeJSAN.js, Test.Builder と MozRepl をつないでいる。 あと Test.Builder は実行が終了すると環境も終了することを前提としていて、複数回実行できないので、そこらへんをごまかすコードが少し。</p>
+
+<p>load 関数は、try-catch で例外をつかまえて、業界標準の「ファイル名:行番号: メッセージ」書式で表示するようにしたので、Emacs でエラーから行番号に飛べてうれしい。mozrepl-test の引数にわたすファイルも同様に load で読み込んでいる。初期の実装ではRuby でファイルを読んで、Firefox 側には eval だけをやらせていたんだけど、これだとファイル名の情報などが Firefox 側に渡らず、エラーの表示が不親切になるのでよくなかった。</p>
+
+<h3>参考</h3>
+
+<ul>
+<li><a href="http://labs.cybozu.co.jp/blog/kazuho/archives/2006/03/test-simple.php">Kazuho@Cybozu Labs: Windows Scripting Host で JavaScript のユニットテスト</a></li>
+<li><a href="http://d.hatena.ne.jp/brazil/20060213/1139771257">実用 - RhinoからMochiKitを使う</a></li>
+<li><a href="http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Reference:Global_Objects:Error">Core JavaScript 1.5 Reference:Global Objects:Error - MDC</a></li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mozilla" rel="tag" title="mozilla">mozilla</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

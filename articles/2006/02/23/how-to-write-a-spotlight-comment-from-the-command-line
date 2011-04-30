@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: How to write a Spotlight comment from the command line</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137012290">
+  <h2 class="entry-title"><a href="/articles/2006/02/23/how-to-write-a-spotlight-comment-from-the-command-line" title="How to write a Spotlight comment from the command line">How to write a Spotlight comment from the command line</a></h2>
+  <div class="published">
+    February 23rd, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://1470.net/mm/mylist.html/16?date=2006-02-23#m140715">YouTube のひと</a>と<a href="http://b.hatena.ne.jp/entry/http://1470.net/mm/mylist.html/16?date=2006-02-23%23m140715">ブラクラのひと</a>がほしがってたので書いてみた。</p>
+
+<pre><code>on run argv
+  tell application "Finder"
+    set comment of ((POSIX file (item 1 of argv)) as file) to (item 2 of argv)
+  end tell
+end run
+</code></pre>
+
+<p>こんなんを a.scpt とか保存して、</p>
+
+<pre><code>% osascript a.scpt file.txt 'hello world'
+</code></pre>
+
+<p>でコメントがつけられます。AppleScript はよくわからないので引数に複数ファイルとかは無し。</p>
+    
+    
+    
+    <p>Spotlight のメタデータを勝手にいじるには、<a href="http://hetima.com/pblog/article.php?id=92">ヘチマ_BLOG : MDItemSetAttribute(s)</a> が使えるはずなんだけど、なぜか MDItemSetAttributes から kMDItemFinderComment をいじると Finder に反映されないので、AppleScript を使ってみた。</p>
+
+<p>Perl 書けるなら <a href="http://search.cpan.org/dist/Mac-Glue/">Chris Nandor / Mac-Glue - search.cpan.org</a> とかも良さげ。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/spotlight" rel="tag" title="spotlight">spotlight</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/02/23/how-to-write-a-spotlight-comment-from-the-command-line/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

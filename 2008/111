@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-28T08:01:45+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-28T08:01:45+09:00</h1>
+
+    <p>
+ちなみに REST 本は読みかけです。S3 のあたりまでは読んだと思う。
+</p>
+<p>
+<a class="ext-link" href="http://yohei-y.blogspot.com/2007/10/atompub-rfc-5023.html"><span class="icon"></span>http://yohei-y.blogspot.com/2007/10/atompub-rfc-5023.html</a>
+</p>
+<blockquote class="citation">
+<p>
+ AtomPub は全ての、とはいかないまでも、多くの Web サービスのベースとなることができるプロトコルです。たとえば blog 、何らかのデータベース、画像/映像リポジトリ、 Wiki、カレンダー、ソーシャルブックマークなど、title/author/updated というメタデータがあって、その読み書きができるサービスは全て AtomPub ベースの API を出せる可能性があるでしょう。
+</p>
+</blockquote>
+<p>
+2007年に youhei さんが書いてた。
+</p>
+  </div>
+</body>
+</html>

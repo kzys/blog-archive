@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: A computer should be on every desktop</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132988060">
+  <h2 class="entry-title"><a href="/articles/2007/07/31/a-computer-should-be-on-every-desktop" title="A computer should be on every desktop">A computer should be on every desktop</a></h2>
+  <div class="published">
+    July 31st, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>最後の一文は特定個人をさしてるのかなーこわいなー、というのはさておき。</p>
+
+<p><a href="http://rakuto.blogspot.com/2007/07/world-wide-home-hardware-mashup.html">Young risk taker.: World Wide Living とHardware Mashupの世界</a></p>
+
+<blockquote>
+    <p>アイデア一つ、面白いWEBアプリケーションを作ってPVを集める事などイノベーションでも何でも無い。それなら個人でやればいい。</p>
+</blockquote>
+
+<p>個々の面白い Web アプリについては玉石混合だろう (全てイノベーションじゃないとはいわない) けど、それを「個人でやればいい」といえること、つまり「アイデア一つで、面白いWEBアプリケーションを作ってPVを集める事」が個人で出来るということ自体は、イノベーションだと思う。</p>
+
+<p>コンピュータって過剰ですよね？といって sophisticated されたデジタル家電や <a href="http://www.atmarkit.co.jp/news/analysis/200707/30/computers.html">単なる表示デバイス＋キャッシュ</a> をすすめる人達にいまひとつ同意できないのはそういうことだ。パーソナルコンピュータの自由と不穏さを残さなきゃいけない。</p>
+
+<p>だから「PCという物はなくなる」には同意しないしできない。</p>
+
+<p>そもそものハードウェアのマッシュアップにもコンピュータは必要なんじゃないか。まあ O'Reilly の Make や GAINER とか泥臭いものを想定しすぎで、<a href="http://www.sonycsl.co.jp/IL/projects/blockjam/">Block Jam</a> みたいなもので組むのかもしれないけど。</p>
+
+<p>でも、ありものを組み合わせるのが Block Jam ですむにしても、汎用の計算能力、ひたすらに浮動小数点演算をするような自由は手放したくない。あと、<a href="http://cruel.org/jwz/savers.html">広告</a>を削ったり、「これは九回目のコピーです」とブロードキャストしてきたバカを黙らせたり、<a href="http://ittousai.org/lessig/free_culture_japanese_text.html">AIBO にジャズを踊らせる</a>といったことは、やっぱりパーソナルコンピュータの仕事だと思う。</p>
+
+<p><a href="http://www.ce-lab.net/ringo/archives/2003/09/23/">Ringo's Weblog: 2003年09月23日 アーカイブ</a></p>
+
+<blockquote>
+    <p>携帯の写真は，撮った後で簡単にPCに送れるところが，普通のデジタルカメラよりも優れている．が，おれのJPhoneの端末は，写真を撮ってから，PCにEメールで送るまでに，19プッシュと30秒も必要なのだ．そして，その19プッシュはすべて，毎回同じなのだ．これは人間にさせるべきことではない．じっさいこれは，我慢のギリギリ限界である．</p>
+    
+    <p>携帯電話のソフトウェアがすべて公開されていれば，19クリックを0クリックにするプログラムを自分で書くのに，それが公開されていないせいで，そのチャンスが潰されている．</p>
+</blockquote>
+
+<p>iPhone はすばらしいんだろう。でもそれは駄目な独裁者が素敵な独裁者に交代したくらいのはなしで、政治体制そのものは変わっていない。たとえば、撮った写真をアップロードして Twitter に投げる、とかはできない。<a href="http://iseebi.half-done.net/?Software%2FImadoko">W-ZERO3 はそれができる</a>。</p>
+
+<p>もちろん、政治的な好ましさと、ソフトウェア・ハードウェアの好ましさは別であって、いま自分が Mac を使っているのは後者をとったからなんだけど。</p>
+
+<p>文字が読めない人にとって書籍は過剰だろう。本をとりあげずに、識字率を上げなきゃいけない。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/programming" rel="tag" title="programming">programming</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

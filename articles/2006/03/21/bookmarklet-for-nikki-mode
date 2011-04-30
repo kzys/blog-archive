@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Bookmarklet for "Nikki" mode</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137040380">
+  <h2 class="entry-title"><a href="/articles/2006/03/21/bookmarklet-for-nikki-mode" title="Bookmarklet for &quot;Nikki&quot; mode">Bookmarklet for &quot;Nikki&quot; mode</a></h2>
+  <div class="published">
+    March 21st, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <ul>
+<li><a href="http://beta.g.hatena.ne.jp/sugio/20060216/p1">betaグループ - 別冊はてな話 - 日記モードはてなダイアリーの見出しを取得してブックマークしたい要望</a></li>
+<li><a href="http://i.hatena.ne.jp/idea/1934">はてなアイデア - 日記モードのはてなDにおいて、個別記事をブックマークする際にタイトルを取得できるようになると便利だと思うんすけど無理でしょうか。</a></li>
+<li><a href="http://i.hatena.ne.jp/idea/8620">はてなアイデア - 日記モードのダイアリーにおいて個別記事をブックマークする際に，タイトルは「ダイアリー名 - 見出し」にしてほしい</a></li>
+</ul>
+
+<p>タイトルは title 要素に入れるべきだし、ad-hoc に対応するのは美しくないよね。</p>
+
+<p>でも書いた。</p>
+
+<ul>
+<li><a href="javascript:(function()%7Bvar%20t=document.title;var%20lc=location.href;if(lc.indexOf('http://d.hatena.ne.jp/')==0&amp;&amp;lc.indexOf('%23'))%7Bvar%20ns=document.getElementsByTagName('h3');for(var%20i=0;i%3Cns.length;i++)%7Bvar%20h3=ns.item(i);if(h3.getElementsByTagName('a').item(0).href==lc)t+=('%20-%20'+h3.innerHTML.replace(/%3C%5B%5E%3E%5D*%3E/g,''));%7D%7Dwindow.open('http://b.hatena.ne.jp/add?mode=confirm&amp;is_bm=1&amp;title='+encodeURIComponent(t)+'&amp;url='+escape(lc),'_blank','width=520,height=600,resizable=1,scrollbars=1');%7D)();">このページを追加</a> (ポップアップ)</li>
+<li><a href="javascript:(function()%7Bvar%20t=document.title;var%20lc=location.href;if(lc.indexOf('http://d.hatena.ne.jp/')==0&amp;&amp;lc.indexOf('%23'))%7Bvar%20ns=document.getElementsByTagName('h3');for(var%20i=0;i%3Cns.length;i++)%7Bvar%20h3=ns.item(i);if(h3.getElementsByTagName('a').item(0).href==lc)t+=('%20-%20'+h3.innerHTML.replace(/%3C%5B%5E%3E%5D*%3E/g,''));%7D%7Dwindow.location='http://b.hatena.ne.jp/add?mode=confirm&amp;title='+encodeURIComponent(t)+'&amp;url='+escape(lc);%7D)();">このページを追加</a> (非ポップアップ)</li>
+</ul>
+
+<p>「■」とカテゴリ表記はとっぱらったほうがいいかも。
+ここに <a href="http://subsimple.com/bookmarklets/jsbuilder.htm">Bookmarklet Builder</a> 置いておきますから、誰かおねがいします。</p>
+
+<p>あと、Safari の JavaScript 実装のアレさは、MSIE の CSS 実装に並ぶというか超えるかもしれないと思った。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/bookmarklet" rel="tag" title="bookmarklet">bookmarklet</a></li>
+      
+      <li><a href="/tags/hatena" rel="tag" title="hatena">hatena</a></li>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/21/bookmarklet-for-nikki-mode/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

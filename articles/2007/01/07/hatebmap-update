@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: hatebmap update</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133544960">
+  <h2 class="entry-title"><a href="/articles/2007/01/07/hatebmap-update" title="hatebmap update">hatebmap update</a></h2>
+  <div class="published">
+    January 7th, 2007
+  </div>
+  <div class="entry-content">
+    
+    <p>ちょくちょくいじっていた <a href="http://8-p.info/hatebmap/">hatebmap</a> が、とりあえず一段落。</p>
+    
+    
+    
+    <h3>MochiKit</h3>
+
+<p>ライブラリには、ごくせまい範囲で流行っている気がする MochiKit を使ってみた。</p>
+
+<p>MochiKit は面白いけど使いやすくはないような。ただ、この面白さと使いやすくなさはどちらも同じ「いままでは無い感じで新鮮だけど慣れない」というところから来ているようにも思うので、もうちょっと使ったら変わるかもしれない。</p>
+
+<h3>Graceful degradation</h3>
+
+<p><a href="http://www.amazon.co.jp/o/ASIN/1590595335/8pinfo-22/ref=nosim"><img src="http://images.amazon.com/images/P/1590595335.01.MZZZZZZZ.jpg" alt="DOM Scripting: Web Design with JavaScript and the Document Object Model"></a></p>
+
+<p>去年、バイト先のひとにおすすめされてちょっとだけ読んだ <a href="http://domscripting.com/book/">DOM Scripting</a> という本があって "graceful degradation" はそれで知ったキーワード。ほかにも "progressive enhancement" とか "unobtrusive JavaScript" というのもあったけど、どれも基本的には同じ「CSS とか JavaScript とかは、無くても良いけどあったらより良い、という感じにしようね」というはなしだったと思う。</p>
+
+<p>hatebmap の場合、矩形の位置と大きさの指定は HTML に style="..." と直書きして、矩形の面積に応じた文字サイズの変更だけ JavaScript にまわしていたんだけど、これだと JavaScript なしの環境で、文字サイズ変更無しにせまい矩形に配置されてしまったりで読みづらいので、矩形への配置も JavaScript でやるようにした。それにともなって、ウィンドウサイズの変更にも対応。</p>
+
+<p>treemap の計算自体はサーバーサイドでやってるので、JavaScript はかけ算だけ。それでも一気にやると重いので Deferred ですこしづつ実行している。</p>
+
+<h3>ツールチップ</h3>
+
+<p>文字サイズがちいさいものは読みづらかったりするので、タイトルとユーザー数をツールチップで出してみた。</p>
+
+<p>マウスを置いて数秒で表示するところも Deferred。MochiKit っぽく書けた！と思ったけどこれは setTimeout でも書けるな……。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/hatena" rel="tag" title="hatena">hatena</a></li>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+      <li><a href="/tags/socialbookmark" rel="tag" title="socialbookmark">socialbookmark</a></li>
+      
+      <li><a href="/tags/visualization" rel="tag" title="visualization">visualization</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/01/07/hatebmap-update/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

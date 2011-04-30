@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Flash Video is just a container</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136829120">
+  <h2 class="entry-title"><a href="/articles/2006/05/16/flash-video-is-just-a-container" title="Flash Video is just a container">Flash Video is just a container</a></h2>
+  <div class="published">
+    May 16th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://blog.8-p.info/articles/2006/05/06/illegal-movie-and-illegal-decoder#comments">blog.8-p.info: Illegal movie and illegal decoder?</a> について、より詳しい情報をコメントでもらったので、こっちにも転載。</p>
+
+<blockquote>
+    <p>まとめると、</p>
+    
+    <ol>
+    <li>現在のほとんどのFLVファイルはFLV1なのでOn2問題とはそもそも無関係</li>
+    <li>将来FLV4も普及するかもしれないが、On2が嫌がったのはソースを見られることで、デコーダー自体ではない</li>
+    </ol>
+    
+    <p>ということです。FLV4がどの程度普及するのかを含めて（プラグインのライセンス料高いですから）状況は流動的ですが・・・</p>
+</blockquote>
+
+<p>とのことです。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/copyright" rel="tag" title="copyright">copyright</a></li>
+      
+      <li><a href="/tags/flash" rel="tag" title="flash">flash</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/05/16/flash-video-is-just-a-container/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

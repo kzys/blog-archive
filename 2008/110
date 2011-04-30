@@ -1,0 +1,17 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-28T07:27:13+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-28T07:27:13+09:00</h1>
+
+    <p>
+Twitter クローンだったら Twitter にそろえてほしい気もするけど、そういう先行者との互換性を抜きにすれば、大抵の CRUD 系は AtomPub で乗り切れる気がしている。
+</p>
+  </div>
+</body>
+</html>

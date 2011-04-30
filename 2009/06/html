@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>HTML + CSS + JavaScript を組み合わせる難しさ - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry906">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/06/html">HTML + CSS + JavaScript を組み合わせる難しさ</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-06-18 01:28    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>私の基本的な主張は「JavaScript は難しくない」だ。ただ、HTML + CSS は難しいと思っていて、それと組み合わせる JavaScript をちゃんと書いたり、書いてもらおうとすると困難は多い。</p>
+<h3>クロスブラウザ</h3>
+<p>JavaScript についてよくふれられるクロスブラウザの問題、こまかな差異のあるホスト間で動作するプログラムをどう書くか、という問題は「ソフトウェアの移植性」としてそれなりに歴史のある問題だと思う。JavaScript で「良い」とされる書き方は、たとえば C + UNIX みたいな環境で「良い」とされる書き方と似ていることがある。</p>
+<p>例えば、ほとんどのブラウザにある便利な関数が、特定のブラウザにだけ無いときに</p>
+<pre>
+if (! Array.prototype.forEach) {
+    Array.prototype.forEach = function () { ... };
+}
+</pre>
+<p>みたいなものを書くのと ruby (MRI) の <a href="http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/missing/">missing/</a> にあるファイル群は同じことをしている。</p>
+<p>また、<a href="http://www.quirksmode.org/js/support.html">Object Detection</a> と呼ばれる「User-Agent ではなくクラス/メソッド/関数の有無をみろ」という原則も <a href="http://www.itojun.org/hack/autoconf/promise.html">autoconfぼくらの約束</a> にある</p>
+<blockquote><p>
+#ifdef __FreeBSD__を書いて「移植性が高いぜ」とか いばってるのはもう恥ずかしい。未知のOSでも動くように、autoconfで調べて#ifdef HAVE_HOGE しましょう。
+</p></blockquote>
+<p>と同じことだと思う。</p>
+<h3>Progressive Enhancement</h3>
+<p>難しいと思うのは Progressive Enhancement, 段階的な機能強化だ。</p>
+<p>これは「MMX 命令がある CPU だったらそれを使う」みたいな実行時間効率を一次元で強化するのとは違っている。HTML は文章の構造を、CSS はその見た目を、そして JavaScript はそれにふるまいを与える、という分担は独特で、しかも、その分担がそろわない場合を常に考慮する、というのはわりと酷なはなしだと思う。</p>
+<p>「ユーザー体験という観点から見れば一次元だ」みたいなものは単なる言葉遊びで難しさを緩和しないし、3つの分担と「段階的」が理想主義すぎるといわれると確かにそんな気もする。Yahoo! の Nicole Sullivan さんの <a href="http://wiki.github.com/stubbornella/oocss">Object Oriented CSS</a> なんかをみると、JavaScript を足さなくとも、HTML + CSS ですらずいぶん大変なことになっていると思う。</p>
+<p>あきらめるひともいる。Cappuccino と Objective-J で <a href="http://280slides.com/">280 Slides</a> を作り上げた 280 North の人々は「Cappuccino は Progressive Enhancement / Graceful Degradation にはできていない」という。</p>
+<p><a href="http://cappuccino.org/discuss/2008/10/21/web-pages/">Web Pages and Web Programs</a></p>
+<blockquote><p>Cappuccino represents a significant shift in attitudes toward web application development. It was designed specifically and exclusively for writing web programs. None of Cappuccino will work in an environment without Javascript. After all, what use would a program like 280 Slides be without its interactive behavior? The program itself doesn’t have any data to display, so there is nothing to degrade to.</p></blockquote>
+<p>Objective-J なんて無理するから&#8230;。あー、いや、これはこれで現実的な判断だと思います。ただ、彼らのいう &#8220;Web Program&#8221; にまで達しているソフトウェアはそんなに無いので、万能ないいわけではない。</p>
+<h3>まとめ</h3>
+<p>結論はとくにないです。</p>
+<ul>
+<li>JavaScript は難しくない。HTML とあわせるのが難しい。</li>
+<li>クロスブラウザは移植性の話で、わりと解かれた問題だ。既存の JavaScript 以外で書かれたソフトウェアにも似たようなものはある。</li>
+<li>Progressive Enhancement は新しくて難しい問題で、知っていて解くことをあきらめる人々もいる。</li>
+</ul>
+<p>私は HTML 4 や XHTML がわりと好き (HTML 5 は微妙) で、CSS, JavaScript との分担もきれいだとは思う。難しさは一段上の成果物を作ろうとしているのだからしょうがない。ただ、その「上」さをだれがどのくらい評価するかは気にかかる。</p>
+<p>私が well-formed, valid な HTML とか、microformats や RDFa みたいな目に見えないものに肩入れしがちなのは、それが自分以外の開発者にバトンを置いておくことだというのがあるけど、そういうことを、例えば <a href="http://www.bijint.com/jp/">美人時計</a> を hCard に対応させて顧客の前で説明する自信は無い。あるいは、アクセシビリティで障害者が、みたいな話をするにもそんなに詳しくなく、知りもしない集団を都合良く被害者あつかいするのもどうかと思う。</p>
+<p>高い目標とそれを実現するための教育、ってのが王道なんだろうけどね。後者が欠けたときの失敗がこわいというか。いろいろあきらめすぎなのかなあ。</p>
+<h3>追記</h3>
+<p><a href="http://b.hatena.ne.jp/os0x/20090618#bookmark-14041888">はてなブックマーク - bookmark0x</a></p>
+<blockquote><p>JavaScript自体は難しくないのは同意。加えてHTML、CSSも単体では難しくないと思う。それぞれを組み合わせ、クロスブラウザにしようとすると途端に職人芸の世界に。ところでif (Array.prototype.forEach)は!が抜けてる</p></blockquote>
+<p>ありがとうございます、直しました。単体では難しくないというのは同意します。クロスブラウザは、JavaScript なら既存のライブラリを使えば「職人芸」ほど酷くはないかなあ。職人芸というかバッドノウハウだと思っているので <a href="http://d.hatena.ne.jp/os0x/20090409/1239278316">JavaScriptは悪くない</a> で主張されていたライブラリに対する姿勢にはあんまり同意できないです。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="906" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

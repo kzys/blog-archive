@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-07-19T00:19:34+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-07-19T00:19:34+09:00</h1>
+
+    <p>
+今日役に立った Mac 豆知識: アプリケーションの設定は大抵 ~/Library/Preferences にはいるので、最近インストールしたアプリケーションの設定を一度クリアしたいときは
+</p>
+<pre class="wiki">
+% ls -t ~/Library/Preferences | head
+</pre>
+<p>
+で見て、それらしいファイルを消す。
+</p>
+  </div>
+</body>
+</html>

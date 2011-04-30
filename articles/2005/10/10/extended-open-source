@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Extended Open Source</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137158150">
+  <h2 class="entry-title"><a href="/articles/2005/10/10/extended-open-source" title="Extended Open Source">Extended Open Source</a></h2>
+  <div class="published">
+    October 10th, 2005
+  </div>
+  <div class="entry-content">
+    
+    <p>しばらく前に、自分のはてなブックマークに <a href="http://del.icio.us/kzys/">del.icio.us/kzys</a> を冗談で登録してみたら、むかし<a href="http://d.hatena.ne.jp/uboshi/20050618/naitousaiban">NKN：ノータリン感想ノート - 「内藤裁判 - 逆転裁判 in FF11 -」に見る「コミュニケーションのコンテンツ化」と「コンテンツのオープンソース化」の可能性</a>をブックマークしたことについて、<a href="http://d.hatena.ne.jp/theinvisiblegun/20050624/p5">書き手のうぼしさん(のサブアカウント)のはてなダイアリー</a>からリンクされていて、ちょっとびっくりしました。</p>
+
+<p>ソーシャルブックマークで批判的なことをするのは自分には向かないみたいで、どうにも気持ちが悪いので、いまさらですが "disagree" なんてタグをつけた理由を書こうと思います。</p>
+    
+    
+    
+    <p>まず、自分は「広義のオープンソース」のようなものが、あまり好きではありません。
+オープンソースというのは、<a href="http://ja.wikipedia.org/wiki/オープンソース">きちんとした定義があり、ある意図の基にある人物が作った言葉</a>であって、あまり拡張するべきではないと考えています。</p>
+
+<p>たとえば、<a href="http://ised.glocom.jp/ised/04090212/p1">はてな社の近藤社長の ised@glocom での発言</a>は、オープンソースとバザールモデルを混同していると思います。</p>
+
+<blockquote>
+    <p>まずどこがオープンソース的なのかといえば、ユーザーの参加性です。たとえばはてなのユーザーからの機能要望や、動作のおかしいところのご指摘といったものが数多く寄せられるのですが、はてなの側でも、それをなるべく多く早く採用しているんですね。ここにユーザーのはてなへの帰属意識や所有意識が非常に強いという、前回の設計研でも出てきた部分とが関係しているんだと思うんです。</p>
+    
+    <p>ただ本来のオープンソースとの対比で考えてみたのですが、基本的にはてなのソースコードというのは公開されていないわけです。公開されていないけれども、たくさんの人がコミットしているのはどこかといえば、その機能やアイデアの部分なんですね。つまり、「人文系オープンソース」をはてなはやっているんだと思うんです。たとえば脆弱性の発見はコードを知らなくてもできるという話とよく似ている。</p>
+</blockquote>
+
+<p>そういうわけで「コンテンツのオープンソース化」にも違和感がありますし、ほとんどのコンテンツでは、ソースをクローズドにした状態は成り立たないとも思っています。<a href="http://ittousai.org/lessig/free_culture_japanese_text.html">Lawrence Lessig の講演</a>から引用します。</p>
+
+<blockquote>
+    <p>そしてさらに重要なことに、1790年には、当時の技術のために、著作権で保護されたすべてのものはフリー・コードだった。シェイクスピアの作品を見れば、ソースを読むことができる——ソースこそが本だ。法律で保護されたどんな創造作品でも、手にとって学ぶことで何が重要なのかを理解できた。それがデザインであり制度だった。特許についてさえ、テクノロジーは明瞭（トランスペアレント/透明)なものだった。機織り機を理解するために、特許状を読む必要などない——ただ分解してみればいい。　当時の著作権や特許は、学習し理解することは自由のままという文脈のなかでの法的な保護だった。この文化のなかでのコントロールはわずかだった。わずかなコントロール…いい響きだ。だろう？</p>
+</blockquote>
+
+<p>コンピュータソフトウェアでは、作り手が書いたソースコードをコンパイルして、それを出荷するというかたちをとっているものがほとんどです。
+Macromedia Flash でつくられた .swf ファイルは .fla ファイルをコンパイルしたものですから「オープンソース化」もアリでしょうが、コンテンツという非常に広い範囲について「オープンソース化」を定義するのは、かなり無理があると思います。</p>
+
+<p>そういえば、最近『ハッカー宣言』という本が、どうもハッカーを誤解しているんじゃないか、と話題になっていました。
+社会学やポストモダンの魔の手が、コンピュータやインターネット側にものびてきているのかもしれません。みんな逃げて!</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/opensource" rel="tag" title="opensource">opensource</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2005/10/10/extended-open-source/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

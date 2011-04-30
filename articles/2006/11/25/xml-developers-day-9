@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: XML Developers Day #9</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135853420">
+  <h2 class="entry-title"><a href="/articles/2006/11/25/xml-developers-day-9" title="XML Developers Day #9">XML Developers Day #9</a></h2>
+  <div class="published">
+    November 25th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>第九回 XML 開発者の日に行ってきた。</p>
+
+<p>画像処理学会どうこうとあったので、学会のイベントの片隅ででもやるのかと思っていたのだけど、とくにそういうのではなかった。</p>
+    
+    
+    
+    <h3>REST Best Practices</h3>
+
+<p>Cool URI, Web API の設計、そして最近の REST 事情。発表資料は <a href="http://yohei-y.blogspot.com/2006/11/xml_24.html">yohei-y:weblog</a> からたどれる。</p>
+
+<p>はてなブックマーク件数取得 API は、検索結果を「返す」のではなく「作る」と考えて 201 と Location: で permalink つきの Atom フィードに飛ばすというのは、スマートフォルダっぽくて新鮮だった。permalink とクエリーの対応表を持つのはあんまりうれしくない気もするけど。</p>
+
+<p>Web アプリケーションと Web サービスとは分けない方が良いらしい。</p>
+
+<h3>Rails</h3>
+
+<p>Rails における REST のはなし。Rails 標準の URI は /controller/action/id の形式なので、おもいっきり動詞 (action) がはいっていたんだけど、1.2 ではこれが見直される。具体的には CRUD の4つのアクションをメインに制限して、それぞれを POST, GET, PUT, DELETE に対応させる形になるらしい。</p>
+
+<p>map.resource とか、フォーム入力と XML 入力の同一視とか「良い (と DHH が思っている)」ことが簡単にできるようになっているのは Rails らしい。いきすぎた DSL は Ruby じゃない別の言語みたいになって、あんまり好きではないのだけど。</p>
+
+<p>多:多の関係では「関係」をリソースにするとか、リソースの切り出し方は参考になった。どこを関数・クラスにするかという問題と一緒で、なかなか難しそうなところだと思う。</p>
+
+<h3>xfy</h3>
+
+<p>xfy というのはジャストシステムが開発している XML アプリケーション環境。XVCD という XSLT の拡張を書くだけで、いろいろなことができるらしい。XML を「書くだけ」ってあたりに文化の差を感じる。発表資料は <a href="https://www.xfytec.com/community/modules/news/article.php?storyid=133">xfy Community </a> にある。</p>
+
+<p>Java と XML を信じている人のための Plagger かなー、という印象だったけど、発表の最後で「スキーマから View がつくれる」「プログラミング無しでビジュアルにも」とか気になるはなしが。そっちのほうが興味あるな。</p>
+
+<h3>Plagger</h3>
+
+<p>おなじみ、とはいっても「<a href="http://www.atmarkit.co.jp/fnetwork/rensai/5minplagger/01.html">まだまだ知名度が低い</a>」「<a href="http://slashdot.jp/interview/comments.pl?sid=341058&amp;cid=1060876">ウィキペディアでnon notableだから削除されそうな有名ではないソフト</a>」とか最近でも書かれてしまう Plagger のはなし。</p>
+
+<p>基本的な内容は <a href="http://blog.bulknews.net/mt/archives/002043.html">Plagger World Tour</a> と同じ。標準争いには参加せず淡々と全部に対応していくよという姿勢と、それを実現できる extensible で plaggable なソフトウェアという、コードに裏付けられたスタイルがかっこよかった。</p>
+
+<p>会場からの質問が「インストール大変・面倒」まわりに集中していたのにはちょっと萎えた。開発者の日だよ！</p>
+
+<h3>ODF と OOXML</h3>
+
+<p>オフィス文章のフォーマットふたつ、OpenOffice 陣営の ODF と、Microsoft 陣営の OOXML の、技術的ではなく政治的なはなし。標準は「決まる」ものだと思っていたので「決める」ひとの話を聞けるのは貴重だ。でも長かった。</p>
+
+<p>ECMA はもともとは European Computer Manufacturers Association なので、国ごとにもっている ISO の Fast-track procedure を行使できるんだけど、いつのまにか Ecma International  というヨーロッパとか関係ない団体になっていて「あなたの標準を ISO に通しますよ」的な商売をしている、というはなしが面白い。</p>
+
+<p>個人的には ODF と OOXML だったら、やっぱり OOXML のほうが普及するように思うけど、そもそも印刷前提のオフィス文章自体が廃れるという方向もあるんじゃないかと思っている。個人的にはそっちに行ってほしい。</p>
+
+<h3>microformats</h3>
+
+<p>基本的には <a href="http://2xup.org/log/2006/10/10-1800">CSS Nite LP Disk 1 での発表</a>と同じ内容。会場から microformats が valid かどうかを検査する方法はあるのか、という質問があったけど、いまのところそういったものは無いらしい。RELAX NG ならスキーマを書けるんじゃないかというはなしも。</p>
+
+<h3>Syndy Chronicle</h3>
+
+<p><a href="http://www.ne.jp/asahi/yamahige/green/syndy/Readme-ja.html">Syndy</a> というのは山口さんの作られたフィードアプリケーションランチャーで、xfy 上で XVCD を用いて実装されている。その上で動作する年表ビューア/エディタが <a href="http://www.ne.jp/asahi/yamahige/green/syndy-chronicle/Readme-ja.html">Syndy Chronicle</a>。microformats の hCalender, hResume から年表をつくって、複数の年表をまぜて表示できる。</p>
+
+<p>「これは microformats として正しいかどうかはちょっと自信が無いんですが、Trails でも Syndy でも動くので……」というのがやっぱり気になった。普及のためには手軽さが必要なのはわかるけど「実装通るから大丈夫」でやっていくのは、HTML の悲劇を繰り返すことになりそうだと思う。</p>
+
+<h3>feedpath</h3>
+
+<p>どうも一部から妙な愛されかたをしている feedpath だけど、他サービスのパスワード入力させるのってどうよ？とかいってる場合じゃなかった。</p>
+
+<p>feedpath はフィードリーダー + ブログエディタで、エディタ側が microforamts に対応。記事の投稿のときに、レビューやイベントを選ぶとそれ専用の入力画面に切り替わって、入力してポストすると hReview, hCalender としてマークアップされた HTML が投稿される。</p>
+
+<p>これだけだと気の利いた<a href="http://d.hatena.ne.jp/keyword/%A4%CF%A4%DE%A4%BE%A4%A6">はまぞう</a>程度だけど、すごいのはこのテンプレートが編集・新規定義可能なところで、つまりこれって structured blogging なんじゃないかと。</p>
+
+<p>既存の文章にマークアップを追加する形ではないものの、こういう機能をエンドユーザー向けに提供しているのは真剣にすごいと思った。</p>
+
+<h3>懇親会</h3>
+
+<p>とくに知り合いもいない(会社の人も来てたけど行かないって)のだけど、せっかくなので単身のりこんでみた。面白かったけど、ここには書けないようなはなしが多かったので、書くことはしない。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/11/25/xml-developers-day-9/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

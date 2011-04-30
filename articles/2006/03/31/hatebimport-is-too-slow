@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: hatebimport is too slow</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136955450">
+  <h2 class="entry-title"><a href="/articles/2006/03/31/hatebimport-is-too-slow" title="hatebimport is too slow">hatebimport is too slow</a></h2>
+  <div class="published">
+    March 31st, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://8-p.info/hatebimport/">hatebimport</a> の</p>
+
+<blockquote>
+    <p>取り込みには、最低でも (ブックマーク数 / 20) * 45分 の時間がかかります。</p>
+</blockquote>
+
+<p>というのは、<a href="http://b.hatena.ne.jp/help">はてなブックマーク - ソーシャルブックマーク</a> の</p>
+
+<blockquote>
+    <p>特定のRSS/Atomフィードへのアクセスは多くても30分毎程度にとどめてください。</p>
+</blockquote>
+
+<p>を、おもいっきり安全側に倒した解釈だったんだけど、はてなブックマークの feed には20件ごとのページングがあって、ページをずらすごとに30分程度の wait をいれるのはさすがに不便なので、株式会社はてなにアクセス間隔についてメールで聞いてみた。</p>
+
+<p>返事は「明確な閾値は無いので、常識の範囲でよろ」だった。うーん。</p>
+
+<p><a href="http://del.icio.us/help/api/">del.icio.us/help/api</a> だと</p>
+
+<blockquote>
+    <p>Please wait AT LEAST ONE SECOND between queries, or you are likely to get automatically throttled. If you are releasing a library to access the API, you MUST do this.</p>
+</blockquote>
+
+<p>というのがあるけど、さすがに一秒 wait は短い気がするし。</p>
+
+<p>ちなみに delimport は毎回 http://del.icio.us/api/posts/all にアクセスして全データをとってきているのでページングは無いっぽい。アメリカンだ。</p>
+
+<p>そういうわけで、hatebimport は次リリースではやくなる予定です。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/hatena" rel="tag" title="hatena">hatena</a></li>
+      
+      <li><a href="/tags/socialbookmark" rel="tag" title="socialbookmark">socialbookmark</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/31/hatebimport-is-too-slow/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

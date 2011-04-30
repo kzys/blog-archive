@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: 日本語環境の iTerm で option キーを meta キーにする</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135320490">
+  <h2 class="entry-title"><a href="/articles/2007/02/22/iterm-option-meta" title="日本語環境の iTerm で option キーを meta キーにする">日本語環境の iTerm で option キーを meta キーにする</a></h2>
+  <div class="published">
+    February 22nd, 2007
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://www.hasta-pronto.org/archives/2007/01/17-1802.php">iTerm での Meta キーの扱い解決策 : Hasta Pronto.org</a></p>
+
+<blockquote>
+    <p>ちょっと色々対策を考えて試してみたら Meta キーの扱いに関しては修正出来ちゃいました。誰かの役に立つかもしれないので設定方法を残しておきます。</p>
+</blockquote>
+
+<p><a href="http://unknownplace.org/memo/2006/05/31#e001">CLON - 2006/05/31 - OSX</a></p>
+
+<blockquote>
+    <p>あとiTermつかっているとmetaキーのために入力モードをU.S.にする必要があるのだけど</p>
+</blockquote>
+
+<p>どうも BK っぽくて嫌なので patch を書いてみた。</p>
+    
+    
+    
+    <p>もとのソースは CVS 先端の iTerm です。zsh で M-x が効くことだけは確認。</p>
+
+<pre><code>Index: PTYSession.m
+===================================================================
+RCS file: /cvsroot/iterm/iTerm/PTYSession.m,v
+retrieving revision 1.337
+diff -p -u -8 -r1.337 PTYSession.m
+--- PTYSession.m    21 Feb 2007 06:29:14 -0000  1.337
++++ PTYSession.m    22 Feb 2007 08:53:33 -0000
+@@ -763,18 +763,20 @@ static NSImage *warningImage;
+     //} else {
+     //    char *fs_str = (char *)[mstring fileSystemRepresentation];
+     //    data = [NSData dataWithBytes:fs_str length:strlen(fs_str)];
+     //}
+
+     data = [mstring dataUsingEncoding:[TERMINAL encoding]
+                 allowLossyConversion:YES];
+
+-    if (data != nil) 
++    if (data != nil) {
+        [self writeTask:data];
++        [TEXTVIEW setIMInputInsert: [data length] &gt; 0];
++    }
+
+    // let the update thred update display if a key is being held down
+    if([TEXTVIEW keyIsARepeat] == NO)
+        [self updateDisplay];
+ }
+
+ - (void)insertNewline:(id)sender
+ {
+Index: PTYTextView.m
+===================================================================
+RCS file: /cvsroot/iterm/iTerm/PTYTextView.m,v
+retrieving revision 1.302
+diff -p -u -8 -r1.302 PTYTextView.m
+--- PTYTextView.m   15 Feb 2007 03:23:05 -0000  1.302
++++ PTYTextView.m   22 Feb 2007 08:53:35 -0000
+@@ -2335,24 +2335,29 @@ static int cacheSize;
+         IM_INPUT_MARKEDRANGE = NSMakeRange(0, 0);
+         [markedText release];
+        markedText=nil;
+     }
+
+     if ([(NSString*)aString length]&gt;0) {
+         if ([_delegate respondsToSelector:@selector(insertText:)])
+             [_delegate insertText:aString];
+-        else
++        else {
+             [super insertText:aString];
+-
+-        IM_INPUT_INSERT = YES;
++            IM_INPUT_INSERT = YES;
++        }
+     }
+
+ }
+
++- (void) setIMInputInsert: (BOOL) flag
++{
++    IM_INPUT_INSERT = flag;
++}
++
+ - (void)setMarkedText:(id)aString selectedRange:(NSRange)selRange
+ {
+
+ #if DEBUG_METHOD_TRACE
+     NSLog(@"%s(%d):-[PTYTextView setMarkedText:%@ selectedRange:(%d,%d)]",
+           __FILE__, __LINE__, aString, selRange.location, selRange.length);
+ #endif
+    [markedText release];
+Index: Headers/iTerm/PTYTextView.h
+===================================================================
+RCS file: /cvsroot/iterm/iTerm/Headers/iTerm/PTYTextView.h,v
+retrieving revision 1.66
+diff -p -u -8 -r1.66 PTYTextView.h
+--- Headers/iTerm/PTYTextView.h 10 Jan 2007 07:42:05 -0000  1.66
++++ Headers/iTerm/PTYTextView.h 22 Feb 2007 08:53:36 -0000
+@@ -272,16 +272,17 @@ enum { SELECT_CHAR, SELECT_WORD, SELECT_
+ - (NSRange)markedRange;
+ - (NSRange)selectedRange;
+ - (NSArray *)validAttributesForMarkedText;
+ - (NSAttributedString *)attributedSubstringFromRange:(NSRange)theRange;
+ - (void)doCommandBySelector:(SEL)aSelector;
+ - (unsigned int)characterIndexForPoint:(NSPoint)thePoint;
+ - (long)conversationIdentifier;
+ - (NSRect)firstRectForCharacterRange:(NSRange)theRange;
++- (void)setIMInputInsert:(BOOL)flag;
+
+    // service stuff
+ - (id)validRequestorForSendType:(NSString *)sendType returnType:(NSString *)returnType;
+ - (BOOL)writeSelectionToPasteboard:(NSPasteboard *)pboard types:(NSArray *)types;
+ - (BOOL)readSelectionFromPasteboard:(NSPasteboard *)pboard;    
+
+ - (void)resetCharCache;
+</code></pre>
+
+<h3>説明</h3>
+
+<p>option を meta に読み替えてどうこうという処理に行くには、PTYTextView#keyDown: のなかで [delegate keyDown:event]; が実行される必要がある。でも日本語環境では PTYTextView#keyDown: のなかの IMEnable は YES で、さらに option + なんとかがアクセント記号つきの文字を生成して PTYTextView#inserText で IM_INPUT_INSERT も YES になってしまう。</p>
+
+<p>とりあえず IMEnable を NO にして試したら、バックスラッシュが入力できなくなる。円記号をバックスラッシュに読み替えるのもインプットメソッドがやっているっぽい。</p>
+
+<p>結局、アクセント記号つきの文字が PTYSession#insertText で NSString を NSData に変換するときに [data length] == 0 で消えるのを利用して、そこで TEXTVIEW にはいっている PTYTextView の IM_INPUT_INSERT を NO にするようにした。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/02/22/iterm-option-meta/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

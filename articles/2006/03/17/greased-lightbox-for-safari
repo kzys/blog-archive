@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Greased Lightbox for Safari</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137276410">
+  <h2 class="entry-title"><a href="/articles/2006/03/17/greased-lightbox-for-safari" title="Greased Lightbox for Safari">Greased Lightbox for Safari</a></h2>
+  <div class="published">
+    March 17th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://shiftingpixel.com/lightbox/">Greased Lightbox</a> という <a href="http://del.icio.us/url/6a12a6aa6d4860a7fbc246e9f1e3f4d4">del.icio.us</a> で 377 users, <a href="http://digg.com/software/Never_have_to_open_an_image_link_again">Digg</a> で 1940 diggs の人気 Greasemonkey スクリプトのページで「Safari だったら Creammonkey で動くよ」的に紹介されているんですが<strong>動かねぇよ！</strong></p>
+
+<p>というわけで、<a href="http://8-p.info/Creammonkey/index.html.en">8-p.info - Creammonkey (嘘英語のほう)</a> に Safari むけ改変バージョンを置きました。カンマの位置と矢印キーの Event#keyCode がおかしいのの修正です。画像サイズが取得できてないのは放置。</p>
+
+<p>あと、<a href="http://blogs.adobe.com/jnack/2006/03/greased_lightbox.html">Adobe 社員のブログ</a>からリンクされたよ。 (←自慢)</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/creammonkey" rel="tag" title="creammonkey">creammonkey</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/17/greased-lightbox-for-safari/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

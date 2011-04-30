@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>Test::Apache2 をリリースした - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry705">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/05/test-apache2-released">Test::Apache2 をリリースした</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-05-09 06:26    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p><a href="http://search.cpan.org/dist/Test-Apache2/">Test::Apache2</a> を CPAN にリリースしました。初 CPAN モジュール！焦って 0.02 まで送っちゃったので、そのうち 0.02 が出てくるはず。</p>
+<h3>これはなに?</h3>
+<p>Test::Apache2 を使うと mod_perl ハンドラのテストがこんな風に書ける。</p>
+<pre>
+use Test::More tests =&gt; 1;
+use Test::Apache2;
+
+my $server = Test::Apache2::Server-&gt;new;
+$server-&gt;location('/myapp', {
+    PerlResponseHandler =&gt; 'MyAppHandler',
+});
+
+my $resp = $server-&gt;get('/myapp');
+is($resp-&gt;content, 'hello world');
+</pre>
+<p>まず Test::Apache2::Server という Facade 的なオブジェクトに、テストしたいハンドラ (ここでは MyAppHandler) を登録する。次に $server にリクエストを送ると、対応するハンドラが呼ばれて HTTP::Response が返ってくる。これで、あとはその中身をチェックすればいい。</p>
+<p>Apache::Test との最大の違いは Apache のプロセスが起動しないところにある。Test::More とかが use されているのと同じ Perl 処理系のプロセスの中で、</p>
+<ul>
+<li>ハンドラを new して</li>
+<li>Apache2::RequestRec にはコンストラクタがないので、代わりの Test::Apache2::RequestRec を new して</li>
+<li>それをハンドラのインスタンスにわたして</li>
+</ul>
+<p>というかたちでテストが進んでいく。</p>
+<p>なので速い、けど mod_perl 特有の問題とかはあんまり再現できない。</p>
+<h3>あるべき設計と中間層のコスト</h3>
+<p>本当なら、mod_perl ハンドラを</p>
+<ul>
+<li>リクエストをとってレスポンスを返す関数</li>
+<li>それを Apache2::RequestRec とつなぐ関数</li>
+</ul>
+<p>と分割しておいて、テストは前者に対して書く、というのがあるべき設計だろう。</p>
+<p>ただ、中間層をもうけるには作業的なコストがかかるし、作業が完了しても、それを走らせるところで計算機的なコストがかかる (なにもしないよりは CPU やメモリは食いますよね)。そこらへんを払いたくないけど、テストがないのは<strong>ない</strong>という場合に Test::Apache2 は便利なんじゃないかと思う。</p>
+<h3>今後</h3>
+<p>リリースしてみたものの、実際には色々メソッドが足りなかったりする。</p>
+<p>Test::Apache2::Server には get があるのに post, put, delete が無いし、Test::Apache2::RequestRec は Apache2::RequestRec にあるメソッドが全部あるわけではないので、しばらくはそういう地味なところを埋めていく予定です。レポジトリは <a href="http://bitbucket.org/kzys/test-apache2/">Bitbucket</a> にあります。</p>
+<p>Test::Apache2::RequestRec 単体の、new できる Apache2::RequestRec としての使い方ももうちょっと考えたいなあ。<a href="http://googletesting.blogspot.com/2009/01/tott-keep-your-fakes-simple.html">Google Testing Blog</a> には </p>
+<blockquote><p>This highly-focused fake is easy and quick to write, and makes the test much simpler and more readable.</p></blockquote>
+<p>とあって、Test::Apache2::RequestRec は highly-focused ではないんだけど、実際に Apache2::RequestRec を Test::MockObject でちまちま作るのはすごいだるいので、そういう場面も救えるようにしたい。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="705" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

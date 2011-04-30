@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: What is NIPSA?</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136240340">
+  <h2 class="entry-title"><a href="/articles/2005/09/29/what-is-nipsa" title="What is NIPSA?">What is NIPSA?</a></h2>
+  <div class="published">
+    September 29th, 2005
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>最近 Flickr で、ログアウトすると自分がグループにアップロードした写真が表示されないことに気づきました。</p>
+
+<p>Flickr のひとにメールを送ってみたところ、どうも <a href="http://flickr.com/help/photos/">NIPSA (Not In Public Site Areas)</a> あつかいになっていたみたいです。身に覚えがないよ。</p>
+
+<blockquote>
+    <p>Flickr is a website for you to use to share your photos. If the images you're uploading either (i) aren't photos, or (ii) are images you've 'borrowed', stock photos, celebrity photos, stuff that appears to be copyrighted by someone else, screenshots, porn or nudity/partial nudity, it's safe to assume that we will probably have marked you as NIPSA (Not In Public Site Areas); otherwise, your account is in the review queue, and will be attended to shortly.</p>
+</blockquote>
+
+<p>NIPSA は外してもらったので、いまは大丈夫です。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/flickr" rel="tag" title="flickr">flickr</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2005/09/29/what-is-nipsa/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

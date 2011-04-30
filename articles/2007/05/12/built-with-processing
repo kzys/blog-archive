@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Built with Processing</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132879410">
+  <h2 class="entry-title"><a href="/articles/2007/05/12/built-with-processing" title="Built with Processing">Built with Processing</a></h2>
+  <div class="published">
+    May 12th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://super-deluxe.com/2007/5/11/built-with-processing/">Built with Processing</a> に会社の人と行ってきた。急だったのと携帯の電波が微弱だったのとで、ネットの人との待ち合わせはうまくいかず。無線 LAN につながるちいさいマシンが欲しい。</p>
+
+<p>『Built with Processing』は良い本で、最初のほうに二分探索なデバッグ方法が載っていたり、プログラミング初学者むけにとても正しい。ただ、美大とかを抜きで考えると、最初のプログラミングから「表現」を相手にすることは結構大変で、もっと「便利」よりからはじめても良いようにも思う。Greasemonkey スクリプトとか悪くない舞台だと思うんだけど、まあ、はなしがそれた。</p>
+
+<p>発表のなかで、最終的には Processing から書き直したよー、というひとがぱらぱらいたのが気になる。そんなに遅いんだっけか。そこで <a href="http://www.openframeworks.cc/about">openFrameworks</a> なのか。</p>
+
+<p>あと、こういう客の頭がスクリーンにかぶるようなとこだと、字幕は上に出す方が良いと思った。</p>
+
+<h3><a href="http://fladdict.net/">深津さん</a></h3>
+
+<ul>
+<li>ある作品ができるまでの過程を、途中の作品を交えて説明します。</li>
+<li>画面上にならんだピクセルはラスタ順に一次元の配列になってるので、先頭から n 個消していくと見た目にスクロールになる。</li>
+<li>それを画面幅ぶん消してみたり(上に -1px になる)、キーボードやマウスでコントロールできるようにしながら、おもしろくなる方向を探していく。</li>
+<li>作りはじめる最初には、ゴールは決めないらしい。</li>
+</ul>
+
+<h3><a href="http://www.metaphor.co.jp/">METAPHOR</a></h3>
+
+<p>Haohao はとても良かった。筆としての仮想生物。</p>
+
+<ul>
+<li><a href="http://www.iamas.ac.jp/~madman03/haohao/">Haohao</a>: ひとつひとつの丸に boid みたいに生物的な動き(好き嫌い、目線など)がプログラミングしてある。その動きの軌跡が最終的な出力。</li>
+<li>クライアントワークでは、たとえば <a href="http://www.beyes.jp/">BEYES</a> の Interactive Interior のプロトタイピングに Processing を使ったりしたらしい。BEYES は<a href="http://www.semitransparentdesign.com/">セミトラ</a>の人らだけだと思ってた。
+<ul>
+<li>ただし実際に運用された実装は Flash とのこと。</li>
+</ul></li>
+<li>最後にいくつか『Built with Processing』を読んだ次に挑戦できそうなデモを。</li>
+</ul>
+
+<h3><a href="http://generative.info/">前川さん</a></h3>
+
+<p>Big Shadow みたいな市街地でのインスタレーションはあこがれる。<a href="http://graffitiresearchlab.com/">Graffiti Research Lab</a> っぽい。</p>
+
+<ul>
+<li>Particle Typography + Mail
+<ul>
+<li>メールで送信した文字列を particle で表示する。卒業制作。未踏に採択された。</li>
+<li>プロトタイピングに Processing を使った。最終的には Objective-C + Ruby で書いたものを運用。</li>
+</ul></li>
+<li>Big Shadow
+<ul>
+<li>壁に投影した人の影が、モンスターに変形する。Xbox 360 のゲーム、ブルードラゴンのプロモーション仕事。</li>
+<li>これも初期段階は Processing で、最終的には C++ + SDK + DirectShow を Windows XP 上で運用。</li>
+<li>人の動きの判定は影全体をかこむ四角形としてあつかっているっぽい。</li>
+</ul></li>
+</ul>
+
+<h3><a href="http://www.movingbrands.com/">Moving Blands</a></h3>
+
+<p>Toxi さんがいる会社。プレゼンテーションの完成度が高かった。</p>
+
+<h3><a href="http://hudson-powell.com/">Hudson-Powell</a></h3>
+
+<p>Hudson-Powell 自体は兄弟二人でやっているんだけど、今日は片方のひとだけ。バストショットのビデオの使い方がおもしろかった。女子アナ的に「それではどうぞ」と言うだけのビデオをはさんだり、同時通訳にあわせて一時停止したら面白い顔で止まってしまったり。</p>
+
+<ul>
+<li><a href="http://www.responsivetype.com/">Responsive Type</a>: Futura っぽい共通要素で構成された書体。そのパラメータを変化させることで無限のバリエーション動的につくりだせる。</li>
+<li>最後にくるくるまわっていたのは <a href="http://www.v3ga.net/visionfactory/">Vision Factory</a> というソフトウェア。v3ga のひとが C++ で書いている。ブログを読むと <a href="http://v3ga.net/blog/2007/03/the-cube-and-the-script/">I am in the process of integrating Javascript in Vision Factory through the use of Spidermonkey engine.</a> とかあっておもしろそうだ。</li>
+</ul>
+
+<h3>女子美</h3>
+
+<p>プログラミング的には高度なことはしない・できない、というところでもカメラの入力を扱えたりするのは Processing の良いところだ。</p>
+
+<ul>
+<li>1年生の授業ではプログラミングは無しで、マウスの入力から動画をコマ送りしたりで作品をつくってもらう。動画の選択とマウスの改造(ガワをかぶせる)ところでいろいろ出る。
+<ul>
+<li>マウスを叩くと相撲のビデオが進んだり、ザル(中にマウス)をふると雪が降ったり。</li>
+</ul></li>
+<li>2年生の授業でプログラミング、といってもあんまりプログラミング的に高度なところまではいかない。最終的には、カメラで画像認識したのをなにか処理して、結果を実物大にプロジェクタで投影するような作品を作ってもらった。
+<ul>
+<li>横断旗に応じて移動する横断歩道、バスケットボールのゴールが人を避ける。</li>
+</ul></li>
+</ul>
+
+<h3><a href="http://gainer.cc/">GAINER</a></h3>
+
+<p>GAINER はコンピュータが無いと動かないので Make の DIY とはちょっと離れるんだけど、でもマウスとキーボード以外の入力は面白いな。</p>
+
+<ul>
+<li>ゲイナーカイダン: ICC の階段に GAINER をいっぱいつけて、人の動きに応じて音を鳴らす。いま展示しているので動画の音は mute にしておきます。実際に見てください。</li>
+<li>Processing のサンプルをちょっと書き換えるだけで、マウスの動きに応じて変化していたものが、GAINER 経由で光を入力にとるように、というのを実際にやってみる。</li>
+<li>本当は今日来ている人達みんなに GAINER を配りたいけど、それは無理なので、実物大のペーパークラフトが十数枚ありますからほしい人はあとで言ってください。</li>
+</ul>
+
+<h3><a href="http://www.iamas.ac.jp/~poki06/tex_tsp/">tex/tsp</a></h3>
+
+<p>地球外生命体がこの音を聞いて……だから NASA に売り込みに……とかすごいことを言っていた。さすが IAMAS だ。Brainfuck みたいにループとかの制御構造もいれたりしたらどうだろう。</p>
+
+<ul>
+<li>Brainfucked MML みたいな言語で、正弦波や矩形波を鳴らせる tex/tsp というソフトウェアの紹介。</li>
+<li>名前の元ネタは Max/MSP </li>
+<li>Twitter を入力にとってみたりしてます。</li>
+</ul>
+
+<h3><a href="http://d.hatena.ne.jp/G___orz/20070507">Ripples + Nintendo DS</a></h3>
+
+<p>途中のパフォーマンスで音を出すものもあったんだけど、それはかなり実験音楽より。こっちはポップな感じで良かった。操作中の手元をカメラで映すとペン入力の良さが伝わりやすかったかも。</p>
+
+<ul>
+<li>関西から来ました。</li>
+<li>マジコンを使って Nitendo DS 上で自作ソフトウェアを動かして、ペンの入力を Processing に送信。</li>
+<li>Processing 側では <a href="http://flight404.com/vj/exhibit.html">Ripples</a> で音声入力をきれいに表示しつつ、それを DS から操作。</li>
+<li>最後に chiptune を一曲流しながらデモ。</li>
+</ul>
+
+<h3>そのほか</h3>
+
+<ul>
+<li>時間軸をもったお絵描きソフトウェアは、しかけの単純さとソフトウェアの完成度、あとそのソフトウェアで描いた作品がちゃんとみれるものになって、すごかった。
+<ul>
+<li>あとで Processing 以外に移植とかいっていたけど、あれだけボタンだのスライダだの作り込んでからそれをいうのか。パワフルだ。</li>
+</ul></li>
+<li><a href="http://megaui.net/fukuchi/">福地さん</a>はおもしろいなぁ。テンションがおかしい。OSC! OSC!
+<ul>
+<li>Processing + Pure Data + OSC</li>
+</ul></li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">2 Responses to &#8220;Built with Processing&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-135262280">
+			<cite><a href="http://dotimpac.to/">dotimpact</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135262280" title="">May 13th, 2007 at 06:17 PM</a></small>
+			<p>詳細レポありがとうございます。</p>
+
+<blockquote>
+    <p>最初のプログラミングから「表現」を相手にすることは結構大変</p>
+</blockquote>
+
+<p>その通りですね。美大のプログラミング授業はこの点は頭が痛いところで。</p>
+
+<p>「GreaseMonkeyから始めるプログラミング入門」読んでみたいです。</p>
+		</li>
+  
+		<li class="" id="comment-135101350">
+			<cite><a href="http://8-p.info/">kzys</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135101350" title="">May 14th, 2007 at 08:27 AM</a></small>
+			<p>楽しいのを忘れないように書いていたら、長くなってしまいました。良い時間をありがとうございます。</p>
+
+<p>UNIX のシェルスクリプトにあった「生活との地続き感」は、ユーザースクリプトにもあると思っているので、書けるようがんばります。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/05/12/built-with-processing/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

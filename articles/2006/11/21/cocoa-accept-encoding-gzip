@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Cocoa が Accept-Encoding: gzip を投げ逃げ</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134748490">
+  <h2 class="entry-title"><a href="/articles/2006/11/21/cocoa-accept-encoding-gzip" title="Cocoa が Accept-Encoding: gzip を投げ逃げ">Cocoa が Accept-Encoding: gzip を投げ逃げ</a></h2>
+  <div class="published">
+    November 21st, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>NSString や NSData はコンストラクタ(Obj-C でそう呼ぶべきかは微妙だけど)の引数に URI をとれる。</p>
+
+<pre><code>NSURL* url = [NSURL URLWithString: @"http://example.com/"];
+NSData* data = [NSData dataWithContentsOfURL: url];
+NSString* str = [NSString stringWithContentsOfURL: url];
+</code></pre>
+
+<p>ここで dataWithContentsOfURL: や stringWithContentsOfURL: は</p>
+
+<pre><code>Accept-Encoding: gzip, deflate
+</code></pre>
+
+<p>で、リクエストを投げるんだけど、実際に gzip なデータが返ってきても展開はしてくれないのだった。NSString にいたっては「まさか圧縮されてるなんて！」って感じで nil 返してくるからね。圧縮たのんだのは自分なのに。</p>
+
+<p>NSURLConnection は展開まで面倒見てくれるので、こっちを使うと良い。</p>
+
+<pre><code>data = [NSURLConnection sendSynchronousRequest: [NSURLRequest requestWithURL: url]
+                             returningResponse: &amp;resp
+                                         error: &amp;error];
+</code></pre>
+    
+    
+    
+    <p>あと、この記事を書くために</p>
+
+<pre><code>data = [NSData dataWithContentsOfURL: url];
+NSLog(@"length: %d", [data length]);
+...
+data = [NSURLConnection sendSynchronousRequest: [NSURLRequest requestWithURL: url]
+                             returningResponse: &amp;resp
+                                         error: &amp;error];
+NSLog(@"length: %d", [data length]);
+</code></pre>
+
+<p>みたいなコードを書いて検証してみたら</p>
+
+<pre><code>% gcc a.m -framework Foundation &amp;&amp; ./a.out
+2006-11-21 18:11:47.006 a.out[5672] length: 1893
+2006-11-21 18:11:47.009 a.out[5672] length: 1893
+</code></pre>
+
+<p>という結果になって困った。これは dataWithContentsOfURL: を呼んでいる </p>
+
+<pre><code>data = [NSData dataWithContentsOfURL: url];
+</code></pre>
+
+<p>の部分を省くか、NSURLRequest のところで</p>
+
+<pre><code>req = [NSURLRequest requestWithURL: url
+                       cachePolicy: NSURLRequestReloadIgnoringCacheData
+                   timeoutInterval: 60];
+data = [NSURLConnection sendSynchronousRequest: req
+                             returningResponse: &amp;resp
+                                         error: &amp;error];
+</code></pre>
+
+<p>とキャッシュを無視するようにすると、</p>
+
+<pre><code>2006-11-21 18:19:29.664 a.out[5686] length: 4923
+</code></pre>
+
+<p>と展開ずみのデータがちゃんと返ってきます。圧縮たのんで展開しないくせにキャッシュはするのか。いやなキャッシュだ。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/11/21/cocoa-accept-encoding-gzip/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

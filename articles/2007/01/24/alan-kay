@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Alan Kay の講演を読んだ</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137695880">
+  <h2 class="entry-title"><a href="/articles/2007/01/24/alan-kay" title="Alan Kay の講演を読んだ">Alan Kay の講演を読んだ</a></h2>
+  <div class="published">
+    January 24th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Alan Kay の講演の、<a href="http://d.hatena.ne.jp/squeaker/20070123#p1">大島芳樹さんが日記に書かれたメモ</a> を読んだ。</p>
+
+<p>良いと思えない:</p>
+
+<ul>
+<li><a href="http://japanese.joelonsoftware.com/Articles/StrategyLetterIV.html">Joel on Software</a> で批判されているような「現代のソフトウェアは太り過ぎである」という認識</li>
+<li>ソフトウェアとインターネットとの比較が適切かどうか疑問</li>
+<li>ゼロから作り直したがっている</li>
+</ul>
+
+<p>良い:</p>
+
+<ul>
+<li>PowerPoint 批判</li>
+<li>ハードウェア開発についてふれている</li>
+<li><strong>Alan Kay</strong></li>
+</ul>
+
+<p>Alan Kay については Squeakers DVD を人に見せるくらい好きではあるものの、Squeak 自体にはいまひとつ馴染めず、毎年 LL 系のイベントで「すげー」と思うだけにとどまっている。</p>
+
+<p>Lisp もそうなんだけど「現代の X にあるものは全て A で考案された。A は X の母なる海である。」みたいな話を聞くと「でも人が住めるのは海じゃなくて陸なんだよ。」とか不毛な例え話をくりひろげそうになる。話を聞いてるぶんにはとても良さそうなのに、自分も含めて普及しないのはどうしてなんだろう。</p>
+
+<p>とはいえ、</p>
+
+<blockquote>
+    <p>我々がNSFからの資金を受けてこれからやろうとしているのは、2万行でOS、グラフィックスシステム、ネットワークシステムからエンドユーザーシステムまですべてを書いたようなシステムを作ることである。</p>
+</blockquote>
+
+<p>というのが実現できたら是非さわってみたいので、とりあえずは実装を待とうと思った。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/blog" rel="tag" title="blog">blog</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">3 Responses to &#8220;Alan Kay の講演を読んだ&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-135335550">
+			<cite><span>じょりちょこ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135335550" title="">January 27th, 2007 at 06:35 PM</a></small>
+			<p>LispもSmalltalkも「正しいプログラミング」を支援するところがあって、それは本来よいものなのですが、現実にはそれが仇になっていると感じます。
+LispのTopレベル環境やSmalltalkのWorkspaceは、実にステキなコード開発環境であり、関数1つ1つ、メソッド1つ1つを手軽に書いてはテストできるようになっています。そのために、一度できあがった関数/メソッドを「より良い書き方」に書き直すことが、そのような仕組みのない言語と比較して、圧倒的に容易です。
+自分はRubyでプログラミングすることが多いのですが、Rubyはスクリプト言語なんだという認識があるせいか、より良い書き方があるとわかっていても、とりあえず目の前の仕事をこなしてくれさえすれば、それでOKという気分でいられます。
+これがLisp/Smalltalkで作業すると、動いたからいいや、という気持ちになぜかなれない。もっと良い書き方があるのなら、今、リファクタリングせよ！という内なる叫びに負けてしまうのです。
+思うに、Lisp/Smalltalkを伝道するような人は、こういう内なる叫びに応じられるような環境にいるのではないでしょうか。仕事に追われているのではなく、求道的にプログラミングできるような環境。そのような環境で自分の価値観を磨いてきた人々が伝道するので、Lisp/Smalltalkには、フツーの人を敬遠させる一種独特のムードがあるのだと僕は思うのです。</p>
+
+<p>もちろんLisp/Smalltalkで現実的な仕事がこなせないということはありません。ただ、伝道者になる人にある種の傾向が生まれてしまう土壌を、その言語が持っているのではないか？という話です。</p>
+
+<p>ですから「動けばいい」式にLisp/Smalltalkを教える人が出てくると、状況は変わるのではないかな、というのが僕の意見なのですけれど...</p>
+		</li>
+  
+		<li class="" id="comment-135181710">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135181710" title="">January 28th, 2007 at 06:54 PM</a></small>
+			<p>確かに「動けばいい」よりかは、美しさとか未来っぽさとかが前に出ちゃって、便利さが抜けてる感じはわかります。人のというか広報の問題なのかな。</p>
+
+<p>ただ、そもそもリファクタリングは Smalltalk 発祥なので、そんなに特殊な文化が育まれてるって見方は微妙かと思います。Gauche の Shiro さんがそこらへん書いてた記憶が。</p>
+		</li>
+  
+		<li class="alt" id="comment-135178730">
+			<cite><span>よしき</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135178730" title="">January 31st, 2007 at 08:50 PM</a></small>
+			<p>Squeakの中を見てみれば、「動けばよい」で成り立っているコードもたくさんありますよ。リファクタリングがやりやすい環境であるということは言えると思いますが、まあそれをやるかどうかはやはり各開発者次第です。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/01/24/alan-kay/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

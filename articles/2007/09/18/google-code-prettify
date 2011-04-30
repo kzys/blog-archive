@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Google Code Prettify の複数言語対応</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132949490">
+  <h2 class="entry-title"><a href="/articles/2007/09/18/google-code-prettify" title="Google Code Prettify の複数言語対応">Google Code Prettify の複数言語対応</a></h2>
+  <div class="published">
+    September 18th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://code.google.com/p/google-code-prettify/">google-code-prettify</a> を使ってみた。わりと微妙。</p>
+
+<p>複数のプログラミング言語に対応している割に、HTML 側での指定が class="prettyprint" だけなので、どう言語を判別をしているのかと思ったらほとんど区別していなかった。XML 系の言語か否かという区別はあるけど、C で変数名に begin とかつかうと、Ruby の予約語として色がついたりして気持ち悪い。</p>
+
+<p>コードを書くときは大抵色をつける軟弱者なので、色が間違っていると、コードが間違っているんじゃないかと不安になる。</p>
+
+<p>あと global な名前空間に export しすぎ。PR_ or pr_ って prefix はついてるけど、GoogleCodePrettify.foo とかのほうが個人的には好き。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/programming" rel="tag" title="programming">programming</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

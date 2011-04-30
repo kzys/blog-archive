@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: いまさらの自分 CMS</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134597790">
+  <h2 class="entry-title"><a href="/articles/2007/09/18/cms" title="いまさらの自分 CMS">いまさらの自分 CMS</a></h2>
+  <div class="published">
+    September 18th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>2007年だというのに、なぜか静的ファイルから静的ファイルを生成する日記システムを書いていた。他にもっとやるべきことがあるだろうに。</p>
+
+<p>既存のシステムもいくつかみた。mixi と Tumblr は Google にひっかからないのがだめだ。
+はてなダイアリーとグループはとてもとても良く出来ている。name や id による段落アンカーは最近の人にはわかりづらく、URI に情報をひもづけするサービス (ex. ソーシャルブックマーク) と親和性が低い。</p>
+
+<p>LDR で100件くらいフィードを読んでいる。LDR 使用者としてはごく少ないほうだろう。必要なときに Google で検索すれば困らないように思うんだけど、求めていない情報がくるのが大事なんだろうか。定点観測的楽しみというか、すごいひとが隣にいる感じは必要かもしれない。焦るから。</p>
+
+<p>ブログは日付情報が強調されているので、古い情報を現状にそって更新する責を逃れられそう、という書く側にとっての利がある。Google で飛んで読む側としてはそれは欠点だ。タグごとのページだけが検索にかかるようにするとか、いっそ 2ch のスレみたいな構造をもたせれば、通して読むのは楽になる。ただ、そもそも「昨日のは間違い」とか追記していくのに、コメントでバージョン管理しているプログラムみたいな嫌さがある。</p>
+
+<p>更新情報の配信方法と古い情報の表示方法 (ex. <a href="http://mobiquitous.com/dying-link.html">廃れるリンク</a>) さえ工夫すれば Wiki でいいのかもしれない。MoinMoin はアプリケーションとしては良く出来てたような気がする。MoinMoin 記法 → HTML の部分だけ抜き出して使うのは大変であきらめたけど。</p>
+
+<p>「ししゃもうまい」とかどこに書くべきかという問題はある。ししゃもはいいよ。さんまは首と内蔵が生ゴミに行くから、ゴミの日が近くないと食べにくい。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/blog" rel="tag" title="blog">blog</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

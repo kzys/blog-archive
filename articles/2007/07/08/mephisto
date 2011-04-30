@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Mephisto に移行</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132801800">
+  <h2 class="entry-title"><a href="/articles/2007/07/08/mephisto" title="Mephisto に移行">Mephisto に移行</a></h2>
+  <div class="published">
+    July 8th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://typosphere.org/">Typo</a> にページキャッシュをつけて、できるだけ Apache の段階 (Rails より前) でリクエストをさばけるようにしようと作業していたんだけど、いきづまってふと <a href="http://mephistoblog.com/">Mephisto</a> をみてみたらページキャッシュがあったので、移行してみた。</p>
+
+<p>Mephisto は <a href="http://weblog.rubyonrails.org/">Riding Rails</a> (Rails 公式) でも使われているブログソフトウェア。ちなみに Typo の開発自体はふつうに続いています。<a href="http://trac.typosphere.org/timeline?changeset=on">Typo の Trac</a> を参照。</p>
+
+<h3>データベースの中身をうつす</h3>
+
+<p><a href="http://mephisto.stikipad.com/help/show/Converting+Typo+to+Mephisto">Converting Typo to Mephisto</a> にあるように、コンバータが用意されているので、けっこう簡単です。</p>
+
+<p>ただ permalink は title から再生成してしまうらしく、そこだけ script/console から書き換えました。</p>
+
+<h3>ページネーション</h3>
+
+<p>なぜかページネーションが無いので、<a href="http://www.artweb-design.de/2007/4/2/howto-use-mephisto-article-list-pagination-plugin">pagination plugin</a> をインストール。</p>
+
+<p>ページごとの記事数は /admin/settings ではなく /admin/sections の "Articles per page" から変更するようです。</p>
+
+<h3>パーマリンク</h3>
+
+<p>個別ページの URI はデフォルトだと /YYYY/M/D/NAME なので Typo にそろえて /articles/YYYY/MM/DD/NAME に変更。</p>
+
+<p>/articles をつけるのは /admin/settings で変更できるのですが、月・日をつねに二桁にするのはソースをいじらないとだめでした。</p>
+
+<pre><code>diff -uNr mephisto-0.7.3.orig/lib/mephisto/dispatcher.rb mephisto-0.7.3/lib/mephisto/dispatcher.rb
+--- mephisto-0.7.3.orig/lib/mephisto/dispatcher.rb      2006-11-23 10:57:06.000000000 -0800
++++ mephisto-0.7.3/lib/mephisto/dispatcher.rb   2007-07-07 22:00:24.000000000 -0700
+@@ -132,7 +132,13 @@
+       end
+
+       def self.variable_value_for(article, variable)
+-        variable == 'id' ? article.article_id.to_s : article.send(variable).to_s
++        if variable == 'id'
++          article.article_id.to_s 
++        elsif variable == 'month' or variable == 'day'
++          '%02d' % article.send(variable)
++        else
++          article.send(variable).to_s
++        end
+       end
+   end
+-end
+\ No newline at end of file
++end
+</code></pre>
+
+<h3>トラックバック</h3>
+
+<p>ありません。どうしよう。</p>
+
+<h3>テンプレート</h3>
+
+<p>テンプレートは eRuby ではなく <a href="http://www.liquidmarkup.org/">Liquid</a> というものを使うようです。</p>
+
+<blockquote>
+    <p>Liquid is an extraction from the e-commerce system Shopify. Shopify powers many thousands of e-commerce stores which all call for unique designs. For this we developed Liquid which allows our customers complete design freedom while maintaining the integrity of our servers.</p>
+</blockquote>
+
+<p>アプリケーションを動かす権限 != テンプレートの編集権限な環境を想定すると、確かに eRuby はこわいってのはわかるけど、このブログはふたつの権限が同じだからちょっとまどろっこしい。ミニ言語はあんまり好きじゃないな。</p>
+
+<h3>フィード</h3>
+
+<p>FeedBurner かましているので FeedBurner 側の設定をいじるのと .htaccess で</p>
+
+<pre><code>RewriteCond %{HTTP_USER_AGENT} !^FeedBurner.*$
+RewriteRule ^feed/atom.xml$ http://feeds.feedburner.com/kzys [L,R=permanent]
+</code></pre>
+
+<p>しておくだけ。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

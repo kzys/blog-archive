@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-10-07T01:11:52+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-10-07T01:11:52+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://www.macrumors.com/iphone/2008/10/05/iphone-2-2-includes-hidden-japanese-emoji-icons/"><span class="icon"></span>http://www.macrumors.com/iphone/2008/10/05/iphone-2-2-includes-hidden-japanese-emoji-icons/</a>
+</p>
+<blockquote class="citation">
+<p>
+ The latest iPhone 2.2 firmware has one hidden feature that should please Japanese iPhone customers: the inclusion of 461 emoji characters.
+</p>
+</blockquote>
+<p>
+本当ならすごいけど、そんな日本ローカル仕様に手間かけたりするんかな。
+</p>
+<p>
+まえに KDDI 絵文字のまじった ISO-2022-JP の parser を書いて <a class="ext-link" href="http://github.com/kzys/imap-client/tree/master"><span class="icon"></span>http://github.com/kzys/imap-client/tree/master</a> に置いてあるんだけど、Apple が対応してくれるんなら放置したい。
+</p>
+  </div>
+</body>
+</html>

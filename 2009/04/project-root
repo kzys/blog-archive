@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>プロジェクトのルートディレクトリを探す - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry638">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/04/project-root">プロジェクトのルートディレクトリを探す</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-04-29 02:27    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><div class="eyecatch"><a href="http://blog.8-p.info/2009/wp-content/uploads/2009/04/project-root.png"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/04/project-root.png" alt="File tree" title="File tree" width="640" height="200" class="alignnone size-full wp-image-641" /></a></div>
+<p>ある Perl のプロジェクトで、.t ファイルの冒頭で @INC をいじっているものがあった。曰く</p>
+<pre>
+% ls
+Changes         MANIFEST        MANIFEST.SKIP   Makefile.PL     lib/            t/
+% cd t
+% prove header.t
+</pre>
+<p>みたいに cwd (current working directory) を考えずにテストを実行したい、というはなしらしい。</p>
+<p>たしかに便利そうだけど、個々の .t に書いていくのは嫌なので、こんなものを project-root という名前で $PATH が通ったところに置いてみた。</p>
+<pre>
+#! /usr/bin/env perl
+use strict;
+use warnings;
+use Cwd;
+
+my @BASENAMES = qw(.hg .git t);
+
+sub project_root {
+    my ($absolute) = @_;
+
+    for (my @list = split '/', $absolute; @list; pop @list) {
+        my $result = join '/', @list;
+        for (@BASENAMES) {
+            if (-e "$result/$_") {
+                return $result;
+            }
+        }
+    }
+    return;
+}
+
+my $path = project_root(cwd());
+if ($path) {
+    print "$path\n";
+} else {
+    exit(1);
+}
+</pre>
+<p>先の例だと、こう使える。</p>
+<pre>
+% cd t
+% prove -I `project-root`/lib header.t
+</pre>
+<p>どこがプロジェクトのルートか、という判断方法はかなり発見的で</p>
+<ul>
+<li>.hg (Mercurial)</li>
+<li>.git (Git)</li>
+<li>t (Perl のテストを置くデファクトスタンダード)</li>
+</ul>
+<p>のどれかを探しているだけだ。Subversion で管理された Java のプロジェクトとかだと、また @BASENAMES をいじる必要がある。</p>
+<p>ごく小さいスクリプトだけど、cd ../../ のかわりに cd `project-root` とか、エディタのなかから chdir `project-root` &#038;&#038; prove -l t/ とか、わりと使い道はあるんじゃないかと思います。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="638" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

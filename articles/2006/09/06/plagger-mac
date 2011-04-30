@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Plagger を Mac に簡単にインストールする</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135844600">
+  <h2 class="entry-title"><a href="/articles/2006/09/06/plagger-mac" title="Plagger を Mac に簡単にインストールする">Plagger を Mac に簡単にインストールする</a></h2>
+  <div class="published">
+    September 6th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>本当は GUI をつけたいんだけど、まずは Plagger 単体を Universal Binary な CPAN モジュール群といっしょに配布できるかどうか試してみた。</p>
+
+<p><a href="http://8-p.info/Plagger/">http://8-p.info/Plagger/</a> から tarball をダウンロードして、</p>
+
+<pre><code>% tar zxvf Plagger-Mac-0.1.tar.gz
+...
+% cd Plagger-Mac-0.1/
+% ls
+CPAN/           assets/         plagger*
+% (config.yaml を書く)
+% ./plagger -c config.yaml
+</code></pre>
+
+<p>で動くと思います。プラグインは少なめです。assets/ はフォルダの直下にあるので、</p>
+
+<pre><code>global:
+  assets_path: assets/
+</code></pre>
+
+<p>してください。</p>
+
+<p>Intel, PowerPC 問わず、インストール直後の Mac OS X 10.4 ですぐ使えるはずです。たぶんだけど。</p>
+
+<h3>(9/9 追記)</h3>
+
+<p>すみません。バグを見つけました。「"Can't locate Plagger.pm in @INC..." で動かない！」という方は plagger の</p>
+
+<pre><code>  PERL5LIB="$PLAGGER_MAC_ROOT/CPAN/lib"
+</code></pre>
+
+<p>の行を</p>
+
+<pre><code>  export PERL5LIB="$PLAGGER_MAC_ROOT/CPAN/lib"
+</code></pre>
+
+<p>と書き換えればうまくいくかと思います。</p>
+    
+    
+    
+    <h3>つくりかた</h3>
+
+<p>まず、~/.cpan/CPAN/MyConfig.pm の makepl_arg で PREFIX=~/CPAN と指定して、Plagger とその他もろもろを CPAN からインストール。</p>
+
+<p>このままだと Intel Mac に持っていけないので、ls ~/CPAN/**/*.bundle で PowerPC でしか動かないモジュールを確認して、手動で tarball をダウンロード。Universal Binary として make し直す。</p>
+
+<pre><code>% perl Makefile.PL PREFIX=/Users/kzys/CPAN/
+...
+% make install_site CC='gcc -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk' LD='env MACOSX_DEPLOYMENT_TARGET=10.3 gcc -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk'
+</code></pre>
+
+<p>Net::SSLeay は Makefile.PL の引数の解釈がほかと違う。</p>
+
+<pre><code>% perl Makefile.PL /usr -- PREFIX=/Users/kzys/CPAN/
+</code></pre>
+
+<p>expat も Universal Binary として make する。</p>
+
+<pre><code>% CFLAGS="-isysroot /Developer/SDKs/MacOSX10.4u.sdk -arch i386 -arch ppc" ./configure --disable-dependency-tracking
+</code></pre>
+
+<p>XML::Parser::Expat に、さっきの expat を静的リンクする。</p>
+
+<pre><code>% perl Makefile.PL PREFIX=/Users/kzys/CPAN/ EXPATLIBPATH=/Users/kzys/expat-2.0.0/ EXPATINCPATH=/Users/kzys/expat-2.0.0/lib
+...
+% make install_site CC='gcc -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk' LD='env MACOSX_DEPLOYMENT_TARGET=10.3 gcc -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk' OTHERLDFLAGS=/Users/kzys/expat-2.0.0/.libs/libexpat.a
+</code></pre>
+
+<p>バイナリがすべて universal になっていること確認する。</p>
+
+<pre><code>% file CPAN/**/*.bundle | grep 'fat file' | wc -l
+      22
+% ls CPAN/**/*.bundle | wc -l
+      22
+</code></pre>
+
+<p>tarball にまとめるフォルダに ~/.cpan/build/Plagger-0.7.10/assets/ と ~/CPAN をコピー。なんとなく CPAN/ のなかを整理。man とかは消しちゃう。</p>
+
+<ul>
+<li>CPAN/usr/bin/ → CPAN/bin/</li>
+<li>CPAN/lib/perl5/site_perl/ → CPAN/lib/</li>
+</ul>
+
+<p>最後に CPAN/bin/plagger を実行するシェルスクリプトを置いて完成。</p>
+
+<pre><code>% ls
+CPAN/           assets/         plagger*
+</code></pre>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/09/06/plagger-mac/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

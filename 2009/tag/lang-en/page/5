@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+   <div class="main">
+
+<div class="entry" id="entry618">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/04/danboard">Danboard is my XFD</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-04-20 23:23    </div>
+    <div class="tags yui-u">
+      <a href="http://blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+  </div>
+  <div class="body"><p>Recently, I bought and hacked &#8220;Danboard mini Amazon.co.jp Box Version&#8221;. Now my Danboard is a XFD (eXtreme Feedback Device), which is controlled from Arduino.</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3458804631/" title="Danboard by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3651/3458804631_a8c416e4bc.jpg" width="375" height="500" alt="Danboard" /></a></div>
+<h3>Hardware</h3>
+<p>Parts:</p>
+<ul>
+<li>Danboard mini</li>
+<li>Arduino board (I&#8217;m using Diecimila)</li>
+<li>2 full color LEDs and resistors</li>
+<li>120 ohm resistor to <a href="http://www.arduino.cc/playground/Main/DisablingAutoResetOnSerialConnection">disable auto-reset feature of Arduino</a>.</li>
+<li>Small universal board</li>
+<li>Jumpwires</li>
+</ul>
+<p>Danboard already has two LEDs on the eyes. However it&#8217;s white and I want red and green. So I opened Danboard&#8217;s head and switched LEDs.</p>
+<p>To open the head, You&#8217;ll need to remove 2 screws.</p>
+<h3>Software</h3>
+<p>Danboard XFD has 3 states:</p>
+<ol>
+<li>Green (initial and success)</li>
+<li>Red (failed)</li>
+<li>Blink (testing)</li>
+</ol>
+<p>I wrote a little C++ code for Arduino. It&#8217;s so easy because Arduino has very simple C++ library. The below code is reading USB serial and switching 3 states.</p>
+<pre>
+int COLOR_LEDS[2][3] = {
+    { 3, 5, 6 },
+    { 9, 10, 11 },
+};
+int RED[] = { 0xff, 0, 0 };
+int GREEN[] = { 0, 0xff, 0 };
+
+int* Left = GREEN;
+int* Right = GREEN;
+int Counter = 0;
+
+void colorWrite(int index, int* color) {
+    for (int i = 0; i &lt; 3; i++) {
+      analogWrite(COLOR_LEDS[index][i], color[i]);
+    }
+}
+
+void readAndEval() {
+    int c = Serial.read();
+
+    switch (c) {
+    case 'r':
+        Left = Right = RED;
+        break;
+    case 'g':
+        Left = Right = GREEN;
+        break;
+    case 'B':
+        Left  = RED;
+        Right = GREEN;
+        break;
+    }
+}
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    if (Serial.available() &gt; 0) {
+        readAndEval();
+    }
+
+    colorWrite(Counter &#038; 1, Left);
+    colorWrite(!(Counter &#038; 1), Right);
+    Counter++;
+
+    delay(200);
+}
+</pre>
+<p>And I wrote a little wrapper for prove (1).</p>
+<pre>
+#! /bin/sh
+device='/dev/cu.usbserial-A700651k'
+prove='/usr/bin/prove'
+
+echo B &gt; $device
+$prove "$*"
+if [ $? == 0 ]; then
+    echo g &gt; $device
+else
+    echo r &gt; $device
+fi
+</pre>
+<p>XFD is usually used for Continuous Integration but prove (1) is not for CI. It&#8217;s just a demo :)</p>
+</div>
+</div>
+<div class="entry" id="entry565">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/04/glitchcam">glitchcam</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-04-06 01:25    </div>
+    <div class="tags yui-u">
+      <a href="http://blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+  </div>
+  <div class="body"><p>I saw a beautiful picture at <a href="http://www.flickr.com/photos/hysysk/3403671051/">my friends Flickr</a>, and I remembered my project <a href="http://8-p.info/glitchcam/">glitchcam</a>.</p>
+<div class="eyecatch"><a href="http://blog.8-p.info/2009/wp-content/uploads/2009/04/glitchcam.png"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/04/glitchcam.png" alt="glitchcam" title="glitchcam" width="640" height="160" class="alignnone size-full wp-image-581" /></a></div>
+<p>glitchcam is a realtime glitch software for a webcam. It&#8217;s heavily inspired from <a href="http://userscripts.org/scripts/show/9653">GlitchMonkey</a>. GlitchMonkey bend images on the browser, and glitchcam bend images which received from your webcam.</p>
+<p>So I refined a little and pushed the code to <a href="https://bitbucket.org/kzys/glitchcam/">my Bitbucket</a>. Enjoy!</p>
+</div>
+</div>
+<div class="entry" id="entry414">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/02/class-sniff-combine_graphs">New Class::Sniff has &#8220;combine_graphs&#8221;</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-02-22 22:37    </div>
+    <div class="tags yui-u">
+      <a href="http://blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+  </div>
+  <div class="body"><p>Previously I wrote &#8220;merge_graph&#8221; method to <a href="http://blog.8-p.info/2009/02/class-sniff">drawing inheritance tree with Class::Sniff</a>. But now, new Class::Sniff shipped with &#8220;combine_graphs&#8221; method and make obsolete my code :D</p>
+<p>So I rewrite my two scripts:</p>
+<pre>
+use strict;
+use warnings;
+use Class::Sniff;
+
+sub package_of {
+    my ($path) = @_;
+
+    if ($path !~ m|/?lib/(.*)\.pm$|) {
+      die;
+    }
+
+    my $result = $1;
+    $result =~ s|/|::|g;
+    return $result;
+}
+
+my @sniffs = map {
+    my $package = package_of($_);
+    eval "use $package";
+
+    Class::Sniff-&gt;new({ class =&gt; $package });
+} @ARGV;
+
+my $sniff = pop @sniffs;
+print $sniff-&gt;combine_graphs(@sniffs)-&gt;as_graphviz;
+</pre>
+<pre>
+use strict;
+use warnings;
+use Class::Sniff;
+
+sub package_of {
+    my ($path) = @_;
+
+    if ($path !~ m|/?lib/(.*)\.pm$|) {
+      die;
+    }
+
+    my $result = $1;
+    $result =~ s|/|::|g;
+    return $result;
+}
+
+sub new_methods {
+    my ($sniffer) = @_;
+    my %count_of;
+
+    for my $method ($sniffer-&gt;methods) {
+        $count_of{$method}++;
+    }
+
+    my $klass = $sniffer-&gt;target_class;
+    for my $method (keys %{ $sniffer-&gt;exported-&gt;{ $klass } }) {
+        $count_of{$method}--;
+    }
+
+    grep { $_ } map {
+        my $method = $_;
+
+        ($count_of{$method} &gt; 0)? $method : undef;
+    } (keys %count_of);
+}
+
+my @sniffs = map {
+    my $package = package_of($_);
+    eval "use $package";
+
+    Class::Sniff-&gt;new({ class =&gt; $package });
+} @ARGV;
+
+my $labels = join "\n", map {
+    my @methods = new_methods($_);
+
+    my $label = '{\N\n|' . join('\l', sort @methods) . '\l}';
+    $label =~ s/"/\\"/g;
+
+    sprintf('"%s" [label="%s"]', $_-&gt;target_class, $label);
+} @sniffs;
+
+my $sniff = pop @sniffs;
+my $graphviz = $sniff-&gt;combine_graphs(@sniffs)-&gt;as_graphviz;
+
+# it's dirty...
+$graphviz =~ s/}/$labels }/g;
+$graphviz =~ s/shape=box/shape=record/g;
+
+print $graphviz;
+</pre>
+<p>And update <a href="http://gist.github.com/61684">my gist</a> with second.</p>
+</div>
+</div>
+
+    <div class="paginate">
+      <a href="http://blog.8-p.info/2009/tag/lang-en/page/4" >Newer</a>      <a href="http://blog.8-p.info/2009/tag/lang-en/page/6" >Older</a>    </div>
+  </div>
+  <div class="sidebar"><h2>About me and this blog</h2>
+<p>
+  All articles are written by <a href="http://8-p.info/me/">加藤和良</a>.
+  A few are <a href="/2009/tag/lang-en">written in English</a>.
+</p>
+
+<ul>
+  <li>
+    <h2>Recent articles</h2>
+    <ul>	<li><a href='http://blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='http://blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='http://blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='http://blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='http://blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='http://blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='http://blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='http://blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='http://blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='http://blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='http://blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+</ul>
+  </li>
+</ul>
+
+<ul><li id="linkcat-2" class="linkcat"><h2>Links</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://collisions.doppac.cc/">collisions.doppac.cc</a></li>
+<li><a href="http://googletesting.blogspot.com/">Google Testing Blog</a></li>
+<li><a href="http://www.grafikcache.com/">Grafikcache</a></li>
+<li><a href="http://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="http://someru.blog74.fc2.com/">Hang Reviewers High</a></li>
+<li><a href="http://labs.ideo.com/">IDEO Labs</a></li>
+<li><a href="http://blog.makezine.com/">MAKE: Blog</a></li>
+<li><a href="http://d.hatena.ne.jp/KZR/">Radium Software</a></li>
+<li><a href="http://steps.dodgson.org/">steps to phantasien</a></li>
+
+	</ul>
+</li>
+</ul>
+
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+</p>
+</div>
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

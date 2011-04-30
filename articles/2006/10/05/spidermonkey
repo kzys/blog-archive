@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: SpiderMonkey でフィルタを書く</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136361460">
+  <h2 class="entry-title"><a href="/articles/2006/10/05/spidermonkey" title="SpiderMonkey でフィルタを書く">SpiderMonkey でフィルタを書く</a></h2>
+  <div class="published">
+    October 5th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>最近の SpiderMonkey には readline() と print() があり、これを使って標準入力から読んで標準出力に書く、いわゆるフィルタ的なものを作ろうと思った。</p>
+
+<pre><code>var ln;
+while (ln = readline()) {
+    print(ln);
+}
+</code></pre>
+
+<p>こんなので cat が出来そうな気がするけど</p>
+
+<pre><code>a
+
+b
+</code></pre>
+
+<p>こういう空行まじりのファイルを食わせると、空行のところでループから抜けてしまう。なんでかといえば JavaScript では "" == false だから。</p>
+    
+    
+    
+    <p>じゃあ readline() は EOF のときどうなるのか。こんなプログラムに</p>
+
+<pre><code>for (var i = 0; i &lt; 10; i++) {
+    var ln = readline();
+    print(typeof ln + "\t'" + ln + "'");
+}
+</code></pre>
+
+<p>さっきの3行のファイルを食わせてみると</p>
+
+<pre><code>string      'a'
+string      ''
+string      'b'
+string      ''
+string      ''
+string      ''
+string      ''
+string      ''
+string      ''
+string      ''
+</code></pre>
+
+<p>EOF 区別できないよ……。しょうがないので SpiderMonkey の js.c に patch 書いた。</p>
+
+<pre><code>Index: js.c
+===================================================================
+RCS file: /cvsroot/mozilla/js/src/js.c,v
+retrieving revision 3.125
+diff -p -u -8 -r3.125 js.c
+--- js.c    19 Sep 2006 06:48:25 -0000      3.125
++++ js.c    5 Oct 2006 08:48:22 -0000
+@@ -639,17 +639,20 @@ ReadLine(JSContext *cx, JSObject *obj, u
+         }
+
+         bufsize *= 2;
+         buf = tmp;
+     }
+
+     /* Treat the empty string specially. */
+     if (buflength == 0) {
+-        *rval = JS_GetEmptyStringValue(cx);
++        if (feof(from))
++            *rval = JSVAL_NULL;
++        else
++            *rval = JS_GetEmptyStringValue(cx);
+         JS_free(cx, buf);
+         return JS_TRUE;
+     }
+
+     /* Shrink the buffer to the real size. */
+     tmp = JS_realloc(cx, buf, buflength);
+     if (!tmp) {
+         JS_free(cx, buf);
+</code></pre>
+
+<p>EOF で null を返すことにしたので、cat はこうなる。</p>
+
+<pre><code>var ln;
+while ((ln = readline()) != null) {
+    print(ln);
+}
+</code></pre>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/javascript" rel="tag" title="javascript">javascript</a></li>
+      
+      <li><a href="/tags/javascript" rel="tag" title="javascript">javascript</a></li>
+      
+      <li><a href="/tags/mozilla" rel="tag" title="mozilla">mozilla</a></li>
+      
+      <li><a href="/tags/mozilla" rel="tag" title="mozilla">mozilla</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">4 Responses to &#8220;SpiderMonkey でフィルタを書く&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-135010680">
+			<cite><span>kou</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135010680" title="">October 7th, 2006 at 10:43 AM</a></small>
+			<p>このパッチは本体に取りこまれそうなのですか？
+挙動が変わるとぎゃっと言う人がいるかもしれませんが．．．</p>
+		</li>
+  
+		<li class="" id="comment-134929090">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134929090" title="">October 7th, 2006 at 05:30 PM</a></small>
+			<p>まだ Bugzilla に投げてすらいない状況です。</p>
+		</li>
+  
+		<li class="alt" id="comment-134925330">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134925330" title="">October 7th, 2006 at 07:05 PM</a></small>
+			<p>Bugzilla に送ってみました。
+「EOF が区別できないのが仕様」というのも結構ぎゃっとなると思うので、
+できれば取りこまれると良いんですが。</p>
+		</li>
+  
+		<li class="" id="comment-134923670">
+			<cite><span>kou</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134923670" title="">October 7th, 2006 at 11:06 PM</a></small>
+			<p>であれば，is_eof()(isEof()?)みたいなのがあるとよいのかもしれませんね．</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/10/05/spidermonkey/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>C にクロージャのようなものを追加する Grand Central Dispatch - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry1337">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/09/gcd-1">C にクロージャのようなものを追加する Grand Central Dispatch</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-09-21 23:34    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Snow Leopard には Grand Central Dispatch (以下 GCD) という機能がある。これは C と当然 C++, Objective-C, Objective-C++ にクロージャのようなものを追加し、マルチコアな CPU における計算の並列実行を簡単に書けるようにするらしい。</p>
+<p>私は並列化には全然詳しくないのだけど、クロージャのようなものは気になるので調べてみた。</p>
+<h3>Block</h3>
+<p>Apple Developer Connection にある <a href="http://developer.apple.com/mac/articles/cocoa/introblocksgcd.html">Introducing Blocks and Grand Central Dispatch</a> は GCD の全体像をコードを交えつつわかりやすく説明している。この &#8220;blocks&#8221; というのがクロージャのようなものだ。</p>
+<blockquote>
+<p>Blocks are similar to — but far more powerful than — traditional function pointers. The key differences are:</p>
+<ul>
+<li>Blocks can be defined inline, as &#8220;anonymous functions.&#8221;</li>
+<li>Blocks capture read-only copies of local variables, similar to &#8220;closures&#8221; in other languages</li>
+</ul>
+</blockquote>
+<p>上記文章中ではこの一カ所でしか &#8220;closures&#8221; という語は使われていなく、あとは &#8220;blocks&#8221; と呼ばれている。これを使って <a href="http://practical-scheme.net/trans/icad-j.html">技術野郎の復讐</a> (書籍『ハッカーと画家』に「オタク野郎の復習」として収録されている) にあるアキュムレータを書いてみた。</p>
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;Block.h&gt;
+
+typedef int (^IntAccumulator)(int);
+
+IntAccumulator foo(int n) {
+  __block int s = n;
+  int (^bar)(int) = ^(int i){
+    return s += i;
+  };
+  return Block_copy(bar);
+}
+
+int main(int argc, char* argv[]) {
+  IntAccumulator f = foo(1);
+  printf("%dn", f(1));
+  printf("%dn", f(1));
+  printf("%dn", f(2));
+  Block_release(f);
+  return 0;
+}
+</pre>
+<p>このコードのうち、いままでの C になかった部分を簡単に説明する:</p>
+<ul>
+<li>block は関数ポインタと環境をあらわすデータで実現され、文法も関数ポインタを模し <code>*</code> を <code>^</code> に代えたものになっている。</li>
+<li>外のローカル変数は参照できるが変更は通常できない。グローバル変数と static 変数、さらに新たに導入された __block 修飾子のつけられたローカル変数は変更できる。</li>
+<li>block は効率上の理由でスタックに確保される。もとのスコープから脱したい場合は明示的に Block_copy して複製を作り Block_release で解放する必要がある。</li>
+</ul>
+<p>実行結果は当然こうなる。</p>
+<pre>
+% cc -Wextra 1.c &#038;&#038; ./a.out
+2
+3
+5
+%
+</pre>
+<p>まだ並列化は関係がなく、個々の関数呼び出しは順に実行されている。</p>
+<p>並列化抜きの block はこれから使われていくんだろうか。callback として、スコープのより狭い関数ポインタとしては便利だ。実際、Apple は qsort_b, atexit_b といった block を引数にとる関数をいくつか提供している。一方、関数が関数を返すような使い方は微妙に思う。ただ Block_copy/Block_release の「だささ」は C では日常茶飯事だし、Objective-C 上なら NSAutoreleasePool やガベージコレクタの恩恵にもあずかれるらしい。</p>
+<p>ちなみに、Apple は block の標準化を目指しているらしく、ISO の C のワーキンググループには <a href="http://www.open-std.org/JTC1/SC22/WG14/www/docs/PostMarkham.htm">今年3月</a> に <a href="http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1370.pdf">Apple’s extensions to C</a> として提出されている。実装も、GCC では Apple の独自拡張あつかいだけど、LLVM のフロントエンドである Clang には <a href="http://clang.llvm.org/docs/LanguageExtensions.html#blocks">とりこまれて</a> いる。</p>
+<h3>並列化</h3>
+<p>さて、この block を並列に実行するために、GCD は dispatch queue というキューを提供する。キューの先から取り出された block はスレッドプールのなかのスレッド上で実行される。スレッドプールがキューを提供するのは <a href="http://en.wikipedia.org/wiki/Thread_pool_pattern">一般的</a> なようだ。</p>
+<blockquote>
+<p>While initially inspired by the challenge of multicore computing, these actually solve a more general problem: how to efficiently schedule multiple independent chunks of work. GCD does this using four primary abstractions:</p>
+<ul>
+<li>block objects</li>
+<li>dispatch queues</li>
+<li>synchronization</li>
+<li>event sources</li>
+</ul>
+</blockquote>
+<p>block と dispatch queue と、その同期のためのいくつかの方法、さらに非同期 IO などに block を callback として使う event とが、GCD の提供する主な抽象とされている。</p>
+<p>GCD の特長は、スレッドが完全に隠蔽されることと、block の導入で、分割した処理を記述量もふくめ簡単に書けることのように思う。Apple は OS との密な連携もあげているけど、私は OS に詳しくないのであまりうなづけなかった。</p>
+<h3>次回予告</h3>
+<p>息切れしたのでここで一度おわり。次回はコンパイラ側のはなしをしたいです。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="1337" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Creammonkey 0.8</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137299340">
+  <h2 class="entry-title"><a href="/articles/2006/12/03/creammonkey-0-8" title="Creammonkey 0.8">Creammonkey 0.8</a></h2>
+  <div class="published">
+    December 3rd, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://creammonkey.sourceforge.net/">Creammonkey</a>  0.8をリリースしました。主な変更点は以下の通り。</p>
+
+<ul>
+<li>スクリプトの実行を DOM の構築直後に変更</li>
+<li>ローカルのスクリプトをキャッシュするのを止めた</li>
+<li>Accept-Encoding に対応</li>
+</ul>
+
+<p>はじめの二つは Greasemonkey との相違点を減らすための変更です。うち二つ目はさとうさんの <a href="http://lowreal.net/blog/2006/11/02/1">Creammonkey のデバッグ改造版</a>を(実装方法はちがうものの)実質とりこんだかたちになっています。ありがとうございます。</p>
+
+<p>なお、このリリースから <a href="http://creammonkey.sourceforge.net/">creammonkey.sourceforge.net</a> に拠点を移したので注意してください。8-p.info からのリダイレクトはこれから設定します。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/creammonkey" rel="tag" title="creammonkey">creammonkey</a></li>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/12/03/creammonkey-0-8/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-17T14:05:28+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-17T14:05:28+09:00</h1>
+
+    <p>
+Twitter も FriendFeed もフィードがあるんだから、Michael Arrington は Google Reader で個々のユーザーを直接読めば良いんじゃないかと思った。
+</p>
+<p>
+ホームとか Dashboard とか呼ばれるものには、いくつかログインユーザーにしか表示できないものも混じっている。Twitter だったら protected な人とか。
+</p>
+<p>
+Pownce は個人的なフィードのアドレスにパスワード的なものを含めることで、これを解決しようとしていて、例えばおれのプライベートなノートのフィードは <a class="ext-link" href="http://pownce.com/feeds/private/kzys-foo12bar.rss"><span class="icon"></span>http://pownce.com/feeds/private/kzys-foo12bar.rss</a> みたいなアドレスになる。foo12bar が &quot;secret key&quot; で <a class="ext-link" href="http://pownce.com/settings/secret_key/"><span class="icon"></span>http://pownce.com/settings/secret_key/</a> で確認できる。
+</p>
+  </div>
+</body>
+</html>

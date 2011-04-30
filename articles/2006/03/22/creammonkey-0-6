@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Creammonkey 0.6</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135301670">
+  <h2 class="entry-title"><a href="/articles/2006/03/22/creammonkey-0-6" title="Creammonkey 0.6">Creammonkey 0.6</a></h2>
+  <div class="published">
+    March 22nd, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://8-p.info/Creammonkey/">Creammonkey</a> 0.6 をリリースしました。</p>
+
+<h3>スクリプトのエンコーディングを UTF-8 に固定</h3>
+
+<p>ユーザースクリプト中に複数言語のメッセージカタログがはいっている <a href="http://shiftingpixel.com/lightbox/">Greased Lightbox</a> が動かないらしいので。</p>
+
+<p>前に「やりすぎ」扱いした data scheme の画像埋め込みは<a href="http://subtech.g.hatena.ne.jp/secondlife/20060313/1142220064">実は普通だった</a>みたいですが、メッセージカタログはなかなか無いと思う。</p>
+
+<h3>スクリプトの一時的なオン/オフを実装</h3>
+
+<p>メニューにスクリプトの一覧をつけました。チェックつきで、チェックをはずしたスクリプトは実行されなくなります。</p>
+
+<h3>スクリプトの二重実行を防止</h3>
+
+<p><a href="http://www.gingerbeardman.com/ecc/">Etsy Currency Converter</a> のひとから、</p>
+
+<ol>
+<li>document.body.innerHTML を書き換えるようなユーザースクリプトを実行</li>
+<li>他のページへ移動</li>
+<li>戻る</li>
+</ol>
+
+<p>という操作をやると、書き換え済みのページをまた書き換えちゃうけど Greasemonkey はそうならないよ、というメールをもらったので、それを修正しました。</p>
+
+<p>なぜか document.body が破棄されないようなので、</p>
+
+<pre><code>if (! document.body.__creammonkeyed__) {
+    (ユーザースクリプト...)
+    document.body.__creammonkeyed__ = true;
+}
+</code></pre>
+
+<p>というふうに if 文でくくってます。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/creammonkey" rel="tag" title="creammonkey">creammonkey</a></li>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/22/creammonkey-0-6/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

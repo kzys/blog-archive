@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: livedoor Reader</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135734220">
+  <h2 class="entry-title"><a href="/articles/2006/04/21/livedoor-reader" title="livedoor Reader">livedoor Reader</a></h2>
+  <div class="published">
+    April 21st, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://d.hatena.ne.jp/nipotan/20060420/1145521278">にぽたん休憩所 -  livedoor が Flickr に引き続き Bloglines にインスパイアされすぎた件について</a></p>
+
+<blockquote>
+    <p>Notifier API が返す値が、Bloglinesそっくりになっていました。</p>
+</blockquote>
+
+<p>にぽたんさんがこんなことを書いてるけど、たかだか見た目程度でしか物事を判断できない人間がパクりは悪などという風潮を広めてまわるのは残念でなりません、といいたいです。</p>
+    
+    
+    
+    <p>ブラウザ上ではなく、curl などで叩いてみるとわかりますが、</p>
+
+<pre><code>% curl http://rpc.bloglines.com/update\?user=めーる
+|3||
+% curl http://rpc.reader.livedoor.com/notify\?user=ゆーざー
+% curl http://rpc.reader.livedoor.com/notify\?user=ゆーざー; echo
+|3||
+%
+</code></pre>
+
+<p>livedoor Reader は行末に "\n" がありません。些細なことにみえますが、こうした 1byte の無駄も削る姿勢に、数々の高負荷サイトを運営してきたライブドアの技術者の姿勢が現れててててててt</p>
+
+<h3>佐々木さん</h3>
+
+<p><a href="http://blog.livedoor.jp/staff_reader/">livedoor Reader 開発日誌 - livedoor Blog（ブログ）</a></p>
+
+<blockquote>
+    <p>担当の佐々木です。</p>
+</blockquote>
+
+<p>佐々木……、チーム佐々木一朗太か！</p>
+
+<h3>Safari</h3>
+
+<p>ごめん。そういうはなしじゃなくて。</p>
+
+<p>Safari で http://reader.livedoor.com/reader/ に飛ぶと、たまにマイフィードが読み込まれず、JavaScript Console に</p>
+
+<blockquote>
+    <p>TypeError - Value undefined (result of expression Array.extend) is not object.</p>
+</blockquote>
+
+<p>というエラーが出ていることがあります。</p>
+
+<p>リロードすると直るので、Safari の eval のタイミングがおかしくて、loadJS で http://reader.livedoor.com/js/common.js が eval される前に、Array.extend が呼ばれちゃっているんじゃないかと思います。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/feed" rel="tag" title="feed">feed</a></li>
+      
+      <li><a href="/tags/livedoor" rel="tag" title="livedoor">livedoor</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/04/21/livedoor-reader/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

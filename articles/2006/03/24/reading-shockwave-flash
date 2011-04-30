@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Reading Shockwave Flash</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136922330">
+  <h2 class="entry-title"><a href="/articles/2006/03/24/reading-shockwave-flash" title="Reading Shockwave Flash">Reading Shockwave Flash</a></h2>
+  <div class="published">
+    March 24th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://www.ur-net.go.jp/manabe/">UR賃貸住宅＿眞鍋かをりのURに、引っコスプレ</a>の Shockwave Flash ファイルから画像をばらしてみた。</p>
+    
+    
+    
+    <h3>仕様書</h3>
+
+<p>Shockwave Flash のファイルフォーマットは公開されていて、
+<a href="http://www.macromedia.com/licensing/developer/">Macromedia - Player Licensing</a> から登録すればダウンロードできる。たぶん。</p>
+
+<p>前に落としたものがあったので登録してない。前は登録とか無かった気がするんだけど。</p>
+
+<h3>基本</h3>
+
+<ul>
+<li>.swf ファイルはリトルエンディアンなので、PowerPC で 32bit や 16bit まとめて読むときは swap が必要。</li>
+<li>矩形型の読み込みとかでビット単位の読み込みが必要。</li>
+<li>座標系の単位は twip (1 twip == 1/20 pixel)</li>
+</ul>
+
+<h3>ヘッダ</h3>
+
+<p>zlib で全体に圧縮かかっているファイルもあるらしいけど、今回はそういうのはなかった。</p>
+
+<h3>タグ</h3>
+
+<p>ヘッダが終わると、あとはタグと呼ばれるデータの列が終わりまで続く。タグは可変長で、先頭 16bit に種類と長さが入っている。</p>
+
+<p>16bit 読んで、上から 10bit が種類、下 6bit がこれから読むタグ本体の長さ。当然 6bit じゃ足りなくて、ここに 0x3f がはいってたら本当の長さは次 32bit にはいってる。</p>
+
+<h3>JPEG</h3>
+
+<p>仕様書だけ読んでるとここでハマる。<a href="http://auicon.freeownhost.com/pc/dev/ming/jpeg.html">ming/JPEG</a> にすごい助けられた。</p>
+
+<p>簡単にいうと、JPEG (JFIF) としては微妙におかしいデータがはいってるので、ちょっと作業が必要。今回のケースだと、</p>
+
+<ul>
+<li>DefineBitsJPEG2 は先頭に EOI SOI って入ってるのでそれを読み飛ばす。</li>
+<li>DefineBitsJPEG3 は変なとこに SOI と EOI が入ってるのでそれを読み飛ばして、先頭と末尾に自分で SOI, EOI をつける。</li>
+</ul>
+
+<p>でうまくいった。</p>
+
+<p>ちなみに、微妙に (JPEG として読める範囲で) 失敗すると <a href="http://flickr.com/photos/youpy/">youpy さんの Flickr</a> みたいになる。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/flash" rel="tag" title="flash">flash</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/24/reading-shockwave-flash/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Interesting Problem</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136565610">
+  <h2 class="entry-title"><a href="/articles/2005/11/20/interesting-problem" title="Interesting Problem">Interesting Problem</a></h2>
+  <div class="published">
+    November 20th, 2005
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://column.chbox.jp/home/kiri/archives/blog/main/2005/11/19_095934.html">切込隊長BLOG（ブログ） - 本当に技術が必要とされる現場にgeekがいない</a></p>
+
+<p>ゲーテ 2.0 であるところの <a href="http://namazu.org/~satoru/blog/archives/000021.html">ポール・グラハム</a>は「<a href="http://www.shiro.dreamhost.com/scheme/trans/gh-j.html">素晴らしきハッカー</a>」でこんなことを書いていました。</p>
+
+<blockquote>
+    <p>ハッカーは、良い道具とともに、おもしろいプロジェクトを欲する。何がプロジェクトを面白くするだろう? もちろん、とびぬけてセクシーなアプリケーション、ステルス飛行機だとか特殊効果のソフトウェアだとかは、やって面白いプロジェクトだろう。でも、新しい技術的な挑戦があれば、どんなアプリケーションだって面白くなり得る。だから、ハッカーがどういう問題を好むかを予想することは難しい。その問題に取り組んでみて、新しい種類の解法を見つけ出してはじめて、面白くなる、というものもあるからだ。</p>
+</blockquote>
+    
+    
+    
+    <p>そして、例として</p>
+
+<ul>
+<li>Lisp で航空券販売サイト Orbitz を書いた ITA Software</li>
+<li>ポータル全盛の世に検索をやり直した Google</li>
+<li>美しいコンピュータとして Mac を作った Apple (というか Steve Jobs)</li>
+</ul>
+
+<p>を挙げています。</p>
+
+<p>なので、そのうち「Haskell で証券取引所のシステムを書いたよ!」なんていかれた人達が出てくるんじゃないでしょうか。</p>
+
+<p>え、"The best way to predict the future is to invent it" ? </p>
+
+<p>あー、自分がやるとしたらやっぱり Web がいいかなー、と。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/hacker" rel="tag" title="hacker">hacker</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2005/11/20/interesting-problem/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

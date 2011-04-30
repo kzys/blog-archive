@@ -1,0 +1,34 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-08T02:17:52+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-08T02:17:52+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://delicious.com/url/72ef8ef7f462d6c135f1e62890bb8bb4"><span class="icon"></span>Everyone's bookmarks for "GreasePocket Blog" on Delicious</a>
+</p>
+<blockquote class="citation">
+<p>
+ hmm how do you think about it? &gt; kzys 
+</p>
+</blockquote>
+<p>
+限定された環境こそユーザースクリプト重要というのは誰かがどっかで書いてて、GreasePocket も便利そう。動画をみるぶんには自前ブラウザっぽい。WebView つかって、読み込み後に特定の JavaScript を実行するブラウザ。
+</p>
+<p>
+GreaseKit はあらゆる WebKit アプリに寄生するためと、当時お気に入りだった Safari を再実装しないために Input Manager (LD_PRELOAD みたいなやつ) でやっていて、もし GreasePocket がこのまま Mobile Safari を再実装するとしたら結構大変そうだと思う。
+</p>
+<p>
+さらに再実装したとして App Store に出せるかどうか。前に Firefox が iPhone に載せられないとかで Mozilla のひとが怒ってたけど、WebKit つかった汎用ブラウザはどうなんだろう。さすがに出せるかなー。
+</p>
+<p>
+こうやって Apple 様のお考えをうかがうのは「Web ではない」ので面倒だけど、Nintendo DS とかに比較すればまだかわいい。と、都合よくいろんな比較対象を持ち出すのが信者っぽい。
+</p>
+  </div>
+</body>
+</html>

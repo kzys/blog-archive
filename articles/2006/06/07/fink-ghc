@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Fink から GHC のバイナリをインストール</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135258670">
+  <h2 class="entry-title"><a href="/articles/2006/06/07/fink-ghc" title="Fink から GHC のバイナリをインストール">Fink から GHC のバイナリをインストール</a></h2>
+  <div class="published">
+    June 7th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://www.amazon.co.jp/o/ASIN/4797336021/8pinfo-22/ref=nosim"><img src="http://images-jp.amazon.com/images/P/4797336021.01.MZZZZZZZ.jpg" alt="ふつうの Haskell プログラミング"></a></p>
+
+<p>『ふつうの Haskell プログラミング』を読みはじめたので、Glasgow Haskell Compiler をいれようと思ったんだけど、DarwinPorts の ghc が</p>
+
+<blockquote>
+    <p>Runtime Dependencies: perl5.8</p>
+</blockquote>
+
+<p>で Perl をまるまるいれようとしてきたり、<a href="http://kimuraw.txt-nifty.com/d/2006/06/build_ghc.html">きりかノート: ghc のビルドが終わらない</a> の</p>
+
+<blockquote>
+    <p>（追記：どうやら5時間くらいかかったらしい）</p>
+</blockquote>
+
+<p>とか、『ふつうの Haskell プログラミング』の 11 ページの</p>
+
+<blockquote>
+    <p>うっかりソースコードからコンパイルしてみようとなんて色気を出すと酷い目に遭います。</p>
+</blockquote>
+
+<p>とかで、バイナリでいれたくなったので Fink からインストール。</p>
+
+<p>Fink 公式には (これを書いている時点で) <a href="http://pdb.finkproject.org/pdb/package.php/ghc">GHC のバイナリは無い</a>のですが、東大 Fink チームが <a href="http://fink.sodan.ecc.u-tokyo.ac.jp/item/13">unstable ツリーのバイナリを配布</a>しているので、それを使いました。</p>
+
+<p>なんでも自分で make しようとするのは BSD 系の文化だと思うのですが、育ちが Linux だからか、どうも計算機資源の無駄遣いのように感じます。DarwinPorts も消すかも。</p>
+    
+    
+    
+    <h3>(6/8 追記)</h3>
+
+<p>インストールだけはできたものの、</p>
+
+<pre><code>% ghc
+dyld: Library not loaded: /sw/lib/libgmp.3.dylib
+  Referenced from: /sw/lib/ghc-6.4.1/ghc-6.4.1
+  Reason: no suitable image found.  Did find:
+        /sw/lib/libgmp.3.dylib: incompatible cpu-subtype
+zsh: trace trap  ghc
+%
+</code></pre>
+
+<p>で困っていたんだけど、apt-get install ghc じゃなくて fink install ghc したら上手くいった。apt-get ではいるパッケージは、</p>
+
+<ul>
+<li>gmp-shlibs (4.2.1-1002)</li>
+<li>libmpfr1-shlibs (2.2.0-2) </li>
+<li>ghc (6.4.1-1003)</li>
+</ul>
+
+<p>だけど、fink ではいるパッケージは、</p>
+
+<ul>
+<li>gmp-shlibs (4.1.4-1002)</li>
+<li>libmpfr1-shlibs (2.2.0-2)</li>
+<li>ghc (6.4.1-1002)</li>
+</ul>
+
+<p>なので、そのせいだろうとは思うんだけど、そもそも apt-get と fink でちがうパッケージがはいることってアリなの？</p>
+
+<p>さらにひとはまり、</p>
+
+<pre><code>% ghc -o cat cat.o
+/usr/bin/ld: can't locate file for: -lHShaskell98
+collect2: ld returned 1 exit status
+</code></pre>
+
+<p>は fink install ghc-dev して、</p>
+
+<pre><code>% ghc -o cat cat.o
+/usr/bin/ld: can't locate file for: -lgmp
+collect2: ld returned 1 exit status
+</code></pre>
+
+<p>には fink install gmp です。runghc とバッファリングの挙動がちがう……。</p>
+
+<p>(runghc のはなしは <a href="http://www.fobj.com/hisa/diary/20060604.html#p02">ひ日誌(2006-06-04)</a> にも書いてあった。なんかひっかかりますよねあれ)</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/darwinports" rel="tag" title="darwinports">darwinports</a></li>
+      
+      <li><a href="/tags/fink" rel="tag" title="fink">fink</a></li>
+      
+      <li><a href="/tags/haskell" rel="tag" title="haskell">haskell</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/06/07/fink-ghc/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

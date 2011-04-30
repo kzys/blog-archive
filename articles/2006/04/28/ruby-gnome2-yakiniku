@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Ruby-GNOME2 Yakiniku</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137693760">
+  <h2 class="entry-title"><a href="/articles/2006/04/28/ruby-gnome2-yakiniku" title="Ruby-GNOME2 Yakiniku">Ruby-GNOME2 Yakiniku</a></h2>
+  <div class="published">
+    April 28th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>Ruby-GNOME2 関係で</p>
+
+<ul>
+<li>むとうさん (リーダー)</li>
+<li><a href="http://slashdot.jp/comments.pl?sid=283268&amp;cid=821484">須藤さん</a> (Rabbit)</li>
+<li>池添さん (風博士)</li>
+</ul>
+
+<p>と焼き肉を食べにいった。</p>
+    
+    
+    
+    <ul>
+<li>焼き肉ｷﾞｻﾞｳﾏｽ、というかギザとかいってるのはサブテクの人だけだと思ってたんだけど、オープンソースデスクトップ勢にも広まっていた。須藤さんと池添さんはナイスタッグ。</li>
+<li>たまに、Ruby-GNOME2 に「バインディング書いたよー」ってくるんだけど「メンテやる？」ってなるとあいまいな返事になるので取り込めない。</li>
+<li>オープンソースは継続が重要。超重要。</li>
+<li>スクリチすごい。</li>
+<li>GTK+ はがんがん進んでる。<a href="http://developer.imendio.com/wiki/Gtk_Mac_OS_X">Imendio の X11 抜きで Mac で動く GTK+</a> も commit されたし。</li>
+<li>Owen Taylor はすごい。日本語の IME まわりもちゃんと理解している。</li>
+<li>リリースエンジニアリングは大変。Ruby-GNOME2 はリリース前にいろんな環境でテストしてるらしい。</li>
+<li>昔の Ruby-GTK+ は GTK+ 側のオブジェクト指向な仕組みをまったく無視していたので直した。</li>
+<li>GTK+ のオブジェクト指向な仕組みは、ある意味 Objective な C だ。</li>
+<li>バグレポートは書いて patch は書かない人が、patch にコードレベルでツッコミをいれるミラクル。</li>
+<li>commit 権はもらうよりあげたい。</li>
+</ul>
+
+<p>気がついたら終電が無くなっていたので、須藤さんといっしょに、むとうさん宅にいって、そこからラーメンに連れてってもらったり。お世話になりました。むとうさんはリーダーというか先輩というか、兄貴肌でした。</p>
+
+<p>さて、Ruby-GNOME2 の CVS HEAD を Mac でビルドしないと。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+      <li><a href="/tags/gtk" rel="tag" title="gtk">gtk</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">2 Responses to &#8220;Ruby-GNOME2 Yakiniku&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-136657470">
+			<cite><span>むとう</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-136657470" title="">May 12th, 2006 at 10:50 AM</a></small>
+			<p>おっと、いまさら気づきました（＜遅すぎ）。</p>
+
+<p>またやりましょー。</p>
+		</li>
+  
+		<li class="" id="comment-136497580">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-136497580" title="">May 13th, 2006 at 11:43 PM</a></small>
+			<p>ぜひぜひ。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/04/28/ruby-gnome2-yakiniku/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

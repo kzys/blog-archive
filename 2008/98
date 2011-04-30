@@ -1,0 +1,20 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-15T06:50:39+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-15T06:50:39+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://developer.yahoo.com/yui/3/node/#nodelist"><span class="icon"></span>http://developer.yahoo.com/yui/3/node/#nodelist</a>
+</p>
+<p>
+YUI 3 が jQuery みたいにメソッドチェーンで書けるようになってる件。
+</p>
+  </div>
+</body>
+</html>

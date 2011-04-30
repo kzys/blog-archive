@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>Clickatell 経由で SMS を送信する - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 2.7.1" />
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="http://blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry1264">
+  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/09/clickatell-sms">Clickatell 経由で SMS を送信する</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-09-09 03:02    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>すこしまえに、Gmail の新規登録に SMS による認証が追加されたらしい。日本では必要ないはずだけどヘルプは日本語化されている。</p>
+<p><a href="http://mail.google.com/support/bin/answer.py?hl=jp&#038;answer=114129">SMS account verification</a></p>
+<blockquote><p>Gmail アドレスを登録するには、SMS 機能を搭載した携帯電話が必要となります。 携帯電話をお持ちでない場合は、友だちの携帯電話でコードを受け取ることができます。</p>
+<p>Gmail へのこの新しい登録方法を提供することにした理由の 1 つは、ユーザーを保護し、不正使用を防止するためです。Google は、迷惑メールや不正使用からの保護を重視しています。ユーザーの皆様からは、Gmail には迷惑メールがあまり届かないというお言葉をいただいています。Google では、迷惑メール送信者が迷惑メールを送信または配信したり、Gmail アドレスを取得（迷惑メール送信者はさまざまなアドレスを使用して迷惑メールを送信します）したりできないよう、数多くの対策を講じています。作成するアドレス数は携帯電話番号ごとに制限できるため、携帯電話に招待コードを送信するのもこの対策の一環です。</p>
+</blockquote>
+<p>SMS を送信するにはいくつか方法がある。</p>
+<p>一番簡単なのはメールアドレスが SMS の受け口になっているキャリアだ。残念ながら日本には無いのだけど、たとえば AT&amp;T は電話番号@txt.att.net にメールを送るとその電話番号に SMS として送られるらしい。LiveJournal の <a href="http://www.livejournal.com/tools/textmessage.bml?mode=details">Send a Text Message</a> にまとまっている。</p>
+<p>次に簡単なのが HTTP や SOAP 経由で SMS を送ってくれるサードパーティのサービスを利用すること。たとえば <a href="http://www.clickatell.com/">Clickatell</a> なんかがあげられる。</p>
+<p>大変そうなのが、自分で電話に AT コマンドを送ったり、キャリアの SMS センターに直接つなぐ方法。<a href="http://www.kannel.org/">Kannel</a> は両方、<a href="http://raa.ruby-lang.org/project/ruby-sms/">ruby-sms</a> は前者のみの機能を提供しているようだけど、あまり理解に自信は無い。</p>
+<h3>Clickatell</h3>
+<p>Clickatell を使うと、こんな感じで SMS が送信できる。</p>
+<pre>
+% curl 'http://api.clickatell.com/http/sendmsg?user=[ユーザー名]&amp;password=[パスワード]&amp;api_id=[API ID]&amp;to=[電話番号]&amp;text=[本文]'; echo
+ID: [16進数っぽい30桁超の値]
+%
+</pre>
+<p>スクリーンショットをとりながらユーザー登録、とかやらなかったので大幅に手順を省略しました。</p>
+<p>SMS の送信は有料なので注意が必要だ。Clickatell の場合まずクレジットを買って、SMS の送信のたびにクレジットが減っていく、というシステムをとっている。クレジットはまとめて買うと多少割引もある。実際の値段については <a href="http://www.clickatell.com/pricing/message_cost.php">Message Pricing</a> を参照。</p>
+<p>ちなみに、クレジットを PayPal で買うときは反映にすこし時間がかかるので、あせって複数回買ったりするのはやめましょう。はい、やりましたとも。</p>
+<h3>日本で SMS 認証は流行るのか?</h3>
+<p>無理なんではないかと。</p>
+<p>まず、日本でいう「SMS」は「電話番号だけでとどくアレ」くらいの意味で、海外 (というか GSM 圏) でいう SMS より意味が広い。キャリア間の相互運用性が低い中、キャリア外から送ることは難しいと思う。<a href="http://www.clickatell.com/pricing/standard_mt_coverage.php">Clickatell の対応表</a> には KDDI の文字があるけど、これが C メールを指すかというと微妙 (未実験)。</p>
+<p>つぎに、日本の携帯電話の HTTP まわりには、契約者や電話番号などにひもづいた ID をリクエストヘッダにつけて送信するという風習があって、それが不正使用対策としてよく使われているという事情がある。最初に引用した Gmail のニーズは、これで代用できそうだ。</p>
+<p>そもそも SMS が送れるのか、送れたとして、事業者にとって ID より便利なのか、という二つを考えると、SMS  をつかった認証は流行らない気がする。</p>
+<p><a href="http://takagi-hiromitsu.jp/diary/20080710.html">日本のインターネットが終了する日</a> でいわれているように、ID の送信はプライバシー上の問題が大きいので、それとくらべると SMS 認証のほうが良さげだ。でもたぶん使われないし、SMS そのものも今後ふつうの電子メールや XMPP あたりに置き換えられていく技術のように思いました。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="1264" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: iBook の HDD を交換した</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135746000">
+  <h2 class="entry-title"><a href="/articles/2006/06/23/ibook-hdd" title="iBook の HDD を交換した">iBook の HDD を交換した</a></h2>
+  <div class="published">
+    June 23rd, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://www.flickr.com/photos/kzys/173528736/" title="Photo Sharing"><img src="http://static.flickr.com/49/173528736_efcbfecd2e_m.jpg" width="180" height="240" alt="iBook" /></a></p>
+
+<p>iBook の HDD から「カツーンカツーン」とか「カラカラカラ……」とか怖い音がするので、分解して HDD を交換した。</p>
+
+<p>一番参考になったのは ifixit の <a href="http://www.ifixit.com/Guide/83.14.0.html">iBook G4 12"</a> のページ。とにかく iBook はネジが多いので「このステップではこの種類のネジが何本だよ」というのがこと細かく写真で説明されているのが、すごく助かった。</p>
+
+<p>あと箇条書きで。</p>
+
+<ul>
+<li>外したネジなり部品は、作業用とは別のテーブルにまとめて並べて、付箋でどこらへんの部品かメモしながら進めていったのが、わりとよかった。</li>
+<li>ゴム足は細いドライバーをガリってなるあたりまでつっこんで、テコでとれる。ただし勢いをつけすぎると親指にドライバーがきて出血したり、ゴム足を飛ばしたりするので注意。</li>
+<li>マグネットでふたがしてあるネジがある。なんのため？</li>
+<li>キーボードのケーブルは長辺をもってぐりぐりすればとれる。</li>
+<li>光学ドライブの下側のあたりが硬すぎ。かなりとれない。</li>
+<li>T8 のトルクスドライバーが必要。裏蓋は六角棒レンチで代用できるけど、HDD についてる変な部品はトルクスじゃないとだめ。</li>
+<li>フォーマットされていないディスクは OS のインストーラから見えない。メニューからディスクユーティリティを起動してフォーマットしないとだめ。</li>
+</ul>
+
+<p>IDE をむきだしで USB につなげるケーブルも買ってきたので、あとはこれで少しずつコピーしてこうかなんて考えていたんだけど、iTunes Music Store の認証解除はコピーじゃだめだな。DRM めどいよ。</p>
+    
+    
+    
+    <h3>(6/24 追記)</h3>
+
+<p><a href="http://1470.net/mm/mylist.html/16?date=2006-06-24#m183478">[MM]ecmemo - MM/Memo</a></p>
+
+<blockquote>
+    <p>その音で目覚める朝の気分は最高だよ。 </p>
+    
+    <blockquote>
+        <p>iTunes Music Store の認証解除はコピーじゃだめだな</p>
+    </blockquote>
+    
+    <p>そのままコピーしてApple ID入れれば大丈夫だよ</p>
+</blockquote>
+
+<p>いや、曲を聴く「権利」の 1/5 が死んだマシンにいっちゃうのが嫌なので、USB でつないだ古いディスクから起動して認証解除しようかと。でもなんか起動しないのであきらめました。</p>
+
+<p><a href="http://www.a　pple.com/jp/support/itunes/musicstore/authorization/">アップル - サポート - iTunes Music Store - 認証 FAQ</a></p>
+
+<blockquote>
+    <p>5台のコンピュータを認証すると、「すべて認証解除」のボタンがアカウント情報の画面に表示されます。</p>
+</blockquote>
+
+<p>いっぱいになったらこれでリセットすればいいや。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/ibook" rel="tag" title="ibook">ibook</a></li>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/06/23/ibook-hdd/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

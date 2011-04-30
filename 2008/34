@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-06-01T07:05:39+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-06-01T07:05:39+09:00</h1>
+
+    <p>
+最近 memcached のはなしを聞く機会があって、以来まわりのテクノロジをながめている。Consistent Hashing は Perl でやってみました。
+</p>
+<p>
+<a class="ext-link" href="http://8-p.info/consistent-hashing/"><span class="icon"></span>http://8-p.info/consistent-hashing/</a>
+</p>
+<p>
+memcached は設計された単純さがすてきだと思います。
+</p>
+  </div>
+</body>
+</html>
