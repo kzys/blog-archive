@@ -17,8 +17,5 @@ ul {
 }
 
 section {
-  float: left;
-  width: 30%;
-  height: 100ex;
   margin: 0 1em 1em 0;
 }

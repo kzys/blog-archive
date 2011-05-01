@@ -28,16 +28,20 @@ def create_index(year)
   File.open("#{year}/index.html", 'w').print(template.result(binding))
 end
 
-def create_index_2010(year, files, pattern)
+def create_index_2010(year, files, pattern, title_proc = nil)
   by_month = Hash.new do
     []
   end
 
   files.each do |path|
     content = path.read
-    title = content.scan(%r{<title>(.*)</title>})[0][0]
-    year, month, day = *content.scan(pattern)[0]
+    title = if title_proc
+              title_proc.call(content)
+            else
+              content.scan(%r{<title>(.*)</title>})[0][0]
+            end
     title = title.gsub(/^blog\.8-p\.info: /, '').gsub(/ - blog\.8-p\.info$/, '')
+    year, month, day = *content.scan(pattern)[0]
     by_month[month.to_i] += [ { month: month,
                                 title: title,
                                 path: path,
@@ -62,7 +66,10 @@ create_index_2010(2008,
                   end.delete_if do |path|
                     not path.basename.to_s =~ /^\d+$/
                   end,
-                  %r{(\d{4})-(\d{2})-(\d{2})T})
+                  %r{(\d{4})-(\d{2})-(\d{2})T},
+                  proc do |content|
+                    content.scan(/<p>\n(.+?)[。、!\n]/)[0][0].gsub(/<.+?>/, '')
+                  end)
 
 create_index_2010(2009,
                   Dir.glob("2009/*/*").map do |s|
