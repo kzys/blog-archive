@@ -49,7 +49,7 @@ def create_index_2010(year, files, pattern, title_proc = nil)
   end
 
   months = by_month.keys.sort.map do |m|
-    [m, by_month[m].sort do |a, b| a[:day] <=> b[:day] end]
+    [m, by_month[m].sort do |a, b| a[:day].to_i <=> b[:day].to_i end]
   end
 
   template = ERB.new(File.read('index.html.erb'))
