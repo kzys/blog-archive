@@ -25,7 +25,9 @@ def create_index(year)
   end
 
   template = ERB.new(File.read('index.html.erb'))
-  File.open("#{year}/index.html", 'w').print(template.result(binding))
+  path = Pathname("#{year}/index.html")
+  path.dirname.mkpath
+  File.open(path, 'w').print(template.result(binding))
 end
 
 def create_index_2010(year, files, pattern, title_proc = nil)
