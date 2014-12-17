@@ -1,0 +1,105 @@
+
+
+
+
+
+/*
+     FILE ARCHIVED ON 11:43:05 Oct 13, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 8:33:33 Dec 17, 2014.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+@import url(/web/20071013114305/http://8-p.info/style/anchor.css);
+@import url(/web/20071013114305/http://8-p.info/style/pre.css);
+
+h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+#header {
+  margin: 1em 4em;
+  text-align: right;
+  padding: 1em 0;
+  border-bottom: 1px solid #ccc;
+  clear: both;
+  overflow: hidden;
+}
+#header h1 {
+  float: left;
+  text-align: left;
+  font-size: 100%;
+}
+#header .misc {
+  float: right;
+}
+h1 a {
+  font: bold 200% 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: -0.05em;
+  text-decoration: none;
+  color: #000 !important;
+}
+h2 {
+  font-size: 150%;
+  font-weight: normal;
+}
+h3 {
+  font-size: 120%;
+  margin-top: 2em;
+}
+p {
+  margin: 1em 0;
+}
+
+pre {
+  border: 1px solid #ccc;
+  padding: 1em;
+}
+
+#content {
+  margin: 1em 4em;
+}
+.entry {
+  margin: 4em 0;
+}
+.published {
+  font-weight: bold;
+  color: #999;
+  font-size: 90%;
+}
+.postinfo {
+  display: none;
+}
+
+textarea {
+  width: 100%;
+}
+
+#paginate {
+  margin: 0 4em 1em 4em;
+  font-weight: bold;
+  clear: both;
+  overflow: hidden;
+}
+#paginate a {
+  margin-right: 1em;
+}
+#footer {
+  border-top: 1px solid #ccc;
+  color: #999;
+  padding: 2em 4em;
+}
+#footer p {
+  margin: 0;
+  font-size: 90%;
+}
+
+.commentslink {
+  text-align: right;
+}
