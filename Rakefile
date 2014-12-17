@@ -3,21 +3,26 @@ require 'tmpdir'
 
 task :default => :publish
 
-task :publish => [ '2011', '2005-2010' ] do
+file '2011/_site' => [ '2011' ] do
   Dir.chdir('2011') do
     sh 'jekyll build'
   end
+end
 
+def symlink_dirs(build_dir)
+  File.symlink(File.expand_path('2011/_site'), "#{build_dir}/2011")
+
+  Dir.glob('2005-2010/*').select do |s|
+    basename = File.basename(s)
+    basename == 'articles' or basename =~ /^\d+$/
+  end.each do |src|
+    File.symlink(File.expand_path(src), "#{build_dir}/#{File.basename(src)}")
+  end
+end
+
+task :publish => [ '2011/_site', '2005-2010' ] do
   Dir.mktmpdir do |build_dir|
-    Dir.glob('2005-2010/*').select do |s|
-      basename = File.basename(s)
-      basename == 'articles' or basename =~ /^\d+$/
-    end.each do |src|
-      File.symlink(File.expand_path(src), "#{build_dir}/#{File.basename(src)}")
-    end
-
-    File.symlink(File.expand_path('2011/_site'), "#{build_dir}/2011")
-
+    symlink_dirs(build_dir)
     sh("rsync -r --copy-dirlinks #{build_dir}/ alice@192.241.193.164:/home/alice/www/blog/public/")
   end
 end
