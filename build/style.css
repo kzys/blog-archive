@@ -1,0 +1,13 @@
+body {
+    font-family: "Lucida Grande", sans-serif;
+    margin: 1em;
+}
+
+#container {
+    max-width: 40em;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    font-family: "Helvetica Neue", sans-serif;
+}

@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 require 'find'
 require 'date'
+require 'erb'
 
 class Article
+  include Comparable
+
   def initialize(path)
     @path = path
     @published_at = fetch_published_at
@@ -11,6 +14,10 @@ class Article
   attr_reader :path
   attr_reader :published_at
   attr_reader :title
+
+  def <=>(other)
+    self.published_at <=> other.published_at
+  end
 
   def fetch_title
     title = if @path =~ %r{2008/}
@@ -59,6 +66,8 @@ class Article
   end
 end
 
+template = ERB.new(File.read('index.html.erb'))
+
 Dir.chdir(ARGV.shift) do
   articles = Dir.glob('*/**/*').select do |f|
     basename = File.basename(f)
@@ -69,10 +78,15 @@ Dir.chdir(ARGV.shift) do
     a.published_at <=> b.published_at
   end
 
+  years = {}
+
+  articles.each do |article|
+    years[article.published_at.year] ||= []
+    years[article.published_at.year].push(article)
+  end
+
+  html = template.result(binding)
   File.open('index.html', 'w') do |f|
-    f.puts('<meta charset="utf-8">')
-    articles.each do |article|
-      f.puts %Q[<a href="#{article.path}">#{article.title}</a><br/>]
-    end
+    f.write(html)
   end
 end
