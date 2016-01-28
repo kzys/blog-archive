@@ -7,9 +7,9 @@
   </head>
   <body>
     <div id="container">
-      <h1>blog.8-p.info</h1>
       <p>
-        blog.8-p.info was the domain I had been using before.
+        <strong>blog.8-p.info</strong>
+        was the domain I had been using before.
         Then I ended up having
         <a href="http://2012.8-p.info/">2012.8-p.info</a>,
         <a href="http://2013.8-p.info/">2013.8-p.info</a>, and
@@ -17,7 +17,7 @@
       </p>
 
       <% years.keys.sort.reverse.each do |year|; articles = years[year].sort %>
-      <h2><%= year %></h2>
+      <h1><%= year %></h1>
       <ul>
         <% articles.each do |article| %>
         <li><a href="<%= article.path %>"><%= article.title %></a></li>
