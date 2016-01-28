@@ -71,7 +71,7 @@ template = ERB.new(File.read('index.html.erb'))
 Dir.chdir(ARGV.shift) do
   articles = Dir.glob('*/**/*').select do |f|
     basename = File.basename(f)
-    File.file?(f) and f !~ %r{/(page|tag)/} and (basename != 'index.html') and (basename =~ /\.html$/ or basename !~ /\./)
+    File.file?(f) and f !~ %r{/(page|tag)/} and (basename != 'index.html') and (basename =~ /\.html$/ or basename !~ /\./) and File.read(f) !~ /<rss/
   end.map do |f|
     Article.new(f)
   end.sort do |a, b|
