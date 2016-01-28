@@ -41,3 +41,10 @@ end
 file '2005-2010' do
   sh 'git clone git@github.com:kzys/2005-2010.git'
 end
+
+task :clean do
+  files = Dir.glob('build/*').select do |path|
+    File.symlink?(path)
+  end
+  rm files
+end
