@@ -16,13 +16,17 @@
         <a href="http://2014.8-p.info/">2014.8-p.info</a>, ...
       </p>
 
-      <% years.keys.sort.reverse.each do |year|; articles = years[year].sort %>
-      <h1><%= year %></h1>
-      <ul>
-        <% articles.each do |article| %>
-        <li><a href="<%= article.path %>"><%= article.title %></a></li>
+      <% years.keys.sort.reverse.each do |year| %>
+        <h1><%= year %></h1>
+        <% years[year].keys.sort.each do |month| %>
+          <% articles = years[year][month]; next unless articles %>
+            <h2><%= month %></h2>
+            <ul>
+              <% articles.each do |article| %>
+              <li><a href="<%= article.path %>"><%= article.title %></a></li>
+              <% end %>
+            </ul>
         <% end %>
-      </ul>
       <% end %>
     </div>
   </body>

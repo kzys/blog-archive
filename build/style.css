@@ -11,3 +11,7 @@ body {
 #container p {
     font-size: 120%;
 }
+
+ul {
+    line-height: 1.5;
+}

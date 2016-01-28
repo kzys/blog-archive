@@ -81,8 +81,9 @@ Dir.chdir(ARGV.shift) do
   years = {}
 
   articles.each do |article|
-    years[article.published_at.year] ||= []
-    years[article.published_at.year].push(article)
+    years[article.published_at.year] ||= {}
+    years[article.published_at.year][article.published_at.month] ||= []
+    years[article.published_at.year][article.published_at.month].push(article)
   end
 
   html = template.result(binding)
