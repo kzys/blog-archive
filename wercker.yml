@@ -1,0 +1,8 @@
+box: ruby
+
+build:
+  steps:
+    - script:
+        code: jekyll build
+        cwd: 2011
+
