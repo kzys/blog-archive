@@ -13,6 +13,9 @@ build:
     - add-to-known_hosts:
         hostname: github.com
         fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+    - add-to-known_hosts:
+        hostname: bitbucket.org
+        fingerprint: 3f:d3:c5:17:23:3c:cd:f5:2d:17:76:06:93:7e:ee:97:42:21:14:aa
     - script:
         name: initialize git submodules
         code: |
