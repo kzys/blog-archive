@@ -16,6 +16,9 @@ build:
         hostname: bitbucket.org
         fingerprint: 3f:d3:c5:17:23:3c:cd:f5:2d:17:76:06:93:7e:ee:97:42:21:14:aa
     - script:
+        name: 'Workaround for "Host key verification failed"'
+        code: ssh -o StrictHostKeyChecking=no git@bitbucket.org echo
+    - script:
         name: initialize git submodules
         code: |
             git submodule update --init --recursive
