@@ -24,7 +24,7 @@ build:
             git submodule update --init --recursive
     - bundle-install
     - script:
-        code: bundle exec rake publish
+        code: LANG=en_US.UTF-8 bundle exec rake publish
 
 deploy:
   steps:
