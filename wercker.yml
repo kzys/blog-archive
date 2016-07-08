@@ -24,13 +24,12 @@ build:
             git submodule update --init --recursive
     - bundle-install
     - script:
-        code: bundle exec jekyll build
-        cwd: 2011
+        code: bundle exec rake publish
 
 deploy:
   steps:
     - s3sync:
-        source_dir: 2011/_site
+        source_dir: build/public
         delete-removed: true
         bucket-url: $AWS_BUCKET_URL
         key-id: $AWS_ACCESS_KEY_ID

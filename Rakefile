@@ -26,12 +26,12 @@ def symlink_dirs(build_dir)
 end
 
 task :build => [ '2011/_site', '2005-2010' ] do |task, args|
-  symlink_dirs('build')
-  sh("ruby make-index.rb build")
+  symlink_dirs('build/private')
+  sh("ruby make-index.rb build/private")
 end
 
 task :publish => [:build] do |task, args|
-  sh("rsync -r --copy-dirlinks build/ alice@192.241.193.164:/home/alice/www/blog/public/")
+  sh("rsync -r --copy-dirlinks build/private/ build/public/")
 end
 
 task :clean do
