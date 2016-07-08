@@ -3,10 +3,10 @@ box: ruby
 build:
   steps:
     - script:
-        name: install git
+        name: Install git and rsync
         code: |
             apt-get update
-            apt-get install git -y
+            apt-get install -y git rsync
     - add-ssh-key:
         keyname: KEY_NAME
     - add-to-known_hosts:
