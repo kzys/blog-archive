@@ -34,10 +34,6 @@ task :publish => [:build] do |task, args|
   sh("rsync -r --copy-dirlinks build/ alice@192.241.193.164:/home/alice/www/blog/public/")
 end
 
-file '2005-2010' do
-  sh 'git clone git@bitbucket.org:kzys/2005-2010.git'
-end
-
 task :clean do
   files = Dir.glob('build/*').select do |path|
     File.symlink?(path)
