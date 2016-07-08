@@ -2,7 +2,8 @@ box: ruby
 
 build:
   steps:
+    - bundle-install
     - script:
-        code: jekyll build
+        code: bundle exec jekyll build
         cwd: 2011
 
