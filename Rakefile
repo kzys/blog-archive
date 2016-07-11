@@ -33,7 +33,7 @@ end
 
 task :publish => [:build] do |task, args|
   mkdir_p 'build/public'
-  sh("rsync -r --copy-dirlinks build/private/ build/public/")
+  sh("tar cvzf build/public/site.tar.gz -C build/private .")
 end
 
 task :clean do
