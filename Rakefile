@@ -33,7 +33,7 @@ end
 
 task :publish => [:build] do |task, args|
   mkdir_p 'build/public'
-  sh("tar cvzLf build/public/site.tar.gz -C build/private .")
+  sh("tar cvzhf build/public/site.tar.gz -C build/private .")
 end
 
 task :clean do
