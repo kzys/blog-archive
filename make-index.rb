@@ -87,7 +87,13 @@ Dir.chdir(ARGV.shift) do
   end
 
   html = template.result(binding)
+
   File.open('index.html', 'w') do |f|
+    f.write(html)
+  end
+
+  Dir.mkdir('2005-2011')
+  File.open('2005-2011/index.html', 'w') do |f|
     f.write(html)
   end
 end
