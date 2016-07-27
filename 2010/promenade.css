@@ -1,7 +1,14 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/yui/3.0.0/cssfonts/fonts-min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/yui/3.0.0/cssreset/reset-min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/yui/3.0.0/cssbase/base-min.css);
-@import url(http://8-p.info/style/pre.css);
+
+pre {
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 
 html {
   background: #f0f0f0;
