@@ -4,18 +4,18 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
-  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
 
   <link rel="alternate" type="application/rss+xml"
-             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
   <link rel="alternate" type="application/atom+xml"
-             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
 
-  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
   <title>『DOM Scripting 標準ガイドブック』を読んだ - blog.8-p.info</title>
 
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
 
 
 </head>
@@ -28,7 +28,7 @@
     <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
   </div>
   <div class="sidebar">
-    <form method="get" action="http://blog.8-p.info/2009/">
+    <form method="get" action="//blog.8-p.info/2009/">
       <div id="search">
         <input type="text" class="text" id="searchKeyword"  name="s"
                value="" />
@@ -39,13 +39,13 @@
 
 <div id="body">
   <div class="entry" id="entry275">
-  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/01/dom-scripting">『DOM Scripting 標準ガイドブック』を読んだ</a>
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/01/dom-scripting">『DOM Scripting 標準ガイドブック』を読んだ</a>
     (4)  </h2>
   <div class="yui-g meta">
     <div class="date yui-u first">
       2009-01-17 11:45    </div>
     <div class="tags yui-u">
-      <a href="http://blog.8-p.info/2009/tag/book" rel="tag">book</a>    </div>
+      <a href="//blog.8-p.info/2009/tag/book" rel="tag">book</a>    </div>
   </div>
   <div class="body"><p>まえに人におすすめされて少しだけ借りて読んだ <a href="http://domscripting.com/book/">DOM Scripting: Web Design with JavaScript and the Document Object Model</a> という本があって、それの日本語訳の『<a href="http://www.amazon.co.jp/gp/product/4839922373?ie=UTF8&#038;tag=8pinfo-22&#038;linkCode=as2&#038;camp=247&#038;creative=7399&#038;creativeASIN=4839922373">DOM Scripting 標準ガイドブック</a><img src="http://www.assoc-amazon.jp/e/ir?t=8pinfo-22&#038;l=as2&#038;o=9&#038;a=4839922373" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />』が売っていたので買って読んだ。初版が2007年6月なので、最近出た本じゃないです。</p>
 <h3>文法まわりは微妙</h3>
@@ -123,7 +123,7 @@ if (elem.movement) {
 <h3 id="respond">Leave a Reply</h3>
 
 
-<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
 
 
 <p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
@@ -162,7 +162,7 @@ var pageTracker = _gat._getTracker("UA-329758-2");
 pageTracker._trackPageview();
 </script>
 
-<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
 
 <script type="text/javascript">//<![CDATA[
 (function () {

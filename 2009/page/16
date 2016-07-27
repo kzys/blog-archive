@@ -4,18 +4,18 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
-  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
 
   <link rel="alternate" type="application/rss+xml"
-             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
   <link rel="alternate" type="application/atom+xml"
-             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
 
-  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
   <title>blog.8-p.info</title>
 
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
 
 
 </head>
@@ -28,7 +28,7 @@
     <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
   </div>
   <div class="sidebar">
-    <form method="get" action="http://blog.8-p.info/2009/">
+    <form method="get" action="//blog.8-p.info/2009/">
       <div id="search">
         <input type="text" class="text" id="searchKeyword"  name="s"
                value="" />
@@ -40,7 +40,7 @@
 <div id="body">
    <div class="main">
     <div class="entry" id="entry375">
-  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/02/class-sniff">Class::Sniff で継承木をかく</a>
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/02/class-sniff">Class::Sniff で継承木をかく</a>
       </h2>
   <div class="yui-g meta">
     <div class="date yui-u first">
@@ -48,7 +48,7 @@
     <div class="tags yui-u">
           </div>
   </div>
-  <div class="body"><p class="eyecatch"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/02/class-sniff.png" alt="Class hierarchy of Remedie" /></p>
+  <div class="body"><p class="eyecatch"><img src="//blog.8-p.info/2009/wp-content/uploads/2009/02/class-sniff.png" alt="Class hierarchy of Remedie" /></p>
 <p>「Look for class composition code smells」をうたう <a href="http://search.cpan.org/dist/Class-Sniff/">Class::Sniff</a> で継承木を書いてみた。</p>
 <h3>Class::Sniff</h3>
 <p>以下のスクリプトは引数にクラスをとり、その情報を表示する。</p>
@@ -210,7 +210,7 @@ Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.
 Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.8/darwin-thread-multi-2level/B/Concise.pm line 497.
 %
 </pre>
-<p>生成した <a href="http://blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-2.png">Remedie の継承木</a> の PNG は 8692&#215;443px の巨大なものだけど、ソースを地道に読むより、全体の見通しという意味では良いと思う。</p>
+<p>生成した <a href="//blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-2.png">Remedie の継承木</a> の PNG は 8692&#215;443px の巨大なものだけど、ソースを地道に読むより、全体の見通しという意味では良いと思う。</p>
 <h3>メソッドも表示する</h3>
 <p>ここまでくるとメソッドも表示したくなってくる。クラス名とメソッドのリストとを水平線で区切るとか、そういう凝ったことを GraphViz でやるには node の shape を record に指定する。</p>
 <p><a href="http://www.graphviz.org/doc/info/shapes.html">Node Shapes</a></p>
@@ -281,7 +281,7 @@ print &lt;&lt;END;
 }
 END
 </pre>
-<p><a href="http://blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-3.png">Remedie の継承木 + メソッド</a> はさらに大きく 15024&#215;1483px になった。このスクリプトはなにかに使えそうなので <a href="http://gist.github.com/61684">Gist</a> に置いてみました。</p>
+<p><a href="//blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-3.png">Remedie の継承木 + メソッド</a> はさらに大きく 15024&#215;1483px になった。このスクリプトはなにかに使えそうなので <a href="http://gist.github.com/61684">Gist</a> に置いてみました。</p>
 <h3>参考と関連</h3>
 <dl>
 <dt><a href="http://d.hatena.ne.jp/T-ABYSS/20070301/1172768153">GraphvizでER図を書く方法</a></dt>
@@ -295,7 +295,7 @@ END
 </div>
 </div>
 <div class="entry" id="entry351">
-  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/02/simbl">SIMBL で Cocoa アプリケーションにコードをつぎたす</a>
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/02/simbl">SIMBL で Cocoa アプリケーションにコードをつぎたす</a>
       </h2>
   <div class="yui-g meta">
     <div class="date yui-u first">
@@ -364,13 +364,13 @@ Hello.bundle@
 </div>
 </div>
 <div class="entry" id="entry330">
-  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/01/hreview">hReview is just a draft</a>
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/01/hreview">hReview is just a draft</a>
     (2)  </h2>
   <div class="yui-g meta">
     <div class="date yui-u first">
       2009-01-29 21:33    </div>
     <div class="tags yui-u">
-      <a href="http://blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+      <a href="//blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
   </div>
   <div class="body"><p><a href="http://www.flickr.com/photos/kzys/3240250191/" title="hReview by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3092/3240250191_013d520530_o.png" width="640" height="200" alt="hReview" /></a></p>
 <p>Recently I suggested to use <a href="http://microformats.org/wiki/hreview">hReview</a> for our project. However, my suggestion was rejected and my bosses say &#8220;Ok, hReview is just a <em>draft</em>&#8220;.</p>
@@ -379,7 +379,7 @@ Hello.bundle@
 </div>
 </div>
     <div class="paginate">
-      <a href="http://blog.8-p.info/2009/page/15" >Newer</a>      <a href="http://blog.8-p.info/2009/page/17" >Older</a>    </div>
+      <a href="//blog.8-p.info/2009/page/15" >Newer</a>      <a href="//blog.8-p.info/2009/page/17" >Older</a>    </div>
   </div>
   <div class="sidebar"><h2>About me and this blog</h2>
 <p>
@@ -390,63 +390,63 @@ Hello.bundle@
 <ul>
   <li>
     <h2>Recent articles</h2>
-    <ul>	<li><a href='http://blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
-	<li><a href='http://blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
-	<li><a href='http://blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
-	<li><a href='http://blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
-	<li><a href='http://blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
-	<li><a href='http://blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
-	<li><a href='http://blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
-	<li><a href='http://blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
-	<li><a href='http://blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
-	<li><a href='http://blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
-	<li><a href='http://blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
-	<li><a href='http://blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
-	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
-	<li><a href='http://blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
-	<li><a href='http://blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
-	<li><a href='http://blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
-	<li><a href='http://blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
-	<li><a href='http://blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
-	<li><a href='http://blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
-	<li><a href='http://blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
-	<li><a href='http://blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
-	<li><a href='http://blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
-	<li><a href='http://blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
-	<li><a href='http://blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
-	<li><a href='http://blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
-	<li><a href='http://blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
-	<li><a href='http://blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
-	<li><a href='http://blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
-	<li><a href='http://blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
-	<li><a href='http://blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
-	<li><a href='http://blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
-	<li><a href='http://blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
-	<li><a href='http://blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
-	<li><a href='http://blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
-	<li><a href='http://blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
-	<li><a href='http://blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
-	<li><a href='http://blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
-	<li><a href='http://blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
-	<li><a href='http://blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
-	<li><a href='http://blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
-	<li><a href='http://blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
-	<li><a href='http://blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
-	<li><a href='http://blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
-	<li><a href='http://blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
-	<li><a href='http://blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
-	<li><a href='http://blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
-	<li><a href='http://blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
-	<li><a href='http://blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+    <ul>	<li><a href='//blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='//blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='//blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='//blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='//blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='//blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='//blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='//blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='//blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='//blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='//blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='//blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='//blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='//blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='//blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='//blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='//blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='//blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='//blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='//blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='//blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='//blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='//blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='//blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='//blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='//blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='//blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='//blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='//blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='//blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='//blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='//blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='//blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='//blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
 </ul>
   </li>
 </ul>
@@ -487,7 +487,7 @@ var pageTracker = _gat._getTracker("UA-329758-2");
 pageTracker._trackPageview();
 </script>
 
-<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
 
 <script type="text/javascript">//<![CDATA[
 (function () {

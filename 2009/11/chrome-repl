@@ -4,18 +4,18 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
-  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
 
   <link rel="alternate" type="application/rss+xml"
-             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
   <link rel="alternate" type="application/atom+xml"
-             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
 
-  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
   <title>ChromeRepl - a remote REPL client for Google Chrome - blog.8-p.info</title>
 
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
 
 
 </head>
@@ -28,7 +28,7 @@
     <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
   </div>
   <div class="sidebar">
-    <form method="get" action="http://blog.8-p.info/2009/">
+    <form method="get" action="//blog.8-p.info/2009/">
       <div id="search">
         <input type="text" class="text" id="searchKeyword"  name="s"
                value="" />
@@ -39,19 +39,19 @@
 
 <div id="body">
   <div class="entry" id="entry1573">
-  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/11/chrome-repl">ChromeRepl - a remote REPL client for Google Chrome</a>
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/11/chrome-repl">ChromeRepl - a remote REPL client for Google Chrome</a>
       </h2>
   <div class="yui-g meta">
     <div class="date yui-u first">
       2009-11-07 15:50    </div>
     <div class="tags yui-u">
-      <a href="http://blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+      <a href="//blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
   </div>
   <div class="body"><p>Today is a little party about Chromium extension at Shibuya. And so I wrote a small extension to learn about Chromium and Google Chrome.</p>
 <h3>Developer Tools Protocol</h3>
 <p>Yesterday, I hear about <a href="http://code.google.com/p/chromedevtools/">Google Chrome Developer Tools</a> from co-worker. He said &#8220;I tried Eclipse debugger but not works well…&#8221;. Um, I don&#8217;t know Eclipse. Sorry.</p>
 <p>However I found a <a href="http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol">Google Chrome Developer Tools Protocol</a> from Developer Tools page. It&#8217;s simple, text based protocol over TCP/IP. User can control Chrome from a remote client.</p>
-<div class="eyecatch"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/11/protocol.png" alt="Protocol" width="337" height="195" style="border:none"/></div>
+<div class="eyecatch"><img src="//blog.8-p.info/2009/wp-content/uploads/2009/11/protocol.png" alt="Protocol" width="337" height="195" style="border:none"/></div>
 <p>Developer Tools Protocol have some <em>Tools</em>. DevToolsService is not fun, V8Debugger is powerful and interesting, and ExtensionPorts is most flexible. This tool used to talk to a Chrome extension.</p>
 <h3>How to use ChromeRepl</h3>
 <p>So I wrote a extension, Ruby client library and script. Repository is <a href="http://bitbucket.org/kzys/chrome-repl/">chrome-repl</a>.</p>
@@ -83,7 +83,7 @@
 <h3 id="respond">Leave a Reply</h3>
 
 
-<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
 
 
 <p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
@@ -122,7 +122,7 @@ var pageTracker = _gat._getTracker("UA-329758-2");
 pageTracker._trackPageview();
 </script>
 
-<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
 
 <script type="text/javascript">//<![CDATA[
 (function () {

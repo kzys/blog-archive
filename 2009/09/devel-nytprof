@@ -4,18 +4,18 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
-  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
 
   <link rel="alternate" type="application/rss+xml"
-             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
   <link rel="alternate" type="application/atom+xml"
-             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
 
-  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
   <title>Devel::NYTProf を読む - blog.8-p.info</title>
 
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
 
 
 </head>
@@ -28,7 +28,7 @@
     <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
   </div>
   <div class="sidebar">
-    <form method="get" action="http://blog.8-p.info/2009/">
+    <form method="get" action="//blog.8-p.info/2009/">
       <div id="search">
         <input type="text" class="text" id="searchKeyword"  name="s"
                value="" />
@@ -39,7 +39,7 @@
 
 <div id="body">
   <div class="entry" id="entry1224">
-  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/09/devel-nytprof">Devel::NYTProf を読む</a>
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/09/devel-nytprof">Devel::NYTProf を読む</a>
       </h2>
   <div class="yui-g meta">
     <div class="date yui-u first">
@@ -48,7 +48,7 @@
           </div>
   </div>
   <div class="body"><p>Devel::NYTProf は Perl むけのプロファイラだ。機能が豊富で、HTML による結果出力がきれいで、プロファイラ自身のオーバーヘッドが少ない、ということで最近の Perl 界隈では事実上の標準プロファイラになっていると思う。</p>
-<div class="eyecatch"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/09/nytprof.png" alt="Devel::NYTProf" title="Devel::NYTProf" width="600" height="160"/></div>
+<div class="eyecatch"><img src="//blog.8-p.info/2009/wp-content/uploads/2009/09/nytprof.png" alt="Devel::NYTProf" title="Devel::NYTProf" width="600" height="160"/></div>
 <p>Perl にはもともとデバッガ用のインターフェースがある。perldoc perldebguts で低レベルな詳細が perldoc DB で (暫定的なものとされているけど) 高レベルなインターフェースが確認できる。後者からすこし引用しておこう。</p>
 <blockquote><p>Perl debug information is frequently required not just by debuggers, but also by modules that need some &#8220;special&#8221; information to do their job properly, like profilers.</p></blockquote>
 <p>Devel::NYTProf もこれを使用している、だけではなかった。</p>
@@ -282,7 +282,7 @@ DB_stmt(pTHX_ COP *cop, OP *op)
 <h3 id="respond">Leave a Reply</h3>
 
 
-<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
 
 
 <p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
@@ -321,7 +321,7 @@ var pageTracker = _gat._getTracker("UA-329758-2");
 pageTracker._trackPageview();
 </script>
 
-<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
 
 <script type="text/javascript">//<![CDATA[
 (function () {

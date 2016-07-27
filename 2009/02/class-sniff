@@ -4,18 +4,18 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
-  <link rel="stylesheet" type="text/css" href="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
 
   <link rel="alternate" type="application/rss+xml"
-             href="http://blog.8-p.info/2009/feed" title="Japanese + English" />
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
   <link rel="alternate" type="application/atom+xml"
-             href="http://blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
 
-  <link rel="icon" href="http://blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
   <title>Class::Sniff で継承木をかく - blog.8-p.info</title>
 
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.8-p.info/2009/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
 
 
 </head>
@@ -28,7 +28,7 @@
     <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
   </div>
   <div class="sidebar">
-    <form method="get" action="http://blog.8-p.info/2009/">
+    <form method="get" action="//blog.8-p.info/2009/">
       <div id="search">
         <input type="text" class="text" id="searchKeyword"  name="s"
                value="" />
@@ -39,7 +39,7 @@
 
 <div id="body">
   <div class="entry" id="entry375">
-  <h2 class="entry-title"><a href="http://blog.8-p.info/2009/02/class-sniff">Class::Sniff で継承木をかく</a>
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/02/class-sniff">Class::Sniff で継承木をかく</a>
       </h2>
   <div class="yui-g meta">
     <div class="date yui-u first">
@@ -47,7 +47,7 @@
     <div class="tags yui-u">
           </div>
   </div>
-  <div class="body"><p class="eyecatch"><img src="http://blog.8-p.info/2009/wp-content/uploads/2009/02/class-sniff.png" alt="Class hierarchy of Remedie" /></p>
+  <div class="body"><p class="eyecatch"><img src="//blog.8-p.info/2009/wp-content/uploads/2009/02/class-sniff.png" alt="Class hierarchy of Remedie" /></p>
 <p>「Look for class composition code smells」をうたう <a href="http://search.cpan.org/dist/Class-Sniff/">Class::Sniff</a> で継承木を書いてみた。</p>
 <h3>Class::Sniff</h3>
 <p>以下のスクリプトは引数にクラスをとり、その情報を表示する。</p>
@@ -209,7 +209,7 @@ Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.
 Deep recursion on subroutine "B::Concise::sequence" at /System/Library/Perl/5.8.8/darwin-thread-multi-2level/B/Concise.pm line 497.
 %
 </pre>
-<p>生成した <a href="http://blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-2.png">Remedie の継承木</a> の PNG は 8692&#215;443px の巨大なものだけど、ソースを地道に読むより、全体の見通しという意味では良いと思う。</p>
+<p>生成した <a href="//blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-2.png">Remedie の継承木</a> の PNG は 8692&#215;443px の巨大なものだけど、ソースを地道に読むより、全体の見通しという意味では良いと思う。</p>
 <h3>メソッドも表示する</h3>
 <p>ここまでくるとメソッドも表示したくなってくる。クラス名とメソッドのリストとを水平線で区切るとか、そういう凝ったことを GraphViz でやるには node の shape を record に指定する。</p>
 <p><a href="http://www.graphviz.org/doc/info/shapes.html">Node Shapes</a></p>
@@ -280,7 +280,7 @@ print &lt;&lt;END;
 }
 END
 </pre>
-<p><a href="http://blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-3.png">Remedie の継承木 + メソッド</a> はさらに大きく 15024&#215;1483px になった。このスクリプトはなにかに使えそうなので <a href="http://gist.github.com/61684">Gist</a> に置いてみました。</p>
+<p><a href="//blog.8-p.info/2009/wp-content/uploads/2009/02/remedie-3.png">Remedie の継承木 + メソッド</a> はさらに大きく 15024&#215;1483px になった。このスクリプトはなにかに使えそうなので <a href="http://gist.github.com/61684">Gist</a> に置いてみました。</p>
 <h3>参考と関連</h3>
 <dl>
 <dt><a href="http://d.hatena.ne.jp/T-ABYSS/20070301/1172768153">GraphvizでER図を書く方法</a></dt>
@@ -305,7 +305,7 @@ END
 <h3 id="respond">Leave a Reply</h3>
 
 
-<form action="http://blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
 
 
 <p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
@@ -344,7 +344,7 @@ var pageTracker = _gat._getTracker("UA-329758-2");
 pageTracker._trackPageview();
 </script>
 
-<script type="text/javascript" src="http://blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
 
 <script type="text/javascript">//<![CDATA[
 (function () {
