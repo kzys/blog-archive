@@ -18,6 +18,7 @@
       </p>
 
       <% years.keys.sort.reverse.each do |year| %>
+      <div class="year-<%= year %>">
         <h1><%= year %></h1>
         <% years[year].keys.sort.each do |month| %>
           <% articles = years[year][month]; next unless articles %>
@@ -28,6 +29,7 @@
               <% end %>
             </ul>
         <% end %>
+      </div>
       <% end %>
     </div>
   </body>
