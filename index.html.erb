@@ -25,7 +25,7 @@
             <h2><%= month %></h2>
             <ul>
               <% articles.each do |article| %>
-              <li><a href="<%= article.path %>"><%= article.title %></a></li>
+              <li><a href="/<%= article.path %>"><%= article.title %></a></li>
               <% end %>
             </ul>
         <% end %>
