@@ -2,6 +2,7 @@
 require 'find'
 require 'date'
 require 'erb'
+require 'fileutils'
 
 class Article
   include Comparable
@@ -66,9 +67,11 @@ class Article
   end
 end
 
-template = ERB.new(File.read('index.html.erb'))
+html_dir = File.absolute_path(ARGV.shift)
+views_dir = File.absolute_path(File.join(Dir.pwd, 'views'))
 
-Dir.chdir(ARGV.shift) do
+Dir.chdir(html_dir) do
+  template = ERB.new(File.read(File.join(views_dir, 'previous.html.erb')))
   articles = Dir.glob('*/**/*').select do |f|
     basename = File.basename(f)
     File.file?(f) and f !~ %r{/(page|tag)/} and (basename != 'index.html') and (basename =~ /\.html$/ or basename !~ /\./) and File.read(f) !~ /<rss/
@@ -92,8 +95,16 @@ Dir.chdir(ARGV.shift) do
     f.write(html)
   end
 
-  Dir.mkdir('2005-2011')
+  FileUtils.mkdir_p('2005-2011')
   File.open('2005-2011/index.html', 'w') do |f|
+    f.write(html)
+  end
+end
+
+Dir.chdir(html_dir) do
+  template = ERB.new(File.read(File.join(views_dir, 'index.html.erb')))
+  html = template.result(binding)
+  File.open('index.html', 'w') do |f|
     f.write(html)
   end
 end
