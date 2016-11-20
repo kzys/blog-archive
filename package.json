@@ -1,0 +1,19 @@
+{
+  "name": "blog_8-p_info",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/kzys/blog_8-p_info.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/kzys/blog_8-p_info#readme",
+  "devDependencies": {
+    "typescript": "^2.0.10"
+  }
+}

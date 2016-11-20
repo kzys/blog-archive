@@ -23,6 +23,7 @@ build:
         code: |
             git submodule update --init --recursive
     - bundle-install
+    - npm-install
     - script:
         code: LANG=en_US.UTF-8 RUBYOPT=-EUTF-8 bundle exec rake publish
 

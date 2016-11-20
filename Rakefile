@@ -45,7 +45,8 @@ task :build => [ '2011/_site', '2005-2010' ] do |task, args|
   mkdir_p 'build/private'
   cp_r(Dir.glob('static/*'), 'build/private')
   symlink_dirs('build/private')
-  sh("ruby make-index.rb build/private")
+  sh('ruby make-index.rb build/private')
+  sh('./node_modules/typescript/bin/tsc static/main.ts')
 end
 
 task :publish => [:build] do |task, args|
