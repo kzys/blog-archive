@@ -1,7 +1,8 @@
 #! ruby
 require 'tmpdir'
+require 'webrick'
 
-task :default => :publish
+task :default => :build
 
 file '2011/_site' => [ '2011' ] do
   Dir.chdir('2011') do
@@ -23,6 +24,21 @@ def symlink_dirs(build_dir)
   end.each do |src|
     create_link(File.expand_path(src), "#{build_dir}/#{File.basename(src)}")
   end
+end
+
+task :server do
+  server = WEBrick::HTTPServer.new(:Port => 9000)
+
+  server.mount('/', WEBrick::HTTPServlet::FileHandler, './static')
+  server.mount_proc('/index.html') do |req, res|
+    template = ERB.new(File.read(File.join('./views/index.html.erb')))
+    res.body = template.result(binding)
+  end
+
+  trap('INT') do
+    server.shutdown
+  end
+  server.start
 end
 
 task :build => [ '2011/_site', '2005-2010' ] do |task, args|
