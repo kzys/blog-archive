@@ -19,3 +19,24 @@ ul {
 .year-2008 {
     word-break: break-all;
 }
+
+@media (min-width: 640px) {
+    #present {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #present .column {
+        flex: 1;
+    }
+}
+
+#previous {
+    margin-top: 1em;
+    border-top: 1px solid #000;
+}
+
+h2 {
+    font-size: 100%;
+    line-height: 2;
+}
