@@ -3,13 +3,8 @@ body {
     margin: 1em;
 }
 
-#container {
-    max-width: 40em;
-    margin: 0 auto;
-}
-
-#container p {
-    font-size: 120%;
+h1, h2 {
+    font-size: 100%;
 }
 
 ul {
@@ -18,6 +13,11 @@ ul {
 
 .year-2008 {
     word-break: break-all;
+}
+
+#container {
+    max-width: 40em;
+    margin: 0 auto;
 }
 
 @media (min-width: 640px) {
