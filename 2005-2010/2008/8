@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-04-01T21:58:05+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-04-01T21:58:05+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://blog.deadbeaf.org/2008/03/19/gainer-cplusplus-2/"><span class="icon"></span>http://blog.deadbeaf.org/2008/03/19/gainer-cplusplus-2/</a>
+</p>
+<p>
+Ruby から Gainer をどうこうするやつにはバグがあるらしいので直さないと。
+</p>
+<p>
+じつは <a class="ext-link" href="http://gainer.rubyforge.org/"><span class="icon"></span>http://gainer.rubyforge.org/</a> とかとってたのですが、Funnel の存在を考えると微妙な気がしてきました。
+</p>
+  </div>
+</body>
+</html>

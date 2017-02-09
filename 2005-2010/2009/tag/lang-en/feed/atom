@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><feed
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:thr="http://purl.org/syndication/thread/1.0"
+  xml:lang="en"
+  xml:base="//blog.8-p.info/2009/wp-atom.php"
+   >
+	<title type="text">blog.8-p.info &#187; lang-en</title>
+	<subtitle type="text">加藤和良 (1984年うまれ) の個人的なブログです。</subtitle>
+
+	<updated>2009-12-13T12:44:23Z</updated>
+	<generator uri="http://wordpress.org/" version="2.7.1">WordPress</generator>
+
+	<link rel="alternate" type="text/html" href="//blog.8-p.info/2009" />
+	<id>//blog.8-p.info/2009/feed/atom</id>
+	<link rel="self" type="application/atom+xml" href="//blog.8-p.info/2009/tag/lang-en/feed/atom" />
+
+			<entry>
+		<author>
+			<name>KATO Kazuyoshi</name>
+						<uri>http://8-p.info/</uri>
+					</author>
+		<title type="html"><![CDATA[ChromeRepl released]]></title>
+		<link rel="alternate" type="text/html" href="//blog.8-p.info/2009/12/chrome-repl-released" />
+		<id>//blog.8-p.info/2009/?p=1700</id>
+		<updated>2009-12-11T12:58:43Z</updated>
+		<published>2009-12-11T12:49:53Z</published>
+		<category scheme="//blog.8-p.info/2009" term="Uncategorized" /><category scheme="//blog.8-p.info/2009" term="lang-en" />		<summary type="html"><![CDATA[Today, I released ChromeRepl on the Extensions Gallery.
+ChromeRepl is is heavily inspired from MozRepl. However Google Chrome can&#8217;t speak the telnet protocol. So I released google-chrome-client library (in Ruby) too. The library includes &#8220;chrome-repl&#8221; command.
+I think the installation process is complicated. However, ChromeRepl brings the power of UNIX to Google Chrome. Please try!
+]]></summary>
+		<content type="html" xml:base="//blog.8-p.info/2009/12/chrome-repl-released"><![CDATA[<p>Today, I released ChromeRepl on the <a href="https://chrome.google.com/extensions/detail/dedppbpeendknnpchklgpdiiiodajgki">Extensions Gallery</a>.</p>
+<p>ChromeRepl is is heavily inspired from MozRepl. However Google Chrome can&#8217;t speak the telnet protocol. So I released <a href="http://gemcutter.org/gems/google-chrome-client">google-chrome-client</a> library (in Ruby) too. The library includes &#8220;chrome-repl&#8221; command.</p>
+<p>I think the installation process is complicated. However, ChromeRepl brings the power of UNIX to Google Chrome. Please try!</p>
+]]></content>
+		<link rel="replies" type="text/html" href="//blog.8-p.info/2009/12/chrome-repl-released#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="//blog.8-p.info/2009/12/chrome-repl-released/feed/atom" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>KATO Kazuyoshi</name>
+						<uri>http://8-p.info/</uri>
+					</author>
+		<title type="html"><![CDATA[Hatena&#8217;s routing problem]]></title>
+		<link rel="alternate" type="text/html" href="//blog.8-p.info/2009/12/hatena" />
+		<id>//blog.8-p.info/2009/?p=1684</id>
+		<updated>2009-12-10T18:00:24Z</updated>
+		<published>2009-12-10T17:30:07Z</published>
+		<category scheme="//blog.8-p.info/2009" term="Uncategorized" /><category scheme="//blog.8-p.info/2009" term="lang-en" />		<summary type="html"><![CDATA[Hatena released &#8220;Hatena Bookmark for iPhone&#8221;. Great!
+However, the URI of the page is http://b.hatena.ne.jp/touch and I found id:touch. So he (or she?) probably can&#8217;t use Hatena Bookmark.
+Hatena made same mistake on Hatena Bookmark News and Ashika. I like their short URI better than &#8220;foobar.php?id=baz&#8221;. But this namespace collision is not good.
+]]></summary>
+		<content type="html" xml:base="//blog.8-p.info/2009/12/hatena"><![CDATA[<p>Hatena released &#8220;Hatena Bookmark for iPhone&#8221;. Great!</p>
+<p>However, the URI of the page is <a href="http://b.hatena.ne.jp/touch">http://b.hatena.ne.jp/touch</a> and I found <a href="http://www.hatena.ne.jp/touch/fans">id:touch</a>. So he (or she?) probably can&#8217;t use Hatena Bookmark.</p>
+<p>Hatena made same mistake on <a href="http://i.hatena.ne.jp/idea/23484">Hatena Bookmark News</a> and <a href="http://kossori.g.hatena.ne.jp/bbs/6/1">Ashika</a>. I like their short URI better than &#8220;foobar.php?id=baz&#8221;. But this namespace collision is not good.</p>
+]]></content>
+		<link rel="replies" type="text/html" href="//blog.8-p.info/2009/12/hatena#comments" thr:count="1"/>
+		<link rel="replies" type="application/atom+xml" href="//blog.8-p.info/2009/12/hatena/feed/atom" thr:count="1"/>
+		<thr:total>1</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>KATO Kazuyoshi</name>
+						<uri>http://8-p.info/</uri>
+					</author>
+		<title type="html"><![CDATA[Test::Synchronized released]]></title>
+		<link rel="alternate" type="text/html" href="//blog.8-p.info/2009/12/test-synchronized" />
+		<id>//blog.8-p.info/2009/?p=1650</id>
+		<updated>2009-12-09T16:05:01Z</updated>
+		<published>2009-12-08T16:26:08Z</published>
+		<category scheme="//blog.8-p.info/2009" term="Uncategorized" /><category scheme="//blog.8-p.info/2009" term="lang-en" />		<summary type="html"><![CDATA[Tim Bray wrote on his article Concur.next that:
+No longer; Next year’s system will do more computing all right, but by giving you more CPUs, running at this year’s speed, to work with.
+Perl&#8217;s multi-core support is good old-fashioned fork(2). It&#8217;s not sexy, but it works. So recently I began to use &#8220;prove -j9&#8243;. But some of [...]]]></summary>
+		<content type="html" xml:base="//blog.8-p.info/2009/12/test-synchronized"><![CDATA[<p>Tim Bray wrote on his article <a href="http://www.tbray.org/ongoing/When/200x/2009/09/27/Concur-dot-next">Concur.next</a> that:</p>
+<blockquote><p>No longer; Next year’s system will do more computing all right, but by giving you more CPUs, running at this year’s speed, to work with.</p></blockquote>
+<p>Perl&#8217;s multi-core support is good old-fashioned fork(2). It&#8217;s not sexy, but it works. So recently I began to use &#8220;prove -j9&#8243;. But some of our project&#8217;s tests are not works correctly under the &#8220;prove&#8221; command.</p>
+<p>For example, our cron script has tests that create and remove a log file.</p>
+<ul>
+<li>foo.t open and create a log file.</li>
+<li>foo.t write something to the file.</li>
+<li>foo.t remove the file.</li>
+</ul>
+<ul>
+<li>bar.t open and create a new log file.</li>
+<li>bar.t write something to the file.</li>
+<li>bar.t remove the file.</li>
+</ul>
+<p>And it&#8217;s not works at the same time.</p>
+<ul>
+<li>foo.t open and create a log file.</li>
+<li>bar.t open the log file.</li>
+<li>foo.t write something to the file.</li>
+<li>bar.t write something to the file, too.</li>
+<li>foo.t remove the file.</li>
+<li>bar.t <em>can&#8217;t</em> remove the file.</li>
+</ul>
+<p>I can modify the code to fix it. However, I&#8217;m lazy and impatient. So I wrote a simple lock system named Test::Synchronized.</p>
+<p>Test::Synchronized provides a giant lock to your tests. When you add &#8220;use Test::Synchronized;&#8221; on both foo.t and bar.t.</p>
+<ul>
+<li>foo.t create a lock directory.</li>
+<li>foo.t open and create a log file.</li>
+<li>bar.t can&#8217;t create the lock directory. So bar.t wait the end of foo.t.</li>
+<li>foo.t write something to the file.</li>
+<li>foo.t remove the file.</li>
+<li>foo.t remove the lock directory.</li>
+<li>bar.t create a new lock directory.</li>
+<li>bar.t open and create a new log file.</li>
+<li>&#8230;</li>
+</ul>
+<p>It&#8217;s not sexy, but it works :)</p>
+<p>I released 0.01 on <a href="http://bitbucket.org/kzys/test-synchronized/">Bitbucket</a> and CPAN already. Enjoy!</p>
+<h3>0.02</h3>
+<p>Tokuhiro-san (aka tokuhirom) blogged about <a href="http://d.hatena.ne.jp/tokuhirom/20091209/1260330943">some bugs and problems of Test::Synchronized</a>. So I fixed and released 0.02 now. Thanks a lot. </p>
+]]></content>
+		<link rel="replies" type="text/html" href="//blog.8-p.info/2009/12/test-synchronized#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="//blog.8-p.info/2009/12/test-synchronized/feed/atom" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>KATO Kazuyoshi</name>
+						<uri>http://8-p.info/</uri>
+					</author>
+		<title type="html"><![CDATA[ChromeRepl - a remote REPL client for Google Chrome]]></title>
+		<link rel="alternate" type="text/html" href="//blog.8-p.info/2009/11/chrome-repl" />
+		<id>//blog.8-p.info/2009/?p=1573</id>
+		<updated>2009-11-07T07:19:25Z</updated>
+		<published>2009-11-07T06:50:45Z</published>
+		<category scheme="//blog.8-p.info/2009" term="Uncategorized" /><category scheme="//blog.8-p.info/2009" term="lang-en" />		<summary type="html"><![CDATA[Today is a little party about Chromium extension at Shibuya. And so I wrote a small extension to learn about Chromium and Google Chrome.
+Developer Tools Protocol
+Yesterday, I hear about Google Chrome Developer Tools from co-worker. He said &#8220;I tried Eclipse debugger but not works well…&#8221;. Um, I don&#8217;t know Eclipse. Sorry.
+However I found a Google [...]]]></summary>
+		<content type="html" xml:base="//blog.8-p.info/2009/11/chrome-repl"><![CDATA[<p>Today is a little party about Chromium extension at Shibuya. And so I wrote a small extension to learn about Chromium and Google Chrome.</p>
+<h3>Developer Tools Protocol</h3>
+<p>Yesterday, I hear about <a href="http://code.google.com/p/chromedevtools/">Google Chrome Developer Tools</a> from co-worker. He said &#8220;I tried Eclipse debugger but not works well…&#8221;. Um, I don&#8217;t know Eclipse. Sorry.</p>
+<p>However I found a <a href="http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol">Google Chrome Developer Tools Protocol</a> from Developer Tools page. It&#8217;s simple, text based protocol over TCP/IP. User can control Chrome from a remote client.</p>
+<div class="eyecatch"><img src="//blog.8-p.info/2009/wp-content/uploads/2009/11/protocol.png" alt="Protocol" width="337" height="195" style="border:none"/></div>
+<p>Developer Tools Protocol have some <em>Tools</em>. DevToolsService is not fun, V8Debugger is powerful and interesting, and ExtensionPorts is most flexible. This tool used to talk to a Chrome extension.</p>
+<h3>How to use ChromeRepl</h3>
+<p>So I wrote a extension, Ruby client library and script. Repository is <a href="http://bitbucket.org/kzys/chrome-repl/">chrome-repl</a>.</p>
+<p>ChromeRepl is proof-of-concept quality yet. First, launch Chrome with &#8211;remote-shell-port and load extension from chrome://extensions/.</p>
+<pre>
+% /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-shell-port=9222
+...
+</pre>
+<p>Second, <em>edit extension ID of chrome-repl script</em> and launch on another console.</p>
+<pre>
+% ruby -I lib ./bin/chrome-repl 9222
+&gt; 1 + 2
+3
+&gt; chrome.tabs
+{"onRemoved"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onRemoved"}, "onAttached"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onAttached"}, "onDetached"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onDetached"}, "onSelectionChanged"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onSelectionChanged"}, "onMoved"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onMoved"}, "onCreated"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onCreated"}, "onUpdated"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onUpdated"}}
+</pre>
+<p>I&#8217;ll make chrome-repl.crx soon. Please wait a moment.</p>
+]]></content>
+		<link rel="replies" type="text/html" href="//blog.8-p.info/2009/11/chrome-repl#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="//blog.8-p.info/2009/11/chrome-repl/feed/atom" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>KATO Kazuyoshi</name>
+						<uri>http://8-p.info/</uri>
+					</author>
+		<title type="html"><![CDATA[GreaseKit 1.7 released]]></title>
+		<link rel="alternate" type="text/html" href="//blog.8-p.info/2009/09/greasekit-1-7" />
+		<id>//blog.8-p.info/2009/?p=1401</id>
+		<updated>2009-09-22T13:19:45Z</updated>
+		<published>2009-09-22T13:14:57Z</published>
+		<category scheme="//blog.8-p.info/2009" term="Uncategorized" /><category scheme="//blog.8-p.info/2009" term="lang-en" />		<summary type="html"><![CDATA[I released GreaseKit 1.7 now. This version fixes a installation problem and adds GM_addStyle and GM_log again. In addition, the &#8220;GreaseKit&#8221; menu moved to left of the &#8220;Window&#8221; menu.
+So, these modification is based on Jiang Jiang&#8217;s patch. Thank you!
+]]></summary>
+		<content type="html" xml:base="//blog.8-p.info/2009/09/greasekit-1-7"><![CDATA[<p>I released <a href="http://8-p.info/greasekit/">GreaseKit</a> 1.7 now. This version fixes a installation problem and adds GM_addStyle and GM_log again. In addition, the &#8220;GreaseKit&#8221; menu moved to left of the &#8220;Window&#8221; menu.</p>
+<p>So, these modification is based on <a href="http://www.jjgod.org/">Jiang Jiang</a>&#8217;s patch. Thank you!</p>
+]]></content>
+		<link rel="replies" type="text/html" href="//blog.8-p.info/2009/09/greasekit-1-7#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="//blog.8-p.info/2009/09/greasekit-1-7/feed/atom" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+	</feed>

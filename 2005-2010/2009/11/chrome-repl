@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>ChromeRepl - a remote REPL client for Google Chrome - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry1573">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/11/chrome-repl">ChromeRepl - a remote REPL client for Google Chrome</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-11-07 15:50    </div>
+    <div class="tags yui-u">
+      <a href="//blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+  </div>
+  <div class="body"><p>Today is a little party about Chromium extension at Shibuya. And so I wrote a small extension to learn about Chromium and Google Chrome.</p>
+<h3>Developer Tools Protocol</h3>
+<p>Yesterday, I hear about <a href="http://code.google.com/p/chromedevtools/">Google Chrome Developer Tools</a> from co-worker. He said &#8220;I tried Eclipse debugger but not works well…&#8221;. Um, I don&#8217;t know Eclipse. Sorry.</p>
+<p>However I found a <a href="http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol">Google Chrome Developer Tools Protocol</a> from Developer Tools page. It&#8217;s simple, text based protocol over TCP/IP. User can control Chrome from a remote client.</p>
+<div class="eyecatch"><img src="//blog.8-p.info/2009/wp-content/uploads/2009/11/protocol.png" alt="Protocol" width="337" height="195" style="border:none"/></div>
+<p>Developer Tools Protocol have some <em>Tools</em>. DevToolsService is not fun, V8Debugger is powerful and interesting, and ExtensionPorts is most flexible. This tool used to talk to a Chrome extension.</p>
+<h3>How to use ChromeRepl</h3>
+<p>So I wrote a extension, Ruby client library and script. Repository is <a href="http://bitbucket.org/kzys/chrome-repl/">chrome-repl</a>.</p>
+<p>ChromeRepl is proof-of-concept quality yet. First, launch Chrome with &#8211;remote-shell-port and load extension from chrome://extensions/.</p>
+<pre>
+% /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-shell-port=9222
+...
+</pre>
+<p>Second, <em>edit extension ID of chrome-repl script</em> and launch on another console.</p>
+<pre>
+% ruby -I lib ./bin/chrome-repl 9222
+&gt; 1 + 2
+3
+&gt; chrome.tabs
+{"onRemoved"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onRemoved"}, "onAttached"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onAttached"}, "onDetached"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onDetached"}, "onSelectionChanged"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onSelectionChanged"}, "onMoved"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onMoved"}, "onCreated"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onCreated"}, "onUpdated"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onUpdated"}}
+</pre>
+<p>I&#8217;ll make chrome-repl.crx soon. Please wait a moment.</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="1573" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

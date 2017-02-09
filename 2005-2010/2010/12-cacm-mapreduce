@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=12" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: CACM の MapReduce ばなし (前編)</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article12">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/12-cacm-mapreduce" class="name">CACM の MapReduce ばなし (前編)</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:6.134832,0.148353&amp;cht=p&amp;chp=-0.837758' alt='13:07' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/30 13:07,
+  Modified at 2010/02/05 00:06
+  </div>
+
+<div class="text">
+<p>Communication of the ACM の1月号には MapReduce のはなしが載っていて、というのを <a href="http://steps.dodgson.org/?date=20100104">steps to phantasien</a> で知って、実際に読んでみた。私は去年の末から ACM 会員になったので、CACM は家に紙のやつが届くのです。</p>
+<h2 id="article12_1" class="ah1 topic">MapReduce and Parallel DBMSs: Friends or Foes?</h2>
+<p>ひとつは MR と並列 DBMS を比較し、実際に Hadoop と商用の DBMS でベンチマークもとったけど DBMS のほうが速かったよ、という Michael Stonebraker らによる &quot;MapReduce and Parallel DBMSs: Friends or Foes?&quot;。これは、同著者ら (ただし 1st author はちがう) による &quot;A comparison of approaches to large-scale analysis&quot; の続きというかまとめ的な感じ。</p>
+<p>著者らはまず、MR は RDBMS というよりは ETL (extract-transform-load, 抽出-加工-書き出し) システムに似たものであって RDBMS とは補完しあう技術であるよ、と置きつつも</p>
+<blockquote>
+<p>it is natural to ask whether MR systems should replace parallel database systems.</p>
+</blockquote>
+<p>と、並列 DBMS との比較につなげる。並列 DBMS というのは、安価な (comodity な) 計算機をつないだクラスタ上で、ひとつのテーブルを複数のノードに分散させ、SQL を各々のノードで並列・分割に実行できるものらしい。水平な分散 (sharding) が SQL 上ではなく、その抽象化の下にあるってことですね。</p>
+<p>次に、著者らは MR のプログラミングモデルはそれ特有のものでなく、並列 DBMS 上でも実現できるよ、と主張する。抽出や加工はふつうに SQL で書けるし、複雑な Map, Reduce にはユーザー定義関数 (UDF) を使えばよろしい。Map-Reduce 間の shuffle は GROUP BY でできる。また、並列 DBMS の線形なスケーラビリティにはここ20年の実績があり</p>
+<blockquote>
+<p>There is no reason why scalability cannot be increased dramatically to the levels reported by Jeffery Dean and Sanjay Ghemawat, assuming there is customer demand.</p>
+</blockquote>
+<p>という。すごい自信だ。</p>
+<p>著者らはさらに、MR が使われがちな局面について、並列 DBMS での実現方法を考察していく。</p>
+<ul>
+<li>ETL: MR むきだけど並列 DBMS でもできる。でも ETL は DBMS にデータをいれる前段階に使われることが多い。</li>
+<li>複雑な分析: マイニングやクラスタリングのような、SQL で書きづらく、かつ処理が複数段になっているものは MR に向いている。</li>
+<li>Semi-structured: 行ベースの DBMS には向かないけど Vertica のような列ベースのものなら向いている。</li>
+<li>汚くてもいいのですぐ分析したい: 並列 DBMS はインストールと設定が難しい。その点、MR は簡単にスキーマもないしすぐ使いはじめられる。ただ並列 DBMS はちゃんと設定・設計すれば速いので、その分析が一時的なものでなければ、初期投資も見合う。</li>
+<li>予算がない: 並列 DBMS は高いし、コミュニティベースのものは信頼性があんまり。MR は良いね。</li>
+</ul>
+<p>わりと向き不向きがあるんですね、って平和なのはここまでなんですが。</p>
+<h3 id="article12_1_1" class="ah2 topic">ベンチマーク</h3>
+<p>ここで著者らは Hadoop と DBMS-X (名前は明かされないが、行ベースの並列 DBMS), Vertica (列ベースのDBMS) について100ノードのクラスタでベンチマークをとる。すべての結果と考察は &quot;A comparison of approaches to large-scale analysis&quot; にあり、今回の論文ではそのうちの3つについてふれている。</p>
+<ul>
+<li>MR の最初の論文にあった Grep: DBMS のソートやインデックスが使えないし、ファイルシステム上にレイヤをあまり重ねない MR のほうが有利だと思うけど、DBMS-X が Hadoop より1.5倍、Vertica が2.6倍速い</li>
+<li>Web のログファイルをあつかう: フルスキャンでインデックスも使えないのに DBMS-X が Hadoop より1.5倍、Vertica が4.3倍速い</li>
+<li>Join: DBMS-X が Hadoop より36.3倍、Vertica が21倍速い</li>
+</ul>
+<p>結果の考察としては</p>
+<ul>
+<li>パース: Hadoop のデフォルト設定では、入力データと同じようなテキスト形式のフォーマットで HDFS にデータが置かれるため、パースが何度も必要になっている。SequenceFile という効率的なフォーマットも提供されているが、これも value に複数の属性をいれるとパースが必要になる。</li>
+<li>圧縮: 並列 DBMS はデータを圧縮して IO のコストを減らしているので速い。Hadoop にも圧縮はあるけど、減らせる IO コストと増える CPU コストとのバランスが微妙で、使うと遅くなることもある。</li>
+<li>パイプライン: 並列 DBMS はデータを処理から処理へ push して流していく。MR は Map で出来た中間ファイルを Reduce 側で pull したり、耐障害性の反面、効率は悪い。</li>
+<li>スケジューリング: 並列 DBMS は実行前に全体でのスケジューリングと最適化を行うけど、MR は実行時にノード単位でやるだけなので遅い。</li>
+<li>列ベース: ログファイルを扱う際にで Vertica が速かったのは、他ふたつが行ベースだったから。</li>
+</ul>
+<p>という点をあげ、Hadoop の実装特有の (Google の実装では解決されているかもしれない) 問題も多いけど、パイプラインとスケジューリングのあたりは MR モデルの耐障害性に関連しているので、MR 一般の問題だろうと指摘する。また DBMS のトランザクション単位の耐障害性にも、途中の処理結果をディスクにおいて、より細かい耐障害性を実現するものもあるんだよ、という。</p>
+<h2 id="article12_2" class="ah1 topic">つづく</h2>
+<p>長くなったので一旦おわり。後編では Google のそもそもの MapReduce 論文の著者である Jeffery Dean, Sanjay Ghemawat の反論を紹介します。</p>
+</div>
+<div class="comments" id="article12_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="12" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

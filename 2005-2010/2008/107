@@ -1,0 +1,26 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-22T15:13:24+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-22T15:13:24+09:00</h1>
+
+    <p>
+FOAF に OpenID のはなしがはっているというので読んだ。
+</p>
+<p>
+<a class="ext-link" href="http://xmlns.com/foaf/spec/"><span class="icon"></span>http://xmlns.com/foaf/spec/</a>
+</p>
+<p>
+はじめてまじめに読んだんだけど icqChatID, msnChatID, aimChatID, jabberID, yahooChatID とかあってびっくりした。OnlineAccount は普通だと思うんだけど、なんでそれを特殊化 (スキーマの文脈でなんて呼ぶのかわからない) して各サービスむけに要素を定義してるんだろう。
+</p>
+<p>
+has-a ですむものがあらゆる is-a になってるプログラムをみた気分。
+</p>
+  </div>
+</body>
+</html>

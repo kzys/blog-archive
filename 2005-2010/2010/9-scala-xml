@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=9" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Scala で XML を編集する</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article9">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/9-scala-xml" class="name">Scala で XML を編集する</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:0.392699,5.890486&amp;cht=p&amp;chp=3.141593' alt='21:45' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/19 21:45,
+  Modified at 2010/01/20 22:45
+  </div>
+
+<div class="text">
+<p>Scala で XML を読んで、そこからなにかを抜き出すには、パターンマッチや scala.xml.NodeSeq の \, \\ といったメソッドを使うだろう。また、新しい XML 文章を作るのなら XML リテラルでだらだら書ける。では、既存の XML 文章をちょっと変えるには、具体的には</p>
+<ul>
+<li>link rel=&quot;self&quot; の href を変えて</li>
+<li>link rel=&quot;hub&quot; な要素を追加</li>
+</ul>
+<p>したいときにどうするんだろう、というのでややつまった。</p>
+<p>最初は \\ で対象ノードをみつけて消し足ししようかと思っていたのだけど scala.xml のあたりは全部 immutable なのでそうはいかない。結局、<a href="http://www.slideshare.net/markryall/scala-xml-and-gae">Scala, XML and GAE</a> というスライドの12ページの</p>
+<pre>def add(p: Node, newEntry: Node ): Node = {
+  p match {
+  case &lt;div&gt;{ ch @ _@ }&lt;/div&gt; =&gt;
+    &lt;div&gt;{ ch }{ newEntry }&lt;/div&gt;
+}
+</pre>
+<p>をまねて、こう落ち着いた。</p>
+<pre>import scala.xml._
+import org.scalatest.FunSuite
+
+class XMLModifySuite extends FunSuite {
+  def process(seq: Node): Option[Node] = {
+    seq match {
+      case link @ &lt;link/&gt; =&gt; {
+        if (link.attributes(&quot;rel&quot;) == &quot;self&quot;) {
+          Some(Group(List(&lt;link rel=&quot;self&quot; href=&quot;http://example.org/&quot; /&gt;,
+                          &lt;link rel=&quot;hub&quot; href=&quot;http://example.org/hub&quot; /&gt;)))
+        } else if (link.attributes(&quot;rel&quot;) == &quot;hub&quot;) {
+          None
+        } else {
+          Some(link)
+        }
+      }
+      case e: Elem =&gt; {
+        val child = e.child.flatMap(c =&gt; process(c) match {
+          case Some(v) =&gt; v
+          case None    =&gt; Nil
+        })
+        Some(Elem(e.prefix, e.label, e.attributes, e.scope, child : _*))
+      }
+      case _ @ n =&gt; {
+        Some(n)
+      }
+    }
+  }
+
+  test(&quot;Remove hub&quot;) {
+    assert(process(&lt;link rel=&quot;hub&quot; href=&quot;http://example.org/hub&quot;/&gt;) === None)
+    assert(process(&lt;feed&gt;&lt;link rel=&quot;hub&quot; href=&quot;http://example.org/hub&quot;/&gt;&lt;/feed&gt;).get ===
+           &lt;feed&gt;&lt;/feed&gt;)
+  }
+
+  test(&quot;Replace self and remove hub&quot;) {
+    assert(process(&lt;feed&gt;&lt;link rel=&quot;self&quot; href=&quot;http://example.com&quot;/&gt;&lt;/feed&gt;).get ===
+           &lt;feed&gt;&lt;link rel=&quot;self&quot; href=&quot;http://example.org/&quot;/&gt;&lt;link rel=&quot;hub&quot; href=&quot;http://example.org/hub&quot;/&gt;&lt;/feed&gt;)
+  }
+
+  test(&quot;Else&quot;) {
+    assert(process(&lt;feed&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/feed&gt;).get ===
+           &lt;feed&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;/feed&gt;)
+  }
+}
+</pre>
+<p>「マッチ」で編集するのは、気持ちとしては正規表現みたいな感じ。といっても XML は再帰的な構造をもってるので、ややごちゃっとするなあ。</p>
+<h2 id="article9_1" class="ah1 topic">追記</h2>
+<p>match が link と Elem しかうけてなかったので</p>
+<pre>      case _ @ n =&gt; {
+        Some(n)
+      }
+</pre>
+<p>と、テストを足しました。</p>
+</div>
+<div class="comments" id="article9_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="9" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

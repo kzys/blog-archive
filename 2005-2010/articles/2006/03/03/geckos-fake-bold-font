@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Gecko's fake bold font</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136212340">
+  <h2 class="entry-title"><a href="/articles/2006/03/03/geckos-fake-bold-font" title="Gecko's fake bold font">Gecko's fake bold font</a></h2>
+  <div class="published">
+    March 3rd, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Mac の Gecko で直したいところといえば、ヒラギノ角ゴの bold が W6 にならないところなので、そのへんを追ってみた。</p>
+
+<p>bold → W6 みたいな対応は <a href="http://www.wodeveloper.com/omniLists/macosx-dev/2002/February/msg00550.html">NSString - Bold and Italic?</a> にある、</p>
+
+<blockquote>
+    <p>The NSFontManager convertFont:toHaveTrait: and convertFont:toNotHaveTrait: methods are useful here.</p>
+</blockquote>
+
+<p>というのが使えるらしいんだけど、gfx/thebes/src/gfxAtsuiFonts.cpp にコピペされてる IRC の会話(！)によると、これに対応する Carbon の API は存在しない(！)らしい。</p>
+
+<p>で、gfx/src/mac/nsDeviceContextMac.cpp から Cocoa をよびだそうかとしてたんだけど、Thebes については YAMASHITA Makoto さんが <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=325165">Bug 325165 - implement thebes@mac text/font support</a> で Cocoa をよびだす patch を書かれていて、 Vladimir Vukicevic さんが「うちも同じようなのが手元にあるし、一回 IRC で話そう」ってところで止まっているので、それの commit 待ち。</p>
+
+<p>Thebes というのは Gecko と Cairo をつなぐ部分で、カタカナ表記だとテーベとカイロ。どっちもエジプトの都市です。ちなみに Places は SQLite ベースのブックマーク/履歴管理システム。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mozilla" rel="tag" title="mozilla">mozilla</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/03/geckos-fake-bold-font/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: getMatchedCSSRules の第三引数</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134500690">
+  <h2 class="entry-title"><a href="/articles/2007/06/14/getmatchedcssrules" title="getMatchedCSSRules の第三引数">getMatchedCSSRules の第三引数</a></h2>
+  <div class="published">
+    June 14th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://d.hatena.ne.jp/amachang/20070612/1181645158">IT戦記 - Safari 3 に実装された、当たっている CSS ルールを全て抽出できる getMatchedCSSRules が凄い</a></p>
+
+<blockquote>
+    <p>第一引数は対象要素。</p>
+    
+    <p>第二引数は疑似要素を指定する場合に使う。通常は第二引数は空文字列でいい。</p>
+    
+    <p>第三引数はよくわからん＞＜</p>
+</blockquote>
+
+<p>調べた。といっても amachang さんがリンクしてくれた <a href="http://webkit.org/docs/a00029.html#79593ab4ba77b5db10394d7eda80779c">Web Kit DOM: DOMWindow Interface Reference</a> に "authorOnly" とあって、あとは実験で確かめられそうだけど、でもこれは自然科学ではないのです。</p>
+
+<p>WebKit Trac で <a href="http://trac.webkit.org/projects/webkit/search?q=getMatchedCSSRules&amp;wiki=on&amp;changeset=on&amp;ticket=on"> getMatchedCSSRules で検索</a> してみると、<a href="http://trac.webkit.org/projects/webkit/changeset/11481">Changeset 11481</a> がみつかって、</p>
+
+<blockquote>
+    <p>Add support for more methods for exposing more useful style information. </p>
+    
+    <p>getMatchedCSSRules can be used to obtain the matched sheet rules for an element. In Obj-C
+    it will also include user/user agent sheet rules. </p>
+</blockquote>
+
+<p>このメソッドを実装したまさにそのときのものらしく、上から下まで実装にたどりつける。</p>
+
+<p><a href="http://trac.webkit.org/projects/webkit/browser/trunk/WebCore/khtml/xml/dom2_viewsimpl.cpp?rev=11481#L53">/trunk/WebCore/khtml/xml/dom2_viewsimpl.cpp</a> の AbstractViewImpl::getMatchedCSSRules 経由で <a href="http://trac.webkit.org/projects/webkit/browser/trunk/WebCore/khtml/css/cssstyleselector.cpp?rev=11481#L1060">/trunk/WebCore/khtml/css/cssstyleselector.cpp</a> の CSSStyleSelector::styleRulesForElement を読むと、authorOnly = true のときは、いくつかの処理をスキップしているのがわかる。マメにコメントもはいっていて良い。</p>
+
+<p>ただ、いま読んだコードは最新では無いので、これを Safari 3 で確かめるのはちょっとちがう。trunk をみるとファイルの場所が移動していて、探す方法がわからなかったので、結局ソースコード全体を checkout して grep した。気軽に再現できる過程を書きたかったのに……。</p>
+
+<p>えーと、今日の時点ではそれぞれ <a href="http://trac.webkit.org/projects/webkit/browser/trunk/WebCore/page/DOMWindow.cpp#L75">/trunk/WebCore/page/DOMWindow.cpp</a>, <a href="http://trac.webkit.org/projects/webkit/browser/trunk/WebCore/css/cssstyleselector.cpp#L1186">/trunk/WebCore/css/cssstyleselector.cpp</a> にあります。Changeset 11481 のころと処理の流れ自体はあまり変わっていない。</p>
+
+<pre><code>if (!authorOnly) {
+    int firstUARule = -1, lastUARule = -1;
+    // First we match rules from the user agent sheet.
+    matchUARules(firstUARule, lastUARule);
+
+    // Now we check user sheet rules.
+    int firstUserRule = -1, lastUserRule = -1;
+    matchRules(m_userStyle, firstUserRule, lastUserRule);
+}
+
+// Check the rules in author sheets.
+int firstAuthorRule = -1, lastAuthorRule = -1;
+matchRules(m_authorStyle, firstAuthorRule, lastAuthorRule);
+</code></pre>
+
+<p>あとはこんなので、</p>
+
+<pre><code>&lt;style type="text/css"&gt;
+h1 { text-decoration: underline; }
+&lt;/style&gt;
+&lt;h1 style="color:red"&gt;hello&lt;/h1&gt;
+&lt;script type="text/javascript"&gt;
+var authorOnly = false; // or true
+var rules = getMatchedCSSRules(document.getElementsByTagName('h1')[0], authorOnly);
+for (var i = 0; i &lt; rules.length; i++) {
+  alert(rules[i].cssText);
+}
+&lt;/script&gt;
+</code></pre>
+
+<p>authorOnly = false のときには、作者が指定した CSS だけでなくブラウザ側であててるデフォルトの CSS もとれることが、確認できます。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/safari" rel="tag" title="safari">safari</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">1 Response to &#8220;getMatchedCSSRules の第三引数&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-133444560">
+			<cite><a href="http://www.usanewcars.info">artofey</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133444560" title="">July 8th, 2007 at 01:20 AM</a></small>
+			<p>Hello, visit my page:  <a href="http:" /><b>absolutly free movie porn</b></a> <a href="http:" /><b>clip free latina movie porn</b></a> <a href="http:" /><b>free black porn movie</b></a> <a href="http:" /><b>free hard core porn movie</b></a> <a href="http:" /><b>free movie porn russian</b></a></p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/06/14/getmatchedcssrules/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

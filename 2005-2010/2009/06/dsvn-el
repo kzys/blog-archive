@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>dsvn.el から Subversion をつかう - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry849">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/06/dsvn-el">dsvn.el から Subversion をつかう</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-06-14 01:32    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>dsvn.el をつかうと Emacs のなかから Subversion が使えるようになる。</p>
+<h3>どう便利なのか?</h3>
+<p>エディタで編集がおわったら M-x svn-status として、ディレクトリ名をいれる。</p>
+<p><img src="//blog.8-p.info/2009/wp-content/uploads/2009/06/svn-status-1.png" alt="M-x svn-status"/></p>
+<p>すると、そのディレクトリで svn status をしたようなバッファができる。</p>
+<p><img src="//blog.8-p.info/2009/wp-content/uploads/2009/06/svn-status-2.png" alt="Svn status"/></p>
+<p>ここで main.c のある行にカーソルを移動して = を押せば、下に svn diff の結果が表示される。</p>
+<p><img src="//blog.8-p.info/2009/wp-content/uploads/2009/06/svn-diff.png" alt="status to diff"/></p>
+<p>diff に問題がなければいい。もし変なものが混じっていることに気づいたら、この diff の結果のバッファにカーソルを移して return すれば、その diff のファイルの該当行に飛んで、すぐ編集ができる。</p>
+<p><img src="//blog.8-p.info/2009/wp-content/uploads/2009/06/svn-diff-2.png" alt="diff to buffer"/></p>
+<p>この status, diff, ファイルの編集、とをパチパチ切り替えられるのはかなり便利だと思う。大きめのブランチのマージでも、status をインクリメンタルサーチして M なファイルを確認、C なファイルを編集、と進めていける。</p>
+<p>細かい使い方は status のところで ? でヘルプが出てくるので、それを参照してください。</p>
+<h3>diff を化けなくする</h3>
+<p>ここからもう応用です。</p>
+<p>レポジトリに EUC-JP なものと UTF-8 のものが混じっているような事態のときは svn (1) の出力を lv で変換して diff が化けないようにしている。</p>
+<p>まず、こういう <strong>svn-with-lv</strong> を $PATH の通ったところに置く。$LANG を明示的に指定しているのは  Carbon Emacs というか Mac 対策なので、普通の Unix だったらいらないはず。</p>
+<pre>
+#! /bin/sh
+export LANG='ja_JP.UTF-8'
+svn "$@" | lv | cat
+</pre>
+<p>これを dsvn.el が使う svn として指定すればいい。</p>
+<pre>
+(setq svn-program "svn-with-lv")
+</pre>
+<h3>コミットメッセージにパスをいれる</h3>
+<p>関わっているものに、コミットメッセージに以下のようなパスをいれるルールのレポジトリがある。</p>
+<blockquote><p>
+[branches/ruby-19] lambda とか長いの書かなくてよくなった
+</p></blockquote>
+<p>パス部分は機械的に決まるので Emacs にいれさせている。dsvn.el にはやや hook が足りないので advice でなんとかした。</p>
+<pre>
+(defadvice svn-commit (around dsvn-commit-with-message activate)
+  (let ((url (apply 'buffer-substring svn-url-label)))
+    (cond ((string-match "^.+?:/+example\.org/\\(.*\\)$" url)
+           (let ((path (match-string 1 url)))
+             ad-do-it
+             (insert (format "[%s] " path)) ))
+          (t
+           ad-do-it) )))
+</pre>
+<p>これで example.org/branches/&#8230; にコミットするときは [branches/...] と入力されかけたバッファが開くようになる。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="849" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

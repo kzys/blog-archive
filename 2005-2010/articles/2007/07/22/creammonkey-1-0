@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Creammonkey 1.0</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134763730">
+  <h2 class="entry-title"><a href="/articles/2007/07/22/creammonkey-1-0" title="Creammonkey 1.0">Creammonkey 1.0</a></h2>
+  <div class="published">
+    July 22nd, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://creammonkey.sourceforge.net/">Creammonkey</a> 1.0 をリリースしました。</p>
+
+<p>変更点:</p>
+
+<ul>
+<li>unsafeWindow, window ともに window を指すように変更</li>
+<li>フレームを使ったページに対応</li>
+<li>GM_xmlhttpRequest で POST メソッドに対応</li>
+<li>GM_xmlhttpRequest で HTTP のメソッド名を大文字に変換するように変更</li>
+</ul>
+
+<p>0.9 では unsafeWindow に本物の window, window には undefined を代入していたんですが、いままで動いていたスクリプトが動かなくなる場合が多すぎるようなので、window, unsafeWindow ともに本物の window を指すように変更しました。</p>
+
+<p>POST メソッドについては <a href="http://d.hatena.ne.jp/mzp/20070617/xml">みずのさんから patch</a> をいただきました。ありがとうございます。</p>
+
+<p>1.0 といっても、0.1 から数えて10回目のリリースという以上の意味は無く、とくに stable であるとか、そういうわけではないです。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/creammonkey,release" rel="tag" title="creammonkey,release">creammonkey,release</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">1 Response to &#8220;Creammonkey 1.0&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-133512110">
+			<cite><span>きむらつよし</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133512110" title="">July 27th, 2007 at 01:01 AM</a></small>
+			<p>矛盾した設定ですが、Safariの環境設定のJavaScriptをOFFにした状態で、Creammonkey 1.0をインストールし、起動すると必ず落ちるようです。
+Mac <span class="caps">OS X 10</span>.4.10 Intel / Safari 2.0.4(419.3) です。
+対処法は、一度CreammonkeyをInputManagersから移動し、Safariを起動、Safariの環境設定のJavaScriptをON、CreammonkeyをInputManagersに戻す。Safariを再起動しかないみたいです。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

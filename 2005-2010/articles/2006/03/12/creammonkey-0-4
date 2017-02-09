@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Creammonkey 0.4</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136812190">
+  <h2 class="entry-title"><a href="/articles/2006/03/12/creammonkey-0-4" title="Creammonkey 0.4">Creammonkey 0.4</a></h2>
+  <div class="published">
+    March 12th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://8-p.info/Creammonkey/">Creammonkey</a> 0.4 をリリースしました。</p>
+
+<p>主な変更点は</p>
+
+<ul>
+<li>スクリプトの二重実行の回避</li>
+<li>ワイルドカードまわりのバグ修正</li>
+<li>ドイツ語の localization を追加 (Thanks to Jannis Leidel!)</li>
+</ul>
+
+<p>です。</p>
+    
+    
+    
+    <p>いままでは、たとえば、ページ A でリンク X をクリックして、その X が Safari で開けない種類のファイル (application/octet-stream など) を指していた場合に、</p>
+
+<ul>
+<li>A を開く</li>
+<li>A の読み込みが終わると user script を実行</li>
+<li>X をひらこうとする</li>
+<li>X は開けないので、他に投げて A にもどる</li>
+<li>A の読み込みが終わると user script を実行</li>
+</ul>
+
+<p>という動作をしてしまっていたのですが、これを回避するようになりました。</p>
+
+<p>これで <a href="http://kengo.preston-net.com/archives/002480.shtml">Going My Way: YouTubeにビデオのダウンロードリンクを追加するGreasemonkeyスクリプト</a>もちゃんと動きます。</p>
+
+<p>余談ですが、このスクリプト、どうやって矢印アイコンを出しているのかと思ったら、<a href="http://www.ietf.org/rfc/rfc2397.txt">data scheme</a> で JavaScript に直で埋め込んでありました。やりすぎ。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/creammonkey" rel="tag" title="creammonkey">creammonkey</a></li>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/12/creammonkey-0-4/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

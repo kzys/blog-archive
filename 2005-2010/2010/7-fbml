@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=7" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: ビューティフル FBML</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article7">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/7-fbml" class="name">ビューティフル FBML</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:1.431170,4.852015&amp;cht=p&amp;chp=4.293510' alt='01:56' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/15 01:56,
+  Modified at 2010/01/15 02:07
+  </div>
+
+<div class="text">
+<p>『ビューティフルアーキテクチャ』を読んでいる友達から「Facebook の FBML はオープンソースのブラウザからパーサをとってきて」という話を教わった。Google ブックスを使って <a href="http://books.google.com/books?hl=ja&amp;id=pzXkGbMibQUC&amp;q=整形式">整形式で検索</a> すると確かに恐ろしいことが書いてある。</p>
+<blockquote>
+<p>私たちは XML がスキーマによる検証をパスすることはもちろん、整形式 (well-formed) であることすら要求していません。</p>
+</blockquote>
+<p>いや、要求しろよ。</p>
+<p>ブラウザがおかしな HTML を読むのは、そういう HTML で書かれたものが十分に普及してしまったからだ。ただ、このエラー復帰は面倒かつ処理系同士での統一がとりづらく、XML はその過ちを繰り返さないよう厳格にするのが一般的である。FBML が XML かは微妙で、<a href="http://wiki.developers.facebook.com/index.php/FBML_DTD">DTD</a> はあるけど、<a href="http://wiki.developers.facebook.com/index.php/Fb:18-plus">18-plus</a> という名前が数字からはじまる要素もあった。</p>
+<p>Facebook の一部はソースコードが公開されている。件の「ブラウザ」は Firefox のことらしく、libfbml の <a href="http://svn.facebook.com/svnroot/platform/fbopen/fbopen-libfbml/README">README</a> をみると</p>
+<blockquote>
+<p>The libfbml package depends on firefox-2.0.0.4</p>
+</blockquote>
+<p>とあり <a href="http://svn.facebook.com/svnroot/platform/fbopen/fbopen-libfbml/test/test_fbml_parser.cpp">test_fbml_parser.cpp</a> あたりに「壊れてても大丈夫だぜ!」みたいなテストがある。</p>
+<p>まえに <a href="http://code.google.com/intl/ja/apis/gadgets/docs/basic.html">OpenSocial の XML</a> はまるごと CDATA じゃなくて XHTML にすれば良かったのに、みたいなことを人に話したんだけど、上には上がいるなあと大分びっくりしました。ビューティフルかあ。</p>
+</div>
+<div class="comments" id="article7_comments">
+<div class="meta">2 comments</div>
+<div class="comment" id="article7_c1">
+<span class="owner">ku</span> :
+<span class="text">好意的に解釈すればHTMLが壊れてても気にしない人が作れるくらいまで敷居を下げたかったのかも。それでもfirefoxのだと起動に時間もかかるしlibxmlで十分な気がします... 関係ないけど一番上のところが2009のままになってますよー http://gyazo.com/3e7c821a8b6b1674616fe0cc4c8194be.png</span>
+<span class="date">(2010/01/15 09:40)</span>
+</div>
+<div class="comment" id="article7_c2">
+<span class="owner">kzys</span> :
+<span class="text">エラーメッセージをわかりやすくする方向にがんばるべきだと思うなあ。2009 は直しました。ありがとうございます。</span>
+<span class="date">(2010/01/15 21:38)</span>
+</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="7" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=30" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: 2Q をふりかえる</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article30">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/30-2q" class="name">2Q をふりかえる</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:3.647738,2.635447&amp;cht=p&amp;chp=0.733038' alt='11:22' /></h1>
+
+<div class="attr">
+  Posted at 2010/07/04 11:22,
+  Modified at 2010/10/10 23:05
+  </div>
+
+<div class="text">
+<p>2Q も終わり、ということは2010年も半分が終了してしまったわけです。はやい。</p>
+<h2 id="article30_1" class="ah1 topic">断線</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/24-unwired">Unwired</a></li>
+<li><a href="http://blog.8-p.info/2010/27-may">May</a></li>
+</ul>
+<p>2Q で一番おおきかったのは自宅のインターネット契約をきったことだ。OS のアップグレードが遅れがちになるとか、バザールモデルをとっているソフトウェアプロジェクトに参加しようという気がそがれるのとか、もちろん良くないところもあるんだけど、すごく困るかといえばそこまで困ってはいない。まあ、多少なりとも仕事に関係があるものは職場でみるし、家でも iPhone で Web をみることはアリにしてるしで、この2つも無くなってしまうと困るとは思う。</p>
+<p>コンピュータとのつきあいかたの制限ないし制御は、なぜか <a href="http://www.economist.com/node/16295664">The Economist</a> でもみかけた。</p>
+<h2 id="article30_2" class="ah1 topic">読書</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/25-pragpub">PragPub はおすすめ</a></li>
+<li><a href="http://blog.8-p.info/2010/29-framework-design-guidelines">Framework Design Guidelines を (半分まで) 読んだ</a></li>
+<li><a href="http://blog.8-p.info/2010/28-globalization">Globalization</a></li>
+</ul>
+<p>PragPub は新しいものがでるたびにダウンロードして読んでいるし &quot;Framework Design Guidelines&quot; も継続中。コンピュータがらみをふくむ翻訳もの (の原書) はできるだけ Kindle で読む気でいるので、本屋ではそうじゃないものを買うようにしている。ワーキングプアがどうこうというのはそれで読んだ。</p>
+<h2 id="article30_3" class="ah1 topic">そのほか</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/26-html5">HTML5</a></li>
+</ul>
+<p>HTML5 は XML を捨てる理由がよくわからなかったんだけど、仕様書の一部を読んだらわかったので、そういうはなしを書いた。HTML5 をとりまくオフラインとかソケットとかはまだよくわからない。頭のいい人々ががんばれる余地が増えた、という印象が強いんだけど、いつか自分でも使うようになるのかなあ。</p>
+<h2 id="article30_4" class="ah1 topic">3Q にむけて</h2>
+<p>英語は Kindle でだらだら読んでるのと TOEIC 申し込んだのが 2Q で、試験日は 3Q です。なんかポップなものをつくりたいなー、というのは未達成。インターネットつながないのは、短期的な成果よりもすこし落ち着いて勉強しないと、というのもあるので、個人でなにか作るのは来年がんばります。</p>
+</div>
+<div class="comments" id="article30_comments">
+<div class="meta">2 comments</div>
+<div class="comment" id="article30_c1">
+<span class="owner">morita</span> :
+<span class="text">最近はフルスクラッチの HTML5 Parser が webkit にはいったので、仕様とくらべてひやかしてみるといいかも。</span>
+<span class="date">(2010/07/04 14:21)</span>
+</div>
+<div class="comment" id="article30_c2">
+<span class="owner">kzys</span> :
+<span class="text">Mozilla は自分で実装しなかったのに...パワフルだなあ。</span>
+<span class="date">(2010/10/10 23:03)</span>
+</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="30" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

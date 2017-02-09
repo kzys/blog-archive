@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Podcastle Night</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133770290">
+  <h2 class="entry-title"><a href="/articles/2007/01/11/podcastle-night" title="Podcastle Night">Podcastle Night</a></h2>
+  <div class="published">
+    January 11th, 2007
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://podcastle.jp/">Podcastle</a> のはなしを聞きに <a href="http://wikibana.socoda.net/wiki.cgi?Wiki%BE%AE%CF%C3%2FVol.7">Podcastle Night</a> に行ってきました。</p>
+
+<p>Podcastle のはなしは面白かったし、その後いろいろなひとと話せたのも良かった。</p>
+    
+    
+    
+    <h3>後藤さん</h3>
+
+<p>Podcastle が開発期間6ヶ月というのはすごい。もちろん音声認識まわりは前からの蓄積があるし、なにより関わってる人達がスーパーすぎるというのがあるので「Rails は Java の……」みたいなはなしにはならないだろうけど。あと、スーパーな人達は数 hop でつながるものなんね。</p>
+
+<ul>
+<li>searching, reading and annotating podcasting.</li>
+<li>開発者同士は qwikWeb + Skype でコミュニケーション。実は全員が会ったのは今日が初めて。</li>
+<li>2006年の1月18日に、後藤さんと緒方さんで「いまの音声認識研究の最先端のデモとなるような、キラーアプリを作りたい」ということになり「Podcast の検索」という案が浮かぶ。</li>
+<li>7月3日には、そこに eto さんが加わる。</li>
+<li>7月12日のミーティングで arai さんと、arai さん経由で brazil さんが加わる。</li>
+<li>8月にはプロトタイプが出来て、12月1日には一般公開となる。</li>
+<li>現在は学会発表と口コミがベース。使ってほしいけど、利用者が殺到すると対応しきれない部分があるので、商業媒体とかにばーっと載ると困るかも。</li>
+</ul>
+
+<h3>緒方さん</h3>
+
+<p>よい UI のためには UI 部分以外の高い技術が必要なんだな、と思った。候補表示とかも、利用者からだと「ちょっと良い」だけど、研究者からみると「すごく大変」なようだ。音声認識研究への愛もひしひしと感じた。</p>
+
+<ul>
+<li>同じような先行システムとして <a href="http://www.podscope.com/">Podscope</a>, <a href="http://www.podzinger.com/">Podzinger</a> がある。</li>
+<li>Podcastle の特徴は大きく3つ
+<ul>
+<li>日本語である。</li>
+<li>検索語の周辺だけではなく全文を文字列として表示できる → Podcast が googlable になる。</li>
+<li>編集、というかアノテーションがある。</li>
+</ul></li>
+<li>アノテーションによって訂正された情報は学習され、その後の認識精度が向上する。</li>
+<li>音声認識は使えるのか使えないのか謎の技術だと思われがちだけど、使いようによってはもう使えるところもある。</li>
+<li>一般に市販されているような音声認識ソフトウェアはリアルタイム性を重視しているけど、研究では精度を重視しているものが多い。</li>
+<li>Podcastle は音声認識技術の啓蒙でもある。</li>
+<li>誤認識混じりだろうが、とにかくまず公開してしまって、そこを訂正してもらうことで、結果として認識精度の向上につながる。</li>
+<li>音声認識には言語モデルと音響モデルのふたつが必要。</li>
+<li>言語モデルは N-gram で大量の文章から学習させることが必要。知らない単語は認識できない。
+<ul>
+<li>Podcast は時事ニュースや最近の話題が多いので、Yahoo! ニュースと Google ニュースから学習させている。</li>
+</ul></li>
+<li>音響モデルは隠れマルコフモデル。</li>
+<li>訂正は利用者に新たに書き起こさせるのではなく、候補からの選択。この共通の文節区切り下で候補を表示するのは簡単ではない。confusion network というのを使っている。</li>
+<li>あくまで検索ではなくソーシャルアノテーションという認識。</li>
+</ul>
+
+<h3>arai さん</h3>
+
+<p>開発期間短い！それでいて REST っぽい感じとか、clean に出来てそうなところも気になる。</p>
+
+<ul>
+<li>構成は Rails + MySQL。4日くらいで動くようにはなった。</li>
+<li>1分の MP3 の処理時間がだいたい10分くらいかかるので、音声認識部分は十数台のサーバーを使って分散処理をしている。</li>
+<li>やりとりは HTTP で REST っぽい感じ。</li>
+<li>音声認識部分がバージョンアップした場合、人力で訂正された箇所以外は再認識されるようになっている。</li>
+</ul>
+
+<h3>brazil さん</h3>
+
+<p>Shibuya.js のときとはちがって、概念的なはなしではなく技術紹介なんだけど、やっぱり発表がうまいしきれい。カメラ機能のデモが「カメラに動きがあると犬が吠える」で犬の声を数種類録音してみたりとか、フォント一覧のデモの色や音のつけかたとか、細かいところでセンスの良さみたいなものが光っていたように思う。<a href="http://www.asahi-net.or.jp/~xe4r-kmt/jsh/jsh.html">jsh</a> も良さげ。</p>
+
+<ul>
+<li>実はキーボード (Ctrl + ← / Ctrl + →)で再生速度は変更できます。訂正作業は遅く再生、検索は早く再生と使い分けられる。</li>
+<li>MochiKit と FlashProxy について話そうと思ったけど、MochiKit は長くなりすぎたので全部カット。FlashProxy について話します。</li>
+<li>Web 上で音声を再生する方法は主に三つある。
+<ul>
+<li>Windows Media Player: IE のみなので扱わず</li>
+<li>QuickTime: Podcastle ではこれが主力</li>
+<li>Flash</li>
+</ul></li>
+<li>QuickTime はなにもせずとも embed 要素に JavaScript からアクセスできるメソッドがいろいろついてくる。</li>
+<li>Flash
+<ul>
+<li>JavaScript では出来ないこと (カメラ、IME の制御、クライアントサイドへのデータの保存など) がいろいろ出来て面白い。</li>
+<li>JavaScript とのやりとりには ActionScript 2 からできた ExternalInterface をつかう。</li>
+<li>ExternalInterface の addCallback は便利だけど不自由なところがあって面倒くさい → FlashProxy</li>
+</ul></li>
+<li>Flash という古くて強力なものが、FlashProxy を得てオープンになった。</li>
+<li>glue としての JavaScript。</li>
+</ul>
+
+<h3>eto さん</h3>
+
+<p>さすが Wiki 小話っぽくきれいにまとまった感がある。それが出来る「誰か」はどこに？ → Web に！というのが良かった。Web 2.0 の未来は明るいです。</p>
+
+<p>発表資料: <a href="http://eto.com/d/PresenPodcastleNight.presen">集合知を活用したWebシステムとしてのPodcastle</a></p>
+
+<ul>
+<li>そもそも Podcastle は Wiki なのか？</li>
+<li>検索結果を人力で改善できる検索エンジンである。最近だと Jimmy Wales の Wikiasari もそういう傾向。</li>
+<li>でもそれは珍しくはない。CDDB, ソーシャルブックマークのタグ、Japanize など。</li>
+<li>Amazon MTurk: 流行っていない。じぶんがうれしくなる仕組みが「便利」ではなく小銭なのが原因では。</li>
+<li>Wikipedia: 知恵の集合であることに意味がある。いってしまえば百科事典にならなくても良い。</li>
+<li>音声認識は人間ですら 100% はできない。知らない単語は聞き取れない。</li>
+<li>機械には出来なくても「誰か」には出来る。その誰かはどこかにはいるのだけど、それをみつけだすのが Web の仕事。</li>
+<li>今後
+<ul>
+<li>Podcastle で最小のフィードを出して Plagger で複数種類を生成したい。</li>
+<li>microformats でルビをマークアップしてもらって、それをクロールしたい。</li>
+</ul></li>
+</ul>
+
+<h3>質疑応答</h3>
+
+<ul>
+<li>言語モデルと音響モデルさえ作れれば英語や中国語にも対応できる。</li>
+<li>テープ起こしのようなプライベートな用途にも対応したい。</li>
+<li>著作権まわりで怒られたりは、まだない。</li>
+<li>「あー」「えー」のようなものが文章に書き起こされているものは、あるにこしたことは無いけど、利用者優先なので消してしまっても良い。そのくらいで深刻な影響が出るシステムではない。</li>
+</ul>
+
+<h3>懇親会</h3>
+
+<ul>
+<li>dotimpact さんと nagayama さんには久しぶりに、櫛ケ浜さん youhei さんには初めてお会いする。</li>
+<li>Web+DB Press のかた、Wikipedia のかた、Selenium IDE のかたにもお会いして名刺をいただく。名刺もらったひとには moo のカードあげたりしてました。
+<ul>
+<li>われながら moo のカードは対処に困る感じのサイズだと思った。</li>
+<li>ゼロベースの名刺は標準サイズを守りつつびっくりする感じで良い。</li>
+</ul></li>
+<li>youpy さんにもお会いしたかったのに帰っちゃったらしい。沖電子にショベルカーで入場でもしないと会えないのかも。</li>
+<li>FireBug はとても良い。お金払っても良いくらい。</li>
+<li>Creammonkey に GM_XHR とかほしいよね、というはなしをされた。セキュリティとか怖いので弱腰だったんだけど「高木さんに怒られてはじめて一人前」らしいのでまず実装だけしてみよう。</li>
+<li>いまどきの Web に対応できるデザイナは引く手あまたらしい。</li>
+</ul>
+
+<h3>二次会</h3>
+
+<ul>
+<li>幹事 2.0 な店との交渉によって朝まで個室を確保。始発が動き出すあたりまでずっと飲んでた。</li>
+<li>あぶないはなしが多いので書かない。</li>
+<li>yomoyomo さんがいっぱい</li>
+<li>Perfume</li>
+<li>優よりそら</li>
+<li>フォトライフをみて本物だと思った
+<ul>
+<li>オリコンからロリコンまで</li>
+</ul></li>
+<li>spam 対策をしたら知り合いがひっかかった</li>
+<li>nagayama x ma.la</li>
+<li>brazil さんにデザインをほめられた！</li>
+<li>なにを作ったかが重要。プログラムを書くのと、一つのソフトウェアを書くのとのあいだには明らかな違いがある。プログラミングがすごくできるけど、それで何を作っているのとなると謎なひとというのは存在する。</li>
+<li>いろいろな人の話に、 brazil さんがさかんに「それはすごいわかるなー。」「おもしろいですよ。いや、それすごいおもしろい。」と言っていたのが印象的だった。</li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/01/11/podcastle-night/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

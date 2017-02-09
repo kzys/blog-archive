@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: mozrepl-test から汚染を除去</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132606010">
+  <h2 class="entry-title"><a href="/articles/2007/09/05/mozrepl-test" title="mozrepl-test から汚染を除去">mozrepl-test から汚染を除去</a></h2>
+  <div class="published">
+    September 5th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://blog.8-p.info/articles/2007/09/04/mozrepl-firefox">blog.8-p.info: MozRepl でテストつき Firefox プログラミング</a></p>
+
+<blockquote>
+    <p>ブラウザのグローバルな環境を汚染しまくりなので、なんとかしたい。</p>
+</blockquote>
+
+<p>なんとかした。</p>
+
+<pre><code>content.location.href="about:blank";
+repl.enter(content);
+...
+repl.back();
+</code></pre>
+
+<p>MozRepl の実行コンテキストをブラウザの表示部分である content に切り替えているので、グローバルな変数・関数があっても、ページ遷移でまっさらに戻せます。</p>
+
+<p>content への repl.enter, repl.back まわりの挙動はこんな感じでした。</p>
+
+<pre><code>repl&gt; content.location.href='about:blank';
+about:blank
+repl&gt; repl.enter(content);
+[object Window]
+repl&gt; Foo='bar';
+bar
+repl&gt; typeof Foo;
+string
+repl&gt; repl.back();
+[object ChromeWindow]
+repl&gt; typeof Foo;
+undefined
+repl&gt; repl.enter(content);
+[object Window]
+repl&gt; typeof Foo;
+string
+repl&gt; repl.back();
+[object ChromeWindow]
+repl&gt; content.location.href='about:blank';
+about:blank
+repl&gt; repl.enter(content);
+[object Window]
+repl&gt; typeof Foo;
+undefined
+repl&gt;
+</code></pre>
+
+<p>Mozilla をさわるのは、Software Design 2007年4月号の特集からはじめるのがとっつきやすいです。<a href="http://d.hatena.ne.jp/brazil/20070616/1181927474">brazil さんもおすすすめ</a>。</p>
+
+<p>もうすこし C++ よりだと <a href="http://nomina.petit-archives.mydns.jp/">nominaまとめ</a> の <a href="http://nomina.petit-archives.mydns.jp/tutorials/offset/current/1-web.pdf">『タブブラウザの創りかた』(同人誌の PDF)</a> が (今日知ってざっと読んだだけですが) 良さげでした。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mozilla" rel="tag" title="mozilla">mozilla</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

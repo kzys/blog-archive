@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Finder の戻る/進むを Safari とそろえる</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134612010">
+  <h2 class="entry-title"><a href="/articles/2007/01/08/finder-safari" title="Finder の戻る/進むを Safari とそろえる">Finder の戻る/進むを Safari とそろえる</a></h2>
+  <div class="published">
+    January 8th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>キーバインドの変更機能が Mac OS X についてることを最近知った。</p>
+
+<p><a href="http://docs.info.apple.com/article.html?artnum=152140-ja">Mac OS X 10.3 Help: アプリケーション独自のキーボードショートカットを設定する</a></p>
+
+<p>Finder での戻る/進むは Cmd + [ と Cmd + ] にふられているのだけど、Safari での Cmd + ← と Cmd + → に慣れているので、Finder もそっちにそろえた。</p>
+
+<p>キーバインドの変更は、対象のアプリケーションを再起動しないと効かない。Finder に終了はないけど、</p>
+
+<pre><code>% killall Finder
+</code></pre>
+
+<p>すれば再起動できる。このほうがログインし直すよりはやい。</p>
+
+<h3>追記</h3>
+
+<p>Cmd+Option+Esc で「アプリケーションの強制終了」というウィンドウを出せるというのを教えてもらいました。このほうが killall より早いです。</p>
+
+<p>知らなかった……。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">2 Responses to &#8220;Finder の戻る/進むを Safari とそろえる&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-133888000">
+			<cite><span>烟月</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133888000" title="">January 8th, 2007 at 02:09 PM</a></small>
+			<p>Command+Esc+optionでFinderを「再度開く」方が早くないでしょうか。好みの問題って気もしますが……。</p>
+		</li>
+  
+		<li class="" id="comment-133835120">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133835120" title="">January 8th, 2007 at 05:17 PM</a></small>
+			<p>うわ！Command+Esc+option なんてはじめて知りました。</p>
+
+<p>たしかにこのほうが早いですね。追記しました。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/01/08/finder-safari/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-06-08T21:09:34+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-06-08T21:09:34+09:00</h1>
+
+    <ul><li><a class="ext-link" href="http://dann.g.hatena.ne.jp/dann/20080604/p1"><span class="icon"></span>http://dann.g.hatena.ne.jp/dann/20080604/p1</a>
+</li><li><a class="ext-link" href="http://d.hatena.ne.jp/hide-K/20080604/1212547722"><span class="icon"></span>http://d.hatena.ne.jp/hide-K/20080604/1212547722</a></li></ul>
+<p>
+Catalyst のデフォルトの設定ファイルは YAML ではなく Config::General というやつになるらしい。
+</p>
+<p>
+<a class="ext-link" href="http://search.cpan.org/dist/Config-General/"><span class="icon"></span>http://search.cpan.org/dist/Config-General/</a>
+</p>
+<p>
+Apache の httpd.conf みたいであんまり好きじゃない…。
+</p>
+  </div>
+</body>
+</html>

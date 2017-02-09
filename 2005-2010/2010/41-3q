@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=41" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: 3Q をふりかえる</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article41">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/41-3q" class="name">3Q をふりかえる</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:0.488692,5.794493&amp;cht=p&amp;chp=3.036873' alt='21:44' /></h1>
+
+<div class="attr">
+  Posted at 2010/10/10 21:44,
+  Modified at 2010/10/10 23:00
+  </div>
+
+<div class="text">
+<p>2010年も残り3ヶ月です。</p>
+<h2 id="article41_1" class="ah1 topic">Scala</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/35-play">Play が良さそう</a></li>
+<li><a href="http://blog.8-p.info/2010/36-scala">Scala の複雑さについて</a></li>
+<li><a href="http://blog.8-p.info/2010/37-scaladoc">Scaladoc のバグを直した</a></li>
+<li><a href="http://blog.8-p.info/2010/39-scaladoc">Scaladoc の検索を速くした</a></li>
+</ul>
+<p>2Q は書ける話がなかった (コードは書いていたけど完成しないことが多かった) Scala だけど、3Q はいくつか書いたり、<a href="http://atnd.org/events/8384">勉強会</a> にも出たりできて、良かったと思う。Play は、これも <a href="http://ja.verbmode.net/2010/09/25/im_starting_scala_playerz_tokyo">勉強会のようなもの</a> があるみたい。Scaladoc の JavaScript はさらに速くできて、昨日またメールを送ってみた。</p>
+<h2 id="article41_2" class="ah1 topic">生活</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/32-toeic">TOEIC と日記と</a></li>
+<li><a href="http://blog.8-p.info/2010/34-bic-wimax">BIC WiMAX</a></li>
+</ul>
+<p>生活というか、時間の使い方については反省するところが多い。TOEIC の試験がおわってすぐは、英語の勉強を通勤の電車でしていたんだけど、最近は途絶えている。走るのも涼しくなってからはあんまり。WiMAX 導入は、またインターネットで浪費する時間が増えてるのと、引越の準備にちゃんとつなげられていないのが良くない。</p>
+<p>9月に BBC の <a href="http://news.bbc.co.uk/2/hi/8999235.stm">How to disconnect from your online life</a> を読んだ。ここでの主題は時間の浪費よりはプライバシーのようだけど、インターネットとのつきあいかたは、いろいろ試行錯誤しないとなあと思う。</p>
+<h2 id="article41_3" class="ah1 topic">業界</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/33-naoya">naoya さんとソーシャルゲーム</a></li>
+<li><a href="http://blog.8-p.info/2010/40-yahoo">Yahoo にいま起きていること</a></li>
+</ul>
+<p>ソーシャルゲームのはなしは、はてなブックマークや Twitter, Tumblr で色々と反応があって面白かった。ただ、私はゲームをほとんどやらないし、パチンコ屋は入ったことすらないので、そこらへんを掘り下げて話すのには向かないなと、あとで気づいた。</p>
+<h2 id="article41_4" class="ah1 topic">そのほか</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/31-perl-test-double">Perl で狭義のモックを作る Test::Double</a></li>
+<li><a href="http://blog.8-p.info/2010/38-percolator-1">Percolator の勉強 - 1. はじめに</a></li>
+</ul>
+<p>Test::Double は、Test::Mock や Test::Expectation に気づいてやや意欲がなくなってたんだけど、前者は Moose 依存が、後者は BDD もついてくるところが気になるので、やっぱり CPAN にあげるまではやろうと思う。</p>
+<p>Percolator はもう <a href="http://research.google.com/pubs/pub36726.html">Large-scale Incremental Processing Using Distributed Transactions and Notifications</a> が読めるけど、落ち着いて古い順に論文を読み続ける予定。いまはまだ GFS で、そのあとが BigTable です。</p>
+</div>
+<div class="comments" id="article41_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="41" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

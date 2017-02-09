@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Wikipedia はだれでも、いつでも書ける</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133743170">
+  <h2 class="entry-title"><a href="/articles/2006/12/28/wikipedia" title="Wikipedia はだれでも、いつでも書ける">Wikipedia はだれでも、いつでも書ける</a></h2>
+  <div class="published">
+    December 28th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>「Wikipedia にはこんな間違いがあるからダメだ」というひとは Wikipedia はだれでも書けるという点を見落としている。でも「間違いを見つけたら直せば、その問題は解決される」というひともまた Wikipedia はいつでも書けるという点を見落としている。</p>
+
+<p>実情にあった表現をするなら「直しつづける」あたりが適切だろう。「直した」記述は、また他のひとによって「直される」可能性があるからだ。そして、Wikipedia を常時見張って「直しつづける」ことができるほど暇なひとはそんなにいない。</p>
+    
+    
+    
+    <p><a href="http://cruel.org/freeware/cathedral.html">伽藍とバザール</a>には、</p>
+
+<blockquote>
+    <p>あるいはもっとくだけた表現だと、「目玉の数さえ十分あれば、どんなバグも深刻ではない」。これをぼくはリーヌスの法則と呼んでる。</p>
+</blockquote>
+
+<p>とある。じゃあ Wikipedia には目玉の数がまだ足りないのかというと、そういうわけでもない。Wikipedia が大変なのは「バグ」だと思うところはひとによってちがう、というところだ。文章は SEGV ったりしない。</p>
+
+<p>Wikipedia は唯一絶対になりすぎた。自分の信じる「事実」を広めたいひとが、みんな Wikipedia に集まっているんじゃないか。もちろん、こういう心配は昔からあって、月並みな悲観論で手を止めたりせずにここまで作り上げたのはすごいし、続いてほしいとは思うけれど。</p>
+
+<p>ねんのため書いておくと、ソフトウェア開発でも意見の食い違いはある。「Linux は時代遅れだ」とか。あるいはもしかすると FreeBSD, NetBSD, OpenBSD が合体した状態が、いまの Wikipedia なのかもしれない。</p>
+
+<p>Uyopedia, Sayopedia, Hydepedia とかに分割すればいいんだろうか。たぶんちがうな。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/blog" rel="tag" title="blog">blog</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/12/28/wikipedia/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

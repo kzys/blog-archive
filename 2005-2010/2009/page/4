@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+   <div class="main">
+    <div class="entry" id="entry1487">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/10/cubic-volume">体積パズル</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-10-18 20:52    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>無印の <a href="http://www.muji.net/mt/naruhodo/newitem/archives/2009/10/post_091014.html">新商品ブログ</a> で見て気に入った「木製・体積パズル　キューブタイプ」を買ってきた。NHK 教育というか佐藤雅彦っぽい。</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/4021418389/" title="DSC02777 by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3492/4021418389_50fbd92e98.jpg" width="375" height="500" alt="DSC02777" /></a></div>
+</div>
+</div>
+<div class="entry" id="entry1425">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/10/scala-scripting">Scala で書き捨てスクリプト</a>
+    (3)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-10-02 07:39    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Scala は良いと思う。でも最近書いてなかったので、アクセスログのリファラを数えるという (変数に型のないようなスクリプト言語でさくっとすます類いの) 作業をやってみた。</p>
+<pre>
+% cat access.log
+...
+127.0.0.1 blog.8-p.info - [19/Jul/2009:06:23:26 +0000] "GET /2009/wp-content/themes/b8i/ALL.js HTTP/1.1" 200 90381 "//blog.8-p.info/2009/03/textfield-js" "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; ja-jp) AppleWebKit/530.19.2 (KHTML, like Gecko) Version/4.0.2 Safari/530.19"
+127.0.0.1 blog.8-p.info - [19/Jul/2009:06:23:27 +0000] "GET /favicon.ico HTTP/1.1" 200 894 "//blog.8-p.info/2009/03/textfield-js" "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; ja-jp) AppleWebKit/530.19.2 (KHTML, like Gecko) Version/4.0.2 Safari/530.19"
+...
+% scala a.scala access.log
+...
+(7,http://www.tumblr.com/dashboard)
+(8,http://twitturls.com/)
+(8,http://www.reddit.com/r/ja/)
+...
+%
+</pre>
+<p>満足した。</p>
+<h3>最初に動いたコード</h3>
+<pre>
+import java.io._
+import scala.util.matching.Regex
+
+class File(path: String) extends Iterator[String] {
+  val reader = new BufferedReader(new FileReader(path))
+  var line: String = reader.readLine
+
+  def hasNext(): Boolean = {
+    if (line == null) {
+      line = reader.readLine
+    }
+    return line != null
+  }
+
+  def next(): String = {
+    val result = line
+    line = null
+    return result
+  }
+}
+
+val file = new File(args(0))
+val pattern = new Regex("(.+?) (.+?) - \\[(.+?)\\] \"(.+?)\" (\\d+) (\\d+) \"(.+?)\" \"(.+?)\"")
+var countOf: Map[String, Int] = Map()
+for (ln &lt;- file) {
+  pattern.findFirstMatchIn(ln) match {
+    case Some(m) =&gt; {
+      val from = m.group(7)
+      if (m.group(2) == "blog.8-p.info" &amp;&amp; from != "-" &amp;&amp;
+        from.indexOf("//blog.8-p.info/") != 0) {
+        countOf += from -&gt; (countOf.getOrElse(from, 0) + 1)
+      }
+    }
+    case None =&gt; ;
+  }
+}
+
+print(countOf.map((pair) =&gt; {
+  pair._2 -&gt; pair._1
+}).toList.sort((a, b) =&gt; {
+  a &lt; b
+}).mkString("\n") + "\n")
+</pre>
+<p>個々の処理は必要十分な記述量だと思うけど File クラスはないなあ&#8230;</p>
+<p>今回の敗因はログに UTF-8 として不正な文字列 (C 言語っぽく書くと &#8220;GET /uldq\xc9\xcc\xd2\xb5\xb0\xe6\xb1\xbe\x2e.rar HTTP/1.1&#8243; というものだった) があったことで、この行で Scala.io.Source#getLines が java.nio.BufferUnderflowException を吐いてしまうため直接 java.io. をさわることになった。</p>
+<p>しかし Scala では代入が値を返さないので</p>
+<pre>
+while ((ln = reader.readLine) != null) {
+</pre>
+<p>と書けず、break もないので</p>
+<pre>
+while (true) {
+  ln = reader.readLine;
+  if (ln == null) {
+    break;
+  }
+</pre>
+<p>ともいかず、とはいえフラグ変数は嫌だったのでクラスにまとめたという経緯がある。</p>
+<p>あと、正規表現はリテラルがほしい。\ は文字列でも正規表現でもメタキャラクタなので、正規表現のパーサに \ を渡すために \\ と書くのは Emacs-Lisp みたいで手間だった。</p>
+<h3>短くした</h3>
+<p>書き捨てなので動いたところで終わるのだけど、すこし調べたら短くできた。</p>
+<pre>
+import java.io._
+import scala.util.matching.Regex
+
+val reader = new BufferedReader(new FileReader(args(0)))
+val pattern = new Regex("""(.+?) (.+?) - \[(.+?)\] "(.+?)" (\d+) (\d+) "(.+?)" "(.+?)""" + "\"") // "
+var countOf: Map[String, Int] = Map()
+var ln = ""
+while ({ ln = reader.readLine; ln != null }) {
+  pattern.findFirstMatchIn(ln) match {
+    case Some(m) =&gt; {
+      val from = m.group(7)
+      if (m.group(2) == "blog.8-p.info" &amp;&amp; from != "-" &amp;&amp;
+        from.indexOf("//blog.8-p.info/") != 0) {
+        countOf += from -&gt; (countOf.getOrElse(from, 0) + 1)
+      }
+    }
+    case None =&gt; ;
+  }
+}
+
+print(countOf.map((pair) =&gt; {
+  pair._2 -&gt; pair._1
+}).toList.sort((a, b) =&gt; {
+  a &lt; b
+}).mkString("\n") + "\n")
+</pre>
+<p>while で代入文の返り値を使えないのは <a href="http://d.hatena.ne.jp/syttru/20080322/1206212125">Scalaでファイル操作</a> を参考に書きなおした。ln のスコープがちょっといやかなあ。でも File クラスがいないのは見た目いい。</p>
+<p>正規表現は &quot;&quot;&quot; の文字列リテラルをつかってエスケープを減らしてみた。<a href="http://lampsvn.epfl.ch/trac/scala/ticket/1000">&quot;&quot;&quot; でくくられた文字列は &quot; で終われない</a> のと、Emacs の色づけを直すための // &#8221; がださい。</p>
+<h3>&#8221; が連続しなければいい</h3>
+<pre>
+val pattern = new Regex("""^(.+?) (.+?) - \[(.+?)\] "(.+?)" (\d+) (\d+) "(.+?)" "(.+?)"$""")
+</pre>
+<p>先頭と末尾に明示的にマッチさせて、見た目の不自然さを減らしてみた。</p>
+<h3>他言語との比較: Ruby</h3>
+<p>コメントをもらいました。</p>
+<blockquote><p>ためしに perl や ruby も書いて比べてみるの希望。</p></blockquote>
+<p>まず Ruby で書いてみました。</p>
+<pre>
+count_of = Hash.new do
+  0
+end
+PATTERN = /^(.+?) (.+?) - \[(.+?)\] "(.+?)" (\d+) (\d+) "(.+?)" "(.+?)"$/
+
+File.open(ARGV[0]) do |f|
+  f.each do |ln|
+    if ln =~ PATTERN
+      from = $7
+      if $2 == 'blog.8-p.info' and from != '-' and
+          from !~ %r{^//blog.8-p.info/}
+        count_of[from] += 1
+      end
+    end
+  end
+end
+
+puts(count_of.map do |k, v|
+       [v, k]
+     end.sort.map do |ary|
+       ary.join("\t")
+     end.join("\n"))
+</pre>
+<p>基本的には Scala のべた移植で、変更している部分は</p>
+<ul>
+<li>Ruby で「文字列の先頭にある部分文字列がある?」というのをみるには String#index より正規表現を使いがち</li>
+<li>Array#join は再帰的に配列をなめてしまうので map に、あと明示的に Object#inspect よりはタブ区切りにするだろう</li>
+</ul>
+<p>という2つです。見た目はすっきりしたなあ。ただし速度は遅いです。</p>
+<pre>
+% ls -lh access.log
+-rw-r--r--  1 kzys  staff   169M 10  1 21:27 access.log
+% ruby -v
+ruby 1.8.7 (2008-08-11 patchlevel 72) [universal-darwin10.0]
+% time ruby a.rb access.log
+...
+ruby a.rb access.log  28.61s user 0.63s system 97% cpu 30.128 total
+% time scala a.scala access.log
+...
+scala a.scala access.log  14.19s user 0.65s system 83% cpu 17.742 total
+%
+</pre>
+<p>time(1) で測るのは今回のユースケースではいいけど、たとえば Web アプリケーションならプロセスの起動時間なんて無視して単位時間あたりにさばけるリクエスト数で速い/遅いをいうべきだと思います。</p>
+<h3>他言語との比較: Perl</h3>
+<p>つぎに Perl です。</p>
+<pre>
+use strict;
+use warnings;
+
+my %count_of;
+my $PATTERN = qr/^(.+?) (.+?) - \[(.+?)\] "(.+?)" (\d+) (\d+) "(.+?)" "(.+?)"$/;
+
+open(my $file, '&lt;', $ARGV[0]);
+while (my $ln = &lt;$file&gt;) {
+    if ($ln =~ $PATTERN) {
+        my $from = $7;
+        if ($2 eq 'blog.8-p.info' and $from ne '-' and
+                $from !~ qr{^//blog.8-p.info/}) {
+            $count_of{$from} += 1
+        }
+    }
+}
+close($file);
+
+print((join "\n", map {
+    join "\t", @$_;
+} sort {
+    $a-&gt;[0] &lt;=&gt; $b-&gt;[0];
+} map {
+    [ $count_of{$_} =&gt; $_ ];
+} keys %count_of), "\n");
+</pre>
+<p>基本的には Ruby に my とか ; とかつけた感じです。配列 (arrayref) に対して大小関係をとれなかったので、なかを直接みてみます。しかしこれが速くて。</p>
+<pre>
+% perl -v
+
+This is perl, v5.10.0 built for darwin-thread-multi-2level
+(with 2 registered patches, see perl -V for more detail)
+
+Copyright 1987-2007, Larry Wall
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using "man perl" or "perldoc perl".  If you have access to the
+Internet, point your browser at http://www.perl.org/, the Perl Home Page.
+
+% time perl a.pl access.log
+...
+perl a.pl access.log  5.88s user 0.33s system 95% cpu 6.519 total
+%
+</pre>
+<p>すごいなあ。どこで差がついたかはまた後で調べたいです。</p>
+</div>
+</div>
+<div class="entry" id="entry1408">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/09/september">9月をふりかえる</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-09-30 23:22    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>8月があんな書き方だったのは酷い月だったからで、9月もそれの余波をうけて、でもいまはわりと落ち着いている。仕事はあまりうまくいっていない。</p>
+<h3>YAPC</h3>
+<p>コミュニティもイベントも Perl も、どれもやや苦手感があるんだけど、でも YAPC にボランティアで参加したのは良かったと思う。苦手感が消えたかというと、まあそれは趣味の問題なので消そうというものでもないような。友達には「Ruby じゃないのかよ」「内側から Perl に攻撃か」と評判だった。</p>
+<h3>断線</h3>
+<p>平日断線はあまり達成できなかったのと、結局、ものごとの優先順位づけに失敗することに対する局所解というか手段でしかないので、10月はこころがけないことにした。</p>
+<p>インターネットにいりびたることについては、仕事が忙しかった頃に、はてなブックマークへの投稿と livedoor Reader を止めて、いまも止めたままになっている。Web 2.0 華やかりしころに受けた恩恵を考えるとさびしいけど、浅く広く早くってのは今の自分がやるべきことじゃない気がする。</p>
+<p>そういえば、最近 Twitter の Alex さんが <a href="http://al3x.net/2009/09/14/my-get-back-to-work-hack.html">/etc/hosts で時間食いサイトを localhost に</a> とかやっていて笑ってしまった。</p>
+<h3>GTD</h3>
+<p>流行していた頃に2回くらい挫折した GTD を、また試すことにした。断線の代わりにもなるといいなあ。</p>
+</div>
+</div>
+    <div class="paginate">
+      <a href="//blog.8-p.info/2009/page/3" >Newer</a>      <a href="//blog.8-p.info/2009/page/5" >Older</a>    </div>
+  </div>
+  <div class="sidebar"><h2>About me and this blog</h2>
+<p>
+  All articles are written by <a href="http://8-p.info/me/">加藤和良</a>.
+  A few are <a href="/2009/tag/lang-en">written in English</a>.
+</p>
+
+<ul>
+  <li>
+    <h2>Recent articles</h2>
+    <ul>	<li><a href='//blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='//blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='//blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='//blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='//blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='//blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='//blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='//blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='//blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='//blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='//blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='//blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='//blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='//blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='//blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='//blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='//blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='//blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='//blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='//blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='//blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='//blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='//blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='//blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='//blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='//blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='//blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='//blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='//blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='//blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='//blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='//blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='//blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='//blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+</ul>
+  </li>
+</ul>
+
+<ul><li id="linkcat-2" class="linkcat"><h2>Links</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://collisions.doppac.cc/">collisions.doppac.cc</a></li>
+<li><a href="http://googletesting.blogspot.com/">Google Testing Blog</a></li>
+<li><a href="http://www.grafikcache.com/">Grafikcache</a></li>
+<li><a href="http://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="http://someru.blog74.fc2.com/">Hang Reviewers High</a></li>
+<li><a href="http://labs.ideo.com/">IDEO Labs</a></li>
+<li><a href="http://blog.makezine.com/">MAKE: Blog</a></li>
+<li><a href="http://d.hatena.ne.jp/KZR/">Radium Software</a></li>
+<li><a href="http://steps.dodgson.org/">steps to phantasien</a></li>
+
+	</ul>
+</li>
+</ul>
+
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+</p>
+</div>
+</div>
+
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

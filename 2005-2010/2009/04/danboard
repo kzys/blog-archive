@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>Danboard is my XFD - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry618">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/04/danboard">Danboard is my XFD</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-04-20 23:23    </div>
+    <div class="tags yui-u">
+      <a href="//blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+  </div>
+  <div class="body"><p>Recently, I bought and hacked &#8220;Danboard mini Amazon.co.jp Box Version&#8221;. Now my Danboard is a XFD (eXtreme Feedback Device), which is controlled from Arduino.</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3458804631/" title="Danboard by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3651/3458804631_a8c416e4bc.jpg" width="375" height="500" alt="Danboard" /></a></div>
+<h3>Hardware</h3>
+<p>Parts:</p>
+<ul>
+<li>Danboard mini</li>
+<li>Arduino board (I&#8217;m using Diecimila)</li>
+<li>2 full color LEDs and resistors</li>
+<li>120 ohm resistor to <a href="http://www.arduino.cc/playground/Main/DisablingAutoResetOnSerialConnection">disable auto-reset feature of Arduino</a>.</li>
+<li>Small universal board</li>
+<li>Jumpwires</li>
+</ul>
+<p>Danboard already has two LEDs on the eyes. However it&#8217;s white and I want red and green. So I opened Danboard&#8217;s head and switched LEDs.</p>
+<p>To open the head, You&#8217;ll need to remove 2 screws.</p>
+<h3>Software</h3>
+<p>Danboard XFD has 3 states:</p>
+<ol>
+<li>Green (initial and success)</li>
+<li>Red (failed)</li>
+<li>Blink (testing)</li>
+</ol>
+<p>I wrote a little C++ code for Arduino. It&#8217;s so easy because Arduino has very simple C++ library. The below code is reading USB serial and switching 3 states.</p>
+<pre>
+int COLOR_LEDS[2][3] = {
+    { 3, 5, 6 },
+    { 9, 10, 11 },
+};
+int RED[] = { 0xff, 0, 0 };
+int GREEN[] = { 0, 0xff, 0 };
+
+int* Left = GREEN;
+int* Right = GREEN;
+int Counter = 0;
+
+void colorWrite(int index, int* color) {
+    for (int i = 0; i &lt; 3; i++) {
+      analogWrite(COLOR_LEDS[index][i], color[i]);
+    }
+}
+
+void readAndEval() {
+    int c = Serial.read();
+
+    switch (c) {
+    case 'r':
+        Left = Right = RED;
+        break;
+    case 'g':
+        Left = Right = GREEN;
+        break;
+    case 'B':
+        Left  = RED;
+        Right = GREEN;
+        break;
+    }
+}
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    if (Serial.available() &gt; 0) {
+        readAndEval();
+    }
+
+    colorWrite(Counter &#038; 1, Left);
+    colorWrite(!(Counter &#038; 1), Right);
+    Counter++;
+
+    delay(200);
+}
+</pre>
+<p>And I wrote a little wrapper for prove (1).</p>
+<pre>
+#! /bin/sh
+device='/dev/cu.usbserial-A700651k'
+prove='/usr/bin/prove'
+
+echo B &gt; $device
+$prove "$*"
+if [ $? == 0 ]; then
+    echo g &gt; $device
+else
+    echo r &gt; $device
+fi
+</pre>
+<p>XFD is usually used for Continuous Integration but prove (1) is not for CI. It&#8217;s just a demo :)</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="618" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-07-29T23:07:43+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-07-29T23:07:43+09:00</h1>
+
+    <p>
+CPAN にある Data::ObjectDriver 0.05 の make test がこける。<a class="ext-link" href="http://code.sixapart.com/svn/Data-ObjectDriver/trunk/"><span class="icon"></span>http://code.sixapart.com/svn/Data-ObjectDriver/trunk/</a> にある最新のものだと直っているので、そのうち CPAN にリリースされるんだろう。
+</p>
+<p>
+<a class="ext-link" href="http://code.sixapart.com/trac/Data-ObjectDriver/changeset/471"><span class="icon"></span>http://code.sixapart.com/trac/Data-ObjectDriver/changeset/471</a>
+</p>
+<p>
+変更点は
+</p>
+<ul><li>eval &quot;...&quot; → eval { ... }
+</li><li>return undef → return (うちだとこけなかった)</li></ul>
+<p>
+と、あと ProhibitNoStrict を t/98-perl_critic.t で指定しているんだけど、個人的には
+</p>
+<pre class="wiki">
+Index: lib/Data/ObjectDriver/Driver/Cache/Memcached.pm
+===================================================================
+--- lib/Data/ObjectDriver/Driver/Cache/Memcached.pm     (revision 511)
++++ lib/Data/ObjectDriver/Driver/Cache/Memcached.pm     (working copy)
+@@ -39,7 +39,7 @@
+         return $ret;
+     };
+ 
+-    no strict 'refs';
++    no strict 'refs'; ## no critic (ProhibitNoStrict)
+     *{join q{::}, __PACKAGE__, $driver_method} = $sub;
+ }
+ 
+Index: lib/Data/ObjectDriver/Driver/DBD.pm
+===================================================================
+--- lib/Data/ObjectDriver/Driver/DBD.pm (revision 511)
++++ lib/Data/ObjectDriver/Driver/DBD.pm (working copy)
+@@ -10,7 +10,7 @@
+     my($name) = @_;
+     die &quot;No Driver&quot; unless $name;
+     my $subclass = join '::', $class, $name;
+-    no strict 'refs';
++    no strict 'refs'; ## no critic (ProhibitNoStrict)
+     unless (defined ${&quot;${subclass}::&quot;}) {
+         eval &quot;use $subclass&quot;; ## no critic
+         die $@ if $@;
+</pre>
+<p>
+のほうが厳しさが保たれるので好き。Six Apart くらいだと PBP がなんぼのもんじゃーい、なのかもしれない。
+</p>
+<p>
+RT をみると <a class="ext-link" href="http://rt.cpan.org/Public/Bug/Display.html?id=37197"><span class="icon"></span>http://rt.cpan.org/Public/Bug/Display.html?id=37197</a> に
+</p>
+<blockquote class="citation">
+<p>
+ perlcritic test is failed. please don't include t/98-perl_critic.t in distribution package.
+</p>
+</blockquote>
+<p>
+って tokuhirom さんが書いてた。PBP がなんぼのもんじゃーい。
+</p>
+  </div>
+</body>
+</html>

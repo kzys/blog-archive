@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Trackbacks and comments enabled</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135173060">
+  <h2 class="entry-title"><a href="/articles/2006/03/27/trackbacks-and-comments-enabled" title="Trackbacks and comments enabled">Trackbacks and comments enabled</a></h2>
+  <div class="published">
+    March 27th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>トラックバックとコメントのデフォルトをオンにしてみました。</p>
+
+<p><a href="http://www.shiro.dreamhost.com/scheme/trans/say-j.html">What You Can't Say</a></p>
+
+<blockquote>
+    <p>これは、歴史のどの時点でも変わらないことに思える。 どの時代においても、ほんとにばかげた考えが信じられていることがある。 しかも、反対の考えを言おうものなら厄介事に巻き込まれかねないほど 強く人々に信じられてたりするんだ。</p>
+</blockquote>
+
+<p>トラックバックやコメントは、Web においてもマイノリティを生きづらくするんじゃないかと不安に思っています。一億総干渉社会というか、Web 全体が昔の日本の村落のようになると嫌だなと。</p>
+
+<p>我々はつねに論理的だ、といってもコメント・トラバ百人組み手はどうかと思うし。</p>
+
+<blockquote>
+    <p>口にできないことを発見したら、それをどうしたらいい? 私のアドバイスは、それを口にしないことだ。 あるいは少なくとも、戦いを選んですることだ。</p>
+    
+    <p>(中略)</p>
+    
+    <p>問題は、口憚ることが多すぎることだ。 全部言ってしまったら、本来の仕事にかけられる時間など無くなってしまう。 ノーム・チョムスキーになるしかない。</p>
+    
+    <p>だが、考えを秘密にしておくことには、議論の利点を失ってしまうという問題がある。 アイディアは話すことで、もっと多くのアイディアを産み出してゆく。 従って一番良い方法は、できれば、少数の何でも話せる信頼できる友人を持っておく ことだ。これはアイディアを培う方法というだけでなく、 友人を選ぶ良い指針にもなる。とんでもないアイディアを聞いても 飛び上がらないような人こそ、知り合って面白い人達だからだ。</p>
+</blockquote>
+
+<p>なんて pragmatic な。「mixi に行け」か。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/blog" rel="tag" title="blog">blog</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/27/trackbacks-and-comments-enabled/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

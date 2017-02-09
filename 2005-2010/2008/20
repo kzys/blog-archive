@@ -1,0 +1,17 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-05-05T14:28:14+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-05-05T14:28:14+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://search.cpan.org/dist/Text-Trac/"><span class="icon"></span>http://search.cpan.org/dist/Text-Trac/</a> を使うように変更。pre も blockquote もかける。
+</p>
+  </div>
+</body>
+</html>

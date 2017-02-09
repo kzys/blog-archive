@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>Newspeak on Bitbucket - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry1021">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/07/newspeak-on-bitbucket">Newspeak on Bitbucket</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-07-20 22:00    </div>
+    <div class="tags yui-u">
+      <a href="//blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+  </div>
+  <div class="body"><p>I pushed all code of <a href="http://newspeak.8-p.info/">Newspeak</a> on <a href="http://bitbucket.org/kzys/newspeak">Bitbucket</a>. And I got a new domain for Scala (and Java) because I don&#8217;t like &#8220;package info._8_p { &#8230;&#8221;.</p>
+<p>Newspeak don&#8217;t use <a href="http://liftweb.net/">Lift</a>. Instead I choose Jetty 6, Tokyo Cabinet and my Amrita-inspired template engine.</p>
+<h3>Jetty 6</h3>
+<p>Newspeak uses Jetty without XML. Here is my main function:</p>
+<pre>
+  def main(args: Array[String]) = {
+    val app = new waf.Application
+
+    app.mount("/", (req, resp) =&gt; {
+      render("index", Map("title" -&gt; "Newspeak"))
+    })
+    ...
+    app.run(8000)
+  }
+</pre>
+<p>My application code depends javax.servlet.*, not Jetty. But waf.Application runs Jetty internally.</p>
+<h3>Tokyo Cabinet</h3>
+<p><a href="http://tokyocabinet.sf.net/">Tokyo Cabinet</a> is modern impl. of DBM. I use &#8220;table&#8221; database as a primary persistent layer of Newspeak. TC has JNI-based Java API. It&#8217;s easy to use from Scala off course.</p>
+<p>And TC provides very handy tctmgr (1). I mostly uses &#8220;tctmgr importtsv&#8221; to built my database. However Newspeak&#8217;s database stores commit logs. And commit logs usually contain &#8220;\n&#8221;. It&#8217;s not suitable for TSV.</p>
+<p>So I wrote JSON based import command in C++. It uses a <a href="http://developer.cybozu.co.jp/kazuho/2009/07/picojson-a-head.html">picojson</a> as a parser.</p>
+<h3>Amrita-inspired template engine</h3>
+<p>Many template engine handle HTML/XML as just a string. I think it&#8217;s bad design. But <a href="http://amrita.sourceforge.jp/">Amrita</a> is not. My template engine is inspired from Amrita.</p>
+<h3>Conclusion</h3>
+<p>Scala is good.</p>
+<p>Recently, I mainly uses a &#8220;dynamic&#8221; language (ex. JavaScript, Ruby and Perl). Dynamic language is easy to write, but hard to debug. &#8220;Static&#8221; language is hard to write, but easy to debug because many bugs are reported by a compiler. It&#8217;s fresh to me.</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="1021" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=43" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: YAPC Asia Tokyo 2010</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article43">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/43-yapc-asia-tokyo-2010" class="name">YAPC Asia Tokyo 2010</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:3.132866,3.150319&amp;cht=p&amp;chp=-0.418879' alt='08:11' /></h1>
+
+<div class="attr">
+  Posted at 2010/10/24 08:11,
+  Modified at 2010/10/24 11:52
+  </div>
+
+<div class="text">
+<p>去年にひきつづきボランティアスタッフとして参加してました。YAPC は3回目、スタッフは2回目です。</p>
+<h2 id="article43_1" class="ah1 topic">前夜祭まで</h2>
+<p>YAPC のスタッフはメールで申し込む。去年はメールを送って、初顔合わせが前夜祭当日だったりしたんだけど、今年は</p>
+<ul>
+<li>まず参加メールに返信がくる</li>
+<li>事前打ち合わせを1回やる</li>
+</ul>
+<p>と、このへんから改善がはじまっていて、なるほどこれが 941 さん効果か、と。</p>
+<p>会場設営も、3日連続で HQ になる部屋はとれたし、ノベルティは来るものわかってるし、看板の枚数は減ってるしで、かなり平和。</p>
+<p>前夜祭はいろいろの準備で「休憩時間にチェックイン」というかたちになってしまったけど、それ以外はそれなりにうまく進んだと思う。去年ボトルネックになりがちだった、来場者の名札をこっちが用意してわたす、というシステムはまるごと廃止されていた。</p>
+<p>あとは kyanny さんに新しい Kindle みせてもらったり (すごく良くなってた), 子連れで来ていた海外のかたに果敢に話しかけてみたり。israel の発音は濁る (イスじゃなくてイズになる) ことすら知らなかった。</p>
+<h2 id="article43_2" class="ah1 topic">1日目</h2>
+<p>1日目の朝は早い。いろいろ準備した後「加藤くんは講堂だったよね」「あ、それ決めましたっけ」とかそういう適当な感じで講堂のお手伝いへ。あとはスピーカーのひとに説明したり、マイクの電池をいれかえたりと協力して淡々とこなす。発表前にも拍手がはいるといいなと思いつつ、あんまり促すことは出来ず。見てる側からすると、発表者のかたが「というタイトルで 〜 が発表させていだきます。よろしくおねがいします」で一回お辞儀、とかやると拍手しやすいみたいでした。</p>
+<p>スピーカーには海外のかたも何人かいて、Larry さんに「too big は大きすぎるであってるよね」「うん」とか、Pauley 夫妻の画面を出すのを「あ、ミラーリングは System Preferences で…」とか、片言でなんとかがんばる。</p>
+<p>そのあとは懇親会。いろいろ話せてよかった。帰ったら cho45 さんが <a href="http://twitter.com/#!/cho45/status/27447743766">なんか話してると @katokazuyoshi さんがいつも面白くてすごいなあと思う……</a> とか書いててびびる。いや、職場 (の一部) で発言が面白がられるときはほとんど失言系なので、こう汗が。</p>
+<h2 id="article43_3" class="ah1 topic">2日目</h2>
+<p>2日目の朝は1日目よりは遅い、ので油断してちいさく遅刻。あと、Yappo さんの話の途中でマイクの電池交換をいれてしまったのも良くなかった。どちらもすみません。</p>
+<p>今年は職場のひとが1日目にちらほらいたんだけど、2日目はあんまりいなくて、ということは Jesse さんも宮川さんも聞いてないわけで、それはもったいないことをしたなあと思う。このふたつは「なんで我々/彼らはこんなことをしてる/できるんだろう」という話で、ほんと良かったんですよ。</p>
+<p>英語は、Jesse さんの画面つなぐのを手伝ったり、Larry さんをみかけたので「Scala 勉強してるんだけど、どうですか Scala」「関数型のはふつうのプログラマの思考のながれに必ずしもマッチするわけじゃないので」「やーでも、Perl も map とか reduce とかあるじゃないですか」「そうだね。よいアイデアはとりいれてるつもり」とか話したり。Scala のはなしは、最後の方はもう聞き取れなくてフェードアウトする感じに終わってしまって残念だった。メールでは最近なんとかなってるつもり (間違えを気にしなくなっただけともいう) なんだけど、話すのはほんときつい。</p>
+<p>会場の撤収も、去年みたいにプロジェクタの返却で滞ったりしないでとてもスムーズ。スタッフ打ち上げのあとは、大和路の解散に合流して、あと mala さんや secondlife さんの二次会に合流。「また別のマスメディアをつくったらそれは意味なくない?」とかそういうはなしをしていた。</p>
+<h2 id="article43_4" class="ah1 topic">まとめ</h2>
+<p>というわけで、今年も3日間おつかれさまでした。</p>
+<p>去年にくらべて、スタッフとして働くのも大分楽になっていて、これは JPA 側のノウハウの蓄積や 941 さんのがんばりやら色々あったんだろうなあと思う。あと、YAPC まわりってわりと隙があって「こっちはスピーカー様だぜ」「客だぜ金払ってるんだぜ」って突っ込めなくもないはずなんだけど、そういうのが無い、少なくとも自分の目につく範囲では大きく見当たらないのは、スピーカーのひとも、来る人も、みんな良い人が多いんですかね。みなさまありがとうございます。</p>
+<p>来年はどうしようかなあ。去年は実は</p>
+<ul>
+<li>YAPC の会場設営以前を手伝う</li>
+<li>LT でも YAPC じゃなくてもいいので発表する</li>
+</ul>
+<p>と目指してたのだけど、どちらも達成できず。二兎を追って一兎を得なくて、でもスタッフは2回もやったので</p>
+<ul>
+<li>LT でも YAPC じゃなくてもいいので発表する</li>
+</ul>
+<p>だけ来年に持ち越すのがいいかもといまは思ってます。</p>
+</div>
+<div class="comments" id="article43_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="43" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

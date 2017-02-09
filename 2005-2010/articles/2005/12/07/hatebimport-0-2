@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: hatebimport 0.2</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136907150">
+  <h2 class="entry-title"><a href="/articles/2005/12/07/hatebimport-0-2" title="hatebimport 0.2">hatebimport 0.2</a></h2>
+  <div class="published">
+    December 7th, 2005
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="/hatebimport/hatebimport-0.2.dmg.gz">hatebimport-0.2.dmg.gz</a></p>
+
+<p>自分のはてなブックマークを Spotlight で検索できるようにするソフトウェア hatebimport の 0.2 をリリースしました。</p>
+
+<p>0.1 は UNIX くさすぎたかなーということで、外側は Mac っぽく .app にまとめて設定ウィンドウなんかもつけ、内側も、URI がリソースフォークに入るだけの .webloc ではなく、タイトルと URI が XML 形式で入れられる .webbookmark を生成するように変更しました。</p>
+
+<p>.webbookmark は、Firefox のブックマークを Spotlight で検索しよう (<a href="http://hublog.hubmed.org/archives/001193.html">HubLog: Getting Firefox bookmarks into Spotlight</a>) なんてのにも使えるみたいです。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/hatena" rel="tag" title="hatena">hatena</a></li>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+      <li><a href="/tags/socialbookmark" rel="tag" title="socialbookmark">socialbookmark</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2005/12/07/hatebimport-0-2/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

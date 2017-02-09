@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: InputManager on Leopard</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135160260">
+  <h2 class="entry-title"><a href="/articles/2007/03/24/inputmanager-on-leopard" title="InputManager on Leopard">InputManager on Leopard</a></h2>
+  <div class="published">
+    March 24th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>外国の方からメールで教えてもらった。</p>
+
+<p><a href="http://arstechnica.com/journals/apple.ars/2007/03/22/leopard-not-ready-for-april--barely-beta-not-final-or-gold-master">Leopard not ready for April--"Barely beta, not final or Gold Master"
+</a></p>
+
+<blockquote>
+    <p>One more tip we got regarding Leopard, is that InputManager plugins are no longer allowed. That's right... no more little hacks from anybody besides Apple. No more Apple menu hacks. No more Safari plugins.</p>
+</blockquote>
+
+<p>ここの "Safari plugins" というのは Flash とかではなく SafariStand とかのことのはず。しかし人が Creammonkey の改名 + 機能拡充を目論んでるときに……。あと QTPlayerFullscreen も困る。</p>
+
+<p>とりうる方向としては:</p>
+
+<ul>
+<li>InputManager がふさがれると困る人が沢山いるだろうから、だれかがなんとかするのを待つ</li>
+<li><a href="http://blog.8-p.info/articles/2007/01/16/mac-ld_preload">DYLD_INSERT_LIBRARIES</a></li>
+<li>WebKit のソースはとれるので、NSBundle をロードする機能を持った WebKit.framework を作る</li>
+</ul>
+
+<p>でも、Apple から公式にアナウンスされるまでは信じないことにしておこう。</p>
+
+<h3>追記</h3>
+
+<p>結局試した。DYLD_INSERT_LIBRARIES と DYLD_FORCE_FLAT_NAMESPACE で sel_getName を上書き (hook かける関数がほしかっただけ) した dylib を読み込ませれば、そこから NSApp が参照できるので、あとはどうにでもなる。DYLD_FORCE_FLAT_NAMESPACE は軽々しく定義して良いものかってのは残るけど。</p>
+
+<p>あとぐぐってたら、白山さんの <a href="http://www.eternal.nest.or.jp/shiro/macosx/life0111.html">Life with MacOS X</a> に当たって、やっぱさすがだと思った。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/creammonkey" rel="tag" title="creammonkey">creammonkey</a></li>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/03/24/inputmanager-on-leopard/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

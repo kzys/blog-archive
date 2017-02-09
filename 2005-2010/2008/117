@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-09-15T07:11:35+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-09-15T07:11:35+09:00</h1>
+
+    <p>
+日曜日は WEwLC 読書会でサイボウズラボ。発表してきました。
+</p>
+<ul><li><a class="ext-link" href="http://www.fieldnotes.jp/legacy-code/?%C3%B4%C5%F6%B3%E4%C5%F6%C9%BD%2FMy+Application+Is+All+API+Calls"><span class="icon"></span>http://www.fieldnotes.jp/legacy-code/?%C3%B4%C5%F6%B3%E4%C5%F6%C9%BD%2FMy+Application+Is+All+API+Calls</a>
+</li><li><a class="ext-link" href="http://docs.google.com/Present?docid=dnnx7g2_7jfsp5chb"><span class="icon"></span>http://docs.google.com/Present?docid=dnnx7g2_7jfsp5chb</a></li></ul>
+<p>
+一通り訳してからスライドを作って、当日は訳はあまり参照せず。でも、スライドをベースに話したら速くなりすぎたような気がしたので、次は訳文をベースにスライドは補足にという分担で話そうと思いました。
+</p>
+<p>
+12章
+</p>
+<ul><li>ピンチポイントにとりあえずテストを書く: Facade 的なところを押さえれば、Facade の中をいじるときにある程度支えになる。
+</li><li>private メソッドのテストは、public メソッドから呼ばれるんだからいらないんじゃないか、的な話はありがちで、そこらへんを思い出した。バグの有無が分かるだけでもまずは良いよね。ただ後々 Facade の中にもテスト書けばバグの場所までわかりやすくなるのでなお良い。</li></ul>
+<p>
+13章
+</p>
+<ul><li>とばし</li></ul>
+<p>
+14章
+</p>
+<ul><li>ライブラリへの依存関係はみんな切り離す感じらしい。おれは仕事でちょっと切り離しつつ「やりすぎかなー」と思ってたので、やや自信がついた。</li></ul>
+<p>
+15章
+</p>
+<ul><li>発表した。
+</li><li>Wiki にも書いたけど Skin and Wrap で wrapper と元のクラスとが is-a なのか has-a なのかよくわからなかった。mock じゃなくて wrap なので has-a かなー。個人的には Skin and Wrap はほとんどやったことがない。</li></ul>
+<p>
+16章
+</p>
+<ul><li>突然コードリーディング的な章。
+</li><li>Scratch Refactoring とか、新人研修とかでやるのは楽しそうだと思いました。</li></ul>
+<p>
+17章
+</p>
+<ul><li>No Structure なものをいじるというよりは「そう感じられるけど実は No Structure じゃない」ということを認識する感じ。コミュニケーション論というか。
+</li><li>Naked CRC って名前くらいは書きなよ、と思ったんだけど、あれは机の上の消しゴムとかコーヒカップとかを移動してああだこうだするようなシチュエーションについて語っていたっぽい。「もう CRC って呼ばないでいいじゃん」というはなしになった。
+</li><li>物語度高めの Conversation Scrutiny は関西弁に訳されていた。すごい。</li></ul>
+<p>
+18章
+</p>
+<ul><li>IDE だと並び順が、的な話は Emacs 使ってる側からするとあんまり。
+</li><li>実コードのファイル名からテストが書かれたファイル名を (その逆も) 機械的に求められるようにするのは、適当なキーに切り替える関数を割り当てられて良いかも。rails.el は出来るんだっけ?</li></ul>
+<p>
+19章
+</p>
+<ul><li>OOPL じゃない場合。といっても OOPL でも OOP じゃなく書けるのがほとんどなので、言語はそんなに重要じゃないと思う。
+</li><li>提示される策は C じゃないひとが考えた感じがした。xUnit 系は C3 あたりが起源らしいけど、むかしの Unix 系のコードをさがすと単体テストも見つかりそうな気がする。手元のコードを grep してたら memcached-1.2.5/stats.c は #ifdef UNIT_TEST があった。
+</li><li>会社の C 愛好家が「C++ で良いのは namespace だ」と言ってたのを思い出した。globalResultNotifier もやりたいことはたぶん namespace で出来ると思う。</li></ul>
+<p>
+懇親会ではなぜか REST, OpenID のはなしをしたり (IdCon 行こうかな)、Excel のはなしをしたり (いつも通り) していました。
+</p>
+  </div>
+</body>
+</html>

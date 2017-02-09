@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>Google Page Speed を読む - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry810">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/06/google-page-speed">Google Page Speed を読む</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-06-07 08:47    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Google が <a href="http://google-code-updates.blogspot.com/2009/06/introducing-page-speed.html">リリース</a> した <a href="http://code.google.com/intl/ja/speed/page-speed/">Page Speed</a> を少し読んでみた。Page Speed 自体は便利に使えそうで良いなあ、という感じで不満があまり無いので、他に流用できそうなものを探すのと、ミーハー心が強めです。</p>
+<h3>全体</h3>
+<ul>
+<li>COPYING</li>
+<li>build.xml</li>
+<li>(dist/) - レポジトリには含まれず build.xml が作成する</li>
+<li>moz_resources/ - Makefile.in など</li>
+<li>src/
+<ul>
+<li>cpp/ - C++ で書かれたもの</li>
+<li>idl/ - cpp, js 以下で定義している XPCOM の IDL</li>
+<li>js/ - JavaScript で書かれたもの</li>
+</ul>
+</li>
+<li>protobuf/</li>
+<li>third_party/ - libjpeg, Protocol Buffers など外のもの</li>
+<li>xpi_resources/ - XUL や chrome.manifest など</li>
+</ul>
+<p>今回は src/ 以下を中心にみた。Page Speed は JavaScript で書かれた部分と C++ で書かれた部分に大別できる。なお build.xml はあるものの、C++ で書かれた XPCOM のビルドは Ant のタスクになっていない。<a href="http://code.google.com/p/page-speed/wiki/HowToBuildNative">zip つくって Mozilla のソースツリーで展開</a>、とか変わった作業が必要だ。</p>
+<h3>C++</h3>
+<p>C++ で書かれているのは画像のファイルサイズを小さくする部分と &#8220;activity&#8221; の計測部分だ。</p>
+<p>画像のファイルサイズを削る部分は既存の Google 外のコードを呼び出している。ひとつは libjpeg を使ったチャンクの削除、もうひとつは <a href="http://optipng.sourceforge.net/">OptiPNG</a> だ。OptiPNG の設定はデフォルトで -f 0,5 なのを -f 0 に、-zs 0-3 なのを -zs 0,1,3 にして試行数 (実行時間) を減らしている。</p>
+<p>&#8220;activity&#8221; まわりはあまり把握できなかった。</p>
+<ul>
+<li>jsdIDebugService を使った JavaScript の実行の計測</li>
+<li>そこから生成される call graph のデータ構造と、Visitor パターン</li>
+<li>HTTP Activity Distributor という nsIHttpActivityObserver を実装したクラス</li>
+<li>Protocol Buffers まわり</li>
+</ul>
+<p>とあるのだけど、Distributor はまだ使われていないようにみえる。Protocol Buffers は <a href="http://code.google.com/p/page-speed/wiki/ActivityPanelSavedProfiles">JavaScript の実行の計測結果を保存</a> するのに使われていて、とくに通信などをしているわけではない。</p>
+<blockquote><p>The Page Speed Activity Panel supports saving of JavaScript execution profiles to disk, in the protocol buffer format.</p></blockquote>
+<p>定義は src/protobuf/activity/profile.proto にある。</p>
+<h3>JavaScript: Closure</h3>
+<p>JavaScript 部分で、ブラウザ上のスクリプトを書いているひとにも面白いのは src/js/closure.js だろう。Closure というのは Google が使っている (自作の) JavaScript のベースライブラリだ。なかには</p>
+<ol>
+<li>名前空間もどき</li>
+<li>ファイル間の依存性の定義</li>
+<li>JavaScript の嫌な部分の修正:
+<ul>
+<li>typeof, propertyIsEnumerable, 型の判断</li>
+<li>オブジェクトの同一 (同値ではなく) 性</li>
+<li>関数: bind, partial</li>
+<li>OOP</li>
+</ul>
+</li>
+<li>Google っぽいもの</li>
+</ol>
+<p>がある。ぱっとみて実装に困りそうなものはあまりなく、どちらかというと「ああ、必要だよねえ」という感じが強い。同一性もごく単純で goog.getHashCode(obj) で obj の &#8220;closure_hashCode_#{乱数}&#8221; というキーに連番の数字をつっこんでいる。</p>
+<p>Google っぽいのは goog.getCssName, goog.setCssNameMapping, goog.exportSymbol, goog.exportProperty などの難読化まわりと、goog.getMsg のメッセージカタログだ。Google の JavaScript は極端に難読化されているけど、それをやるソフトウェアはコメント中で &#8220;the compiler&#8221;, &#8220;JSCompiler&#8221; と呼ばれている。ちなみに生成物は &#8220;js binary&#8221; だ。binary て。コンパイラは外部から必要とされることを明示されていない関数などを一律短い名前に変更したり if (DEBUG) { の中を削ったりもするらしい。</p>
+<h3>JavaScript: そのほか</h3>
+<p>Firefox では複数ウィンドウ間で共通の、ウィンドウの DOM 文章をまたぐオブジェクトを提供したいときには XPCOM を使う必要があるけど、Page Speed では横着して StateStorageService という XPCOM を作っている。提供するメソッドは getCachedObject(name) のみで、これがデフォルトで {} を返すので setter すらない。この実装は src/js/components/stateStorageService.js にある。</p>
+<p>src/js/pagespeed/ の下には Page Speed そのものについてのコードがある。Page Speed の使っていない CSS セレクタを探す機能は素晴らしいのだけど、CSS に関しては面白いコードはあまり無かった。parse はせず、必要なものは正規表現で間に合わせている。</p>
+<h3>余談: Steve Souders</h3>
+<p>Page Speed は簡単にいってしまえば &#8220;Google&#8217;s YSlow&#8221; だ。業界事情に詳しい人は、<a href="http://developer.yahoo.com/yslow/">YSlow</a> の作者の <a href="http://www.stevesouders.com/">Steve Souders</a> が <a href="http://googlified.com/yslow-creator-joins-google/">Google に転職</a>したことを思い出すかもしれない。</p>
+<p>ただ、<a href="http://code.google.com/p/page-speed/">Google Code の Page Speed のページ</a> の Project owners, Project members には載っていない。本人も<a href="http://www.stevesouders.com/blog/2009/06/03/using-iframes-sparingly/#comment-637">ブログのコメント欄</a>で</p>
+<blockquote><p>A handful of awesome Googlers built Page Speed. I was not one of them. ;-)</p></blockquote>
+<p>と答えていた。</p>
+<h3>まとめ</h3>
+<p>だいたい気がすんだ。目的無くはじめて気がすむと終わり、とすると全体像まで把握しきれてなくて、まとめとか書きにくいなあ。以下感想。</p>
+<p>コードは、ハイテクノロジーはとくにないけど読みやすいと思いました。コメントもメソッド単位と凝ったところとにつけられてて適切な感じ。ネイティブコードを混ぜるのはマイナーな CPU で動く Linux とか考えだすと大変そうだけど、必要に迫られれば C++ も書けるというのは大事だと思う。</p>
+<p>Google Closure は &#8220;closure&#8221; ってつけるセンス以外は好き。実は <a href="http://code.google.com/p/google-closure/">Google Code に公開にむけたようなプロジェクト</a>があるんですがレポジトリは空でした。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="810" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-06-01T22:01:54+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-06-01T22:01:54+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://trashbox.g.hatena.ne.jp/lurker/20080523/1211529565"><span class="icon"></span>http://trashbox.g.hatena.ne.jp/lurker/20080523/1211529565</a>
+</p>
+<p>
+検索が良さそうなので Google ブックマークを試し中。API が無いことに衝撃をうけつつ WWW::Mechanize ってみたけど、まだまだ途中です。
+</p>
+<p>
+<a class="ext-link" href="http://hg.8-p.info/WebService-Google-Bookmarks/"><span class="icon"></span>http://hg.8-p.info/WebService-Google-Bookmarks/</a>
+</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+   <div class="main">
+    <div class="entry" id="entry906">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/06/html">HTML + CSS + JavaScript を組み合わせる難しさ</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-06-18 01:28    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>私の基本的な主張は「JavaScript は難しくない」だ。ただ、HTML + CSS は難しいと思っていて、それと組み合わせる JavaScript をちゃんと書いたり、書いてもらおうとすると困難は多い。</p>
+<h3>クロスブラウザ</h3>
+<p>JavaScript についてよくふれられるクロスブラウザの問題、こまかな差異のあるホスト間で動作するプログラムをどう書くか、という問題は「ソフトウェアの移植性」としてそれなりに歴史のある問題だと思う。JavaScript で「良い」とされる書き方は、たとえば C + UNIX みたいな環境で「良い」とされる書き方と似ていることがある。</p>
+<p>例えば、ほとんどのブラウザにある便利な関数が、特定のブラウザにだけ無いときに</p>
+<pre>
+if (! Array.prototype.forEach) {
+    Array.prototype.forEach = function () { ... };
+}
+</pre>
+<p>みたいなものを書くのと ruby (MRI) の <a href="http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/missing/">missing/</a> にあるファイル群は同じことをしている。</p>
+<p>また、<a href="http://www.quirksmode.org/js/support.html">Object Detection</a> と呼ばれる「User-Agent ではなくクラス/メソッド/関数の有無をみろ」という原則も <a href="http://www.itojun.org/hack/autoconf/promise.html">autoconfぼくらの約束</a> にある</p>
+<blockquote><p>
+#ifdef __FreeBSD__を書いて「移植性が高いぜ」とか いばってるのはもう恥ずかしい。未知のOSでも動くように、autoconfで調べて#ifdef HAVE_HOGE しましょう。
+</p></blockquote>
+<p>と同じことだと思う。</p>
+<h3>Progressive Enhancement</h3>
+<p>難しいと思うのは Progressive Enhancement, 段階的な機能強化だ。</p>
+<p>これは「MMX 命令がある CPU だったらそれを使う」みたいな実行時間効率を一次元で強化するのとは違っている。HTML は文章の構造を、CSS はその見た目を、そして JavaScript はそれにふるまいを与える、という分担は独特で、しかも、その分担がそろわない場合を常に考慮する、というのはわりと酷なはなしだと思う。</p>
+<p>「ユーザー体験という観点から見れば一次元だ」みたいなものは単なる言葉遊びで難しさを緩和しないし、3つの分担と「段階的」が理想主義すぎるといわれると確かにそんな気もする。Yahoo! の Nicole Sullivan さんの <a href="http://wiki.github.com/stubbornella/oocss">Object Oriented CSS</a> なんかをみると、JavaScript を足さなくとも、HTML + CSS ですらずいぶん大変なことになっていると思う。</p>
+<p>あきらめるひともいる。Cappuccino と Objective-J で <a href="http://280slides.com/">280 Slides</a> を作り上げた 280 North の人々は「Cappuccino は Progressive Enhancement / Graceful Degradation にはできていない」という。</p>
+<p><a href="http://cappuccino.org/discuss/2008/10/21/web-pages/">Web Pages and Web Programs</a></p>
+<blockquote><p>Cappuccino represents a significant shift in attitudes toward web application development. It was designed specifically and exclusively for writing web programs. None of Cappuccino will work in an environment without Javascript. After all, what use would a program like 280 Slides be without its interactive behavior? The program itself doesn’t have any data to display, so there is nothing to degrade to.</p></blockquote>
+<p>Objective-J なんて無理するから&#8230;。あー、いや、これはこれで現実的な判断だと思います。ただ、彼らのいう &#8220;Web Program&#8221; にまで達しているソフトウェアはそんなに無いので、万能ないいわけではない。</p>
+<h3>まとめ</h3>
+<p>結論はとくにないです。</p>
+<ul>
+<li>JavaScript は難しくない。HTML とあわせるのが難しい。</li>
+<li>クロスブラウザは移植性の話で、わりと解かれた問題だ。既存の JavaScript 以外で書かれたソフトウェアにも似たようなものはある。</li>
+<li>Progressive Enhancement は新しくて難しい問題で、知っていて解くことをあきらめる人々もいる。</li>
+</ul>
+<p>私は HTML 4 や XHTML がわりと好き (HTML 5 は微妙) で、CSS, JavaScript との分担もきれいだとは思う。難しさは一段上の成果物を作ろうとしているのだからしょうがない。ただ、その「上」さをだれがどのくらい評価するかは気にかかる。</p>
+<p>私が well-formed, valid な HTML とか、microformats や RDFa みたいな目に見えないものに肩入れしがちなのは、それが自分以外の開発者にバトンを置いておくことだというのがあるけど、そういうことを、例えば <a href="http://www.bijint.com/jp/">美人時計</a> を hCard に対応させて顧客の前で説明する自信は無い。あるいは、アクセシビリティで障害者が、みたいな話をするにもそんなに詳しくなく、知りもしない集団を都合良く被害者あつかいするのもどうかと思う。</p>
+<p>高い目標とそれを実現するための教育、ってのが王道なんだろうけどね。後者が欠けたときの失敗がこわいというか。いろいろあきらめすぎなのかなあ。</p>
+<h3>追記</h3>
+<p><a href="http://b.hatena.ne.jp/os0x/20090618#bookmark-14041888">はてなブックマーク - bookmark0x</a></p>
+<blockquote><p>JavaScript自体は難しくないのは同意。加えてHTML、CSSも単体では難しくないと思う。それぞれを組み合わせ、クロスブラウザにしようとすると途端に職人芸の世界に。ところでif (Array.prototype.forEach)は!が抜けてる</p></blockquote>
+<p>ありがとうございます、直しました。単体では難しくないというのは同意します。クロスブラウザは、JavaScript なら既存のライブラリを使えば「職人芸」ほど酷くはないかなあ。職人芸というかバッドノウハウだと思っているので <a href="http://d.hatena.ne.jp/os0x/20090409/1239278316">JavaScriptは悪くない</a> で主張されていたライブラリに対する姿勢にはあんまり同意できないです。</p>
+</div>
+</div>
+<div class="entry" id="entry849">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/06/dsvn-el">dsvn.el から Subversion をつかう</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-06-14 01:32    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>dsvn.el をつかうと Emacs のなかから Subversion が使えるようになる。</p>
+<h3>どう便利なのか?</h3>
+<p>エディタで編集がおわったら M-x svn-status として、ディレクトリ名をいれる。</p>
+<p><img src="//blog.8-p.info/2009/wp-content/uploads/2009/06/svn-status-1.png" alt="M-x svn-status"/></p>
+<p>すると、そのディレクトリで svn status をしたようなバッファができる。</p>
+<p><img src="//blog.8-p.info/2009/wp-content/uploads/2009/06/svn-status-2.png" alt="Svn status"/></p>
+<p>ここで main.c のある行にカーソルを移動して = を押せば、下に svn diff の結果が表示される。</p>
+<p><img src="//blog.8-p.info/2009/wp-content/uploads/2009/06/svn-diff.png" alt="status to diff"/></p>
+<p>diff に問題がなければいい。もし変なものが混じっていることに気づいたら、この diff の結果のバッファにカーソルを移して return すれば、その diff のファイルの該当行に飛んで、すぐ編集ができる。</p>
+<p><img src="//blog.8-p.info/2009/wp-content/uploads/2009/06/svn-diff-2.png" alt="diff to buffer"/></p>
+<p>この status, diff, ファイルの編集、とをパチパチ切り替えられるのはかなり便利だと思う。大きめのブランチのマージでも、status をインクリメンタルサーチして M なファイルを確認、C なファイルを編集、と進めていける。</p>
+<p>細かい使い方は status のところで ? でヘルプが出てくるので、それを参照してください。</p>
+<h3>diff を化けなくする</h3>
+<p>ここからもう応用です。</p>
+<p>レポジトリに EUC-JP なものと UTF-8 のものが混じっているような事態のときは svn (1) の出力を lv で変換して diff が化けないようにしている。</p>
+<p>まず、こういう <strong>svn-with-lv</strong> を $PATH の通ったところに置く。$LANG を明示的に指定しているのは  Carbon Emacs というか Mac 対策なので、普通の Unix だったらいらないはず。</p>
+<pre>
+#! /bin/sh
+export LANG='ja_JP.UTF-8'
+svn "$@" | lv | cat
+</pre>
+<p>これを dsvn.el が使う svn として指定すればいい。</p>
+<pre>
+(setq svn-program "svn-with-lv")
+</pre>
+<h3>コミットメッセージにパスをいれる</h3>
+<p>関わっているものに、コミットメッセージに以下のようなパスをいれるルールのレポジトリがある。</p>
+<blockquote><p>
+[branches/ruby-19] lambda とか長いの書かなくてよくなった
+</p></blockquote>
+<p>パス部分は機械的に決まるので Emacs にいれさせている。dsvn.el にはやや hook が足りないので advice でなんとかした。</p>
+<pre>
+(defadvice svn-commit (around dsvn-commit-with-message activate)
+  (let ((url (apply 'buffer-substring svn-url-label)))
+    (cond ((string-match "^.+?:/+example\.org/\\(.*\\)$" url)
+           (let ((path (match-string 1 url)))
+             ad-do-it
+             (insert (format "[%s] " path)) ))
+          (t
+           ad-do-it) )))
+</pre>
+<p>これで example.org/branches/&#8230; にコミットするときは [branches/...] と入力されかけたバッファが開くようになる。</p>
+</div>
+</div>
+<div class="entry" id="entry810">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/06/google-page-speed">Google Page Speed を読む</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-06-07 08:47    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Google が <a href="http://google-code-updates.blogspot.com/2009/06/introducing-page-speed.html">リリース</a> した <a href="http://code.google.com/intl/ja/speed/page-speed/">Page Speed</a> を少し読んでみた。Page Speed 自体は便利に使えそうで良いなあ、という感じで不満があまり無いので、他に流用できそうなものを探すのと、ミーハー心が強めです。</p>
+<h3>全体</h3>
+<ul>
+<li>COPYING</li>
+<li>build.xml</li>
+<li>(dist/) - レポジトリには含まれず build.xml が作成する</li>
+<li>moz_resources/ - Makefile.in など</li>
+<li>src/
+<ul>
+<li>cpp/ - C++ で書かれたもの</li>
+<li>idl/ - cpp, js 以下で定義している XPCOM の IDL</li>
+<li>js/ - JavaScript で書かれたもの</li>
+</ul>
+</li>
+<li>protobuf/</li>
+<li>third_party/ - libjpeg, Protocol Buffers など外のもの</li>
+<li>xpi_resources/ - XUL や chrome.manifest など</li>
+</ul>
+<p>今回は src/ 以下を中心にみた。Page Speed は JavaScript で書かれた部分と C++ で書かれた部分に大別できる。なお build.xml はあるものの、C++ で書かれた XPCOM のビルドは Ant のタスクになっていない。<a href="http://code.google.com/p/page-speed/wiki/HowToBuildNative">zip つくって Mozilla のソースツリーで展開</a>、とか変わった作業が必要だ。</p>
+<h3>C++</h3>
+<p>C++ で書かれているのは画像のファイルサイズを小さくする部分と &#8220;activity&#8221; の計測部分だ。</p>
+<p>画像のファイルサイズを削る部分は既存の Google 外のコードを呼び出している。ひとつは libjpeg を使ったチャンクの削除、もうひとつは <a href="http://optipng.sourceforge.net/">OptiPNG</a> だ。OptiPNG の設定はデフォルトで -f 0,5 なのを -f 0 に、-zs 0-3 なのを -zs 0,1,3 にして試行数 (実行時間) を減らしている。</p>
+<p>&#8220;activity&#8221; まわりはあまり把握できなかった。</p>
+<ul>
+<li>jsdIDebugService を使った JavaScript の実行の計測</li>
+<li>そこから生成される call graph のデータ構造と、Visitor パターン</li>
+<li>HTTP Activity Distributor という nsIHttpActivityObserver を実装したクラス</li>
+<li>Protocol Buffers まわり</li>
+</ul>
+<p>とあるのだけど、Distributor はまだ使われていないようにみえる。Protocol Buffers は <a href="http://code.google.com/p/page-speed/wiki/ActivityPanelSavedProfiles">JavaScript の実行の計測結果を保存</a> するのに使われていて、とくに通信などをしているわけではない。</p>
+<blockquote><p>The Page Speed Activity Panel supports saving of JavaScript execution profiles to disk, in the protocol buffer format.</p></blockquote>
+<p>定義は src/protobuf/activity/profile.proto にある。</p>
+<h3>JavaScript: Closure</h3>
+<p>JavaScript 部分で、ブラウザ上のスクリプトを書いているひとにも面白いのは src/js/closure.js だろう。Closure というのは Google が使っている (自作の) JavaScript のベースライブラリだ。なかには</p>
+<ol>
+<li>名前空間もどき</li>
+<li>ファイル間の依存性の定義</li>
+<li>JavaScript の嫌な部分の修正:
+<ul>
+<li>typeof, propertyIsEnumerable, 型の判断</li>
+<li>オブジェクトの同一 (同値ではなく) 性</li>
+<li>関数: bind, partial</li>
+<li>OOP</li>
+</ul>
+</li>
+<li>Google っぽいもの</li>
+</ol>
+<p>がある。ぱっとみて実装に困りそうなものはあまりなく、どちらかというと「ああ、必要だよねえ」という感じが強い。同一性もごく単純で goog.getHashCode(obj) で obj の &#8220;closure_hashCode_#{乱数}&#8221; というキーに連番の数字をつっこんでいる。</p>
+<p>Google っぽいのは goog.getCssName, goog.setCssNameMapping, goog.exportSymbol, goog.exportProperty などの難読化まわりと、goog.getMsg のメッセージカタログだ。Google の JavaScript は極端に難読化されているけど、それをやるソフトウェアはコメント中で &#8220;the compiler&#8221;, &#8220;JSCompiler&#8221; と呼ばれている。ちなみに生成物は &#8220;js binary&#8221; だ。binary て。コンパイラは外部から必要とされることを明示されていない関数などを一律短い名前に変更したり if (DEBUG) { の中を削ったりもするらしい。</p>
+<h3>JavaScript: そのほか</h3>
+<p>Firefox では複数ウィンドウ間で共通の、ウィンドウの DOM 文章をまたぐオブジェクトを提供したいときには XPCOM を使う必要があるけど、Page Speed では横着して StateStorageService という XPCOM を作っている。提供するメソッドは getCachedObject(name) のみで、これがデフォルトで {} を返すので setter すらない。この実装は src/js/components/stateStorageService.js にある。</p>
+<p>src/js/pagespeed/ の下には Page Speed そのものについてのコードがある。Page Speed の使っていない CSS セレクタを探す機能は素晴らしいのだけど、CSS に関しては面白いコードはあまり無かった。parse はせず、必要なものは正規表現で間に合わせている。</p>
+<h3>余談: Steve Souders</h3>
+<p>Page Speed は簡単にいってしまえば &#8220;Google&#8217;s YSlow&#8221; だ。業界事情に詳しい人は、<a href="http://developer.yahoo.com/yslow/">YSlow</a> の作者の <a href="http://www.stevesouders.com/">Steve Souders</a> が <a href="http://googlified.com/yslow-creator-joins-google/">Google に転職</a>したことを思い出すかもしれない。</p>
+<p>ただ、<a href="http://code.google.com/p/page-speed/">Google Code の Page Speed のページ</a> の Project owners, Project members には載っていない。本人も<a href="http://www.stevesouders.com/blog/2009/06/03/using-iframes-sparingly/#comment-637">ブログのコメント欄</a>で</p>
+<blockquote><p>A handful of awesome Googlers built Page Speed. I was not one of them. ;-)</p></blockquote>
+<p>と答えていた。</p>
+<h3>まとめ</h3>
+<p>だいたい気がすんだ。目的無くはじめて気がすむと終わり、とすると全体像まで把握しきれてなくて、まとめとか書きにくいなあ。以下感想。</p>
+<p>コードは、ハイテクノロジーはとくにないけど読みやすいと思いました。コメントもメソッド単位と凝ったところとにつけられてて適切な感じ。ネイティブコードを混ぜるのはマイナーな CPU で動く Linux とか考えだすと大変そうだけど、必要に迫られれば C++ も書けるというのは大事だと思う。</p>
+<p>Google Closure は &#8220;closure&#8221; ってつけるセンス以外は好き。実は <a href="http://code.google.com/p/google-closure/">Google Code に公開にむけたようなプロジェクト</a>があるんですがレポジトリは空でした。</p>
+</div>
+</div>
+    <div class="paginate">
+      <a href="//blog.8-p.info/2009/page/9" >Newer</a>      <a href="//blog.8-p.info/2009/page/11" >Older</a>    </div>
+  </div>
+  <div class="sidebar"><h2>About me and this blog</h2>
+<p>
+  All articles are written by <a href="http://8-p.info/me/">加藤和良</a>.
+  A few are <a href="/2009/tag/lang-en">written in English</a>.
+</p>
+
+<ul>
+  <li>
+    <h2>Recent articles</h2>
+    <ul>	<li><a href='//blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='//blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='//blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='//blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='//blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='//blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='//blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='//blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='//blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='//blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='//blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='//blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='//blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='//blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='//blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='//blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='//blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='//blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='//blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='//blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='//blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='//blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='//blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='//blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='//blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='//blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='//blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='//blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='//blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='//blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='//blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='//blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='//blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='//blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+</ul>
+  </li>
+</ul>
+
+<ul><li id="linkcat-2" class="linkcat"><h2>Links</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://collisions.doppac.cc/">collisions.doppac.cc</a></li>
+<li><a href="http://googletesting.blogspot.com/">Google Testing Blog</a></li>
+<li><a href="http://www.grafikcache.com/">Grafikcache</a></li>
+<li><a href="http://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="http://someru.blog74.fc2.com/">Hang Reviewers High</a></li>
+<li><a href="http://labs.ideo.com/">IDEO Labs</a></li>
+<li><a href="http://blog.makezine.com/">MAKE: Blog</a></li>
+<li><a href="http://d.hatena.ne.jp/KZR/">Radium Software</a></li>
+<li><a href="http://steps.dodgson.org/">steps to phantasien</a></li>
+
+	</ul>
+</li>
+</ul>
+
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+</p>
+</div>
+</div>
+
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

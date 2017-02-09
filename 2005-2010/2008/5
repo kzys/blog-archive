@@ -1,0 +1,20 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-03-26T10:48:54+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-03-26T10:48:54+09:00</h1>
+
+    <p>
+MacUpdate のよいところに「勝手に更新される」ところがある。たとえば最近の GreaseKit はリリース情報を自分で登録していない。りりってしばらくすると「MacUpdate Dev: GreaseKit updated」なんてメールが届いて、勝手に更新されている。
+</p>
+<p>
+運営側が全部チェックとか、自動化とかは考えにくいので、第三者からの投稿をうけつけているんだろうと思う。(他人のソフトウェアの情報を更新したことが無いので確信は無い)
+</p>
+  </div>
+</body>
+</html>

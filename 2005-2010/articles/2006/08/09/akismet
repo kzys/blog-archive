@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Akismet</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134965910">
+  <h2 class="entry-title"><a href="/articles/2006/08/09/akismet" title="Akismet">Akismet</a></h2>
+  <div class="published">
+    August 9th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>このブログへの spam がひどいので、<a href="http://akismet.com/">Akismet</a> を使ってみた。けっこう良い感じ。</p>
+
+<p>Akismet は <a href="http://wordpress.com/">WordPress.com</a> の <a href="http://automattic.com/">Automattic</a> が提供している spam 判定サービス。外部に <a href="http://akismet.com/development/api/">API が公開されていて</a>、Perl, Python, PHP, Ruby むけのライブラリや、MovableType や Bloxsom むけのプラグインも <a href="http://akismet.com/development/">Development</a> のページにまとめられている。</p>
+
+<p>Development のページでは、Ruby むけライブラリはなぜかリンクが切れているけど、Typo のソースツリーに、同じコードから  "Heavily modified for Typo by Scott Laird" した <a href="http://www.typosphere.org/trac/browser/trunk/vendor/akismet/akismet.rb?rev=1157">akismet.rb</a> がある。ただこれ、もともとを書いた David Czarnecki が <a href="http://sourceforge.net/projects/akismet-java/">Akismet Java API</a> も書いているような人のせいか、メソッドが lowerCamelCase なのがちょっと微妙なんだけど。</p>
+
+<p>使用には API key が必要なので、WordPress.com のアカウントをとって、無料の <a href="http://wordpress.com/api-keys/">API key</a> をもらった。商用だったり、ブログからの儲けが  $500/月を超えるようなひとは WordPress.com についてくる API key ではなく、<a href="http://akismet.com/commercial/">有料の API key</a> が必要。</p>
+
+<p>Typo の場合は、admin/ で API key を入力するだけで使える。spam と判定されたコメントやトラックバックは、削除ではなく、非公開 (unpublished) 扱い。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/spam" rel="tag" title="spam">spam</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/08/09/akismet/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

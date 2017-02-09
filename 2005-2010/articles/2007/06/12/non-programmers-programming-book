@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Non-Programmer's Programming Book</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132822980">
+  <h2 class="entry-title"><a href="/articles/2007/06/12/non-programmers-programming-book" title="Non-Programmer's Programming Book">Non-Programmer's Programming Book</a></h2>
+  <div class="published">
+    June 12th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>まえからプログラミング入門的なものが書きたいと思っていて、つまりは『ノンプログラマーズ・プログラミングブック』なのかと、ひさしぶりに『ノンデザイナーズ・デザインブック』を読んでみたら</p>
+
+<blockquote>
+    <p>この本は、デザインを正式に学んだことがないけれど、ページをデザインする必要がある人々のために書かれました。</p>
+</blockquote>
+
+<p>とあって、ちょっとちがった。「プログラミングをする必要」というのは、あるのに認識されていなくて、自分が書きたいのはそこを埋めるものだった。『ノンデザイナーズ〜』よりもっと前の段階だ。プログラミングを手段のひとつとして認識させたい。</p>
+
+<p>自分がコードを書けるようになったのは、ほとんど Linux 上での出来事で、それはいま思うと良い環境だった。Linux だと、日常使うほとんどのソフトウェアにソースコードがついている。使っていて間違いや不足を感じたら、すぐ自分で書き換えてみることが出来て、生活と連続していた。もちろんそれは、そのころ諸事情あって自分がとても暇であったというのが大きいけど、とにかく grep して printf を入れてみたり、#ifdef 0 でかこってみたりして、自分が書きかえるべき場所を探して、パッチを書いていた。</p>
+
+<p>(これはかっこつけすぎで、本当は正規表現とか zsh の連番生成とかで画像をダウンロードしたりもしていた)</p>
+
+<p>Greasemonkey を使うようになると、Windows や Mac でもそういう感じがすこし味わえる。いまの Web はほとんどソースも読めるし、ちょっと気に入らないところがあれば、それを自分好みに書きかえたりも出来る。そういう些細なプログラミングはみんな出来ると良いと思う。自己表現とか抽象概念がどうとかではなくて、ちょっと自分の不便を減らすようなこと。だから Greasemonkey からはじめるプログラミング入門というのはありだ。そういうページを 8-p.info のなかに作りたい。</p>
+
+<p>もちろん、DOM とか CSS とか、前提知識がいろいろ必要なのは入門にとっては壁だけど、世の中には Firefox + FireBug + Greasemonkey を使っていて、HTML と CSS が書けて、でもプログラミングはしないというひとが少しいる。そこらへんにしぼれば自分にもできるんじゃないかと思っている。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/programming" rel="tag" title="programming">programming</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">5 Responses to &#8220;Non-Programmer's Programming Book&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-135650970">
+			<cite><span>stewie</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135650970" title="">June 13th, 2007 at 02:01 AM</a></small>
+			<p>僕の状況がちょっと似てるかなって思ったのでコメントさせていただきました。
+僕がプログラミングっぽいことをしたのはJavaScriptでSleipnir（ver1.66）の動作制御スクリプトでした。
+当時、仕事（非IT）で頻繁に提携の検索作業をするのに
+サイトAで検索→得た結果から欲しい文字列をサイトBにコピペし検索
+の流れが面倒だったのがきっかけです。
+そこからはじまり今はRubyをかじったりしながらIT系へのあこがれを抱いています。</p>
+
+<p>話はそれましたが、GMから入るプログラミング入門というのはすごくいい題材だと思います。
+期待しています。</p>
+		</li>
+  
+		<li class="" id="comment-135500670">
+			<cite><a href="http://8-p.info/">kzys</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135500670" title="">June 13th, 2007 at 08:15 AM</a></small>
+			<p>まさしくそういう、面倒を感じたときに、自動化の方向に流れられる人を増やしたいと思っています。</p>
+
+<p>期待、ありがとうございます。なんとか形にできるようがんばります。</p>
+		</li>
+  
+		<li class="alt" id="comment-135490810">
+			<cite><span>swdyh</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135490810" title="">June 13th, 2007 at 09:44 PM</a></small>
+			<p>GMからっていうのはいいアイデアだと思うけど、GM入門だけだとちょっと目的にとどかないのかも。GMよりももっといろんなことができるんだってことも伝えられるといいよね。Windows限定になっちゃうけど、GMのあとにWSHやるとか。CSSな人にリーチさせるなら、ローカルのHTMLからリンク先一覧や画像一覧を抽出するとか、JSやCSSを1個のファイルにまとめるとか、なんかそんな感じのをやったらいいかも。WSH使ったことないんだけど。</p>
+		</li>
+  
+		<li class="" id="comment-135486200">
+			<cite><a href="http://8-p.info/">kzys</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135486200" title="">June 14th, 2007 at 08:42 AM</a></small>
+			<p>「プログラミングなんて簡単だ」と「Web なんて書きかえちゃえよ」が伝わればいいかと思ってたけど、確かにそういう実用についての敷居は残るかも……。</p>
+
+<p>ただ、プログラムが書けるって人も、すべてをひとつのリソースから学んだわけではないので、うまく次につなげられるようにするほうが良いかなと思う。全部書くのは大変だしきりがないので。</p>
+		</li>
+  
+		<li class="alt" id="comment-135479760">
+			<cite><a href="http://www.usanewcars.info">artofey</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135479760" title="">July 8th, 2007 at 01:19 AM</a></small>
+			<p>Hello, visit my page:  <a href="http:" /><b>absolutly free movie porn</b></a> <a href="http:" /><b>clip free latina movie porn</b></a> <a href="http:" /><b>free black porn movie</b></a> <a href="http:" /><b>free hard core porn movie</b></a> <a href="http:" /><b>free movie porn russian</b></a></p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/06/12/non-programmers-programming-book/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

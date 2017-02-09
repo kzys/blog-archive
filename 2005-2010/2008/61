@@ -1,0 +1,103 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-07-17T07:13:59+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-07-17T07:13:59+09:00</h1>
+
+    <p>
+MacRuby をためしてみた。MacRuby は Apple の Laurent Sansonetti (lrz) が中心となって開発している Ruby 実装で、くわしくは <a class="ext-link" href="http://chopine.be/lrz/talks/RubyKaigi2008.pdf"><span class="icon"></span>http://chopine.be/lrz/talks/RubyKaigi2008.pdf</a> をどうぞ。
+</p>
+<pre class="wiki">
+% svn co http://svn.macosforge.org/repository/ruby/MacRuby/trunk MacRuby-trunk
+...
+Checked out revision 380.
+% cd MacRuby-trunk 
+% rake
+...
+compiling socket
+rake aborted!
+Command failed with status (): [./miniruby -I./lib -I.ext/common -I./- -r....]
+/Users/kzys/src/MacRuby-trunk/rakefile:519
+(See full trace by running task with --trace)
+%
+</pre>
+<p>
+こけた。rake してみる。
+</p>
+<pre class="wiki">
+% rake
+...
+compiling socket
+generating constants.h
+...
+making macruby
+make: Nothing to be done for `macruby'.
+%
+</pre>
+<p>
+あ、通った。自動生成するコードの依存関係が変なんでしょうか。
+</p>
+<pre class="wiki">
+% ./macruby 
+dyld: Library not loaded: /Library/Frameworks/MacRuby.framework/Versions/0.3/usr/lib/libmacruby.dylib
+  Referenced from: /Users/kzys/src/MacRuby-trunk/./macruby
+  Reason: image not found
+zsh: trace trap  ./macruby
+% otool -L macruby
+macruby:
+        /Library/Frameworks/MacRuby.framework/Versions/0.3/usr/lib/libmacruby.dylib (compatibility version 0.3.0, current version 0.3.0)
+        /usr/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0)
+        /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 111.1.1)
+% 
+</pre>
+<p>
+/Library/Frameworks に置けばいいんだろうけど、開発中のものを sudo rake install するのもなー。
+</p>
+<pre class="wiki">
+% rm macruby
+% rake
+...
+/usr/bin/gcc -I. -I./include -I/usr/include/libxml2 -arch ppc -arch i386 -fno-common -pipe -O2 -g -Wall -Wno-parentheses -Wno-deprecated-declarations -Werror main.o gc-stub.o -L. 
+-lmacruby -o macruby
+...
+%
+</pre>
+<p>
+macruby がフレームワークをリンクしているわけではない。
+</p>
+<pre class="wiki">
+% rm *.dylib
+% rake
+...
+/usr/bin/gcc -I. -I./include -I/usr/include/libxml2 -arch ppc -arch i386 -fno-common -pipe -O2 -g -Wall -Wno-parentheses -Wno-deprecated-declarations -Werror array.o bignum.o class.o compar.o complex.o dir.o enum.o enumerator.o error.o eval.o load.o proc.o file.o gc.o hash.o inits.o io.o marshal.o math.o numeric.o object.o pack.o parse.o process.o prec.o random.o range.o rational.o re.o regcomp.o regenc.o regerror.o regexec.o regparse.o regsyntax.o ruby.o signal.o sprintf.o st.o string.o struct.o time.o transcode.o util.o variable.o version.o blockinlining.o compile.o debug.o iseq.o vm.o vm_dump.o thread.o cont.o id.o objc.o bs.o encoding.o dln.o dmyext.o enc/ascii.o missing/lgamma_r.o prelude.o -lpthread -ldl -lxml2 -lobjc -lffi -lauto -framework Foundation -dynamiclib -undefined suppress -flat_namespace -install_name /Library/Frameworks/MacRuby.framework/Versions/0.3/usr/lib/libmacruby.dylib -current_version 0.3 -compatibility_version 0.3 -o libmacruby.1.9.0.dylib
+...
+%
+</pre>
+<p>
+ここか。install_name をはずしてみる。
+</p>
+<pre class="wiki">
+% /usr/bin/gcc -I. -I./include -I/usr/include/libxml2 -arch ppc -arch i386 -fno-common -pipe -O2 -g -Wall -Wno-parentheses -Wno-deprecated-declarations -Werror array.o bignum.o class.o compar.o complex.o dir.o enum.o enumerator.o error.o eval.o load.o proc.o file.o gc.o hash.o inits.o io.o marshal.o math.o numeric.o object.o pack.o parse.o process.o prec.o random.o range.o rational.o re.o regcomp.o regenc.o regerror.o regexec.o regparse.o regsyntax.o ruby.o signal.o sprintf.o st.o string.o struct.o time.o transcode.o util.o variable.o version.o blockinlining.o compile.o debug.o iseq.o vm.o vm_dump.o thread.o cont.o id.o objc.o bs.o encoding.o dln.o dmyext.o enc/ascii.o missing/lgamma_r.o prelude.o -lpthread -ldl -lxml2 -lobjc -lffi -lauto -framework Foundation -dynamiclib -undefined suppress -flat_namespace -current_version 0.3 -compatibility_version 0.3 -o libmacruby.1.9.0.dylib
+% rm macruby
+% rake
+...
+% ./macruby
+</pre>
+<p>
+うごいた!
+</p>
+<pre class="wiki">
+% ./macruby -e 'p &quot;hello&quot;.class.ancestors'
+[NSCFString, NSMutableString, NSString, Comparable, Object, NSObject, Kernel]
+</pre>
+<p>
+おおお。なんかはさまってる!
+</p>
+  </div>
+</body>
+</html>

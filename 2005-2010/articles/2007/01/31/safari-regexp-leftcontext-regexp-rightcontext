@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Safari に RegExp.leftContext, RegExp.rightContext</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133574420">
+  <h2 class="entry-title"><a href="/articles/2007/01/31/safari-regexp-leftcontext-regexp-rightcontext" title="Safari に RegExp.leftContext, RegExp.rightContext">Safari に RegExp.leftContext, RegExp.rightContext</a></h2>
+  <div class="published">
+    January 31st, 2007
+  </div>
+  <div class="entry-content">
+    
+    <p>Safari で <a href="http://japanize.31tools.com/index.cgi/wiki">Japanize の Wiki</a> をみるとページが空っぽで困る。</p>
+
+<p>Japanize の Wiki はサイボウズラボで独自に開発した、たぶん PlusWiki という名前のシステムで動いている。PlusWiki は Wiki 記法で書かれたページを XMLHttpRequest でとってきて、HTML への変換は JavaScript でやっているらしい。</p>
+
+<p>で、Safari には RegExp.leftContext, RegExp.rightContext が無い。SVN をみると <a href="http://trac.webkit.org/projects/webkit/changeset/10818">r10818</a> で実装されているようなので、そのうち直るんだろうけど。</p>
+    
+    
+    
+    <p>とりあえずは、String.prototype.match を</p>
+
+<pre><code>var originalMatch = String.prototype.match;
+String.prototype.match = function (regexp) {
+   var result = originalMatch.apply(this, arguments);
+   if (! result)
+      return null;
+
+   RegExp.leftContext = this.substring(0, result.index);
+   RegExp.rightContext = this.substring(result.index + result[0].length, this.length);
+
+   return result;
+};
+</code></pre>
+
+<p>という感じに書き換える <a href="http://8-p.info/userscript/pluswiki-safari.user.js">pluswiki-safari.user.js</a> というものを書いてしのいだ。</p>
+
+<p>ひっかかるのが、String.prototype.match を書き換えるだけじゃだめで PlusWiki.wikiView(); を呼び出しているところ。ユーザースクリプトってページ上のスクリプトより先に実行されるものだと思っていたんだけど、そうじゃないんだろうか。自分が誤解しているのか、Creammonkey のバグなのかよくわからない。</p>
+
+<p>知っているひとは教えていただければ幸いです。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/safari" rel="tag" title="safari">safari</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">3 Responses to &#8220;Safari に RegExp.leftContext, RegExp.rightContext&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-136804040">
+			<cite><a href="http://labs.cybozu.co.jp/blog/kazuho/">kazuho</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-136804040" title="">January 31st, 2007 at 01:38 PM</a></small>
+			<p>Sarafi で動いてないのはわかっていたけどめんどくさくて放置プレイ中でした。</p>
+
+<p>なるほど。こういうふうに String.prototype.match をパッチすれば綺麗ですね。修正したいと思います。</p>
+
+<p>＞ ユーザースクリプトってページ上のスクリプトより先に実行されるものだと思っていたんだけど、そうじゃないんだろうか。</p>
+
+<p>script タグの中身はユーザースクリプトより先に実行されますよね？　今回のケースはそういうことだと思います。</p>
+		</li>
+  
+		<li class="" id="comment-136479220">
+			<cite><span>trickstar_os</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-136479220" title="">January 31st, 2007 at 03:51 PM</a></small>
+			<p>微妙なソース(Greasemonkeyの話な上にOperaの見解)ですが、こちらが参考になるかと。
+http://jp.opera.com/support/tutorials/userjs/examples/#greasemonkey</p>
+		</li>
+  
+		<li class="alt" id="comment-136474510">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-136474510" title="">January 31st, 2007 at 11:17 PM</a></small>
+			<p>お二人ともありがとうございます。Creammonkey のバグではないようで安心しました。</p>
+
+<p>こういう類のユーザースクリプトは結局ローカルパッチなので、upstream にとりこまれるならそれに越したことは無いです。ありがとうございます。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/01/31/safari-regexp-leftcontext-regexp-rightcontext/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

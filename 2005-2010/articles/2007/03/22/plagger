@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Plagger のインストールを自動化する</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135179620">
+  <h2 class="entry-title"><a href="/articles/2007/03/22/plagger" title="Plagger のインストールを自動化する">Plagger のインストールを自動化する</a></h2>
+  <div class="published">
+    March 22nd, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>長らく放置していた、<a href="http://8-p.info/Plagger/">Plagger の Mac OS X 10.4 むけバイナリパッケージ</a> を更新することにした。</p>
+
+<p>放置していたのは更新が面倒だからで、そこを直さないことには、今回がんばってもまたしばらく放置してしまうだろうから、いっそ全てを自動化してみた。</p>
+
+<p>で、これを書いてから、2006年12月以来 Plagger が CPAN にリリースされていないことに気づく。更新必要ない……。</p>
+
+<h3>Universal Binary</h3>
+
+<p>前は <a href="http://blog.8-p.info/articles/2006/09/06/plagger-mac">~/.cpan/build のなかで手動で make</a> なんて書いていたけど、~/.cpan/CPAN/MyConfig.pm を適切に設定すれば、そんなことはしなくていい。</p>
+
+<pre><code>$CPAN::Config = {
+  ...
+  'make_arg' =&gt; q[CC=ub-cc LD=ub-cc],
+  'makepl_arg' =&gt; q[PREFIX=~/CPAN INSTALLDIRS=site CC=ub-cc LD=ub-cc],
+  ...
+}
+</code></pre>
+
+<p>ub-cc は PATH の通ったところに置いたシェルスクリプトで</p>
+
+<pre><code>MACOSX_DEPLOYMENT_TARGET=10.3 gcc -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk $*
+</code></pre>
+
+<p>こんな内容。Universal Binary のためのオプションをつけて gcc を呼んでいる。</p>
+
+<h3>CPAN shell</h3>
+
+<p>CPAN shell は stdin が端末でなければ、デフォルトの設定ですべてを進めてくれるらしい。</p>
+
+<pre><code>cat &lt;&lt;EOF | perl -MCPAN -e shell
+install YAML
+EOF
+</code></pre>
+
+<p>デフォルトの設定ではだめな場合にも、o conf で make_arg と makepl_arg を変更しておけば、大抵なんとかなる。</p>
+
+<pre><code>cpan_dir=$HOME/CPAN
+makepl_arg="PREFIX=$cpan_dir INSTALLDIRS=site CC=ub-cc LD=ub-cc"
+...
+cat &lt;&lt;EOF | perl -MCPAN -e shell
+o conf makepl_arg 'TT_ACCEPT=y TT_XS_ENABLE=y TT_XS_DEFAULT=y TT_EXTRAS=n $makepl_arg'
+install Template::Stash::XS
+EOF
+</code></pre>
+
+<h3>プラグイン</h3>
+
+<p>各プラグインが依存する CPAN モジュールについては Plagger-(VERSION)/deps/*.yaml を読んで、platform == MSWin32 なものをはじいてから、depends を見ればよい。</p>
+
+<h3>Mac::Carbon</h3>
+
+<p>サウンドのテストで奇声が流れるので、非常に心臓に悪い。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/03/22/plagger/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-09-03T10:06:12+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-09-03T10:06:12+09:00</h1>
+
+    <p>
+Google Chrome みたよ。インクリメンタルサーチでスクロールバーに色がつくとことか、リンクにマウス乗せたときの URI の表示とか、最大化するとタイトルバーが細くなるとか、いろいろとよくできてる。OS 標準を無視しすぎだけど。
+</p>
+<p>
+引数で --app=URI でタイトルバーとかが消えるので Prism, Fluid みたいにも使える。ブラウザからシームレスにサイト専用ブラウザができるのは、Safari の Web クリップなんかも似てるような。
+</p>
+<p>
+インスペクタは Apple からもってきてる。Resources/Inspector/inspector.html には
+</p>
+<blockquote class="citation">
+<p>
+ Copyright (C) 2006, 2007, 2008 Apple Inc.  All rights reserved.
+</p>
+</blockquote>
+<p>
+とはいっている。
+</p>
+<p>
+V8 はビルドが Scons なのが目新しい。ネイティブコードまわりをちらみしたら Sun の名前があってびっくりしたけど <a class="ext-link" href="http://code.google.com/p/v8/source/browse/trunk/LICENSE"><span class="icon"></span>http://code.google.com/p/v8/source/browse/trunk/LICENSE</a> にちゃんと &quot;Strongtalk assembler&quot; ってあった。
+</p>
+<p>
+<a class="ext-link" href="http://code.google.com/p/v8/source/browse/trunk/src/assembler-ia32.h"><span class="icon"></span>http://code.google.com/p/v8/source/browse/trunk/src/assembler-ia32.h</a> の XMMRegister  で <a class="ext-link" href="http://google.com/codesearch?q=XMMRegister"><span class="icon"></span>http://google.com/codesearch?q=XMMRegister</a> すると JDK が出てくる。
+</p>
+<p>
+あと jscre (JavaScriptCore's variant of the PCRE library) と dtoa (double-to-ascii, 倍精度小数点数の文字列への変換) が外から。
+</p>
+<p>
+しかし WebKit のひとが SquirrelFish とかやってるのに V8 なんてよくやるよなー。こわい。JavaScript 部分さしかえって大仕事だと思うんだけど (読んでないです)
+</p>
+  </div>
+</body>
+</html>

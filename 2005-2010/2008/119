@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-09-21T14:42:52+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-09-21T14:42:52+09:00</h1>
+
+    <p>
+『Eric Sink on the Business of Software』を読んだ。ソフトウェアを考えて開発して売るまでのやりかたや落とし穴についてのはなし。副題は「革新的ソフトウェア企業の作り方」だけど、個人的には「革新的」というよりは地に足がついてる感じをうけた。
+</p>
+<p>
+Eric Sink は <a class="ext-link" href="http://www.sourcegear.com/"><span class="icon"></span>SourceGear</a> でソースコード管理システムなどの Windows 開発者むけソフトウェアを開発しているひと。なのだけど p.64 でおそろしいことが
+</p>
+<blockquote class="citation">
+<p>
+ それでこの流れに飛び乗って、オープンソースのオフィススイートを作る AbiSource を立ち上げ、ワープロソフトの開発に取りかかった。
+</p>
+</blockquote>
+<p>
+AbiWord 作ってたのか！ちなみにこの章のタイトルは「もっと失敗しよう」で、AbiWord は「ビジネスにならなかった」とされている。
+</p>
+  </div>
+</body>
+</html>

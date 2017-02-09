@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-09-15T22:34:03+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-09-15T22:34:03+09:00</h1>
+
+    <p>
+『My Job Went To India』を読んだので Plagger をさわってみた。
+</p>
+<ul><li><a class="ext-link" href="http://gist.github.com/10849"><span class="icon"></span>http://gist.github.com/10849</a> - <a class="ext-link" href="http://plagger.org/trac/ticket/147"><span class="icon"></span>http://plagger.org/trac/ticket/147</a> を close する patch
+</li><li><a class="ext-link" href="http://gist.github.com/10830"><span class="icon"></span>http://gist.github.com/10830</a> - Flickr::API を使いだしたらみつけたバグの修正
+</li><li><a class="ext-link" href="http://gist.github.com/10825"><span class="icon"></span>http://gist.github.com/10825</a> - テストが Perl::Critic でこけるので修正</li></ul>
+<p>
+<a class="ext-link" href="http://plagger.org/trac/wiki/PlaggerCommitterGuidelines"><span class="icon"></span>http://plagger.org/trac/wiki/PlaggerCommitterGuidelines</a> をみて gist のページを plagger タグつきで Delicious に登録してみたけど、これで良いのでしょうか?
+</p>
+  </div>
+</body>
+</html>

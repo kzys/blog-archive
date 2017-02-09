@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>『DOM Scripting 標準ガイドブック』を読んだ - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry275">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/01/dom-scripting">『DOM Scripting 標準ガイドブック』を読んだ</a>
+    (4)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-01-17 11:45    </div>
+    <div class="tags yui-u">
+      <a href="//blog.8-p.info/2009/tag/book" rel="tag">book</a>    </div>
+  </div>
+  <div class="body"><p>まえに人におすすめされて少しだけ借りて読んだ <a href="http://domscripting.com/book/">DOM Scripting: Web Design with JavaScript and the Document Object Model</a> という本があって、それの日本語訳の『<a href="http://www.amazon.co.jp/gp/product/4839922373?ie=UTF8&#038;tag=8pinfo-22&#038;linkCode=as2&#038;camp=247&#038;creative=7399&#038;creativeASIN=4839922373">DOM Scripting 標準ガイドブック</a><img src="http://www.assoc-amazon.jp/e/ir?t=8pinfo-22&#038;l=as2&#038;o=9&#038;a=4839922373" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />』が売っていたので買って読んだ。初版が2007年6月なので、最近出た本じゃないです。</p>
+<h3>文法まわりは微妙</h3>
+<p>2章の JavaScript の文法に対する記述はあんまりうなづけないところがある。変数名が snake_case なのは趣味の問題だけどたぶん lowerCamelCase のほうが多数派。</p>
+<p>配列を</p>
+<blockquote><pre>
+var beatles = Array("ジョン", "ポール", "ジョージ", "リンゴ");
+</pre>
+</blockquote>
+<p>とするほうが [] より「良い」(p.33) とも思えないし、連想配列がほしいときに {} じゃなくて</p>
+<blockquote><pre>
+var lennon = Array();
+lennon["name"] = "ジョン";
+lennon["year"] = 1940;
+lennon["living"] = false;
+</pre>
+</blockquote>
+<p>としているのも、厳密にはまちがいじゃないのかなー。push, pop とかしないものを Array にしても、とは思う。</p>
+<p>あ、クラスっぽいものを定義 (function の prototype をどうこう) したりには踏み込みません。それは正しい判断だと思う。</p>
+<h3>HTML と JavaScript のつきあわせかた</h3>
+<p>5, 6章と、8, 9 章にある DOM まわりのはなしはかなり良い。4, 5, 6 章では </p>
+<pre>&lt;a href="images/fireworks.jpg" title="打ち上げ花火"&gt;</pre>
+<p>みたいなリンクのリストからインラインで画像が切り替わるページを、8章では abbr から dl, dt, dd のリストを、blockquote の cite 属性からリンクを、accessskey 属性からまたリストを生成、9章では table にストライプをつけたりしている。</p>
+<p>10章は DOM の要素を変数置き場にしてるのがあんまり</p>
+<blockquote><pre>
+var elem = document.getElementById(elementID);
+if (elem.movement) {
+  clearTimeout(elem.movement);
+}
+</pre>
+</blockquote>
+<p>好きじゃないな。</p>
+<p>で、Web で JavaScript を書くときに考えなきゃいけないことは3つあると思う。</p>
+<p>ひとつはプログラミング言語一般のこと。適切に関数なりクラスに処理をまとめたり、スコープを狭く保ったり、ループの中で getElementById しなかったり。これは、<strong>プログラマならわかる</strong>ことだ。</p>
+<p>次に、クロスブラウザ間での差異のこと。これは複数のブラウザで動作確認すればわかる。センスじゃなくて努力でなんとかなる。(User-Agent を見て分岐するなメソッドの有無を見ろ、というのはこの本だと p.98 にあります)</p>
+<p>最後が、HTML と JavaScript のつきあわせかただ。なぜ href=&#8221;photo.jpg&#8221; を href=&#8221;javascript:openPhoto()&#8221; や onclick=&#8221;openPhoto()&#8221; href=&#8221;#&#8221; と書き換えるべきではないのか。「Lightbox で開くからユーザービリティが高い」というのは全然わかっていない。この種の書き方は HTML から意味を剥奪しているという点で間違っていて、その間違いは「Googlebot がリンクをたどってくれない」「真ん中のボタンでクリックしてもタブで開けない」といったかたちで運営者や利用者にはねかえってくる。</p>
+<p>じゃあどうするの、というところがこの本にはちゃんと書いてある。「HTML と JavaScript のつきあわせかた」という問題に「ちゃんとマークアップされた文章に対して段階的強化 (progressive enhancement) として振る舞いを追加する」という解をだし、その実現方法を丁寧に説明しているところが素敵だと思います。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+<div id="comments">
+
+<div class="comment">
+  <h3 class="alt" id="comment-18">
+    <img alt='' src='http://www.gravatar.com/avatar/54a2c5f4dac2f0dcf2be3830511fe2ba?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    mrmt  </h3>
+  <p>どうでもいいすが s/lenon/lennon/</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-19">
+    <img alt='' src='http://www.gravatar.com/avatar/7828b45f8396aa361d85cead01fd99ca?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    <a href='http://8-p.info/' rel='external nofollow' class='url'>kzys</a>  </h3>
+  <p>おお、なおしました。本じゃなくて自分のまちがいでした。</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-20">
+    <img alt='' src='http://www.gravatar.com/avatar/02a18b767158cd1c1dcefc9c87492f6e?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    Oogatta  </h3>
+  <p>Jerreymy さんは特にプログラマじゃなくて、考え方の人ですもんね。<br />
+昨年のWeb Directions Eastに来日していてワークショップまで受けたんですが、<br />
+「自分では、AJAXアプリケーションをあんま業務で実際に作ったことはないんだ」って正直に話してて、逆に、<br />
+ゼネラリストだからこそ見える「イイコト」を胸はってみんなに伝えるんだオレは、という姿勢が好印象でした！</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-22">
+    <img alt='' src='http://www.gravatar.com/avatar/7828b45f8396aa361d85cead01fd99ca?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    <a href='http://8-p.info/' rel='external nofollow' class='url'>kzys</a>  </h3>
+  <p>来日してたのは知らなかったです。ワークショップいいなー。<br />
+<a href="http://east08.webdirections.org/profiles/keith/" rel="nofollow">http://east08.webdirections.org/profiles/keith/</a></p>
+<p>「ゼネラリストはこう良いことをいっていて、今回はそれをこう実装してみました」みたいなはなしが外向きに出来るようにしたいです。いまはまだ&#8230;</p>
+</div>
+</div>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="275" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

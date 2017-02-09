@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: mixi デコリンクと JSON API</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133101000">
+  <h2 class="entry-title"><a href="/articles/2007/07/12/mixi-json-api" title="mixi デコリンクと JSON API">mixi デコリンクと JSON API</a></h2>
+  <div class="published">
+    July 12th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://alpha.mixi.co.jp/blog/?p=38">mixi Engineers’ Blog » デコリンク(URL展開)機能をリリースしました</a></p>
+
+<p>開発者ブログなのにプレスリリースみたいなんだぜ。</p>
+
+<p>実装は Jemplate を使っているようです。<a href="http://blog.livedoor.jp/fastladder/archives/50881813.html">Ingy さん</a>やね。</p>
+
+<p>http://mixi.jp/static/js/decolink/decolink.js の do_decolink に id をわたすと、dl_rules にはいっている規則をもとに extract_decolink が JSON API で情報をとってきて Jemplate で展開して置き換えています。</p>
+
+<p>JSON API は以下の3つ。mixi のクッキーを食べた状態でアクセスできることを確認しました。</p>
+
+<ul>
+<li>http://mixi.jp/atom/music/track/r=1/ID</li>
+<li>http://mixi.jp/atom/music/artist/r=1/ID</li>
+<li>http://mixi.jp/atom/review/r=1/ID</li>
+</ul>
+
+<p>ID は mixi 内での通し番号なので、アマゾンのレビューとマッシュアップ！とかは難しそう。decolink.js では ?alt=json&amp;charset=euc-jp (とキャッシュ避けっぽい乱数) をくっつけてますが、省略しても動作はかわりませんでした。付けても alt は無視されるし charset は euc-jp 以外怒られます。</p>
+
+<p><a href="http://s.hatena.ne.jp/">はてなスター</a> とか、JavaScript はサーバーの負荷をあげないかわりに、クライアント側に負荷をかけてしまって、つまりは利用者の体感速度への影響が大きいのでむずいのですが、こと mixi に限定していうなら</p>
+
+<ul>
+<li>DOM 経由でアクセスするために id とか class とかを適切にふらざるをえなくなる</li>
+<li>API として使いやすいインターフェースがばれる</li>
+</ul>
+
+<p>という二点で、どんどんやると良いと思いました。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mixi" rel="tag" title="mixi">mixi</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

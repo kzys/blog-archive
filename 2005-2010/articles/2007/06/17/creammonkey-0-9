@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Creammonkey 0.9</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132693660">
+  <h2 class="entry-title"><a href="/articles/2007/06/17/creammonkey-0-9" title="Creammonkey 0.9">Creammonkey 0.9</a></h2>
+  <div class="published">
+    June 17th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://creammonkey.sourceforge.net/">Creammonkey</a> 0.9 をリリースしました。</p>
+
+<p>主な変更点は</p>
+
+<ul>
+<li>GM_xmlhttpRequest, GM_setValue, GM_getValue, GM_log の実装</li>
+<li>PowerPC Mac でスクリプトのダウンロードに失敗する問題の修正</li>
+</ul>
+
+<p>です。Safari 3 でも動いています。</p>
+
+<p>サンドボックスは、<a href="http://blog.8-p.info/articles/2007/03/06/creammonkey-gm_xhr">前に書いた方法</a>は結局だめで、スクリプト実行用の使い捨て匿名関数に引数でわたすかたちで実装しました。GM_registerMenuCommand 以外の4関数は実装したので、いろいろ出来ることも増えたかと思います。</p>
+
+<p>さんざんひっぱった名前問題は結局先送りにしました。ニホンザルが "Japanese Macaque" なので Macaque はどうだろう、とか考えています。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/creammonkey" rel="tag" title="creammonkey">creammonkey</a></li>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">1 Response to &#8220;Creammonkey 0.9&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-134748230">
+			<cite><span>7z</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134748230" title="">June 17th, 2007 at 05:35 AM</a></small>
+			<p>Greasekellyでｗ</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/06/17/creammonkey-0-9/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

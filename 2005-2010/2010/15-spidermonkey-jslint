@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=15" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: SpiderMonkey で JSLint を動かす</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article15">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/15-spidermonkey-jslint" class="name">SpiderMonkey で JSLint を動かす</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:6.047566,0.235619&amp;cht=p&amp;chp=4.398230' alt='22:57' /></h1>
+
+<div class="attr">
+  Posted at 2010/02/09 22:57,
+  Modified at 2010/02/09 23:25
+  </div>
+
+<div class="text">
+<p>JavaScript を書くときの major mode を <a href="http://code.google.com/p/js2-mode/">js2-mode</a> から <a href="http://www.nongnu.org/espresso/">espresso-mode</a> に乗り換えつつある。espresso-mode は js2-mode よりインデントまわりの挙動が普通で良い。</p>
+<p>ただ、js2-mode の、静的にコードを解析して、エラーや疑わしき記述をハイライトしてくれる機能は便利だった。無いと &quot;,&quot; をつけすぎたりしてしまうので、かわりに <a href="http://www.jslint.com/">JSLint</a> を使いはじめた。JSLint だと、他のエディタを使うひととも「ここは警告が出るから直しましょう」という話がしやすいのも利点だと思う。</p>
+<h2 id="article15_1" class="ah1 topic">SpiderMonkey</h2>
+<p>Web ブラウザ経由ではなくて、できれば</p>
+<pre>% jslint path/to/script.js
+...
+</pre>
+<p>みたいな感じにしたいので SpiderMonkey と組み合わせることにした。SpiderMonkey 1.7 には数年前に直した <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=355827">標準入力をどうこうするのに不便なバグ</a> が残っているので 1.8.0 RC1 を使う。</p>
+<pre>% curl -O http://ftp.mozilla.org/pub/mozilla.org/js/js-1.8.0-rc1.tar.gz
+...
+% tar xvf js-1.8.0-rc1.tar.gz
+...
+% cd js/src
+% make -f Makefile.ref XCFLAGS='-DHAVE_VA_COPY -DVA_COPY=va_copy'
+...
+% cp ./Darwin_DBG.OBJ/js ~/local/bin/
+%
+</pre>
+<p>XCFLAGS のところは <a href="http://github.com/janl/couchdbx-core/commit/ff47372552d10df00d74cb7989dfed4a19a6040d#diff-1">Mac むけのこのパッチ</a> と同じことをしている。つけないと</p>
+<pre>...
+jsprf.c: In function ‘BuildArgArray’:
+jsprf.c:644: error: incompatible types in assignment
+make[1]: *** [Darwin_DBG.OBJ/jsprf.o] Error 1
+make: *** [all] Error 2
+%
+</pre>
+<p>コンパイルできない。</p>
+<h2 id="article15_2" class="ah1 topic">JSLint を呼び出す</h2>
+<p>SpiderMonkey と JSLint を書くためにすこし JavaScript を書く。</p>
+<pre>function slurp() {
+    var ln;
+    var result = '';
+    while ((ln = readline()) !== null) {
+        result += ln + '\n';
+    }
+    return result;
+}
+
+JSLINT(slurp());
+
+if (JSLINT.errors.length == 0) {
+    quit(0);
+}
+
+JSLINT.errors.forEach(function (e) {
+    print(e.line + ':' + e.character + ': ' + e.reason);
+});
+quit(1);
+</pre>
+<p>これを spidermonkey.js という名前で用意して <a href="http://www.jslint.com/lint.html#implementation">JSLint の説明ページ</a> からたどれる fulljslint.js と合体しておく。</p>
+<pre>% mkdir -p ~/src/jslint
+% cd ~/src/jslint
+% curl -O http://www.JSLint.com/fulljslint.js
+...
+% cat fulljslint.js spidermonkey.js &gt; jslint.js
+%
+</pre>
+<p>これだけでも標準入力から読んで標準出力にエラーを書いたりはできるけど、こんなシェルスクリプトでラップするとより便利だ。</p>
+<pre>#! /bin/bash                                                                    
+dir=$HOME/src/jslint
+warn=0
+
+for i in $*
+do
+  js $dir/jslint.js &lt; $i | sed -e &quot;s/^/$i:/g&quot;
+  test x${PIPESTATUS[0]} != x0 &amp;&amp; warn=1
+done
+
+exit $warn
+</pre>
+<p>これを jslint という名前で chmod +x して $PATH が通ったところにおけば</p>
+<pre>% cat bad.js 
+var n = 1;
+var ary = [
+    1,
+    2,
+    3,
+];
+
+if (n = 1) {
+    print('one');
+}
+% cat good.js
+print('hello world');
+% jslint bad.js good.js
+bad.js:5:6: Extra comma.
+bad.js:8:7: Expected a conditional expression and instead saw an assignment.
+%
+</pre>
+<p>こうできる。</p>
+</div>
+<div class="comments" id="article15_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="15" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

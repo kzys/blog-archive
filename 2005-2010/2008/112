@@ -1,0 +1,31 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-30T02:55:08+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-30T02:55:08+09:00</h1>
+
+    <p>
+前のアルバイト先のひとに「RFC は数行に一回ヘッダがはいったりなんか古い感じのフォーマットですよねー」というはなしをしたら「あれはちゃんとフォントサイズとか余白とか設定するときれいにそろうし Ctrl+L の改ページコードもはいってる」と教えてもらった。
+</p>
+<p>
+で、会社のひとにそのはなしをしたら <a class="ext-link" href="http://tools.ietf.org/html/rfc2223"><span class="icon"></span>http://tools.ietf.org/html/rfc2223</a> を教えてもらって、あと <a class="ext-link" href="http://tools.ietf.org/html/rfc2629"><span class="icon"></span>http://tools.ietf.org/html/rfc2629</a> をみつけた。
+</p>
+<p>
+<a class="ext-link" href="http://openid.net/developers/specs/"><span class="icon"></span>http://openid.net/developers/specs/</a> は実は RFC っぽいフォーマットのテキスト版も提供されている。Yadis は <a class="ext-link" href="http://yadis.org/wiki/Yadis_1.0_(HTML)"><span class="icon"></span>http://yadis.org/wiki/Yadis_1.0_(HTML)</a> に
+</p>
+<blockquote class="citation">
+<p>
+ The HTML version has been automatically generated from the OpenOffice document with Export to MediaWiki export plugin. 
+</p>
+</blockquote>
+<p>
+なんてあるから OpenOffice フォーマットがソースっぽい。newtype すぎだろ。
+</p>
+  </div>
+</body>
+</html>

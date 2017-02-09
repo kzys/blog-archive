@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title><%= year %></title>
+    <link rel="stylesheet" href="../archives.css" />
+  </head>
+  <body>
+    <h1><%= year %></h1>
+
+    <% months.each do |month, post| %>
+    <section>
+      <h2><%= month %></h2>
+      <ul>
+        <% post.each do |post| %>
+        <li><a href="/<%= post[:path] %>"><%= post[:title] %></a></li>
+        <% end %>
+      </ul>
+    </section>
+    <% end %>
+  </body>
+</html>

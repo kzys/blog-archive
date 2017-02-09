@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=33" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: naoya さんとソーシャルゲーム</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article33">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/33-naoya" class="name">naoya さんとソーシャルゲーム</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:4.747296,1.535890&amp;cht=p&amp;chp=0.104720' alt='00:16' /></h1>
+
+<div class="attr">
+  Posted at 2010/09/07 00:16,
+  Modified at 2010/09/07 00:16
+  </div>
+
+<div class="text">
+<p>伊藤直也さんがはてなを退職し GREE に入社された、というのはショックだった。</p>
+<p>ブログ第一世代のひとで、はてなが「技術の」といわれるようになったはじまりのひとで、あと、悩んだりとか勉強したりとか自社サービスについての議論とかを表立ってしていた印象が強くて、なんの面識もない自分がショックをうけるのは、この最後の部分が大きいのだと思う。</p>
+<p>気がついたら、はてなには naoya さんも secondlife さんもいなく、ミクシィには mikio さんも kazeburo さんもいなく、ウノウは Zynga Japan になっていた。</p>
+<h2 id="article33_1" class="ah1 topic">ソーシャルゲーム</h2>
+<p>「ソーシャルゲーム」という言葉をあまりつかいたくないのは、その定義がひとによってまちまちだからだ。あるひとはゲーム外の人間関係をもちこむことを、あるひとはネットワーク上で複数人でやることを、あるひとはカジュアルゲームと呼ぶべきものをさしているように思う。</p>
+<p>「オンラインゲームは結局廃人が勝つんだけど、ソーシャルゲームでは N が勝つんだよ」と私にいったひとは「ゲーム外の人間関係をもちこむ」ことをいっていたわけで、N さんは会社の受付のひとでかわいい系の美人。</p>
+<p>一方、GREE の田中さんは CEDEC でソーシャルゲームにおける「単純さ」の重要性について</p>
+<blockquote>
+<p>パチンコなんて (ハンドルを) 回すだけ。テレビもボタンを押すだけで面白い。(ソーシャルゲームも) ああいうものでなければ。</p>
+</blockquote>
+<p>といったらしい (<a href="http://gamez.itmedia.co.jp/games/articles/1009/02/news056.html">ITmedia</a>)。ここまでくると「ソーシャルゲーム」どころか「ゲーム」なのかすら不安になり、これを1年に1度のゲーム開発者のカンファレンスに来ていうのか、というのにちょっとくらくらした。</p>
+</div>
+<div class="comments" id="article33_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="33" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

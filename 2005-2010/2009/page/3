@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+   <div class="main">
+    <div class="entry" id="entry1573">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/11/chrome-repl">ChromeRepl - a remote REPL client for Google Chrome</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-11-07 15:50    </div>
+    <div class="tags yui-u">
+      <a href="//blog.8-p.info/2009/tag/lang-en" rel="tag">lang-en</a>    </div>
+  </div>
+  <div class="body"><p>Today is a little party about Chromium extension at Shibuya. And so I wrote a small extension to learn about Chromium and Google Chrome.</p>
+<h3>Developer Tools Protocol</h3>
+<p>Yesterday, I hear about <a href="http://code.google.com/p/chromedevtools/">Google Chrome Developer Tools</a> from co-worker. He said &#8220;I tried Eclipse debugger but not works well…&#8221;. Um, I don&#8217;t know Eclipse. Sorry.</p>
+<p>However I found a <a href="http://code.google.com/p/chromedevtools/wiki/ChromeDevToolsProtocol">Google Chrome Developer Tools Protocol</a> from Developer Tools page. It&#8217;s simple, text based protocol over TCP/IP. User can control Chrome from a remote client.</p>
+<div class="eyecatch"><img src="//blog.8-p.info/2009/wp-content/uploads/2009/11/protocol.png" alt="Protocol" width="337" height="195" style="border:none"/></div>
+<p>Developer Tools Protocol have some <em>Tools</em>. DevToolsService is not fun, V8Debugger is powerful and interesting, and ExtensionPorts is most flexible. This tool used to talk to a Chrome extension.</p>
+<h3>How to use ChromeRepl</h3>
+<p>So I wrote a extension, Ruby client library and script. Repository is <a href="http://bitbucket.org/kzys/chrome-repl/">chrome-repl</a>.</p>
+<p>ChromeRepl is proof-of-concept quality yet. First, launch Chrome with &#8211;remote-shell-port and load extension from chrome://extensions/.</p>
+<pre>
+% /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-shell-port=9222
+...
+</pre>
+<p>Second, <em>edit extension ID of chrome-repl script</em> and launch on another console.</p>
+<pre>
+% ruby -I lib ./bin/chrome-repl 9222
+&gt; 1 + 2
+3
+&gt; chrome.tabs
+{"onRemoved"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onRemoved"}, "onAttached"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onAttached"}, "onDetached"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onDetached"}, "onSelectionChanged"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onSelectionChanged"}, "onMoved"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onMoved"}, "onCreated"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onCreated"}, "onUpdated"=&gt;{"listeners_"=&gt;[], "eventName_"=&gt;"tabs.onUpdated"}}
+</pre>
+<p>I&#8217;ll make chrome-repl.crx soon. Please wait a moment.</p>
+</div>
+</div>
+<div class="entry" id="entry1534">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/10/october">10月をふりかえる</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-10-31 10:44    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>10月も終わりで、あと2ヶ月もすれば今年も終わってしまう。仕事はうまくいっていない、けど9月よりはがんばれたと思う。</p>
+<p>クラスや関数をきったり実装を整理したりは、自分でもそれなりにできていると思っている。でも運用に関しては、まわりとの間に歴然とした差を感じることが多い月だった。障害対応の場数はふんだけど、役割は交通整理が精一杯だ。負荷が高まる DB をみながらテーブルにインデックスを追加したり、サーバー間の通信量を減らしたりはまだできない。マスター1台に複数のスレーブがぶらさがる構成のデータベースで、アプリケーションからスレーブへのバランシングを直したのはちょっと楽しかった。見つけたのも、ふりかたを考えたのも自分じゃないけどね。</p>
+<p>GTD は結局みについていない。フィードリーダーは Fastladder で再開してしまった。とはいえ13件で1つは自分、2つは英語で、のこりは全部友達や先輩なので、なんかずいぶんちがう。ソーシャルブックマークはまだ止めたままだ。</p>
+<p>Web に対する考え方はすこし変わった、ことを COOKPAD のいざこざをみて意識させられた。クロールする権利とか、スクレイピングする自由とかは、別に空からふってくるものではないと思う。最近カメラマンのひとと会う機会があって、そのときも少しコピーのはなしをしていた。</p>
+<p>あとそう、ちょっと自分のなかで GitHub ブームがあって <a href="http://github.com/defunkt/rip">Rip</a> の # TODO とコメントされている部分を直したり、<a href="http://github.com/lyokato/p5-oauth-lite">OAuth::Lite</a> に機能が足りないと思ったら自分が間違っていたり (わかりづらいと強弁した)、<a href="http://github.com/djmitche/buildbot">Buildbot</a> の IRC まわりに機能を足したりしていた。トピックブランチははじめて作った。</p>
+</div>
+</div>
+<div class="entry" id="entry1497">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/10/linux-db-system">『Linux-DB システム 構築/運用入門』を読んだ</a>
+    (3)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-10-24 21:37    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>最近 MySQL まわりで困ることが多くなってきたので、<a href="http://d.hatena.ne.jp/kazuhooku/20090915/1252992493">kazuhoのメモ置き場</a> や <a href="http://blog.nomadscafe.jp/2009/09/linux-db.html">blog.nomadscafe.jp</a> で勧められていた『Linux-DB システム 構築/運用入門』を読んだ。</p>
+<p>本書がカバーする範囲は広い。実際に私がさわる場所は7, 8, 9章の memcached やアプリケーションパーティショニング、インデックス、そして14章の負荷テストのあたりだけだ。でも、その前の章で出てくる DRBD やロードバランサは、自分がさわる場所の前後左右に、後の章に出てくるファイルシステムやスケジューラは、これも自分がさわる場所の下にあるわけで、知っておくべきだしわかるのは楽しい。</p>
+<p>いろいろハイテクもあったので、実験用に自宅 Linux サーバーでもたてようかと少し思った。8-p.info も Debian GNU/Linux で動いてはいるけど、これは Slicehost という海外の VPS だからか、コマンドを打ち込んだりするにはネットワーク的に遠くて遅い。</p>
+<h3>抽象化</h3>
+<p>例えばハードディスクというのは通電していなくてもデータが消えない回転する円盤で、それを抽象化してファイルシステムがあり、さらに抽象化した上には RDBMS がある。その上でアプリケーションを書いている人が「ランダムリードはシークが」とかいうのは変な気もするけど、下では相変わらず円盤が回転して、遅かったり速かったりするんだからしょうがない。</p>
+<p>『Joel on Software』にはここらへんをあつかった「漏れのある抽象化の法則」という章があり、こう書いてあった。</p>
+<blockquote><p>そういうわけで、抽象化は私たちが作業する時間を減らしてはくれるが、私たちが学ぶ時間までは節約してくれないのだ。</p></blockquote>
+<p>確かに、このくらいの割り切ったつきあいが良い気はします。</p>
+</div>
+</div>
+    <div class="paginate">
+      <a href="//blog.8-p.info/2009/page/2" >Newer</a>      <a href="//blog.8-p.info/2009/page/4" >Older</a>    </div>
+  </div>
+  <div class="sidebar"><h2>About me and this blog</h2>
+<p>
+  All articles are written by <a href="http://8-p.info/me/">加藤和良</a>.
+  A few are <a href="/2009/tag/lang-en">written in English</a>.
+</p>
+
+<ul>
+  <li>
+    <h2>Recent articles</h2>
+    <ul>	<li><a href='//blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='//blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='//blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='//blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='//blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='//blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='//blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='//blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='//blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='//blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='//blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='//blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='//blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='//blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='//blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='//blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='//blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='//blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='//blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='//blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='//blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='//blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='//blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='//blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='//blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='//blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='//blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='//blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='//blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='//blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='//blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='//blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='//blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='//blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+</ul>
+  </li>
+</ul>
+
+<ul><li id="linkcat-2" class="linkcat"><h2>Links</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://collisions.doppac.cc/">collisions.doppac.cc</a></li>
+<li><a href="http://googletesting.blogspot.com/">Google Testing Blog</a></li>
+<li><a href="http://www.grafikcache.com/">Grafikcache</a></li>
+<li><a href="http://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="http://someru.blog74.fc2.com/">Hang Reviewers High</a></li>
+<li><a href="http://labs.ideo.com/">IDEO Labs</a></li>
+<li><a href="http://blog.makezine.com/">MAKE: Blog</a></li>
+<li><a href="http://d.hatena.ne.jp/KZR/">Radium Software</a></li>
+<li><a href="http://steps.dodgson.org/">steps to phantasien</a></li>
+
+	</ul>
+</li>
+</ul>
+
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+</p>
+</div>
+</div>
+
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

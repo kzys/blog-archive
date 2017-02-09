@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>JavaScript でプレースホルダつき入力欄を作る - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry449">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/03/textfield-js">JavaScript でプレースホルダつき入力欄を作る</a>
+    (3)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-03-08 09:25    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>JavaScript で input 要素にプレースホルダをつけるようにして、このブログの右上につけてみた。</p>
+<div class="eyecatch"><img src="//blog.8-p.info/2009/wp-content/uploads/2009/03/placeholder.png" alt="Placeholder" title="Placeholder" width="640" height="200" class="alignnone size-full wp-image-452" /></div>
+<p>ユーザーが入力するべきものを入力欄自身に表示するこのインターフェース、調べたら <a href="http://ui-patterns.com/pattern/InputPrompt">Input Prompt</a> と呼ぶ向きもあるらしい。</p>
+<p>ここではその実装と設計 (というほどおおげさなものじゃないけど) について、制作過程の細々とした考えを文章化してみます。</p>
+<h3>インターフェースを決める</h3>
+<p>どこかで見たことある部品なので、入力欄がページの読者に提供するインターフェースは、もうかたまっている。</p>
+<ul>
+<li>入力前は説明文を、灰色かなにかで表示する</li>
+<li>フォーカスがあたると説明文が消える</li>
+<li>入力後はそのまま、なにも入力されていなければ説明文が再び表示される</li>
+</ul>
+<p>ページの作者に提供するインターフェースはこうした。</p>
+<pre>
+var field = new TextField($('searchKeyword'));
+field.setPlaceholder('Search');
+</pre>
+<p>「説明文」を setPlaceholder で設定する。また、説明文を表示しているときは input 要素に placeholder クラスをあてて、説明文の色は CSS 経由で設定してもらうことにする。</p>
+<p>細かいところだと、TextField のコンストラクタにはページ上の要素そのものを渡すようにしている。Google Maps の <a href="http://code.google.com/intl/ja/apis/maps/documentation/introduction.html#GMap2">GMap2</a> と同じだ。たまに、SWFObject の <a href="http://code.google.com/p/swfobject/wiki/api">swfobject.registerObject</a> のような、文字列で ID 属性を渡すことを要求するものがあるけど、これをされると動的に生成した要素を引数にあたえづらい。</p>
+<pre>
+var input = document.createElement('input');
+var field = new TextField(input);
+</pre>
+<p>特別な事情がない場合は、要素そのものがとれるようにするべきだと思う。</p>
+<h3>ライブラリを選ぶ</h3>
+<p>JavaScript は様々なブラウザ間の差異とか、よくやる処理に対して便利なショートカットがないとか、面倒なところがいくつかある。この面倒は、<a href="http://prototypejs.org/">Prototype</a>, <a href="http://mochikit.com/">MochiKit</a>, <a href="http://jquery.com/">jQuery</a> など既存のライブラリでだいたい回避できる。自分でゼロから書いて面倒に対処するのも勉強にはなるけど、勉強がすんだ後はやっぱり有名なライブラリにのったほうが、あとから読む人に優しい。</p>
+<p>最近は jQuery が流行っているけど、私は Prototype のほうが好きだ。今回も Prototype を使った。</p>
+<p>InfoQ の <a href="http://www.infoq.com/jp/news/2009/01/prototype-vs-jquery">Prototype vs. jQuery</a> で紹介されている <a href="http://blog.thinkrelevance.com/2009/1/12/why-i-still-prefer-prototype-to-jquery">Why I still prefer Prototype to jQuery</a> では、コメント欄に <a href="http://mootools.net/">MooTools</a> を推すひとがちらほらいた。</p>
+<h3>プライベート</h3>
+<p>プライベートな変数・メソッドは JavaScript でも区別するべきなので、いくつかの変数・メソッドには名前の先頭に &#8220;_&#8221; をつけている。クロージャをつかって外から呼び出すことを本気で防止するとか、そういうことはしていない。設計の意図をしめす意味での、紳士協定としての区別があれば十分だと思う。</p>
+<h3>ソースコード</h3>
+<p>最後にソースコードをはっておきます。著作権とかは主張しないので、自由につかってください。</p>
+<pre>
+var TextField = Class.create({
+    initialize: function (element) {
+        this._element = $(element);
+        this._placeholder = '';
+        this._changed = this._element.value != '';
+
+        this._element.observe('focus', this._onfocus.bindAsEventListener(this));
+        this._element.observe('blur',  this._onblur.bindAsEventListener(this));
+        this._element.observe('change', function () {
+            this._changed = true;
+        }.bindAsEventListener(this));
+
+        Event.observe(window, 'unload', this._unload.bindAsEventListener(this));
+    },
+
+    _onfocus: function () {
+        if (! this._changed) {
+            this._element.value = '';
+        }
+        this._showPlaceholder(false);
+    },
+
+    _onblur: function () {
+        if (this._element.value == '') {
+            this._changed = false;
+        }
+        this._showPlaceholder(true);
+    },
+
+    _unload: function () {
+        if (! this._changed) {
+            this._element.value = '';
+        }
+    },
+
+    setPlaceholder: function (str) {
+        this._placeholder = str;
+        this._showPlaceholder(true);
+    },
+
+    _showPlaceholder: function (flag) {
+        if (flag &#038;&#038; ! this._changed) {
+            this._element.value = this._placeholder;
+            this._element.addClassName('placeholder');
+        } else {
+            this._element.removeClassName('placeholder');
+        }
+    }
+});
+</pre>
+<h3>まとめ</h3>
+<p>とりとめないけど、今回主張したことを並べてみた。</p>
+<ul>
+<li>引数は ID 属性ではなく、要素そのものを渡せるようにしよう</li>
+<li>既存のライブラリを使おう</li>
+<li>プライベートは (がんばって呼べなくすることまでやらなくても) 区別はしよう</li>
+</ul>
+<p>JavaScript はいわれるほど変な言語ではない。今回のソースコードも (Prototype の Class.create のおかげもあって) 他言語ができれば JavaScript が読めなくてもわかるレベルにおさまっていると思う。</p>
+<p>ふつうにやりましょう。</p>
+<h3>追記</h3>
+<p>Safari で遷移後に戻ったときにプレースホルダが残ってしまう問題があったため、unload まわりのコードを追加しました。こういうのが続くとふつう説がゆらぐのでなんとかしないと。ええと、WebKit はフォームの状態を保存するのです。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+<div id="comments">
+
+<div class="comment">
+  <h3 class="alt" id="comment-44">
+    <img alt='' src='http://www.gravatar.com/avatar/cc08756798ff94dad86ebc51c1701195?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    ひろき  </h3>
+  <p>あれっすよ、kzys</p>
+<p>これを本気でやるなら、親をたどってform要素のonsubmitもフックしないといけなくなるんですけど<br />
+このブログのUIだとfocusなしで検索することができないようになってるんですね。</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-45">
+    <img alt='' src='http://www.gravatar.com/avatar/7828b45f8396aa361d85cead01fd99ca?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    <a href='http://8-p.info/' rel='external nofollow' class='url'>KATO Kazuyoshi</a>  </h3>
+  <p>たしかにそうだ。もともとここのために書いたのでそこらへん抜けてますね。</p>
+<p>あとで、来週までには直します。</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-71">
+    <img alt='' src='http://www.gravatar.com/avatar/7828b45f8396aa361d85cead01fd99ca?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    <a href='http://8-p.info/' rel='external nofollow' class='url'>KATO Kazuyoshi</a>  </h3>
+  <p>再来週になってしまいましたが、続きを書きました。</p>
+<p><a href="//blog.8-p.info/2009/03/textfield-js-2" rel="nofollow">//blog.8-p.info/2009/03/textfield-js-2</a></p>
+</div>
+</div>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="449" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

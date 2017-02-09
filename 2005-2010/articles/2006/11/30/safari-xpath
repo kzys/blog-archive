@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Safari が XPath をサポートしていた</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135503540">
+  <h2 class="entry-title"><a href="/articles/2006/11/30/safari-xpath" title="Safari が XPath をサポートしていた">Safari が XPath をサポートしていた</a></h2>
+  <div class="published">
+    November 30th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://webkit.org/">The WebKit Open Source Project</a> からたどって、Safari の SVN trunk をビルドしてみたら、document.evaluate が実装されていることに気づいた。</p>
+
+<p>どのくらい実装されているのかとか、いつリリースされるのかとかは調べてないけど、<a href="http://a-h.parfe.jp/einfach/archives/2006/0106171150.html">Google のラジオボタン押したら検索</a> が Creammonkey で動くのは確認。すばらしい。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/safari" rel="tag" title="safari">safari</a></li>
+      
+      <li><a href="/tags/xpath" rel="tag" title="xpath">xpath</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">2 Responses to &#8220;Safari が XPath をサポートしていた&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-134424600">
+			<cite><a href="http://d.hatena.ne.jp/amachang/">amachang</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134424600" title="">December 1st, 2006 at 01:07 AM</a></small>
+			<p>こんにちは。たぶんはじめてコメントさせていただきます</p>
+
+<p>最近の prototype.js では、処理の高速化のため、document.evaluate を使えるブラウザでは、内部で XPath を使ってくれたりするようなので、いつのまにか web ブラウジングが快適になっているかもしれませんね ^^</p>
+		</li>
+  
+		<li class="" id="comment-134355510">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134355510" title="">December 3rd, 2006 at 12:15 AM</a></small>
+			<p>はじめまして。</p>
+
+<p>prototype.js がそんなことになってるのは知りませんでした。
+http://dev.rubyonrails.org/changeset/5102 らへんっぽいですね。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/11/30/safari-xpath/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

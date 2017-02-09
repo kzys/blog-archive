@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>YAPC::Asia 2009 スタッフ日記 - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry1290">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/09/yapcasia-2009">YAPC::Asia 2009 スタッフ日記</a>
+    (2)  </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-09-13 09:38    </div>
+    <div class="tags yui-u">
+      <a href="//blog.8-p.info/2009/tag/yapcasia2009" rel="tag">yapcasia2009</a>    </div>
+  </div>
+  <div class="body"><p><a href="http://conferences.yapcasia.org/ya2009/">Yet Another Perl Conference Asia 2009</a> にスタッフとして参加してきた。</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3975578395/" title="YAPC::Asia Tokyo 2009 by kzys, on Flickr"><img src="http://farm3.static.flickr.com/2572/3975578395_5269f0f334.jpg" width="375" height="500" alt="YAPC::Asia Tokyo 2009" /></a></div>
+<h3>0日目</h3>
+<p>この YAPC は2日間だけど、もちろん1日目の朝に準備をはじめていては間に合わないのと、前夜祭があるのとで、前日にもいろいろ作業がある。</p>
+<p>私は、Tシャツの数を数えたり、大学から借りた無地の立て看板を運び、ポスターをはりつけたり、協賛企業からのノベルティをトートバッグに詰めたりを手伝っていた。ふりかえると、この日が一番大変だった。lestrrat さんが体調を崩されて不在だったので一時はどうなることかと思ったけど zigorou さん、k.daiba さんの活躍でなんとか乗り切った感がある。</p>
+<p>前夜祭の受付はかなり慌てた。来場者のかたに印刷してもらったバーコードを読み込み、対応する名札をわたす、という作業が詰まり気味で、だいぶ列を作らせてしまった。前夜祭後は懇親会で、その後はゴミなどの片付け。</p>
+<h3>1日目</h3>
+<p>朝に看板を移動してから、受付のお手伝い。前日の名札は実は50音順に分けられていて、しかし50音は出現頻度のばらつきが大きく、結果だめなハッシュ関数の連想配列のように線形探索が発生することが多々あった。この日は名札を連番であらかじめふられた ID 順に分け直してくれた方がいて、検索速度がだいぶ改善された。</p>
+<p>昼間はサンドイッチの配布。直前で飲み物がないことに気づき、生協のひとに協力してもらった。サンドイッチは少し余りがちだった。</p>
+<p>その後はノベルティのトートバッグをまた少しだけ作って補充したり、懇親会への移動の案内 (といっても目立つように iPhone を首から下げて発光させつつ曲がり角に立つくらいだけど) をしたり。</p>
+<h3>2日目</h3>
+<p>この日は会期中かなり平和だった。sartak の発表で質問したし jrockway - lestrrat は座って聞いていた。質問の「複数の Role 間でメソッドの衝突が検出できても $self->{foobar} がかぶるのは検出できないじゃん」というのはあまり伝わらなかったけど、あとで lestrrat さんに話したら「直接 $self にアクセスせずメソッド経由でアクセスしないとだめ」ということだった。 </p>
+<p>会場の撤収もそれなりに手際よく進んだんだけど、プロジェクターとスクリーンの発送で、コンビニに断られ佐川に断られ右往左往。</p>
+<p>その後スタッフ打ち上げ後にほかの二次会 (?) に合流。解散後は終電がなく池袋で始発を待った。</p>
+<h3>まとめ</h3>
+<p>3日間おつかれさまでした。JPA 主催になって初の YAPC のせいか色々大変だった、といっても YAPC そのものへの参加が2回目、こういうイベントにスタッフとして参加するのははじめてなので、どのくらいが JPA 主催になって変わって、どのくらいが YAPC に継続して存在する問題で、という大変さの主因の分別はよくわからない。</p>
+<p>ただ、もうちょっとこうできたはず、というのは打ち上げでも色々あがっていた。</p>
+<p>もちろん、大変さだけじゃなくて楽しさもある。普段参加していたものの裏側をみれるし、Perl hacker なひとと話す機会もふえて距離が縮む。私は3日すべてスタッフとして参加したけど、メールでは「どの日これますか?」という調整もあったので、ここまでがっつり拘束されなくとも (少なくとも今年は) スタッフになれました。</p>
+<p>一方、発表が聞きづらく技術的収穫が限定されるのも事実なので、誰にでも無差別に勧められるかというと微妙なところ。「話す機会」云々については、インターネットに文章を書いてると「読んでます」といわれる (個体として認識される) 可能性が高まるので、そっちをがんばったほうがいいとは思う。個人的に身近な人々には「お客さんを脱したいならいっそ発表を目指してほしい」です :)</p>
+<p>さて、来年は</p>
+<ul>
+<li>YAPC の会場設営以前を手伝う</li>
+<li>LT でも YAPC じゃなくてもいいので発表する</li>
+</ul>
+<p>のを目指します。<a href="//blog.8-p.info/2008/50">去年</a>もそのまえも書いたことそれなりに達成してるんだよねこれ。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+<div id="comments">
+
+<div class="comment">
+  <h3 class="alt" id="comment-2224">
+    <img alt='' src='http://www.gravatar.com/avatar/b87835f6ff6133690eac77c67f97e225?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    hiroki  </h3>
+  <p>おつかれ！</p>
+</div>
+<div class="comment">
+  <h3 class="alt" id="comment-2243">
+    <img alt='' src='http://www.gravatar.com/avatar/7828b45f8396aa361d85cead01fd99ca?s=32&amp;d=identicon&amp;r=X' class='avatar avatar-32 photo' height='32' width='32' />    <a href='http://8-p.info/' rel='external nofollow' class='url'>KATO Kazuyoshi</a>  </h3>
+  <p>結局来れなかったんだよね? 残念。</p>
+<p>次回はうちから発表するひと増やしたいなーとか、ノベルティくばりたいなあ、とか思いました。</p>
+</div>
+</div>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="1290" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

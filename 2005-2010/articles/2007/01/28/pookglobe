@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: POOKGLOBE</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134493380">
+  <h2 class="entry-title"><a href="/articles/2007/01/28/pookglobe" title="POOKGLOBE">POOKGLOBE</a></h2>
+  <div class="published">
+    January 28th, 2007
+  </div>
+  <div class="entry-content">
+    
+    <p>バイト先に paperboy&amp;co. のかたが遊びにくるというので、歓迎の意を表して <a href="http://8-p.info/POOKGLOBE/">POOKGLOBE</a> というものを作ってみた。</p>
+
+<p>POOKMARK Airlines のアンテナ (del.icio.us でいうところの network) を二次元平面にグラフとして表示するというありがちなもの。ありがちとはいっても、これ系のグラフ物は前々から一度実装してみたかったので結構満足している。</p>
+    
+    
+    
+    <p>グラフの自動配置アルゴリズムは Peter Eades さんの『A Heuristic for Graph Drawing』という論文から、なんだけど Web で読めなかったので、実際には筑波のかたの『<a href="http://www.iplab.cs.tsukuba.ac.jp/paper/convention/nagumo_taikai97.pdf">ビジュアルプログラミングシステムのためのグラフ描画アルゴリズムの改良</a>』と、青学のかたの『<a href="http://www-haradalb.it.aoyama.ac.jp/haradalab/ronbun/1998/some/paper.pdf">UML 対応版構造化オブジェクトモデリング環境 SOME98 の開発研究</a>』とを読んで実装している。Web にない論文は読めない大学生とか、もうね。うん。あとで大学の図書館で聞こう。</p>
+
+<p>アルゴリズムまわりでは、接続数が多いノードの位置が安定しなくて、震えたり飛んでいったりにずいぶん悩まされた。接続数が n 以上のものは移動ベクトルの計算をあきらめて手動配置に逃げてみても、どうもうまくいかない。結局、接続数の逆数を移動ベクトルにかけて、接続数が多いノードほど動かない「重い」ノードとして扱うようにしたらうまくいった。</p>
+
+<p>実装は、サーバー側にちょっとだけ Ruby があって、あとは ActionScript 3 を Flash 無しで手で書いている。mtasc のころは JavaScript で Java アプレットを書くみたいで楽しかったんだけど、mxmlc は型まわりがうるさめで Java くなりすぎている感じがする。これが ActionScript 2 と 3 の差なのか、Motion Twin と Adobe の差なのかはわからないけど。</p>
+
+<p>ちなみに、Motion Twin がやってる <a href="http://haxe.org/">haXe</a> というコンパイラも ActionScript 3 な (というか AVM2 な) SWF を吐ける。ただ、食わせるソースが ActionScript 3 と微妙にちがう新言語で、コンストラクタになるメソッドがクラスと同名のものではなくて一律 new だったりする。例えていうなら、end じゃなくて { } な Ruby みたいで「気持ちは分からなくはないけど有名って大事だよ？」と、いまひとつ使う気がしない。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+      <li><a href="/tags/socialbookmark" rel="tag" title="socialbookmark">socialbookmark</a></li>
+      
+      <li><a href="/tags/visualization" rel="tag" title="visualization">visualization</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">1 Response to &#8220;POOKGLOBE&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-133815560">
+			<cite><a href="http://glucotrol.8000web.com/">YfqPK2</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133815560" title="">August 23rd, 2007 at 07:06 PM</a></small>
+			<p>level love roll back http://glucotrol.8000web.com/ have fun with party nice. glucotrol first do extention my love and http://glucotrol.8000web.com/generic-glucotrol.html who else love Good work! generic glucotrol but this site root have fun with http://glucotrol.8000web.com/glucotrol-2.5-mg.html while tip property. glucotrol 2.5 mg contents but this site elephant http://glucotrol.8000web.com/glucotrol-dose.html nobody my love and at last. glucotrol dose is happy everything http://glucotrol.8000web.com/cheap-glucotrol.html request Glad to see you way. cheap glucotrol Buy visit this my love and http://glucotrol.8000web.com/glucotrol-dosage.html very good root were created. glucotrol dosage</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/01/28/pookglobe/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

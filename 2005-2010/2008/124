@@ -1,0 +1,79 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-10-01T22:20:20+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-10-01T22:20:20+09:00</h1>
+
+    <p>
+Larry Ellison と Richard Stallman が両方とも「クラウドコンピューティング」とやらに疑問を呈していて、でも一字一句おなじことをいうのはおかしいので調べた。
+</p>
+<p>
+<a class="ext-link" href="http://japan.cnet.com/news/biz/story/0,2000056020,20381234,00.htm"><span class="icon"></span>http://japan.cnet.com/news/biz/story/0,2000056020,20381234,00.htm</a>
+</p>
+<blockquote class="citation">
+<p>
+ Stallman氏は、Guardianが現地時間9月29日に掲載した記事の中で、「クラウドコンピューティングに関して興味深いのは、われわれはクラウドコンピューティングを再定義し、その中にわれわれがすでに行っている全てを含めてしまったことだ」と述べている。
+</p>
+</blockquote>
+<p>
+<a class="ext-link" href="http://www.itmedia.co.jp/enterprise/articles/0810/01/news031.html"><span class="icon"></span>http://www.itmedia.co.jp/enterprise/articles/0810/01/news031.html</a>
+</p>
+<blockquote class="citation">
+<p>
+ Wall Street Journalのベン・ワーゼン氏のブログ記事には、クラウドコンピューティングに対するエリソン氏の痛烈な批判が掲載されている。
+</p>
+</blockquote>
+<blockquote class="citation">
+<p>
+「クラウドコンピューティングで興味深いのは、クラウドコンピューティングという言葉が再定義され、われわれが既に行っているあらゆることが含まれるようになったことである。
+</p>
+</blockquote>
+<p>
+Stallman のほうの原文にあたってみる。
+</p>
+<p>
+<a class="ext-link" href="http://news.cnet.com/8301-1001_3-10054253-92.html"><span class="icon"></span>http://news.cnet.com/8301-1001_3-10054253-92.html</a>
+</p>
+<blockquote class="citation">
+<p>
+ &quot;The interesting thing about cloud computing is that we've redefined cloud computing to include everything that we already do,&quot; Stallman said, in a report posted by The Guardian on Monday.
+</p>
+</blockquote>
+<p>
+ここですでに &quot;Stallman said,&quot; がある。Guardian をみてみよう。
+</p>
+<p>
+<a class="ext-link" href="http://www.guardian.co.uk/technology/2008/sep/29/cloud.computing.richard.stallman"><span class="icon"></span>http://www.guardian.co.uk/technology/2008/sep/29/cloud.computing.richard.stallman</a>
+</p>
+<blockquote class="citation">
+<p>
+ His comments echo those made last week by Larry Ellison, the founder of Oracle, who criticised the rash of cloud computing announcements as &quot;fashion-driven&quot; and &quot;complete gibberish&quot;.
+</p>
+</blockquote>
+<blockquote class="citation">
+<p>
+ &quot;The interesting thing about cloud computing is that we've redefined cloud computing to include everything that we already do,&quot; he said.
+</p>
+</blockquote>
+<p>
+ここの &quot;he said.&quot; が誰かってはなしだと思う。Larry Ellison の原文は <a class="ext-link" href="http://www.eweek.com/c/a/IT-Infrastructure/Oracle-CEO-Larry-Ellison-Spits-on-Cloud-Computing-Hype/"><span class="icon"></span>http://www.eweek.com/c/a/IT-Infrastructure/Oracle-CEO-Larry-Ellison-Spits-on-Cloud-Computing-Hype/</a> で、ここから引用先に。
+</p>
+<p>
+<a class="ext-link" href="http://blogs.wsj.com/biztech/2008/09/25/larry-ellisons-brilliant-anti-cloud-computing-rant/"><span class="icon"></span>http://blogs.wsj.com/biztech/2008/09/25/larry-ellisons-brilliant-anti-cloud-computing-rant/</a>
+</p>
+<blockquote class="citation">
+<p>
+ &quot;The interesting thing about cloud computing is that we've redefined cloud computing to include everything that we already do,&quot; he said.
+</p>
+</blockquote>
+<p>
+Larry Ellison が言ったっぽいですね。
+</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Spahack #1</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132890080">
+  <h2 class="entry-title"><a href="/articles/2007/06/05/spahack-1" title="Spahack #1">Spahack #1</a></h2>
+  <div class="published">
+    June 5th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>土日はアルバイト先の人達に混じって、開発合宿なるものに参加してきました。場所は</p>
+
+<blockquote>
+    <p>インターネット特典を充実させ、格安プランをご用意しております。会議・研修、研修・ゼミ、開発合宿、などの格安プランをご利用できます。</p>
+</blockquote>
+
+<p>サイトのトップにさらっと「開発合宿」と書いてある<a href="http://www.ito-yamaki.co.jp/">山喜旅館</a>。</p>
+
+<p>部屋に無線 LAN の電波が届かなくてほとんどを地下の会議室で過ごしたり、
+「Spahack」なんて名前をつけたわりに 0:00 まわっても風呂に入らないひとがいたりと、
+予想通りストイックなことになってたけど、
+前から作りたかったものに手をつけられたし、アイデアがコードに落ちる一番おもしろいところを7人分(自分いれて8人)一度に見れたしで、なかなか面白かった。
+あーでも、他人の開発環境はもうちょっとじろじろ見といたほうが良かったかも。</p>
+
+<p>せっかく集まるんだから共有・交流は盛んなほうが良いし、
+<a href="http://www.kaihachu.com/">kaihachu.com</a> あたりは、
+<a href="http://www.kaihachu.com/archives/2007/01/post_2.html">ブレスト</a>や<a href="http://www.kaihachu.com/archives/2007/01/post_11.html">報告会</a>など、わりとコミュニケーションコミュニケーションしているんけど、せっかく職場を離れて趣味でやってるんだから割り込みの少なさも貴重だと思う。プログラマあがりだけど日頃プログラミング以外の仕事をしている人達が楽しそうにコードを書いてたから、余計そう思うのかも。</p>
+
+<p>割り込まない共有・交流として IRC は結構使えていたんだけど、
+もっと視覚的に、全員の画面をプロジェクタなりでかいディスプレイなりに一覧表示して中継とかやってみたい。
+開発合宿(or Hackathon)用ソフトウェアというのは結構楽しそうだ。</p>
+
+<p>あと、みんな面白いものを作ってたので、どこかで外に出してくれるといいなー。
+自分は Hyper Estraier で Safari の履歴を検索する Google Web History みたいなものを作ったので、
+もうちょっといじって6月中には 8-p.info で公開する予定です。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/06/05/spahack-1/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

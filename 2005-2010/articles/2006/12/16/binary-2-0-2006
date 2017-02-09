@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Binary 2.0カンファレンス2006</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133766490">
+  <h2 class="entry-title"><a href="/articles/2006/12/16/binary-2-0-2006" title="Binary 2.0カンファレンス2006">Binary 2.0カンファレンス2006</a></h2>
+  <div class="published">
+    December 16th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>バイト先の会社の定例ミーティングが長引いたのと道に迷ったのとで、AMD64 のおわりあたりから参加。IIJ のはいってるビルの住所が神田だからって神田駅でおりてはだめだよ。</p>
+
+<p>面白かったけど、全部ちゃんと理解できたかといわれるとかなりあやしい。Binary Hacks も会場で買ったのでこれから勉強します。本一冊買っただけで、トートバッグとカレンダ電卓つき時計と T シャツとタンブラーとRHODIAもどきのブロックメモをくれる O'Reilly は太っ腹すぎる。</p>
+    
+    
+    
+    <h3>getcontext</h3>
+
+<p>getcontext が IA-64 でうまく動かなかったので直したというはなし。IA-64 にはレジスタがいっぱいあって、それをうまく扱うために(SPARC に似た)レジスタスタックという仕組みがある。でも setjmp や getcontext はレジスタスタックを復元してくれないので、IA-64 だと setcontext で getcontext 直後にもどったとき、レジスタに割り当てられた変数がうまく復元されず、その変数への代入で SEGV るようなことがあった。</p>
+
+<p>「IA-64 で動かないよー」ってレポートしてもスルーされたけど、なんとか SPARC で再現させて修正してもらえた。修正箇所はコンパイラ。gcc は getcontext, setjmp とかの大域脱出系を特別扱いしているらしく、そういうコンパイラ側での対応が動かないようなものはライブラリ関数じゃなくて、C の言語仕様にいれればよかったのにね、とまとめ。</p>
+
+<p>ちなみに getcontext は Ruby が GC のために使っていたらしく、Ruby の GC とスレッドには魔窟感があるなーと思った。</p>
+
+<h3>マルチコア</h3>
+
+<p>マルチコアとかで、ひとつのメモリを効率よく使うときに使える lock-free synchronization という方法の紹介。sequence lock, read-copy-update は Linux で、double-ended queue は Sun の HotSpot VM なんかで使われていて並列 GC 業界で有名。ここらへんで IRC にいた首藤さんが「並列 GC 業界て」とつっこんでたのがちょっと面白かった。</p>
+
+<p>最近の CPU はアウトオブオーダー実行のための命令のいれかえが激しいので、適切なメモリバリアをはさみつつやらないとまずいらしい。</p>
+
+<p>弾さんの「CPU 増えたんだからメモリも CPU ごとに独立させてあげて、コネクションマシンみたいに互いに通信させるのはどうよ」という質問には「ソフトウェア書く側としては共有メモリは便利だし、結局メモリまわりが単純になっても通信で複雑になるんならそんなにうれしくないのでは」と回答されていた。</p>
+
+<h3>Lightning Talks</h3>
+
+<h4>PS3 Linux</h4>
+
+<p>PS3 Linux 上でキューブの各面にプレゼンのスライドをはりつけて、それを Wii  Remote で操作しながら発表。Wii Remote をふると「ばしっ」という音とともにキューブが回転してスライドがうつりかわるんだけど、キューブなのでスライドは6枚までしか使えないという。すばらしい。Keynote とかステだね！</p>
+
+<p>PS3 Linux は ps3fb というフレームバッファがあるけど、GPU にはアクセスできないらしい。CPU にバグがあった PS2 Linux よりはだいぶマシなものの、このままだと XNA に負けそうなので GPU へのアクセス手段もとってもらえるとうれしいよ、と。</p>
+
+<h4>Ajax</h4>
+
+<p>&lt;img src="..." onload="alert(this.width)"&gt; という具合に画像のサイズ情報でクロスドメイン通信をする。画像のサイズの値を大きくしつつも画像自体が大きくなるのを防ぐために、Imge Block は 1x1 のままヘッダの数字だけ細工する。そこらへんがバイナリ。</p>
+
+<p>前振りも相変わらず面白かった。Wii はロングテールなので PS3 より Web 2.0 だとか。信頼できるブロガーによるとそのロングテールは切れやすいわけですが。</p>
+
+<h4>Flash Lite</h4>
+
+<p>携帯電話の Flash Lite に<a href="http://www.tangoriki.com/">単語力</a> のデータをのせるために圧縮。Flash Lite は ActionScript のバージョンが古いので、いろいろプログラミング言語としては弱い(関数呼び出しすら無い！)んだけど、そのなかでさらに伸張処理を書くとか涙ぐましい努力が。</p>
+
+<h4>GNU</h4>
+
+<p>「0 が 1 かと問われたら自由と答えろ」という g新部さんはさすが。</p>
+
+<h4>ASCII</h4>
+
+<p>野首さんが大学時代につくられたテキストベースのアニメーション作品を 1 チップ MSX 上で動かして、みんなで鑑賞。</p>
+
+<p>福地さんのバグパイプとヴォコーダーの合体したような謎のデバイスから奏でられる音楽も相まって、かなり会場の youpy 度があがっていた。IIJ の会議室では発表のトリは謎音を鳴らすとか、そういうルールでもあるのでしょうか。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/12/16/binary-2-0-2006/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: iBook のバッテリーを交換する</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135483100">
+  <h2 class="entry-title"><a href="/articles/2006/09/24/ibook" title="iBook のバッテリーを交換する">iBook のバッテリーを交換する</a></h2>
+  <div class="published">
+    September 24th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>8/27 に申し込んでいたバッテリーが届いたのでうけとる。金曜日には不在票が入っていたんだけど、いろいろ時間が合わなくて今日までかかってしまった。</p>
+
+<p>古いバッテリーは完全に放電させてから返却するものらしい。放電方法は「使うこと」。A4 1枚の「ご案内」には</p>
+
+<blockquote>
+    <p>(1) 回収対象のバッテリーを iBook または PowerBook に装着してください。電源アダプタをつないでいる場合は、電源アダプタをはずしてください。</p>
+</blockquote>
+
+<p>とか</p>
+
+<blockquote>
+    <p>重要: 放電の前に必ず電源アダプタをはずしてください。　また、回収対象のバッテリーの放電が終了するまで、iBook または PowerBook の側を離れないようにお願いいたします。</p>
+</blockquote>
+
+<p>という説明が。危なくないのか。</p>
+
+<p><a href="https://support.apple.com/ibook_powerbook/batteryexchange/index.html?lang=ja">バッテリー交換プログラム - iBook G4 および PowerBook G4</a></p>
+
+<blockquote>
+    <p>ご注意：回収対象のバッテリーを iBook または PowerBook から取り外しましたら、交換用のバッテリーが届くまではコンピュータを電源アダプタにつないでお使いください。</p>
+</blockquote>
+
+<p>なんかちがう。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/ibook" rel="tag" title="ibook">ibook</a></li>
+      
+      <li><a href="/tags/ibook" rel="tag" title="ibook">ibook</a></li>
+      
+      <li><a href="/tags/ibook" rel="tag" title="ibook">ibook</a></li>
+      
+      <li><a href="/tags/life" rel="tag" title="life">life</a></li>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/09/24/ibook/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

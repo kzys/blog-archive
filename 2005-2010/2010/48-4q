@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=48" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: 4Q をふりかえる</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article48">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/48-4q" class="name">4Q をふりかえる</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:5.654867,0.628319&amp;cht=p&amp;chp=-0.314159' alt='01:12' /></h1>
+
+<div class="attr">
+  Posted at 2010/12/27 01:12,
+  Modified at 2010/12/27 01:30
+  </div>
+
+<div class="text">
+<p>まだ ChromeRepl のはなしは書きたい (Percolator はあきらめ、ごめん) のですが、クリスマスも過ぎているので、一旦まとめ。</p>
+<h2 id="article48_1" class="ah1 topic">Facebook</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/42-facebook-bigpipe-tti">Facebook の BigPipe と TTI</a></li>
+</ul>
+<p>BigPipe のはなしは、しばらく前に Ajaxian に載っていたもので、仲間内で「XHR で iframe やってるの?」「いや1リクエストだよこれ」「うわあ」と盛り上がっていたのを、Facebook ブームにあわせて書いてみた。大分読まれたみたいで、はてなブックマークでは <a href="http://b.hatena.ne.jp/entrylist?sort=count&amp;url=http%3A%2F%2Fblog.8-p.info%2F">blog.8-p.info のなかで2位</a> にまでなった。</p>
+<p>Facebook のまわりは、<a href="http://www.erlang-factory.com/upload/presentations/31/EugeneLetuchy-ErlangatFacebook.pdf">チャットは Erlang</a> とか <a href="http://www.facebook.com/note.php?note_id=468211193919">Hadoop まわりのがんばり</a> とか、面白いはなしが多い。</p>
+<h2 id="article48_2" class="ah1 topic">イベント</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/43-yapc-asia-tokyo-2010">YAPC Asia Tokyo 2010</a></li>
+<li><a href="http://blog.8-p.info/2010/45-chrome-as-a-server">Chrome As A Server</a></li>
+</ul>
+<p>YAPC はボランティアスタッフとして、Chrome のはなしをした Firefox Developers Conference はスピーカーとして参加した。</p>
+<p>この他にも <a href="http://atnd.org/users/29">ATND</a> をみると若手 IT 勉強会 (John Resig の &quot;Secrets of the JavaScript Ninja&quot; を読んでいる) や Scala 勉強会 (平日なのもあって最近あまり行けていない), DeNA Technology Seminar にも出ていた。もうちょっとブログに書くと良いんですけど…</p>
+<h2 id="article48_3" class="ah1 topic">その他</h2>
+<ul>
+<li><a href="http://blog.8-p.info/2010/44-web">最近の Web</a></li>
+<li><a href="http://blog.8-p.info/2010/46-mobile-first-web-second">Mobile First Web Second</a></li>
+<li><a href="http://blog.8-p.info/2010/47-focus">Focus</a></li>
+</ul>
+<p>Instagram はややあきてしまって、でも Nikon の一眼レフを買った。Facebook は、ユーザーとしては微妙で、mixi と Twitter で大体まにあう感じがする。ただ、ワープロも OS も携帯電話も書籍通販も負けている国としては、そういうユーザーとしての感覚だけで考えてはだめだとも思う。</p>
+<p>モバイルのはなしは調べたので書いただけ。アメリカ、というか先進国スマートフォン圏はちょうど i-mode バブルみたいな感じなのかなあ。新興国が貧弱な電話を経験するのか、そこを飛ばして世界全体がスマートフォンになるかは、少し興味があるけど調べていない。</p>
+<p>インターネットつながない話は、また人に不思議がられたことがあって、まとめてみた。ファーストフードみたいな情報・娯楽というのはあって、そういうのに投入する時間はほどほどにしないとと思う。こういうことを書くとストイックな生活を送っている印象を持たれることがあるけど、実際はあんまり出来ていないです。</p>
+</div>
+<div class="comments" id="article48_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="48" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

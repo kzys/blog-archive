@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=11" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Passionate</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article11">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/11-passionate" class="name">Passionate</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:4.276057,2.007129&amp;cht=p&amp;chp=-0.523599' alt='22:10' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/28 22:10,
+  Modified at 2010/01/30 01:29
+  </div>
+
+<div class="text">
+<p>むかし読んだ『UNIX プログラミング環境』はいつのまにか絶版になっていた。UNIX を勉強するには何がいいんですかね? と聞くと</p>
+<pre>% cd /usr/bin
+% man *
+</pre>
+<p>とか、いや man は環境に依存した記述があるから <a href="http://www.opengroup.org/onlinepubs/009695399/">SUSv3</a> がとか、あの、えーと、研修でつくったサービスのセキュリティホールをつけるようにとか、NoSQL ブームに参加できるようにとか、そういうはなしをしてるんじゃなくてですね。</p>
+<p>ただ、はじめから獅子を目指さないやつは猫にすらなれねーんだよ、といわれるとそうなのかなあという気もする。</p>
+<h2 id="article11_1" class="ah1 topic">お勉強好き</h2>
+<p>実際のところ、われわれは「お勉強」が好きだ。</p>
+<p>最近、(プログラマじゃなくても) <a href="http://inter-sections.net/2007/11/13/how-to-recognise-a-good-programmer">良いプログラマを見分けるには</a> というはなしを読んだ。そんなに目新しいことは書いてなくて</p>
+<ul>
+<li>情熱 - IT が「良いキャリア」だから、ではなく、プログラミングに情熱をもっていること</li>
+<li>自分で勉強し、学ぶことが好きなこと</li>
+<li>知性 - 社交性と同一視はできないけど、人当たり最悪なのもだめだよ</li>
+<li>履歴書に書かないような経験 - 子供のころとか</li>
+<li>幅のあるテクノロジ - Java ひとそろえ、とかではなく、新しい技術を学んでいることがわかるように</li>
+<li>認定試験とかはあんま気にするな</li>
+</ul>
+<p>と、わりと「いつものやつ」だった。ブログでこういう話題をあつかうのは明らかに母集団にかたよりがあり、Web 上のアンケートでインターネット利用率を調べるような感じがある。<a href="http://d.hatena.ne.jp/takahashim/20060212">高橋征義さん</a> のようなことを書いてくれるひとは少ない。</p>
+<blockquote>
+<p>自分で本を買って読むのはよいことだ。就業時間以外にコードを書くのもよいことだ。しかし、それは個人のたのしみのために行われるべきものであって、職業上の義務としてなされるべきものではない。それでは単なる時間外労働である。</p>
+</blockquote>
+<blockquote>
+<p>業務のために、就業時間外にたくさん本を読め、と説く人々は、時間外労働を対価なしに（むしろ本代を払って）行え、と説いていることに他ならないはずだ。これを問題だと思わないのだろうか。私は非常に重大な問題だと思う。そのような行動をとらなければキャリアに支障を来たすというなら、それは業界そのものが深く病んでいるとしか思えない。</p>
+</blockquote>
+<p>「え、病んでるんですよ」という認識はあるかもしれなけど、目指すところではないですよね。</p>
+<h2 id="article11_2" class="ah1 topic">技術的負債</h2>
+<p>一方で、決められた時間に仕様をみたした仕事をしてるんだから、お勉強なんて十分ですよ、といわれると、それもそれで不安になる。CS はそんなに関係ない (もっとほら論文とかだよたぶん) けど、<a href="http://d.hatena.ne.jp/ryocotan/20091231/p3">コンピュータサイエンスはこう学べ (2)</a> には面白いはなしがあった。</p>
+<blockquote>
+<p>それは簡単で、Code Complete (ASIN:489100455X) とか、そういう方向だよね。チームで仕事をする時に、同僚の邪魔をしない為のコード、ってのはあるんですよ。最低の品質を保証するためのコード。OSとかコンパイラの本ってのは、読んで無くても割と大丈夫で、そういう本を読んでないとローレベルなレイヤーのものは作れないけど、それはそれで大丈夫で、仕事だとそういう仕事は作れる人に回っていくので。それがただ回して貰えないだけで。誰もが普段書くコードの品質ってのは重要で、そいつにインパクトのある本と、そうじゃない奴ってのは別なんだよ。コンピュータサイエンス寄りなやつってのは、自分の満足度とかハイテク路線。チームとか仕事としてコードを書く時に、他人に迷惑を掛けない為の本というのは、主にデザインとかプロセスの話。</p>
+</blockquote>
+<p>これは確かにそうだ。</p>
+<p>世の中には技術的な負債というのがあって、それを加味しない仕事を私は支持しない。負債が仕様に含まれないのは、それを測るのが難しいからであって、それが重要じゃないからではない。負債というものが全くわからない人がいるとしたら、すごく恵まれているか、勉強が足りないか、どちらかだと思う。</p>
+<p>そういいながら『Code Complete』は読んでないんだけどね。</p>
+<h2 id="article11_3" class="ah1 topic">まとめ</h2>
+<p>どうやってもまとまらないですね。身に余ります。</p>
+<p>私は、お金でいったら計算機と関係ない本も買うし、時間でいったらライブハウスに行ったりもするけど、やっぱり計算機まわりに費やしている個人的な資源はおおきい。これは、もっと仕事ができるようになりたいというのもあるし、どうしようもない事情で (自分が引っ越したいとか、会社が京都に引っ越すとか) 辞めざるをえないときに、路頭に迷いたくないというのもある。そもそも楽しいというのも、もちろんある。</p>
+<p>でも、そういうのは、個人的な時間のつかいかたを他人に強制することは、ブラックとまではいかなくても、ダークグレー企業だなあとは思う。あんまりやりたくないし、やる立場にも無いのです。</p>
+</div>
+<div class="comments" id="article11_comments">
+<div class="meta">1 comments</div>
+<div class="comment" id="article11_c1">
+<span class="owner">morita</span> :
+<span class="text">多分読んでないと思うのでこそっと書きますが、楽しみではなく野心のために勉強することも結構あると思いますよ。必須は嫌でも勉強したぶん(たとえば)出世できるなら、それはフェアだと思いました。良い出世パスの不在が勉強を単なる楽しみだと思わせるのかかもしれません。</span>
+<span class="date">(2010/03/27 08:53)</span>
+</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="11" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

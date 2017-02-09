@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: YAPC::Asia 2006 Tokyo (1st day)</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137101260">
+  <h2 class="entry-title"><a href="/articles/2006/03/30/yapc-asia-2006-tokyo-1st-day" title="YAPC::Asia 2006 Tokyo (1st day)">YAPC::Asia 2006 Tokyo (1st day)</a></h2>
+  <div class="published">
+    March 30th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>mightyv の途中からはいったし、メモもそんなに取らなかったので、印象に残った分だけ。</p>
+    
+    
+    
+    <h3>mightyv</h3>
+
+<p>会場の「ソース公開しないの？」という質問に
+「まえにどこかのカンファレンスでも言われて、そのときの最新版のソースを出したんだけど、だれも patch も送ってくれないから、いまの最新版のソースは出てない」という回答が。</p>
+
+<p>ありがちだ。泣ける。</p>
+
+<h3>まつもとさん</h3>
+
+<p>あんまり公開しないで、といってたので一点だけ。</p>
+
+<pre><code>print "hello world\n"
+</code></pre>
+
+<p>は Perl, Ruby, Python で共通だけど、PHP は違うね(会場笑)というので、Audrey Tang の Haskell の紹介の</p>
+
+<blockquote>
+    <p>C++ より速くて、Perl より簡潔で、Python よりきちんとしていて、Ruby より柔軟で、C# より型が充実していて、Java より頑強で、PHP とは何の共通点もないものって？</p>
+</blockquote>
+
+<p>あたりを思い出した。PHP は不遇。</p>
+
+<h3>JSAN</h3>
+
+<ul>
+<li>JavaScript の CPAN を目指す、<a href="http://www.openjsan.org/">JSAN</a> の話。</li>
+<li>DOM.Ready の「onload は全リソースの読み込み完了を待っちゃうから」に同意。Creammonkey で使えそうだ。</li>
+<li>Perl を JavaScript から呼び出すモジュールが CPAN にあるとか。Dashboard に使える？</li>
+<li>prototype.js はなんでも詰め込みすぎで、JSAN はそうじゃないらしい。</li>
+</ul>
+
+<h3>Jifty</h3>
+
+<ul>
+<li><a href="http://jifty.org/view/HomePage">Jifty</a> というさらにさらに後発な Web app. フレームワークの話。</li>
+<li>ネタがおもしろい。この会場では言語ネタは鉄板すぎる。</li>
+<li>Perl からテキトウにメソッド呼んだりしてあげれば、SQL なんて書かなくていいらしい。</li>
+</ul>
+
+<h3>高橋さん</h3>
+
+<ul>
+<li>Ruby は洗脳言語だったんだ！MMR！</li>
+<li>高橋メソッドどうこうより内容が。真似できない。</li>
+</ul>
+
+<h3>Perl Best Practices</h3>
+
+<ul>
+<li>写真や暗転の使い方とか、緩急のつけかたなんかがプロっぽい。</li>
+<li>良い Perl コードを書くには？字面は「perltidy しろ」で終了。ほかの部分の話。</li>
+<li>要するに Effective C++ みたいな話で、Effective C++ は良い本なんだけど、あれを読まないとハマるところが C++ の嫌なところで……Perl の C++ 化？とちょっと思った。</li>
+</ul>
+
+<p>なんか疲れたから二日目は行かなくていいかな。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+      <li><a href="/tags/perl" rel="tag" title="perl">perl</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/30/yapc-asia-2006-tokyo-1st-day/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

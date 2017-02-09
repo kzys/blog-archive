@@ -1,0 +1,61 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-07-17T23:16:46+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-07-17T23:16:46+09:00</h1>
+
+    <p>
+Objective-C で hello world してみる。
+</p>
+<pre class="wiki">
+#import &lt;Foundation/Foundation.h&gt;
+
+int main(int argc, char* argv[])
+{   
+    NSLog(@&quot;hello world&quot;);
+    return 0;
+}
+</pre>
+<p>
+ふつうですね。 #import は <a class="ext-link" href="http://developer.apple.com/jp/documentation/cocoa/Conceptual/ObjectiveC/Articles/chapter_950_section_4.html#//apple_ref/doc/uid/TP30001163-CH3-TPXREF103"><span class="icon"></span>#ifdef ガードつきの #include</a> で、@&quot;hello world&quot; が <a class="ext-link" href="http://developer.apple.com/jp/documentation/cocoa/Conceptual/ObjectiveC/Articles/chapter_950_section_5.html#//apple_ref/doc/uid/TP30001163-CH3-TPXREF104"><span class="icon"></span>NSString</a> です。
+</p>
+<pre class="wiki">
+% gcc -Wall a.m -framework Foundation &amp;&amp; ./a.out
+2008-07-17 22:55:03.955 a.out[35063:10b] hello world
+%
+</pre>
+<p>
+あー、NSLog はログをだすときの関数なので出力がごてごてしてる。printf デバッグには便利です。
+あえて Objective-C で hello world 書くとしたらどうなるんだろう…。
+</p>
+<pre class="wiki">
+#import &lt;Foundation/Foundation.h&gt;
+
+int main(int argc, char* argv[])
+{
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    [@&quot;hello world\n&quot; writeToFile: @&quot;/dev/stdout&quot;
+                       atomically: NO];
+    [pool release];
+    return 0;
+}
+</pre>
+<p>
+長い！writeToFile:atomically: の第二引数を YES にすると、ファイルへの書き込みを atomic にするために、一時ファイルに書き込んでからリネームするようになります。ここではそうされると困るので NO で。
+</p>
+<pre class="wiki">
+% gcc -Wall a.m -framework Foundation &amp;&amp; ./a.out
+hello world
+%
+</pre>
+<p>
+うごきました。次は NSAutoreleasePool か NSLog のはなしをします。
+</p>
+  </div>
+</body>
+</html>

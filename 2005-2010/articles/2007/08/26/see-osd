@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: SEE OSD</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-132583520">
+  <h2 class="entry-title"><a href="/articles/2007/08/26/see-osd" title="SEE OSD">SEE OSD</a></h2>
+  <div class="published">
+    August 26th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://d.hatena.ne.jp/n_euler666/20070822/1187708997">WebLab.ota - オープンソース現象といわずにどういえばいいのか？</a></p>
+
+<blockquote>
+    <p>確かに，オープンソースという言葉を使うには，ライセンスとかフリーといった考え方がすっぽり抜け落ちてはいるが，私の暴力的な理解を使えば，そんなものはオープンソースの本質ではない．</p>
+</blockquote>
+
+<p>暴力的な理解 == 誤解。</p>
+
+<p><a href="http://www.opensource.jp/osd/osd-japanese.html">オープンソースの定義</a> (OSD) にあるのは、ソフトウェアのライセンスのはなしだ。つまり、開発の過程ではなく結果として出来た成果物のはなし。企業内で密かに開発されたオープンソースソフトウェアもあるし、インターネット上で利用者と共に作っても「商業利用禁止」「ネットランナー関係者の利用を禁止」みたいなものはオープンソースソフトウェアではない。利用分野や団体に対する差別は OSD に反するからだ。</p>
+
+<p>「インターネットで人々が協調して」ということなら、<a href="http://cruel.org/freeware/cathedral.html">伽藍とバザール</a>にある「バザール方式」あたりが適切だろう。こちらは特に厳密な定義も無いけれど、文中の「はやめのリリース、しょっちゅうリリース」「目玉の数さえ十分あれば、どんなバグも深刻ではない」とかは、ニコニコ動画上での事例にもそのまま当てはめられると思う。</p>
+
+<h3>関連</h3>
+
+<ul>
+<li><a href="http://lovelove.rabi-en-rose.net/blog.php?n=370">「ニコニコ動画で行われているオープンソース現象」について - うさだBlog</a></li>
+<li><a href="http://ukai.org/wiliki/wiliki.cgi?%A4%DF%A4%F3%A4%CA%A4%CE%B9%CD%A4%A8%A4%BF%A5%AA%A1%BC%A5%D7%A5%F3%A5%BD%A1%BC%A5%B9">みんなの考えたオープンソース</a></li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/blog" rel="tag" title="blog">blog</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

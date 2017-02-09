@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: RGN #02</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136964530">
+  <h2 class="entry-title"><a href="/articles/2006/06/04/rgn-02" title="RGN #02">RGN #02</a></h2>
+  <div class="published">
+    June 4th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>GLOCOM の RGN (コンピュータ・ゲームのデザインと物語についての研究会) に行ってきた。</p>
+
+<p>自分で買ったコンシューマーゲーム機は WonderWitch のための WonderSwan くらいで、ゲームはほとんどやらないんだけど、<a href="http://d.hatena.ne.jp/dotimpact/20060601/p1">dotimpact::journalprinter - コンピュータ・ゲームのデザインと物語についての研究会(RGN) 第２回「ゲームを再定義する（仮）」</a> の人選をみたら面白そうだったので。</p>
+    
+    
+    
+    <h3>ゲームの定義を再検討する</h3>
+
+<ul>
+<li>ゲーム上の「手」が、ルールを追加・変更・削除することだという「ノミック」というゲームがあって、それの最小限版の「ミニマムノミック」を壇上の人達でプレイしてたんだけど、これが面白かった。2ch のネタスレ、はてなダイアリーの<a href="http://b.hatena.ne.jp/t/通報バトン">通報バトン</a>とか、<a href="http://www.chakuriki.net/japan/">バカ日本地図</a>あたりに似ている印象。</li>
+<li>現時点でもっとも良くできてるゲームの定義は Jesper Juul が <a href="http://www.jesperjuul.net/text/gameplayerworld_jp/">ゲーム, プレイヤ, ワールド : ゲームたらしめるものの核心を探る</a> で定義したものなんだけど、これは静的なゲームの構造しか評価できないので、ノミックみたいな構造をも変化するゲームは評価できない。</li>
+<li>ゲーム中でルールが変わるゲームは、時間軸で分割してサブゲームとして扱う。なんか微積分みたいだ。</li>
+<li>Tic Tac Toe (○×ゲーム) は絶対引き分けになるってわかってても、なんかゲームっぽい。絶対に勝てないインチキスロットマシンはゲームっぽくない。これは Tic Tac Toe が対人戦だからじゃないかと思った。</li>
+<li>ゲーム行動が成立しなくなったゲームに「自分ルール」を加えてルールを改変することで、プレイヤ側からゲームであるように保たせるというのはなるほど。これができればゲームじゃないものもゲームにできるので、というか「道路の白線だけを渡って帰る小学生」はこれか。</li>
+<li>「絶対クラッシュするゲームはゲームか？」について「壊れた壷の破片は壷か？」というはなしがあったんだけど、絶対クラッシュするゲームは時間軸上の破綻で、壊れた壷は xyz 座標軸で破綻して時間軸は一瞬の微小時間のはなしなので別だと思った。壷が壷であることは微小時間でも判別できるけど、ゲームがゲームであるためには一定の長さの時間軸が必要だと思う。これが動的ってこと？</li>
+</ul>
+
+<h3>理解力のフライホイールとなるゲーム</h3>
+
+<ul>
+<li>我々は「したいこと」を売っていて、人間が低レベルでしたいことは「エロ」「はやさ」「バイオレンス」。もうちょっと高いレベルだと「仮説をたてて実践して結果をみる」つまり「理解」である。</li>
+<li>ねこに大量のネズミをあたえると、最初は捕まえて殺して食べるんだけど、だんだん食べなくなって、殺さなくなって、捕まえなくなって、最後には無視するようになる。食べるために捕まえて殺してるはずが、食べなくても捕まえるだけはやっちゃう。これがカイハツ行動(←漢字がわからない)で、人にとってのそれは「理解」では？</li>
+<li>「モンスターの階段」というものがある。段階的に倒すのが難しくなるモンスターと、そこをななめに進むユーザーの学習曲線。曲線より下が「楽」で上が「苦」。</li>
+<li>楽→経験値たまる→次のマップ→苦→理解→楽→…という流れがあって、つまり RPG でプレイヤにゲーム上の数値をためさせることは、動機づけではなくレベルの自動調整のための仕組みである、というのは「ゲーム上の数値あげてなにが楽しいの？」と思っていたので納得した。</li>
+<li>「はやさ」というのは「一歩先を行く楽しみ」で対応・情報のはやさのこと。</li>
+</ul>
+
+<h3>ディスカッション</h3>
+
+<ul>
+<li>hally さんは、ゲームの歴史・起源を問うために定義について考えているんだけど、DiGRA の伊藤さんの専門がちょうど科学史で、科学史的には定義は歴史からの後付けらしい。</li>
+<li>そもそもゲームとコンピュータゲームを分ける一線はなにか？</li>
+<li>60 fps で変わる状況？北朝鮮のマスゲームはビットマップディスプレイなんだから、あのひとたちに頼めばできるのでは。</li>
+<li>繰り返すこと？再現性？</li>
+<li>ゲーム理論的にいえばノミックの必勝法は「次のターンで全員勝利」なんだけど誰もやらなかった。敗者のいない勝利に価値はないというのは、ゲームの外側のはなしであって、そこも意識しないといけないのでは。</li>
+<li>もとのノミックには勝利条件やルールの階層化 (憲法と法律のような) があって自己保持能力がある。</li>
+<li><a href="http://www.perlnomic.org/">PerlNomic</a> というのがあるよ。</li>
+<li>そもそも数学的なルールベースの定義より、社会学的な実例ベースの定義にするべきなんじゃないか。ゲームはいっぱいあるだろうけど、でも生物よりは少ないはず。</li>
+</ul>
+
+<h3>会食会</h3>
+
+<ul>
+<li>懇親会 (いかない) まで一時間くらい、お菓子皿とペットボトルのジュースが数セット用意されて会食会になったので、とけこめやすそうな島にまざってはなしてたんだけど、そこがコミュニティエンジンの人達だった。そのうち dotimpact さんや中嶋さんも集まってきて、ちょっとおはなしした。</li>
+<li>人間の行動を定義するのはとても難しいので、まず収集から。<a href="http://www.amazon.co.jp/o/ASIN/4788508125/8pinfo-22/ref=nosim">ヒューマン・ユニヴァーサルズ</a> という本が、炎を意味する言葉は "f" や "h" ではじまる、首を縦に振るのは肯定とか、そういった事例がどのくらいの地域で通用するのかをひたすら集めていて面白いらしい。</li>
+<li><a href="http://kotonoha.cc/">コトノハ</a>でゲームかそうでないかを集めたら面白いかもね、とか。</li>
+<li>中嶋さんの<a href="http://d.hatena.ne.jp/keyword/%A4%CA%A4%F3%A4%C7%A4%CA%A4%F3%A4%C7%B9%B6%B7%E2">なんでなんで攻撃</a>は会社でもあんな感じというか、もっとらしい。</li>
+</ul>
+
+<h3>そのほか</h3>
+
+<ul>
+<li>前に行った <a href="http://blog.8-p.info/articles/2006/01/30/talking-about-winny-at-glocom">Winny のとき</a>より客席へのパスが多いのは良かったと思う。ちょっと発散気味ではあったけど。</li>
+<li><a href="http://www.quinka.org/">Quinka, with a Yawn</a> の新しい CD を下北沢で買って帰った。</li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+      <li><a href="/tags/game" rel="tag" title="game">game</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/06/04/rgn-02/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

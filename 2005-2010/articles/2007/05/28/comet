@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Comet 勉強会</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135219960">
+  <h2 class="entry-title"><a href="/articles/2007/05/28/comet" title="Comet 勉強会">Comet 勉強会</a></h2>
+  <div class="published">
+    May 28th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>日曜日は <a href="http://rails.office.drecom.jp/takiuchi/archive/188">Comet 勉強会</a>でドリコムに行ってきた。「勉強会」というものに参加するのは初めて。発表者を会場で決められるほどの層の厚さは、さすがに Comet や Erlang ではきびしめで、自分ももっと勉強しておくとよかったな。</p>
+
+<p>DRECOM Chat に <a href="http://chat.drecom.jp/room/Comet%E5%8B%89%E5%BC%B7%E4%BC%9A">Comet 勉強会の部屋</a>があって、話題になったページはそこに載ってたりします。</p>
+
+<h3>ShootingStar</h3>
+
+<p>瀧内さんの作っている Rails と組み合わせて使える Comet 実装について。</p>
+
+<ul>
+<li>大量のコネクションをさばけること</li>
+<li>イベント通知に専念すること
+<ul>
+<li>通知されたクライアントが、改めてイベントの内容をサーバーに問い合わせる</li>
+</ul></li>
+<li>すぐに使える
+<ul>
+<li>Rails との組み合わせで便利</li>
+<li>「5分でチャット」とか Rails 風マーケもやってみたり</li>
+</ul></li>
+<li>Flash 不要
+<ul>
+<li>Flash は Linux では動かない、と Juggernaut のひとがいってた</li>
+<li>でもいまは動くらしい</li>
+</ul></li>
+<li>クロスドメインで使えて、Web サーバー別に立てられること
+<ul>
+<li>port は 80</li>
+</ul></li>
+<li>イベント通知に専念したのは我ながら良かったと思う
+<ul>
+<li>イベントの内容は、ふつうの Web アプリケーションと同じかたちで配信しているので、ふつうの Web アプリケーションと同じかたちで負荷軽減とかできる</li>
+<li>Comet が使えない環境向けにポーリングするものを書くとしても、コードの共通部分が増やせる。</li>
+</ul></li>
+<li>C
+<ul>
+<li>Asteroid: C で Ruby の拡張ライブラリを書いて epoll とか kqueue とか叩いている部分</li>
+<li>epoll, kqueue は直でさわってもそんなに煩雑ではない</li>
+<li>libevent はかゆいところに手が届かなかったりする</li>
+<li>ボトルネックになっている部分から順次 C に書き換えたい</li>
+</ul></li>
+<li>マルチスレッド
+<ul>
+<li>マルチコア時代といっても、IO がからむとそんなに性能向上したりしないのでは</li>
+<li>最近の memcached は libevent でマルチスレッドやっているから、読むと良いかも</li>
+</ul></li>
+<li>Windows には前から epoll, kqueue みたいな仕組みがある
+<ul>
+<li>WaitForMultipleObject</li>
+<li>I/O Completion Ports</li>
+</ul></li>
+<li>Safari だめすぎ
+<ul>
+<li>iframe をちゃんと実装してください</li>
+<li>ソースは出てるけど、コンパイルしてみると、配布されているバイナリとは微妙に違うものが出来てしまう</li>
+</ul></li>
+<li>ShootingStar の今後
+<ul>
+<li>大規模実験をしたい</li>
+<li>通信路に Flash も使えるように</li>
+<li>IM 連携</li>
+<li>Rails 以外への対応</li>
+</ul></li>
+<li>ShootingStar は iframe の中に iframe とか作ってるけど、document.domain いじるのではだめ?
+<ul>
+<li>iframe - iframe だとドメインがまったく一致しなくても動くので自由度が高い。ただ、実際は document.domain でも困らないと思う。</li>
+</ul></li>
+</ul>
+
+<h3>Comet の用途</h3>
+
+<p>1時間くらいでは見つからないよねー、というまとめ。個人的にも、所詮は HTTP hack だし Flash ならコネクションはりっぱにできるしで、 FireBug でみて楽しむ以上のものになるか微妙だと思う。</p>
+
+<ul>
+<li>Flash なら繋いだままというのを素直に実装できる</li>
+<li>更新が単位時間あたりに確実に起こるのであればポーリングすればいい</li>
+<li>通知系?</li>
+<li>ニコニコ動画は、技術的には枯れた方向に向かっている
+<ul>
+<li>利用者の裾野が広がっているから</li>
+<li>双方向チャンク的なものを使おうと全部実装してから、プロキシにはねられることに気づいて、捨てた</li>
+<li>ポーリングは更新間隔をあければそのまま負荷が下がるのが良い</li>
+</ul></li>
+</ul>
+
+<h3>Erlang</h3>
+
+<p>yamaz さんの Ruby のスレッドと Erlang のプロセスの比較からはじめて、実装のはなしを。yugui さんとか rakuto さんとか、処理系の実装に詳しい人はすごい。</p>
+
+<ul>
+<li>Ruby 1.8 系のスレッドは当然のように遅い
+<ul>
+<li><a href="http://www.headius.com/rubyspec/index.php/Ruby_Threading">Ruby Threading - RubySpec</a></li>
+</ul></li>
+<li>Erlang ってなんで速いの?</li>
+<li>Erlang のスケジューラの queue は max, high, normal, low の 4種類
+<ul>
+<li><a href="http://www.erlang.org/ml-archive/erlang-questions/200104/msg00072.html">Re: Erlang Scheduler: what does it do?</a></li>
+</ul></li>
+<li>実際のところErlang で何書くよ?
+<ul>
+<li>Haskell ブームみたいになる? 性能的メリットがあるならそうはならない?</li>
+<li>ShootingStar の負荷試験クライアントでも書くか</li>
+</ul></li>
+</ul>
+
+<h3>反省会</h3>
+
+<ul>
+<li>ちゃんと勉強してくる</li>
+<li>epoll, kqueue の簡単な使い方をやりたい
+<ul>
+<li>select はダメすぎる。だれだよこれ考えたの。</li>
+<li>select から epoll, kqueue への移行は O(N) → O(1)</li>
+</ul></li>
+<li>最近の Lighttpd は Linux AIO を使っている
+<ul>
+<li>Linux AIO を使ってみたら同時接続数が極端に増えたところで kernel が落ちた</li>
+</ul></li>
+<li>Comet を使ったアプリケーションやデモをやりたい</li>
+<li>C やりたい
+<ul>
+<li>負荷とか extreme なことになってくると、やっぱり避けられない</li>
+<li>C はじまったな</li>
+</ul></li>
+<li>Message Queue</li>
+</ul>
+
+<h3>懇親会</h3>
+
+<ul>
+<li>ウノウの尾藤さんは熱いひとだった。</li>
+<li>rakuto さんが同い年だったことに衝撃をうけた。うわわわ。
+<ul>
+<li>飲んでるときはなぜか自分が23だと申告していたけど、よく考えたら今年の11月までは22だ</li>
+</ul></li>
+<li>言語は好きなの使わせるよ
+<ul>
+<li>言語にそこそこの実績と、書く人が責任をとってくれれば問題ない</li>
+<li>なんでかといえば、プログラマのモチベーションはとても大事だから</li>
+<li>後からプロジェクトにはいってくるひとは、勉強すればいい</li>
+</ul></li>
+<li>実現力重要。コードが書けるけどソフトウェアが書け(か?)ないひとがいる。
+<ul>
+<li>研究肌?</li>
+<li>プロトタイプ書くのは得意とか</li>
+<li>8割の部分は2割の力で出来て、残り2割が大変</li>
+<li>Podcastle Night のときも同じはなしを聞いた。</li>
+</ul></li>
+<li>尾藤さんは研究室の SPARC マシンに Linux いれてた
+<ul>
+<li>Solaris は良い OS なのに</li>
+</ul></li>
+<li>良い技術者を集めるのは大変
+<ul>
+<li>ニワンゴの 2ch 採用、ウノウのウノウラボなんかは良い成果が出ている</li>
+<li>趣味プログラマはスキル高い</li>
+<li>高専も多い</li>
+<li>人づてで来る人も強い</li>
+</ul></li>
+<li>Web 稲作説
+<ul>
+<li>投資と収穫が時期的に分かれていて、最初のうちは赤字を出していたりする。</li>
+<li>でも米を収穫した金で、ほかのお金にならない植物を植えている会社もあるような。</li>
+</ul></li>
+<li>./configure しないで make して「コンパイルできません ＞＜」ってメーリングリストに投げたことがある</li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/comet" rel="tag" title="comet">comet</a></li>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">4 Responses to &#8220;Comet 勉強会&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-133878070">
+			<cite><a href="http://bz2.jp/">masato</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133878070" title="">May 28th, 2007 at 10:13 AM</a></small>
+			<p>熱いよー
+火傷しないように気をつけてねw</p>
+		</li>
+  
+		<li class="" id="comment-133764810">
+			<cite><span>rakuto</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133764810" title="">May 28th, 2007 at 02:35 PM</a></small>
+			<p>いやー俺もこの人(加藤さん)はかなり面白いなぁーって。
+これからもよろしくです！！</p>
+		</li>
+  
+		<li class="alt" id="comment-133761360">
+			<cite><span>shachi</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133761360" title="">May 28th, 2007 at 04:56 PM</a></small>
+			<p>熱い人でした。乙。</p>
+		</li>
+  
+		<li class="" id="comment-133749040">
+			<cite><a href="http://8-p.info/">kzys (というか加藤)</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133749040" title="">May 28th, 2007 at 09:51 PM</a></small>
+			<p>みなさんおつかれさまでした。</p>
+
+<p>やっぱ仕事で負荷さばいているひとと、ソース読んでるひとは強いなー、と思いました。ソースは自分でも読めるので、来月(?)までにはもうちょっと裏の取れたはなしができるようにしておきたいです。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/05/28/comet/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

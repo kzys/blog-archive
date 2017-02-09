@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Comet 勉強会 #2</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133801370">
+  <h2 class="entry-title"><a href="/articles/2007/06/26/comet-2" title="Comet 勉強会 #2">Comet 勉強会 #2</a></h2>
+  <div class="published">
+    June 26th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>「来月までに勉強してきますねー」といってわかれたのに全然勉強してないなー、と後ろめたい気持ちで日曜日に恵比寿に行ったら、第一回に比べてものすごい勢いで人が減ってた件。ひどい！</p>
+
+<p>でも、相変わらず実装・運用している人のはなしがずいぶん聞けて勉強になった。「Comet といえば」感のある Lingr とかね。以下時系列順じゃなくて話題ごとに並べ直しているので注意。</p>
+
+<h3>Erlang</h3>
+
+<ul>
+<li>実際に見てみたけど、前回の予想はそんなに外れてなかった。</li>
+<li>魔法は無い。</li>
+<li>配布されている tarball が最近でかくなったのは、コンパイル済みの中間コードも同梱されるようになったから。</li>
+<li>Erlang ってもともと UNIX 育ちではないよね
+<ul>
+<li><a href="http://www.ericsson.com/solutions/enterprise/products/md110.shtml">MD110</a> という交換機むけのシステムに書かれたらしい</li>
+<li>epoll とか使ってるの? → grep するぶんにはあったよ</li>
+</ul></li>
+<li>Erlang のプロセス (!= UNIX プロセス) は軽い
+<ul>
+<li>Ruby のスレッドは重いよね</li>
+<li><a href="http://www.rubyist.net/~matz/20070605.html#p04">Matzにっき(2007-06-05)</a> にあった Rubinius の8バイト以下ってなんだろね</li>
+<li>8バイトじゃなんもはいんなくね</li>
+</ul></li>
+<li>YAWS 関係なく HTTPd やってみた
+<ul>
+<li><a href="http://svn.8-p.info/public/misc/httpd.erl">httpd.erl</a></li>
+<li>gen_tcp は listen するときに {packet, http} とわたすと、HTTP のリクエストの parse とか中でやってくれる</li>
+<li>パターンマッチとかは関数型っぽいけど、けっこう普通に書ける</li>
+<li>ループも car とって cdr わたして再帰とかせずに lists:foreach でさっくり</li>
+</ul></li>
+</ul>
+
+<h3>C10K の後</h3>
+
+<ul>
+<li><a href="http://rails.office.drecom.jp/takiuchi/archive/198">瀧内さんが書いてる</a>ので簡単に。</li>
+<li>イベントをうけるクライアント側が遅いとイベントキューが溢れるのでなんとかしたい</li>
+<li>producer-consumer パターンではありがち
+<ul>
+<li>consumer を増やす: スケールアウト</li>
+<li>consumer を速く: スケールアップ</li>
+</ul></li>
+<li>TCP のアルゴリズムとかみればいいのでは
+<ul>
+<li>SACK (Selective ACK) とか</li>
+</ul></li>
+<li>LightStreamer は遅いクライアントに対してはイベントを間引いている。チャットではそうはいかないだろうけど、株価とか、値の上書きがあるシステムではうまくいく。まさにストリーミング。 </li>
+</ul>
+
+<h3>Shooting Star</h3>
+
+<ul>
+<li>Flash クライアントを書きました
+<ul>
+<li>HTTP ではないけどプロキシ通れるようポートは80番</li>
+<li>つなぎっぱってプロキシ通れるのかな</li>
+<li>HTTP 偽装したほうが通れるプロキシ増えるかな</li>
+</ul></li>
+<li><a href="http://wiki.fdiary.net/ShootingStar/">非公式Wiki</a> を作りました</li>
+<li>チャンネルの下にタグが持てて、これでイベントの配信範囲を区切れる
+<ul>
+<li><a href="http://alis.drecom.jp/">alis</a> だと x, y 座標で区切ったり</li>
+<li>チャンネルは接続に対応しているのでインスタンスを生成しなきゃいけないけど、タグはそういうの無いので軽く使える。GoF でいうところの Flyweight パターン。</li>
+</ul></li>
+<li>Asteroid のメソッドの名前とかは Ruby/EventMachine 由来
+<ul>
+<li>最初は Ruby/EventMachine ですますつもりだった</li>
+</ul></li>
+<li>タグのマッチングに良いアルゴリズムってないのかな
+<ul>
+<li>タグを素数で、複数のタグを素数の積で表して mod をとる</li>
+<li>面白いけど、速くはなさそう</li>
+</ul></li>
+<li>signature ってなんですか
+<ul>
+<li>ユーザー識別用の値です</li>
+<li>タイムスタンプなので、同じブラウザ上でもタブごとに別に扱える</li>
+<li>タイムスタンプってかぶらない?
+<ul>
+<li>シングルスレッドだからかぶらない</li>
+<li>UUID も接続がすごい増えたりすると、かぶるときはなぜかかぶるよ</li>
+</ul></li>
+</ul></li>
+<li>dRuby やめようよ
+<ul>
+<li>やめるのはそんなに大変じゃない</li>
+<li>RESTful にできる?</li>
+<li>REST だと毎回接続切ることになるから、サーバサイドでイベント通知するのに使うのは無駄が多い。</li>
+<li>チャンネルにいる人数とか情報取得系なら REST であると良いかも。</li>
+</ul></li>
+</ul>
+
+<h3>Jetty</h3>
+
+<ul>
+<li>Jetty にはライブラリとして実装された「継続」があるよ
+<ul>
+<li>実行時例外を投げてフレームワーク側でつかんでおくとか、わりと大変なことになっている</li>
+</ul></li>
+<li>外から使う分には楽</li>
+<li>Lingr は Jetty やめちゃった</li>
+</ul>
+
+<h3>Lingr</h3>
+
+<ul>
+<li><a href="http://jp.rubyist.net/RubyKaigi2007/Log0610-S2.html">RubyKaigi でのスポンサーセッション</a> で話したはなしを基本に</li>
+<li>スレッド:ソケット = 1:1 はダメ。IO 多重化の方法が重要。</li>
+<li>1 スレッド + ブロッキング IO: むり</li>
+<li>1 スレッド + ノンブロッキング IO: よい
+<ul>
+<li>epoll に全部いれて見たいけどライブラリの中のものとかは無理</li>
+<li>スレッドのスイッチは当然おこらない</li>
+<li>1 CPU で下手に 2 スレッド動かすより全然良い</li>
+</ul></li>
+<li>マルチスレッド、1 aceppter, 複数の worker: あんまりよくない
+<ul>
+<li>worker ごとに epoll → fd ひとつなので poll で良い</li>
+<li>ソケットごとに worker あてると、結局リソース消費がはげしくなる</li>
+<li>複数ソケットを worker にあてるとか</li>
+</ul></li>
+<li>マルチスレッド、複数の accepter, worker: 意味がない</li>
+<li>kqueue は write の完了が通知されないような。レベルトリガなので仕様じゃなくてバグだと思う。</li>
+<li>Lingr はイベント、というか発言の内容も Comet サーバーが配信する。ここは Shooting Star とはちがう。</li>
+<li>クラスタリングしているサーバーのうち一台が死んだとき
+<ul>
+<li>クライアントID mod 台数だと、台数がかわると全部のクライアントが移動になる</li>
+<li>となりのサーバーに移すと、となりのサーバーだけ負荷が倍になる</li>
+<li>なにか良いものはないものか</li>
+<li>それ CARP (Cache Array Routing Protocol) でできるよ</li>
+</ul></li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">1 Response to &#8220;Comet 勉強会 #2&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-133080910">
+			<cite><a href="http://www.usanewcars.info">artofey</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-133080910" title="">July 8th, 2007 at 01:17 AM</a></small>
+			<p>Hello, visit my page:  <a href="http:" /><b>absolutly free movie porn</b></a> <a href="http:" /><b>clip free latina movie porn</b></a> <a href="http:" /><b>free black porn movie</b></a> <a href="http:" /><b>free hard core porn movie</b></a> <a href="http:" /><b>free movie porn russian</b></a></p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/06/26/comet-2/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>SIMBL で Cocoa アプリケーションにコードをつぎたす - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry351">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/02/simbl">SIMBL で Cocoa アプリケーションにコードをつぎたす</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-02-01 22:19    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Cocoa アプリケーションは Input Manager という仕組みを使って拡張できて GreaseKit でもこれを使っている。Input Manager は Leopard からホームディレクトリにいれられなくなったり、パーミッションをいじらなきゃいけなかったり、素で使うのが面倒になってしまったので <a href="http://www.culater.net/software/SIMBL/SIMBL.php">SIMBL</a> 経由で使うのが楽だと思う。</p>
+<p>というわけで、SIMBL に読み込ませるバンドルの作り方をさわりだけ説明します。</p>
+<p>まず Xcode で新しいプロジェクトを作る。左側で Mac OS X の Bundle を、右で Cocoa Bundle をえらぶ。</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3243338891/" title="New Project by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3260/3243338891_9f12ae3078_o.png" width="640" height="250" alt="New Project" /></a></div>
+<p>プロジェクトが出来たらクラスをひとつ定義しておく。.m ファイルと .h ファイルを新規に作る。</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3244217638/" title="New File by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3105/3244217638_287efa867a_o.png" width="640" height="170" alt="New File" /></a></div>
+<p>名前はとりあえず MainController にした。</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3243387947/" title="MainController by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3511/3243387947_625e0eaa27_o.png" width="640" height="240" alt="MainController" /></a></div>
+<p>ここで定義したクラス名は元アプリケーションとかぶれないので注意が必要だ。MainController はありがちすぎるので、プリプロセッサでドメインを逆さまにしたものをつけて逃げてみた。</p>
+<pre>
+#import &lt;Cocoa/Cocoa.h&gt;
+
+#define MainController ComExampleMainController
+
+@interface MainController : NSObject {
+}
+@end
+</pre>
+<p>次に、MainController に load メソッドを追加する。 load は NSObject のクラスメソッドで、クラスの読み込み後に呼ばれる。</p>
+<p><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/nsobject_Class/Reference/Reference.html#//apple_ref/occ/clm/NSObject/load">NSObject Class Reference</a></p>
+<blockquote><p>Invoked whenever a class or category is added to the Objective-C runtime; implement this method to perform class-specific behavior upon loading.</p></blockquote>
+<p>load メソッドを追加した MainController.m はこんな感じになる。</p>
+<pre>
+#import "MainController.h"
+
+@implementation MainController
+
++ (void) load
+{
+	NSLog(@"hello");
+}
+
+@end
+</pre>
+<p>最後に SIMBL 用の項目を Info.plist に足しておく。アプリケーション起動時に SIMBL が読まれると、SIMBL は個々のバンドルの Info.plist を読んで、いま起動したアプリケーションに一致するものだけを読み込む。</p>
+<p>今回はあらゆるバージョンの Safari を指定するべく、以下の項目を Info.plist に追記する。</p>
+<pre>
+&lt;key&gt;SIMBLTargetApplications&lt;/key&gt;
+&lt;array&gt;
+    &lt;dict&gt;
+        &lt;key&gt;BundleIdentifier&lt;/key&gt;
+        &lt;string&gt;com.apple.Safari&lt;/string&gt;
+    &lt;/dict&gt;
+&lt;/array&gt;
+</pre>
+<p>Info.plist はプロパティリスト用のちゃんとした編集画面があるけど、慣れない人はオフにしちゃってもいいと思う。</p>
+<div class="eyecatch"><a href="http://www.flickr.com/photos/kzys/3243352387/" title="Open As by kzys, on Flickr"><img src="http://farm4.static.flickr.com/3105/3243352387_598387cf51_o.png" width="640" height="120" alt="Open As" /></a></div>
+<p>Xcode の作業はここまで。バンドルをビルドして、特定の場所にコピーする。</p>
+<pre>
+% cd ~/Library/Application\ Support/SIMBL/Plugins/
+% ln -s ~/Desktop/Hello/build/Debug/Hello.bundle
+% ls
+Hello.bundle@
+% /Applications/Safari.app/Contents/MacOS/Safari
+2009-02-01 23:05:48.080 Safari[30368:10b] hello
+%
+</pre>
+<p>地味だけどちゃんとコードが実行されて hello とでている。あとは [NSApplication sharedApplicaton] とか [NSNotificationCenter defaultCenter] とかクラスメソッドがいくつかあるので、そこからオブジェクトをたぐりよせて、えーと、いろいろできます。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="351" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

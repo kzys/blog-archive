@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: NSURL なんとかで cookie を共有</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133526430">
+  <h2 class="entry-title"><a href="/articles/2007/02/22/nsurl-cookie" title="NSURL なんとかで cookie を共有">NSURL なんとかで cookie を共有</a></h2>
+  <div class="published">
+    February 22nd, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://d.hatena.ne.jp/hiboma/20070221/1172002626">hibomaのはてなダイアリー - 「Automatorで良いのは、cookieとかのsessionがそのまま利用できるとこ」とのこと</a></p>
+
+<blockquote>
+    <p>裏を返すと、悪意のあるAutomatorアプリ(もしくはAppleScript)を走らせるとSafariのCookieが透過的に利用されてしまいセッションハイジャックされる危険性がある　と。</p>
+</blockquote>
+
+<p>Automator や AppleScript を使わなくとも、Cocoa の NSURL なんとか系列の API を使う限り、cookie は共有されている感じがします。</p>
+
+<pre><code>require 'osx/cocoa'
+
+url = OSX::NSURL.URLWithString('http://mixi.jp/home.pl')
+req = OSX::NSURLRequest.requestWithURL(url)
+
+data = OSX::NSURLConnection.objc_send(:sendSynchronousRequest, req,
+                                      :returningResponse, nil,
+                                      :error, nil)
+print OSX::NSString.alloc.initWithData_encoding(data, 
+                                                OSX::NSJapaneseEUCStringEncoding)
+</code></pre>
+
+<p>例えばこんなスクリプトでも、Safari で mixi にログインしてから実行すれば、ログイン後の home.pl の内容をとってこれます。</p>
+
+<h3>追記</h3>
+
+<p>「感じがします」とかあいまいな書き方で逃げをうっていたけど、ちゃんと明記されていたので追記。</p>
+
+<p><a href="http://developer.apple.com/documentation/Cocoa/Conceptual/URLLoadingSystem/Concepts/URLOverview.html#//apple_ref/doc/uid/20001834-157091">URL Loading System: URL Loading System Overview</a></p>
+
+<blockquote>
+    <p>Note: Cookies are shared among all applications using the URL loading system.</p>
+</blockquote>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/02/22/nsurl-cookie/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

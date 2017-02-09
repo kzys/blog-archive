@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: それ Plagger 関係ないよ</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134249460">
+  <h2 class="entry-title"><a href="/articles/2006/09/03/plagger" title="それ Plagger 関係ないよ">それ Plagger 関係ないよ</a></h2>
+  <div class="published">
+    September 3rd, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>「あなたはプログラミングが出来るんだから」「影響力があるんだから」「アルファブロガーだから」とか、そういう前置きで、自分にブーメランしてこないルールを付け足そうとするひとは苦手だ。</p>
+
+<blockquote>
+    <p>で、もう一つ大切な視点として「暇だから書く」というのでは良いモノは書けないとDisっておきたい。</p>
+    
+    <p>どうせ書くなら「それでメシを食う、金を稼ぐ」ブログを目指すべきなんじゃないだろうか。</p>
+    
+    <p>金が全てじゃないよ、趣味でも良いものは書けるというのは確かにそうだし、拝金を礼賛しているわけではない。ただ、幾つかのブログ、特に日本でのブログのありようを見ていると結局は「趣味ですから。時間のあるときに書いていますから」というエクスキューズが議論を発散させ、読者が「読むに耐えない、不親切だ」と感じ、ブログから遠のかせている要因となっているように見えてならない。</p>
+</blockquote>
+
+<p>と単語を置き換えると、<a href="http://d.hatena.ne.jp/ululun/20060903/sorepla">煩悩是道場 - それpla</a> を読んだときの自分の気持ちがプログラマ以外にも伝わるかも、と思った。</p>
+
+<p>あわせて読みたい: <a href="http://naoya.g.hatena.ne.jp/naoya/20060407/1144407442">naoyaグループ - naoyaの日記 -  ところで</a></p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/blog" rel="tag" title="blog">blog</a></li>
+      
+      <li><a href="/tags/perl" rel="tag" title="perl">perl</a></li>
+      
+      <li><a href="/tags/plagger" rel="tag" title="plagger">plagger</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/09/03/plagger/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

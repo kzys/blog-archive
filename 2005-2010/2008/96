@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-08-15T00:04:13+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-08-15T00:04:13+09:00</h1>
+
+    <p>
+<a class="ext-link" href="http://oembed.com/"><span class="icon"></span>oEmbed</a>
+</p>
+<blockquote class="citation">
+<p>
+ oEmbed is a format for allowing an embedded representation of a URL on third party sites.
+</p>
+</blockquote>
+<p>
+Lingr には <a class="ext-link" href="http://www.lingr.com/help/videos"><span class="icon"></span>YouTube のビデオの URI をはるとその場で展開する</a> という機能がある。あるいは、はてなの <a class="ext-link" href="http://d.hatena.ne.jp/hatenadiary/20080306/1204786205"><span class="icon"></span>http 記法でニコニコ動画貼付</a> とか。
+</p>
+<p>
+oEmbed は、この類の機能を汎用的に (各サービス毎にコードをかき分けずに) 実現できる仕様らしい。
+</p>
+  </div>
+</body>
+</html>

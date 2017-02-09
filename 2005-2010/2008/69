@@ -1,0 +1,56 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-07-20T20:29:01+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-07-20T20:29:01+09:00</h1>
+
+    <p>
+まえに友達の家で見た松岡修造のビデオ、あれ公式サイトにあったのかー。
+</p>
+<pre class="wiki">
+use strict;
+use warnings;
+
+use Web::Scraper;
+use URI;
+use LWP::Simple;
+
+sub non_flv_files {
+    my ($uri) = @_;
+
+    my $scraper = scraper {
+        process '//select[@name=&quot;mySel&quot;]/option', 'links[]' =&gt; '@value'
+    };
+
+    grep {
+        $_ &amp;&amp; $_ !~ /^javascript:/
+    } @{ $scraper-&gt;scrape(URI-&gt;new($uri))-&gt;{links} };
+}
+
+sub flv_files {
+    my ($uri) = @_;
+
+    my $html = LWP::Simple::get($uri);
+    my @result;
+    while ($html =~ m{message/shuzo(\d+)\.html}g) {
+        push @result, &quot;http://www.shuzo.co.jp/video/matsuoka/matsuoka_$1.flv&quot;;
+    }
+    @result;
+}
+
+map {
+    print &quot;$_\n&quot;;
+} (non_flv_files('http://www.shuzo.co.jp/contents.htm'),
+   flv_files('http://www.shuzo.co.jp/_js/js.js'));
+</pre>
+<p>
+小西真奈美の「今日の大丈夫。」をちょっと思い出した。
+</p>
+  </div>
+</body>
+</html>

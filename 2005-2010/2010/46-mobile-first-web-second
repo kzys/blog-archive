@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=46" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Mobile First Web Second</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article46">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/46-mobile-first-web-second" class="name">Mobile First Web Second</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:1.631883,4.651302&amp;cht=p&amp;chp=2.932153' alt='23:43' /></h1>
+
+<div class="attr">
+  Posted at 2010/12/01 23:43,
+  Modified at 2010/12/01 23:51
+  </div>
+
+<div class="text">
+<p>oogatta さんが</p>
+<blockquote>
+<p>「モバイル（この場合スマートフォン）の方が作り手もユーザ視点になりやすい」って言ってたけどその通りだなあ。なんでしょうね、なんでもできてしまうとどんどんユーザの視点から離れる…。って悲しいですね。</p>
+</blockquote>
+<p>と <a href="http://twitter.com/#!/oogatta/status/9955813175074816">Twitter に書いていて</a>、誰それ? と聞いたら <a href="http://www.avc.com/a_vc/2010/11/mobile-first-web-second-continued.html">Mobile First Web Second (continued)</a> とかの覚え違いかも、というので読んでみた。</p>
+<p>&quot;continued&quot; というからにはその前があり、9月の <a href="http://www.avc.com/a_vc/2010/09/mobile-first-web-second.html">Mobile First Web Second</a> は</p>
+<ul>
+<li>Twitter とかモバイルから使われる方が多いらしいですね</li>
+<li>Foursquare はもっとで、というかモバイルじゃないと意味ないよね</li>
+<li>空き時間とかに使えていいよね</li>
+</ul>
+<p>とかそういう感じだった。&quot;But because they are also web apps and connected to a web scale network, they can offer a lot of value that mobile only apps cannot.&quot; というのはよくわからず。web scale network につながらない mobile only apps ってなんなんだろう。</p>
+<p>11月の <a href="http://www.avc.com/a_vc/2010/11/mobile-first-web-second-continued.html">Mobile First Web Second (continued)</a> はもっと踏み込んでいて</p>
+<ul>
+<li>最近 (たぶん <a href="http://www.avc.com/a_vc/2010/05/a-new-look-for-avc.html">3月</a>) の AVC の見た目の変更は、ようするにモバイルの Web サイトっぽくしたかった。iPad で見る Web が好きなので、AVC も iPad でかっこよくなるようにしたかった。</li>
+<li>じぶんのみてる (Fred Willson は VC なので) 会社の新しい Web サービスのデザインがぐちゃぐちゃしててダメで、その会社のリリース予定の iPhone アプリをみて「Web もこうすればいいじゃん」といった。</li>
+<li>モバイル Web を制約として Web デザインについて考えるのは、これから大きくなってくるだろうね。</li>
+</ul>
+<p>という感じ。モバイルの画面の狭さとか回線の遅さとかを仮定してみると、全体のなかで落とすべき部分とそうじゃない部分の判断がつくよ、とかそういう話だと思う。また &quot;you are likely to keep them on the mobile app and off the web app.&quot; がよくわからない…</p>
+</div>
+<div class="comments" id="article46_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="46" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

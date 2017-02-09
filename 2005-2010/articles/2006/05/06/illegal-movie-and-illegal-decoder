@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Illegal movie and illegal decoder?</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136826220">
+  <h2 class="entry-title"><a href="/articles/2006/05/06/illegal-movie-and-illegal-decoder" title="Illegal movie and illegal decoder?">Illegal movie and illegal decoder?</a></h2>
+  <div class="published">
+    May 6th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://harmony.tm.land.to/archives/2006/03/youtube_flv.html">Harmony of Waves: YouTubeから落とした .flvファイルをシーク可能な状態で見る</a> や <a href="http://www.outdex.net/diary/archives/2006/03/youtubeflvmedia_1.shtml">YouTubeのFLVファイルをMedia Player Classicで快適再生 : 小心者の杖日記</a> で「Flash Video がシークできるようになった」って盛り上がってるけど、このコードの<del>由来</del><ins>周辺</ins>(4/7 修正)がかなり黒い。</p>
+
+<p>妖精現実の <a href="http://www.fairyland.to/BakaMemo/2006-04.php">Baka Memo 2006年4月</a>「lib‌vp‍6‌2問題それから」から引用すると</p>
+
+<blockquote>
+    <ol>
+    <li>On‍2という会社のvp‍6というコーデックのソースが流出。</li>
+    <li>On‍2は法律家を雇いソースをホストしてるサイトに警告を送って削除させようとしたが失敗。</li>
+    <li>Gabestはあっという間にMPCにvp‍6デコーダーを内蔵させてしまった。</li>
+    </ol>
+    
+    <p>(中略)</p>
+    
+    <p>MPCはsourceforgeのGuliverkliというプロジェクトに含まれている。 sourceforgeでlib‌vp‍6‌2が閉鎖された以上、lib‌vp‍6‌2のコードをGuliverkliに含めるのはまずそうだ。 Gabestは最初、難読化してこっそり…という案も結構真剣に考えていたようだが、 結局「vp‍6‌2.cppが存在する場合は…」といった条件付きコンパイルができるようにし、 vp‍6‌2.cppの入手については何も語らない立場をとった。</p>
+</blockquote>
+
+<p>SourceForge.net の SVN から <a href="http://svn.sourceforge.net/viewcvs.cgi/guliverkli/trunk/guliverkli/src/filters/parser/flvsplitter/FLVSplitter.h?view=markup&amp;rev=605">guliverkli/src/filters/parser/flvsplitter/FLVSplitter.h</a> をみると、本当に「VP62.h を持ってないなら、ここはコメントアウトしてね」とか書いてて、これだけでもどうかって話なんだけど、さらにいえば <a href="http://on2.com/">On2 Technologies</a> は<a href="http://www.watch.impress.co.jp/internet/www/article/2002/0625/on2.htm">自社の技術をコミュニティに contribute</a> してくれた理解ある企業なわけで。</p>
+
+<p>フリーソフトウェアは著作権を否定しない、というか「ライセンス守れ」と言える権利は著作権上にあるわけで、こういう行為はどうかと思った。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/copyright" rel="tag" title="copyright">copyright</a></li>
+      
+      <li><a href="/tags/flash" rel="tag" title="flash">flash</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">2 Responses to &#8220;Illegal movie and illegal decoder?&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-135623910">
+			<cite><span>Li~</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135623910" title="">May 16th, 2006 at 03:46 PM</a></small>
+			<p>リンク先にもよく読めば書いてあるのですが（分かりにくいのですが）youtubeから落としたフラッシュはFLV1コーデック（Sorenson Spark）です。それを独自に再生することは、デコーダーも正式公開されていて、問題ありません。</p>
+
+<p>今回問題になったOn2社のVP62コーデックつまりFLV4形式は、同じ.flvファイルでも中身がまったく別のものです。そしてOn2が問題にしたのは、ソースコードの「漏えい」で、バイナリーのデコーダーの存在は容認する発言をしました。</p>
+
+<p>まとめると、
+(1) 現在のほとんどのFLVファイルはFLV1なのでOn2問題とはそもそも無関係
+(2) 将来FLV4も普及するかもしれないが、On2が嫌がったのはソースを見られることで、デコーダー自体ではない
+ということです。FLV4がどの程度普及するのかを含めて（プラグインのライセンス料高いですから）状況は流動的ですが・・・</p>
+		</li>
+  
+		<li class="" id="comment-135545050">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-135545050" title="">May 16th, 2006 at 06:39 PM</a></small>
+			<p>ちょっと誤解していました。解説ありがとうございます。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/05/06/illegal-movie-and-illegal-decoder/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

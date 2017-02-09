@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: 10 Mac Apps</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137452970">
+  <h2 class="entry-title"><a href="/articles/2005/09/15/10-mac-apps" title="10 Mac Apps">10 Mac Apps</a></h2>
+  <div class="published">
+    September 15th, 2005
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://gigaom.com/2005/09/03/10macapps/">Om Malik’s Blog » 10MacApps</a> からはじまった、お気に入りのアプリケーションからトップ10を紹介する企画。ただし、</p>
+
+<blockquote>
+    <p>Forget, the Microsoft Office, or any of the applications that are bundled with an Apple. Instead, focus on small freeware and shareware applications that have helped you get the most out of your Mac.</p>
+</blockquote>
+
+<p>Microsoft Office とかあらかじめ Mac についてくるやつは除外して、かわりにフリーウェアやシェアウェアにフォーカスしよう、とのこと。</p>
+
+<p>のってみました。</p>
+
+<p>(via. <a href="http://netafull.net/archives/010480.html">ネタフル</a>)</p>
+    
+    
+    
+    <h3><a href="http://www-users.kawo2.rwth-aachen.de/~razzfazz/iscroll2/">iScroll2</a></h3>
+
+<p>うちの iBook でもトラックパッドで二本指スクロールができるドライバ。地味ながら無いと困りますが、それアプリケーションいわない。</p>
+
+<h3><a href="http://home.att.ne.jp/alpha/z123/emacs-mac-j.html">Carbon Emacs</a></h3>
+
+<p>エディタ。エディタと書くと怒られそうだけど、エディタとしてしか使ってないので。メールを Emacs で読んだりはしません。<a href="http://namazu.org/~satoru/misc/ggap.html">Emacs を捨てたいと思っている</a>ものの、まだ無理そうです。</p>
+
+<h3><a href="http://www.indev.ca/MailActOn.html">Mail Act-On</a></h3>
+
+<p>アプリケーションというかプラグイン。最近 <a href="http://www.ideaxidea.com/archives/2005/08/the_inbox_makeo.html">The Inbox Makeover</a> して、キーボードから j + 1〜5 でふりわけしてます。Gmail もいいんだけど、Google 包囲網には抵抗が。</p>
+
+<h3><a href="http://cyberduck.ch/">Cyberduck</a></h3>
+
+<p>FTP クライアント。最近は Emacs + tramp で直に編集することが増えて、出番が減り気味。</p>
+
+<h3><a href="http://www.videolan.org/vlc/">VLC media player</a></h3>
+
+<p>最近 <a href="http://kengo.preston-net.com/archives/002164.shtml">Going My Way</a> で"発見"されてて、実は有名じゃなかったのかと驚いたという。
+<a href="http://code.google.com/patches.html">Google Video Viewer が VLC ベース</a>とか知られてない?</p>
+
+<h3><a href="http://www.johnhaney.com/backdrop/">Backdrop</a></h3>
+
+<p>スクリーンいっぱいに白いウィンドウを開くだけ。スクリーンショットをとるのに便利です。</p>
+
+<h3><a href="http://www.skype.com/">Skype</a></h3>
+
+<p>白い P2P として大好きだけど、実際に使ってはいません。相手がいないよ。</p>
+
+<h3><a href="http://flickr.com/tools/">Flickr Uploadr</a></h3>
+
+<p>Flickr 公式なのに人気ないみたいだけど、個人的にはこれで必要十分。
+ただ、アップロードがおわるたびに勝手に終了するのはやめてほしい。ソースあれば直すのに。</p>
+
+<h3><a href="http://8-p.info/Dashboard/">Televi</a></h3>
+
+<p>10個って多いですね。自作。</p>
+
+<h3><a href="http://8-p.info/Spotlight/">Unlocalize.mdimporter</a></h3>
+
+<p>これも自作。Spotlight を <a href="http://quicksilver.blacktree.com/">Quicksilver</a> がわりに使う日本人には地味に便利だと思うけど、あんまりうけない。プラグイン。</p>
+
+<p>みんなもやろう。えーと、「よくつかうソフトウェアをブログに書いておくと、インストール直後とかに便利」っていう "Life Hack" です ;-)</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/blog" rel="tag" title="blog">blog</a></li>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2005/09/15/10-mac-apps/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

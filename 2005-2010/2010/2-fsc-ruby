@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=2" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: fsc の速いクライアントを Ruby で書いた</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article2">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/2-fsc-ruby" class="name">fsc の速いクライアントを Ruby で書いた</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:1.623156,4.660029&amp;cht=p&amp;chp=4.084070' alt='01:54' /></h1>
+
+<div class="attr">
+  Posted at 2010/01/02 01:54,
+  Modified at 2010/01/02 11:10
+  </div>
+
+<div class="text">
+<p><a href="http://www.scala-lang.org/">Scala</a> には <a href="http://www.scala-lang.org/docu/files/tools/fsc.html">fsc</a> というクライアント・サーバ方式のコンパイラがある。コンパイラをサーバとして起動させたままにすることで、コンパイル時間の短縮を目指すらしい。</p>
+<pre>% time fsc A.scala
+fsc A.scala  0.59s user 0.09s system 53% cpu 1.271 total
+% rm *.class 
+% time fsc A.scala
+fsc A.scala  0.59s user 0.09s system 51% cpu 1.320 total
+% time fsc -shutdown
+[Compile server exited]
+fsc -shutdown  0.61s user 0.09s system 132% cpu 0.524 total
+%
+</pre>
+<p>コンパイル時間の短縮...</p>
+<p>Java VM をあげさげしていては負けだと思ったので、fsc のプロトコルを話すクライアントを <a href="http://www.ruby-lang.org/ja/">Ruby</a> で書いてみた。</p>
+<pre>#! /usr/bin/ruby                                                                
+
+require 'socket'
+require 'pathname'
+
+def find_tmp_dir
+  Pathname.new(`which scala`.chomp).dirname + '../var/scala-devel'
+end
+
+def find_port(dir)
+  ports = dir.entries.grep(/^\d+$/)
+  raise &quot;Failed to find port file.&quot; if ports.empty?
+  return ports[0], (dir + ports[0]).read.chomp
+end
+
+def open_socket
+  port, password = find_port(find_tmp_dir + 'scalac-compile-server-port')
+  socket = TCPSocket.open('localhost', port)
+  socket.puts(password)
+  return socket
+end
+
+def transform_argv(argv)
+  dir = if argv.include?('-d')
+          []
+        else
+          ['-d', '.']
+        end
+
+  (dir + argv).map do |i|
+    if i =~ /^-/
+      i
+    else
+      Pathname.new(i).realpath
+    end
+  end
+end
+
+argv = transform_argv(ARGV)
+socket = begin
+           open_socket
+         rescue
+           exit(system('fsc', *argv))
+         end
+socket.puts(argv.join(&quot;\0&quot;))
+print socket.read
+</pre>
+<p>だいぶ速い。</p>
+<pre>% time rfsc A.scala  
+rfsc A.scala  0.60s user 0.11s system 16% cpu 4.308 total
+% rm *.class       
+% time rfsc A.scala
+rfsc A.scala  0.01s user 0.01s system 1% cpu 1.198 total
+% time rfsc -shutdown
+[Compile server exited]
+rfsc -shutdown  0.01s user 0.01s system 65% cpu 0.025 total
+% 
+</pre>
+<p>しかしなぜにこんなにも Java VM は起動が遅いんだろう。そこは Java の戦場じゃなかったというのはわかるけど、それにしても遅い。</p>
+</div>
+<div class="comments" id="article2_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="2" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: hatebimport 0.3</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135523130">
+  <h2 class="entry-title"><a href="/articles/2006/02/23/hatebimport-0-3" title="hatebimport 0.3">hatebimport 0.3</a></h2>
+  <div class="published">
+    February 23rd, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://8-p.info/hatebimport/">hatebimport</a> 0.3 をリリースしました。</p>
+
+<p><a href="http://hatena.g.hatena.ne.jp/hatenabookmark/20060216/1140056892">機能変更、お知らせなど - はてなブックマーク日記 -  自動巡回ツールやRSS/Atomフィード取得に関する注意書きについて</a></p>
+
+<blockquote>
+    <p>特定のRSS/Atomフィードへのアクセスは多くても30分毎程度にとどめてください。特定のプログラムからご利用の場合などは、クライアント側でのキャッシュなどもご考慮ください。</p>
+</blockquote>
+
+<p>とのことなので、リクエストごとに 45 分ほど wait をいれることにしました。いままでも定期巡回は 30 分ごとだったのですが、20件以上のデータを offset をずらしてとりにいく処理では3秒しか wait をいれてなかったので。ごめんなさい。</p>
+    
+    
+    
+    <p>書いていて思ったのですが、feed のバックアップ的な処理は結構面倒です。</p>
+
+<p>hatebimport では、現在から過去に向かってどんどん feed をとっていって、すでにとりこみずみのエントリがあった時点で止めるようにしているのですが、これだと過去のエントリの更新や削除が拾えません。</p>
+
+<p>良い方法があったら教えてください。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/hatena" rel="tag" title="hatena">hatena</a></li>
+      
+      <li><a href="/tags/release" rel="tag" title="release">release</a></li>
+      
+      <li><a href="/tags/socialbookmark" rel="tag" title="socialbookmark">socialbookmark</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/02/23/hatebimport-0-3/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Mozilla is moving away to Cocoa widgets</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134260560">
+  <h2 class="entry-title"><a href="/articles/2006/09/23/mozilla-is-moving-away-to-cocoa-widgets" title="Mozilla is moving away to Cocoa widgets">Mozilla is moving away to Cocoa widgets</a></h2>
+  <div class="published">
+    September 23rd, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=232938">Bug 232938 - use page &lt;title&gt; as filename when creating webloc files</a></p>
+
+<blockquote>
+    <p>We are moving away from Carbon widgets to Cocoa widgets, and in that transition moving to a cocoa drag service. I'll try to incorporate your patch into the
+    Cocoa widgets drag service, not much point in getting it into carbon now. Sorry for the belated attention.</p>
+</blockquote>
+
+<p>Josh Aas さんにあやまられた！</p>
+
+<p>というわけで、Mozilla の Mac まわりの開発は Carbon widgets から Cocoa widgets へと移行しているらしいです。長々とやっていた <a href="http://bugzilla.mozilla.gr.jp/show_bug.cgi?id=4573"> Bug  4573 - [Mac][Carbon] IME APIの実装</a> も WONTFIX でクローズして、Cocoa の作業は <a href="http://bugzilla.mozilla.gr.jp/show_bug.cgi?id=5353"> Bug  5353 - [Mac][Cocoa] IME APIの実装</a> でやることに。</p>
+    
+    
+    
+    <p>はなしを聞いてから cairo-cocoa でビルドしてみたら</p>
+
+<pre><code>gcc -o cairo-nquartz-surface.o -c  -DMOZILLA_INTERNAL_API -DOSTYPE=\"Darwin8.7.0\" -DOSARCH=\"Darwin\" -DBUILD_ID=0000000000 -I/Users/kzys/devel/mozilla.org/trunk/mozilla/gfx/cairo/cairo/src -I../../../../dist/include/png -I../../../../dist/include/zlib -I../../../../dist/include/libpixman -I../../../../dist/include   -I../../../../dist/include/cairo -I../../../../dist/include/nspr    -I../../../../dist/sdk/include    -fPIC  -Wall -W -Wno-unused -Wpointer-arith -Wcast-align -Wno-long-long -nostdinc -isystem /Developer/SDKs/MacOSX10.2.8.sdk/usr/include/gcc/darwin/3.3 -isystem /Developer/SDKs/MacOSX10.2.8.sdk/usr/include -F/Developer/SDKs/MacOSX10.2.8.sdk/System/Library/Frameworks -F/Developer/SDKs/MacOSX10.2.8.sdk/Library/Frameworks -fpascal-strings -no-cpp-precomp -fno-common -I/Developer/SDKs/MacOSX10.2.8.sdk/Developer/Headers/FlatCarbon -pipe  -DDEBUG -D_DEBUG -DDEBUG_kzys -DTRACING -g   -include ../../../../mozilla-config.h -DMOZILLA_CLIENT -Wp,-MD,.deps/cairo-nquartz-surface.pp /Users/kzys/devel/mozilla.org/trunk/mozilla/gfx/cairo/cairo/src/cairo-nquartz-surface.c
+/Users/kzys/devel/mozilla.org/trunk/mozilla/gfx/cairo/cairo/src/cairo-nquartz-surface.c: In function `_cairo_nquartz_surface_paint':
+/Users/kzys/devel/mozilla.org/trunk/mozilla/gfx/cairo/cairo/src/cairo-nquartz-surface.c:1136: warning: implicit declaration of function `CGContextGetClipBoundingBox'
+/Users/kzys/devel/mozilla.org/trunk/mozilla/gfx/cairo/cairo/src/cairo-nquartz-surface.c:1136: error: invalid initializer
+/Users/kzys/devel/mozilla.org/trunk/mozilla/gfx/cairo/cairo/src/cairo-nquartz-surface.c: In function `_cairo_nquartz_surface_show_glyphs':
+/Users/kzys/devel/mozilla.org/trunk/mozilla/gfx/cairo/cairo/src/cairo-nquartz-surface.c:1378: warning: implicit declaration of function `CGContextShowGlyphsWithAdvances'
+make[6]: *** [cairo-nquartz-surface.o] Error 1
+make[5]: *** [libs] Error 2
+make[4]: *** [libs] Error 2
+make[3]: *** [libs_tier_gecko] Error 2
+make[2]: *** [tier_gecko] Error 2
+make[1]: *** [default] Error 2
+make: *** [build] Error 2
+%
+</code></pre>
+
+<p>こんなエラーメッセージが出てうまくいかなくて、開発版だししょうがないか、と思考停止していたんだけど</p>
+
+<pre><code>% mdfind CGContextGetClipBoundingBox
+/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Headers/CGContext.h
+/Developer/SDKs/MacOSX10.3.9.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Headers/CGContext.h
+/Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Headers/CGContext.h
+/Users/kzys/devel/cairographics.org/cairo/src/cairo-quartz-surface.c
+/Users/kzys/devel/opensource.apple.com/WebKit/WebCore/platform/cairo/cairo/src/cairo-quartz2-surface.c
+/Users/kzys/devel/mozilla.org/trunk/mozilla/gfx/cairo/cairo/src/cairo-nquartz-surface.c
+%
+</code></pre>
+
+<p>と定義をさがして (mdfind は fgrep をディスク全体にかけられて便利)、読んでみると</p>
+
+<pre><code>CG_EXTERN CGRect CGContextGetClipBoundingBox(CGContextRef c) AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER;
+</code></pre>
+
+<p>そりゃ 10.2.8 SDK じゃビルドできないですよね、と。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+      <li><a href="/tags/mozilla" rel="tag" title="mozilla">mozilla</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/09/23/mozilla-is-moving-away-to-cocoa-widgets/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Amazon のレーティングが Ajax っぽい</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-137028720">
+  <h2 class="entry-title"><a href="/articles/2006/06/24/amazon-ajax" title="Amazon のレーティングが Ajax っぽい">Amazon のレーティングが Ajax っぽい</a></h2>
+  <div class="published">
+    June 24th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>ちょっと前に Amazon.co.jp の買った商品のレーティング画面が、昔ながらの「全部のラジオボタンを変更してから送信してページ遷移」から「変更即送信ページ遷移無し」の、いわゆる Ajax っぽい動きになっていた。便利になったと喜んでいたので、こういう文章を読むとあせる。</p>
+
+<p><a href="http://blog.japan.cnet.com/nakajima/archives/002943.html">CNET Japan Blog - 中島聡・ネット時代のデジタルライフスタイル：既存のウェブサイトをAJAX化する意味が本当にあるのか?</a></p>
+
+<blockquote>
+    <p>ちなみに、上の質問に対する私の答えは「たぶん無いでしょう。アマゾンがAJAX化しないのは理由があると思います。AJAX化したとしても売り上げが上がるとは私には思えません」である。</p>
+</blockquote>
+
+<p>ソースを読んでみたら確かに XMLHttpRequest は無いんだけど、window.location.href に代入してリクエストを投げて、サーバー側が「HTTP 204 No Content」というやつを返しているらしい。</p>
+
+<p><a href="http://la.ma.la/blog/diary_200502282048.htm">最速インターフェース研究会 :: JavaScriptで差分リロードなチャット</a></p>
+
+<blockquote>
+    <p>変更がなかった場合はマイナーですが「HTTP 204 No Content」というレスポンスを返すと、ブラウザは何の処理も行いません。 </p>
+</blockquote>
+
+<p>204 について 2005年2月に書いてる mala さんはやっぱりすごい。仕組みがわかって満足したので「XMLHttpRequest が無いものは Ajax と呼ぶべきか否か」とかは深追いしない。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/ajax" rel="tag" title="ajax">ajax</a></li>
+      
+      <li><a href="/tags/amazon" rel="tag" title="amazon">amazon</a></li>
+      
+      <li><a href="/tags/javascript" rel="tag" title="javascript">javascript</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/06/24/amazon-ajax/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

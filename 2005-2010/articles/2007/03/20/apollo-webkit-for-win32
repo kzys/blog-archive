@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Apollo が WebKit for Win32 をもってる件</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135560850">
+  <h2 class="entry-title"><a href="/articles/2007/03/20/apollo-webkit-for-win32" title="Apollo が WebKit for Win32 をもってる件">Apollo が WebKit for Win32 をもってる件</a></h2>
+  <div class="published">
+    March 20th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Adobe Apollo のブラウザ部分は Safari と同じ WebKit なので、<a href="http://labs.adobe.com/wiki/index.php/Apollo:Applications:Samples">Adobe Labs にある Scout</a> なんかが、手軽な WebKit for Win32 として使える。ちなみに「手軽」というのは実行環境を揃えるまでの部分であって、Scout 自体は使いづらい。</p>
+
+<p>Apollo の WebKit は、Mac でもシステムの WebKit とは別の WebKit を使っている。テキストをドラッグして範囲選択したときの挙動や IME の実装されなさ具合などの触感だと、Adobe のクロスプラットフォームレイヤーの上に WebKit を移植ってことなんだろうか。</p>
+
+<p><a href="http://www.mochikit.com/examples/interpreter/index.html">MochiKit の Intepreter</a> で自己申告をみると、手元の Safari 2.0.4（419.3）が</p>
+
+<pre><code>MochiKit v1.4 [AppleWebKit/419 (KHTML, like Gecko) Safari/419.3]
+</code></pre>
+
+<p>で、Scout だと</p>
+
+<pre><code>MochiKit v1.4 [AppleWebKit/420+ (KHTML, like Gecko) Safari/419.3 Apollo/1.0.Alpha1]
+</code></pre>
+
+<p>になる。419 → 420+ の差分といわれてもぱっとは思いつかないけど、たとえば typeof document.evaluate が "undefined" → "function" になっているのは確認できた。</p>
+
+<p>CSS の実装具合も <a href="http://subtech.g.hatena.ne.jp/cho45/">subtech - 冬通りに消え行く制服ガールは、夢物語にリアルを求めない。</a> が Safari と Scout で同じずれかたをしたので、たぶん Safari と同じくらいなんだろうと思う。</p>
+
+<h3>追記</h3>
+
+<p>Windows の Scout は日本語フォントのレンダリングがおかしい。12px のビットマップフォントを 16px に拡大したみたいになる。</p>
+
+<h3>追記</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/amachang/20070319/1174297601">IT戦記 -  Apollo 登場！もう Safari の確認用に Mac 買わなくてよくね？</a></li>
+<li><a href="http://d.hatena.ne.jp/nyama/20070319/1174299714">Another 朝顔日記 - Scout</a></li>
+<li><a href="http://miniturbo.org/blog/2007/03/19/1933">miniturbo::Blog WindowsでSafariが動いた!?</a></li>
+<li><a href="http://taken.s101.xrea.com/blog/article.php?id=732">Taken SPC : Scout</a></li>
+</ul>
+
+<p>かぶりすぎた。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/safari" rel="tag" title="safari">safari</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/03/20/apollo-webkit-for-win32/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

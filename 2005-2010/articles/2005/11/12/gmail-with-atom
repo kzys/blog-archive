@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Gmail with Atom</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135752550">
+  <h2 class="entry-title"><a href="/articles/2005/11/12/gmail-with-atom" title="Gmail with Atom">Gmail with Atom</a></h2>
+  <div class="published">
+    November 12th, 2005
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://mail.google.com/support/bin/topic.py?topic=1573">Gmail に Atom Feed がある</a>ことを最近知りました。</p>
+
+<ul>
+<li>https://なまえ:ぱすわーど@mail.google.com/mail/feed/atom</li>
+<li>https://なまえ:ぱすわーど@mail.google.com/mail/feed/atom/らべる/</li>
+</ul>
+
+<p>で Atom Feed を返してくれるそうです。シンプルで良いですね。</p>
+    
+    
+    
+    <p>早速 open-uri を使って、こんなスクリプトを書いてみました。</p>
+
+<table class="CodeRay"><tr>
+  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>
+</tt>2<tt>
+</tt></pre></td>
+  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">require <span class="s"><span class="dl">'</span><span class="k">open-uri</span><span class="dl">'</span></span><tt>
+</tt>print open(<span class="s"><span class="dl">'</span><span class="k">https://なまえ:ぱすわーど@mail.google.com/mail/feed/atom</span><span class="dl">'</span></span>).read</pre></td>
+</tr></table>
+
+<p>実行してみます。</p>
+
+<pre><code>% ruby a.rb 
+/usr/lib/ruby/1.8/open-uri.rb:583:in `proxy_open': open-uri doesn't support https. (ArgumentError)
+        from /usr/lib/ruby/1.8/open-uri.rb:525:in `direct_open'
+        from /usr/lib/ruby/1.8/open-uri.rb:169:in `open_loop'
+        from /usr/lib/ruby/1.8/open-uri.rb:164:in `catch'
+        from /usr/lib/ruby/1.8/open-uri.rb:164:in `open_loop'
+        from /usr/lib/ruby/1.8/open-uri.rb:134:in `open_uri'
+        from /usr/lib/ruby/1.8/open-uri.rb:424:in `open'
+        from /usr/lib/ruby/1.8/open-uri.rb:85:in `open'
+        from a.rb:3
+</code></pre>
+
+<p>Tiger の Ruby は 1.8.2 なので、open-uri は HTTPS をサポートしていません。
+CVS HEAD の 1.9 で試してみます。</p>
+
+<pre><code>% ruby1.9 a.rb
+/usr/local/stow/ruby-1.9+cvs/lib/ruby/1.9/open-uri.rb:238:in `open_http': userinfo not supported.  [RFC3986] (ArgumentError)
+        from /usr/local/stow/ruby-1.9+cvs/lib/ruby/1.9/open-uri.rb:688:in `buffer_open'
+        from /usr/local/stow/ruby-1.9+cvs/lib/ruby/1.9/open-uri.rb:193:in `open_loop'
+        from /usr/local/stow/ruby-1.9+cvs/lib/ruby/1.9/open-uri.rb:191:in `open_loop'
+        from /usr/local/stow/ruby-1.9+cvs/lib/ruby/1.9/open-uri.rb:137:in `open_uri'
+        from /usr/local/stow/ruby-1.9+cvs/lib/ruby/1.9/open-uri.rb:590:in `open'
+        from /usr/local/stow/ruby-1.9+cvs/lib/ruby/1.9/open-uri.rb:86:in `open'
+        from a.rb:3
+</code></pre>
+
+<p>調べてみると、
+<a href="http://redhanded.hobix.com/inspect/usingAuthenticationWithOpenUri.html">http://user:pass@host/ はオススメされなくなっていた</a>ようです。
+ふと "Mew" という単語が頭をよぎります。</p>
+
+<p>結局、open-uri で HTTPS にアクセスする方法がわからなかったので、curl を使いました。</p>
+
+<pre><code>% curl https://なまえ:ぱすわーど@mail.google.com/mail/feed/atom
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;feed version="0.3" xmlns="http://purl.org/atom/ns#"&gt;
+...
+</code></pre>
+
+<p>満足。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/feed" rel="tag" title="feed">feed</a></li>
+      
+      <li><a href="/tags/gmail" rel="tag" title="gmail">gmail</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2005/11/12/gmail-with-atom/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

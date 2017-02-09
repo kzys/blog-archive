@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Lightweight Language Ring</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136305020">
+  <h2 class="entry-title"><a href="/articles/2006/08/27/lightweight-language-ring" title="Lightweight Language Ring">Lightweight Language Ring</a></h2>
+  <div class="published">
+    August 27th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p><a href="http://ll.jus.or.jp/2006/blog/trackback">LL Ring</a> 行ってきた。</p>
+
+<p><a href="http://www.otsune.com/">otsune さん</a>がネットバトルを「プロレス」といったりしてるけど、まさかベタにプロレス会場でプログラミング言語のはなしを聞く日が来るとは思わなかった。楽しい。寒いのとトイレがすくないのはちょっと困ったけど。</p>
+
+<p>関数型言語はちゃんとやろう、というか「ふつうの Haskell」読むの再開しないと、というのと Python の堅実路線に好感をもった。あと、抽選で PHP の本を当てて、バイト先の人つながりで<a href="http://angelicwing.net/">月宮さん</a>のサインまでもらってしまったので、これはもう PHP 勉強するしかないような。</p>
+    
+    
+    
+    <h3>Language Update</h3>
+
+<h4>Haskell</h4>
+
+<ul>
+<li>いままでは研究者と変人しか使ってなかったんだけど、最近ふつうの人にも流行りつつある。</li>
+<li>Google Trends でみると、LLDN と YAPC::Asia のあたりに山がある。でも Java とかと比べちゃだめだよ。</li>
+<li>Haskell Prime: Haskell の新しい標準規格</li>
+<li>GHC はいろいろ先進的な機能を取り入れている。</li>
+</ul>
+
+<h4>Scheme</h4>
+
+<ul>
+<li>ハワイから Skype で生中継</li>
+<li>仕様書は30年で9ページ増。非常にコンパクトな仕様。</li>
+<li>R6R5: モジュールシステム。処理系間で微妙な非互換性を生んでる部分をつめる。</li>
+<li>プレゼンが全部括弧でくくられていて、それを指して最後に「括弧なんてそのうち気にならなくなったでしょ?」というのは、うまいと思った。</li>
+</ul>
+
+<h4>awk</h4>
+
+<ul>
+<li>日本 GNU AWK ユーザー会の Web サーバーは、いま発表に使っている(いまひとつ調子の悪い)ノートなので、いまはつながりません。</li>
+<li>xgawk: XML や PostgreSQL に対応した awk。このまえの OSCon でも結構好評だった。</li>
+</ul>
+
+<h4>OCaml</h4>
+
+<ul>
+<li>馬のかぶりもの(<a href="http://d.hatena.ne.jp/soutaro/20060827/1156662104">意図としてはラクダだとか</a>)をつけたまま発表。出落ちだと思ったけど、間が空いたときに、息の荒いのを伝えるだけで会場がちょっとうけてたので、実は実用的かもしれない。</li>
+<li>Haskell つかいづらくね? Haskell 挫折したひとにも OCaml はおすすめ。強力、簡単、実用的なマルチパラダイム言語です。</li>
+</ul>
+
+<h4>Common Lisp</h4>
+
+<ul>
+<li>50年変化無いから Language Update なんて無し。みんなの認識を update します。</li>
+<li>頭のいい人が Lisp で実装したアイデアが、その後に、ふつうの人が使う他の言語におりてきている。</li>
+<li>プログラミングの母なる海。プログラミング可能なプログラミング言語。</li>
+</ul>
+
+<h4>Java</h4>
+
+<ul>
+<li>時間決め打ちのインタラクティブじゃないアニメーション + ウクレレすごい。</li>
+<li>JSR223 でスクリプトとのインターフェースが決定。Java SE 6 からはいります。</li>
+<li>Java SE7 ではスクリプト言語向けに VM にも手が入る。</li>
+</ul>
+
+<h4>PHP</h4>
+
+<ul>
+<li>5.2: メモリ消費量や、時間効率が改善。</li>
+<li>6: ICU ベースの Unicode ネイティブサポート。レガシーな機能の削除。コードのキャッシュ。そして goto。</li>
+<li>いま goto をいれるあたり、やっぱり PHP は言語ヲタ受けしない感が。</li>
+</ul>
+
+<h4>Perl</h4>
+
+<ul>
+<li>ウェブサイトに素材集から女性の写真をはりつけても、いるのは小飼さんだよ! 弾さんって必要? (by サンデージャポン)</li>
+<li>必要! require dankogai というか use Dan::Kogai だよ! コードとか添削してくれるの超親切!</li>
+<li>Perl 6: 過去互換性を切ってまで混沌を整理。はじめてのひとにやさしく。</li>
+<li>CPAN モジュールの Moose が気になった。</li>
+</ul>
+
+<h4>JavaScript</h4>
+
+<ul>
+<li>(ごめんトイレいってた)</li>
+<li>prototype.js, script.aculo.us はデファクトスタンダードだけど開発停滞気味。Dojo, MochiKit, jQuery は活発。</li>
+<li>天野さんは jQuery おすすめらしい。Adobe Spry でも使ってるとか。</li>
+<li>AJAJA もいいよと。</li>
+</ul>
+
+<h4>Python</h4>
+
+<ul>
+<li>Google と Microsoft の共通点は「PyCon のスポンサーである」</li>
+<li>Guido と Plone の Alexander Limi は Google、IronPython の Jim Hugunin は Microsoft にはいった。</li>
+<li>PSF (Python Software Foundation) が開発をサポート。リリース間隔も一定。</li>
+<li>文法が拡張されるときも、"from __future__ import なんとか" でオンになる期間があって、そのあと取り込み。</li>
+</ul>
+
+<h4>Ruby</h4>
+
+<ul>
+<li>1.8.5: 今日にまにあわせてリリース。</li>
+<li>松江市のローソンの二階に「松江オープンソースラボ」ができました。</li>
+<li>1.9: fork と考えてください。互換性もちょっと切る。YARV と Unicode ベースでない CSI な多国語対応がはいる予定。</li>
+</ul>
+
+<h4>ActionScript</h4>
+
+<ul>
+<li>Adobe 直々に発表者。ActionScript 3 のはなし。</li>
+<li>ECMA 262 ベース。型や JIT コンパイラが入って速くなった。</li>
+<li>Display List API というのを叩けば、Flash もコードだけで作れます。</li>
+<li>DOM3, E4X, 正規表現も入りました。E4X はすごいな。</li>
+</ul>
+
+<h4>FORTH</h4>
+
+<ul>
+<li>Lisp が高レベルのプログラミング可能プログラミング言語だとしたら、FORTH はその低レベル版。</li>
+<li>"Thinking Forth" という本が CC ライセンスで公開されている。</li>
+<li>May the FORTH be with you!</li>
+</ul>
+
+<h4>Squeak</h4>
+
+<ul>
+<li>Squeak ももう10才。「Smalltalk は死んだ言語」と Alan Kay がいったりしてるけど、コミュニティ的にはあまり気にならず。</li>
+<li>Seaside: 継続ベースの Web サーバ。すごい。</li>
+<li>Croquet: 3D で P2P で空間を共有。すごい。</li>
+<li>Squeakware, OLPC で Squeak, Squeak NOS とか。</li>
+<li>毎回デモがすごいんだけど、年一回びっくりするだけで、いまひとつ手が伸びない……。Squeak の中に住まなきゃだめなのがネックというか。Web 系だったら Squeak の外に出せるかな。</li>
+</ul>
+
+<h3>関数型言語</h3>
+
+<ul>
+<li>高階関数やるなら型無しは無しだろ。</li>
+<li>型をきめるのは全体設計。推論があるから C, Java みたいになんでも明示的に書く訳ではない。設計を固めないまま試行錯誤するには型無しもいいかも。</li>
+<li>宣言的な記述は抽象度が高くなるので、プログラミング言語の進化としては正しい。アセンブラでだらだら書いてたのが FORTRAN で 1+2 とかかけるようになった訳だけど、あれだって宣言的じゃね?</li>
+<li>Felica は、まず VDM で10万行書いたとか。失敗が許されない現場だと形式仕様記述とかするらしい。</li>
+<li>遅延評価は使いたいときだけあればいいような。というか素数なんて誰かが素数サーバーをたてればいいんだよ。無限を外部に求めよう。</li>
+<li>青木さんのアシストがいい感じ。たまにしゃべるのも会場にうけてたので、目線が客席寄りなんだろう。</li>
+<li>関数型言語最高じゃね、という流れのなか GUI とかどうよ? という質問がでるとみんな言葉をにごしていた。普段何書いてるんだろう。</li>
+<li>多少はアジテーションだと思うけど、山下さんが悟りの境地に達してるっぽくて印象的だった。計算機にできる仕事は計算機に、というのは正しいと思う。</li>
+</ul>
+
+<h3>じゃんけん</h3>
+
+<ul>
+<li>ActionScript はマイクから音声をひろう。awk は「走れメロス」の文章をもとに手を決定。JavaScript は Rhino で「勝ちにいきます」。Python はきれいなスタイルを強制するのに、わざわざワンライナーで。Ruby は Ruby/DL2 でメモ帳を表示画面に。</li>
+<li>JavaScript が本当に強かった。運営側がいれた既知のアルゴリズムを出すエージェント達を見分けて、最適な戦略を選択していたんだろうと思う。</li>
+<li>全面的に準備不足感があったんだけど「LL って Agile に向くのがわかったね」というまとめはうまかった。でも準備重要。</li>
+</ul>
+
+<h3>きみならどう書く</h3>
+
+<ul>
+<li>Django: リッチなモデルを定義するだけでスキーマ作ったり管理画面が出来たりするのが良さげ。新聞社のサイトからスピンアウトしたものでスケーラブルらしい。</li>
+<li>Kahua: 当然のように S 式。</li>
+<li>Ethna: また Agile が。アプリはメール対応、Ajax, XML-RPC とかいまっぽい感じなのに、プレゼンは去年の Kahua っぽいゆるさ。「おこづかい帳ですがなにか?」</li>
+<li>Rails: とにかくプレゼンがうまい。去年のささださんもそうだけど Ruby のひとは椅子があっても立って話そうとするのがすごい。複式簿記対応のスキーマ定義は前日までだけど、コーディングは朝からペアプロで、30分前くらいには完成していたらしい。</li>
+</ul>
+
+<h3>LL Gong</h3>
+
+<ul>
+<li>Objective-C 対応の c-wrapper はあとでさわる。あと binfmt 面白かった。</li>
+<li>レフェリーは「×」を上げづらそうなので、いっそトータライザーとか匿名性があるもののほうが。</li>
+</ul>
+
+<h3>関連リンク</h3>
+
+<ul>
+<li><a href="http://ll.jus.or.jp/2006/blog/trackback">トラックバックをお寄せください —  Lightweight Language Ring</a></li>
+<li><a href="http://d.hatena.ne.jp/hyoshiok/20060826#p1">未来のいつか/hyoshiokの日記</a> (Language Update の発表順はここを参照しました)</li>
+<li><a href="http://madboo.jugem.cc/?eid=924">BooLog | LL Ring に参加</a> (YouTube に動画をアップされているかた)</li>
+<li><a href="http://ash1no0to.dyndns.org/htdocs/archives/2006/08/llring_1.html">LLRingへ行ってきました (ueBLOG)</a> (YouTube と Flickr も)</li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/08/27/lightweight-language-ring/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

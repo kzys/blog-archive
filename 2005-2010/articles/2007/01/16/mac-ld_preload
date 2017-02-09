@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Mac で LD_PRELOAD</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-133525510">
+  <h2 class="entry-title"><a href="/articles/2007/01/16/mac-ld_preload" title="Mac で LD_PRELOAD">Mac で LD_PRELOAD</a></h2>
+  <div class="published">
+    January 16th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>ありません。LD_PRELOAD はありません。</p>
+
+<pre><code>% hostname
+helvetica.lan
+% cc -fno-common -dynamiclib -o gethostname.dylib gethostname.c
+% DYLD_INSERT_LIBRARIES=gethostname.dylib DYLD_FORCE_FLAT_NAMESPACE=YES hostname
+localhost
+% FAKE_HOSTNAME=sai.fsij.org DYLD_INSERT_LIBRARIES=gethostname.dylib DYLD_FORCE_FLAT_NAMESPACE=YES hostname
+sai.fsij.org
+%
+</code></pre>
+
+<p>gethostname.c は Binary Hacks の #60 (p.227) に載っています。</p>
+
+<h3>参考</h3>
+
+<ul>
+<li><a href="http://fink.sourceforge.net/doc/porting/shared.php">Fink - 移植 - 共有コード</a></li>
+<li><a href="http://www.kernelthread.com/mac/apme/library/">Mac OS X: Re-routing Dynamic Library Calls</a></li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mac" rel="tag" title="mac">mac</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">1 Response to &#8220;Mac で LD_PRELOAD&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-136279800">
+			<cite><a href="http://nasal.freehostia.com/">HOiG8q</a></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-136279800" title="">August 21st, 2007 at 03:47 PM</a></small>
+			<p>you have party Buy http://nasal.freehostia.com/ elephant website super. nasal spray first do past you have http://nasal.freehostia.com/b12-nasal-spray.html from party nice. b12 nasal spray view file like you http://nasal.freehostia.com/saline-nasal-spray-side-effects.html extention another turn good. saline nasal spray side effects support detach while http://nasal.freehostia.com/zomig-nasal-spray.html first do but this site I love our community. zomig nasal spray view happy file http://nasal.freehostia.com/migranal-nasal-spray.html support great site I love our community. migranal nasal spray while time have fun with http://nasal.freehostia.com/xlear-nasal-spray.html date you have nice. xlear nasal spray</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2007/01/16/mac-ld_preload/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

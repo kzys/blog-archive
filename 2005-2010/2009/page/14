@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+   <div class="main">
+    <div class="entry" id="entry553">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/03/kpt">3月の KPT</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-03-30 08:28    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Keep がひきつげたのは良いけど Problem もつづいている。Try は少なめにしたつもりなのに全然出来ていないので難易度を下げた。</p>
+<h3>Keep</h3>
+<ul>
+<li>ブログ: 書いてます。</li>
+<li>パッチ: 書いてます。でも送ってないのとか、スルーされてるのとか、逆にとりこめてないのとかある。</li>
+</ul>
+<h3>Problem</h3>
+<ul>
+<li>プログラマ以外に見せられるもの無し: 前回の Try なんだけど出来ず。</li>
+<li>断線と早起きもくじけがちだった。</li>
+</ul>
+<h3>Try</h3>
+<ul>
+<li>本を買わない: 読みかけと消化しきれていないものが多すぎる。</li>
+<li>断線を記録する。</li>
+<li>起床時間を記録する。</li>
+</ul>
+</div>
+</div>
+<div class="entry" id="entry526">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/03/textfield-js-2">JavaScript でプレースホルダ、の続き</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-03-20 16:38    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>前々回の <a href="//blog.8-p.info/2009/03/textfield-js">JavaScript でプレースホルダつき入力欄を作る</a> の続き。バグを直してテストを足したものを <a href="http://github.com/kzys/textfield.js/tree/master">GitHub</a> に置いてみた。</p>
+<h3>バグ修正</h3>
+<p>まずはコメントで教えてもらったバグのはなしから。</p>
+<blockquote><p>これを本気でやるなら、親をたどってform要素のonsubmitもフックしないといけなくなるんですけど<br />このブログのUIだとfocusなしで検索することができないようになってるんですね。</p></blockquote>
+<p>前回の実装には、なにも入力していないときに submit ボタンをクリックすると、プレースホルダとして表示されている値がそのままサーバーに送信されてしまうという問題があった。今回はコンストラクタ (initialize メソッド) に以下のようなコードを足して修正している。</p>
+<pre>
+        var form = TextField.formOf(element);
+        if (! form) {
+            return;
+        }
+        $(form).observe('submit', function () {
+            if (! this._changed) {
+                this._element.value = '';
+            }
+        }.bindAsEventListener(this));
+</pre>
+<h3>テスト</h3>
+<p>だんだんコードがいりくんで来たのでテストも書いてみた。テストフレームワークには UnittestJS を使っている。前述の submit や WebKit 対策の unload では、テストが走っているページの中に一段 iframe をきって、そこで遷移をともなうテストを走らせている。</p>
+<h3>他の選択肢: jQuery と HTML 5</h3>
+<p>jQuery で、というのを書いたひとは多かった。</p>
+<ul>
+<li><a href="http://less.carbonfairy.org/post/84833081/jquery">jQueryでプレースホルダつき入力欄を作る</a></li>
+<li><a href="http://d.hatena.ne.jp/syttru/20090308/1236534434">JavaScriptでプレースホルダつき入力欄を作る(JQuery実装)</a></li>
+<li><a href="http://d.hatena.ne.jp/syttru/20090309/1236610401">JQueryでプレースホルダつき入力欄その２</a></li>
+<li><a href="http://d.hatena.ne.jp/cyokodog/20090310/jQueryPlaceFolder01">レイヤーベースのプレースホルダ付き入力欄を作る</a></li>
+</ul>
+<p>なお HTML 5 では、こういうものをいちいち JavaScript で書かなくて良くなるらしい。</p>
+<p><a href="http://b.hatena.ne.jp/vantguarde/20090308#bookmark-12431708">はてなブックマーク - vantguarde - 2009年3月8日</a></p>
+<blockquote><p>
+それplaceholder属性でできるよ <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#the-placeholder-attribute">http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#the-placeholder-attribute</a>
+</p></blockquote>
+<p>知りませんでした。</p>
+</div>
+</div>
+<div class="entry" id="entry482">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/03/gnu-strlen">GNU strlen を読む</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-03-15 02:50    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Hacker News でみかけた <a href="http://news.ycombinator.com/item?id=510326">Glibc&#8217;s strlen implementation: Probably not what you&#8217;d guess</a> というスレッドが面白かった。スレッドでは GNU の他に OpenBSD (べたな C, i386, x86-64) と Apple (SSE3 を使っている) にもリンクがあるんだけど、ここでは GNU strlen の実装についてだけ説明します。</p>
+<h3>実装</h3>
+<p>GNU strlen は文字列から long word 単位でおおまかに NUL っぽいものを探してから、バイト単位でこまかく探す、という方法をとっている。</p>
+<p><a href="http://sources.redhat.com/cgi-bin/cvsweb.cgi/libc/string/strlen.c?rev=1.1.2.1&#038;content-type=text/x-cvsweb-markup&#038;cvsroot=glibc">strlen.c</a> にある strlen は、トリッキーなところを丁寧にコメントで補っているせいもあってやや長い。まず、strlen の引数の str のアドレスが long word にそろっていない場合、最初の for ループにはいる。</p>
+<pre>
+  for (char_ptr = str; ((unsigned long int) char_ptr
+                        &#038; (sizeof (longword) - 1)) != 0;
+       ++char_ptr)
+    if (*char_ptr == '\0')
+      return char_ptr - str;
+</pre>
+<p>このループはふつうに文字単位で回っていて、NUL でも抜けられる。ただ、さらに終了条件としてポインタのアドレスの下の桁も見ていることに注意してほしい。もし NUL がなくても、文字列の先頭が long word にそろった時点でこのループは終了してしまう。</p>
+<p>次に、char* を long int* にキャストして himagic と lomagic という定数を定義している。</p>
+<pre>
+  longword_ptr = (unsigned long int *) char_ptr;
+
+  /* ... */
+  magic_bits = 0x7efefeffL;
+  himagic = 0x80808080L;
+  lomagic = 0x01010101L;
+</pre>
+<p>magic_bits は #if 0 の中でだけ使っている == 使っていないので無視していい。himagic は 0&#215;80808080 で2進数だと</p>
+<pre>
+1000 0000 1000 0000 1000 0000 1000 0000
+</pre>
+<p>こう表せる。lomagic は 0&#215;01010101 なので</p>
+<pre>
+0000 0001 0000 0001 0000 0001 0000 0001
+</pre>
+<p>こうだ。実装では long word が 32bit より長いマシンではこのパターンをもう一回くりかえし、64bit より上のマシンだと abort している。</p>
+<p>ここから long word 単位のループにはいる。for 文直後のコメントは magic_bits 時代のものだと思う。</p>
+<pre>
+  for (;;)
+    {
+      /* ... */
+
+      longword = *longword_ptr++;
+
+      if (
+#if 0
+...
+#else
+          ((longword - lomagic) &#038; himagic)
+#endif
+          != 0)
+        {
+</pre>
+<p>たとえば &#8220;hi&#8221; だと longword - lomagic は</p>
+<pre>
+  h           i           NUL
+  0110 1000   0110 1001   0000 0000   XXXX XXXX
+- 0000 0001 | 0000 0001 | 0000 0001 | 0000 0001
+
+  0110 0111   0110 0111   1111 1111   XXXX XXXX
+</pre>
+<p>NUL から1を引いたときに上から繰り下がって、NUL の桁の全ビットが立つ。X は未定義なのでここではスルーしてほしい。</p>
+<p>これに himagic を &#038; すると</p>
+<pre>
+  0110 0111   0110 0111   1111 1111   XXXX XXXX
+&#038; 1000 0000 | 1000 0000 | 1000 0000 | 1000 0000
+
+  0000 0000   0000 0000   1000 0000   XXXX XXXX
+</pre>
+<p>ここで結果が 0 にならない場合、longword のなかの文字のどれかが NUL である可能性があるので、if のなかで文字単位で探している。</p>
+<pre>
+        {
+          const char *cp = (const char *) (longword_ptr - 1);
+
+          if (cp[0] == 0)
+            return cp - str;
+          if (cp[1] == 0)
+            return cp - str + 1;
+          if (cp[2] == 0)
+            return cp - str + 2;
+          if (cp[3] == 0)
+            return cp - str + 3;
+          if (sizeof (longword) > 4)
+            {
+              if (cp[4] == 0)
+                return cp - str + 4;
+              if (cp[5] == 0)
+                return cp - str + 5;
+              if (cp[6] == 0)
+                return cp - str + 6;
+              if (cp[7] == 0)
+                return cp - str + 7;
+            }
+        }
+</pre>
+<p>日本人としては、ループから if に入る条件が char の MSB が立たないことを期待しすぎていると思った。</p>
+<h3>感想</h3>
+<p>NUL 終端文字列の長さをとる処理はどうやっても O(n) だ。Joel Spolsky は NUL 終端文字列を「文字列を格納する最悪の方法のひとつ」と評しているし、文字列の長さは番兵で表現せずに別の場所にいれておいたほうがいいと思う。</p>
+<p>とはいえ、計算上はどうしようもない問題でも、計算機上ではまだ工夫の余地があるというのは面白かった。教科書的にはアルゴリズムで O(n) の定数を削るよりもデータ構造を検討するべきなんだけど、これ libc ですからね。</p>
+</div>
+</div>
+    <div class="paginate">
+      <a href="//blog.8-p.info/2009/page/13" >Newer</a>      <a href="//blog.8-p.info/2009/page/15" >Older</a>    </div>
+  </div>
+  <div class="sidebar"><h2>About me and this blog</h2>
+<p>
+  All articles are written by <a href="http://8-p.info/me/">加藤和良</a>.
+  A few are <a href="/2009/tag/lang-en">written in English</a>.
+</p>
+
+<ul>
+  <li>
+    <h2>Recent articles</h2>
+    <ul>	<li><a href='//blog.8-p.info/2009/12/wordpress' title='さよなら WordPress'>さよなら WordPress</a></li>
+	<li><a href='//blog.8-p.info/2009/12/chrome-repl-released' title='ChromeRepl released'>ChromeRepl released</a></li>
+	<li><a href='//blog.8-p.info/2009/12/hatena' title='Hatena&#8217;s routing problem'>Hatena&#8217;s routing problem</a></li>
+	<li><a href='//blog.8-p.info/2009/12/test-synchronized' title='Test::Synchronized released'>Test::Synchronized released</a></li>
+	<li><a href='//blog.8-p.info/2009/11/26' title='11月をふりかえる'>11月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/11/subversion-file-find' title='Subversion のワーキングコピー上の File::Find を速くする'>Subversion のワーキングコピー上の File::Find を速くする</a></li>
+	<li><a href='//blog.8-p.info/2009/11/chrome-repl' title='ChromeRepl - a remote REPL client for Google Chrome'>ChromeRepl - a remote REPL client for Google Chrome</a></li>
+	<li><a href='//blog.8-p.info/2009/10/october' title='10月をふりかえる'>10月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/10/linux-db-system' title='『Linux-DB システム 構築/運用入門』を読んだ'>『Linux-DB システム 構築/運用入門』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/10/cubic-volume' title='体積パズル'>体積パズル</a></li>
+	<li><a href='//blog.8-p.info/2009/10/scala-scripting' title='Scala で書き捨てスクリプト'>Scala で書き捨てスクリプト</a></li>
+	<li><a href='//blog.8-p.info/2009/09/september' title='9月をふりかえる'>9月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-7' title='GreaseKit 1.7 released'>GreaseKit 1.7 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/gcd-1' title='C にクロージャのようなものを追加する Grand Central Dispatch'>C にクロージャのようなものを追加する Grand Central Dispatch</a></li>
+	<li><a href='//blog.8-p.info/2009/09/greasekit-1-6' title='GreaseKit 1.6 released'>GreaseKit 1.6 released</a></li>
+	<li><a href='//blog.8-p.info/2009/09/yapcasia-2009' title='YAPC::Asia 2009 スタッフ日記'>YAPC::Asia 2009 スタッフ日記</a></li>
+	<li><a href='//blog.8-p.info/2009/09/clickatell-sms' title='Clickatell 経由で SMS を送信する'>Clickatell 経由で SMS を送信する</a></li>
+	<li><a href='//blog.8-p.info/2009/09/devel-nytprof' title='Devel::NYTProf を読む'>Devel::NYTProf を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/08/august' title='8月をふりかえる'>8月をふりかえる</a></li>
+	<li><a href='//blog.8-p.info/2009/08/toeic' title='TOEIC スコアとか'>TOEIC スコアとか</a></li>
+	<li><a href='//blog.8-p.info/2009/08/july-kpt' title='7月の KPT'>7月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/08/managers-schedule' title='Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?'>Does anyone like &#8220;Manager&#8217;s Schedule&#8221;?</a></li>
+	<li><a href='//blog.8-p.info/2009/07/wewlc' title='『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)'>『レガシーコード改善ガイド』を読もう (あるいは、テストを書こう)</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak-on-bitbucket' title='Newspeak on Bitbucket'>Newspeak on Bitbucket</a></li>
+	<li><a href='//blog.8-p.info/2009/07/newspeak' title='Newspeak - The search engine for commit logs'>Newspeak - The search engine for commit logs</a></li>
+	<li><a href='//blog.8-p.info/2009/07/php-or-perl' title='What language should we learn?'>What language should we learn?</a></li>
+	<li><a href='//blog.8-p.info/2009/06/june-kpt' title='6月の KPT'>6月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/06/html' title='HTML + CSS + JavaScript を組み合わせる難しさ'>HTML + CSS + JavaScript を組み合わせる難しさ</a></li>
+	<li><a href='//blog.8-p.info/2009/06/dsvn-el' title='dsvn.el から Subversion をつかう'>dsvn.el から Subversion をつかう</a></li>
+	<li><a href='//blog.8-p.info/2009/06/google-page-speed' title='Google Page Speed を読む'>Google Page Speed を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/05/may-kpt' title='5月の KPT'>5月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/05/testapache2-003-and-004' title='Test::Apache2 0.03 and 0.04'>Test::Apache2 0.03 and 0.04</a></li>
+	<li><a href='//blog.8-p.info/2009/05/code-smell' title='コードの匂いは人に移る'>コードの匂いは人に移る</a></li>
+	<li><a href='//blog.8-p.info/2009/05/test-apache2-released' title='Test::Apache2 をリリースした'>Test::Apache2 をリリースした</a></li>
+	<li><a href='//blog.8-p.info/2009/05/april-kpt' title='4月の KPT'>4月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/04/test-apache2' title='My new project: Test::Apache2'>My new project: Test::Apache2</a></li>
+	<li><a href='//blog.8-p.info/2009/04/project-root' title='プロジェクトのルートディレクトリを探す'>プロジェクトのルートディレクトリを探す</a></li>
+	<li><a href='//blog.8-p.info/2009/04/danboard' title='Danboard is my XFD'>Danboard is my XFD</a></li>
+	<li><a href='//blog.8-p.info/2009/04/glitchcam' title='glitchcam'>glitchcam</a></li>
+	<li><a href='//blog.8-p.info/2009/03/kpt' title='3月の KPT'>3月の KPT</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js-2' title='JavaScript でプレースホルダ、の続き'>JavaScript でプレースホルダ、の続き</a></li>
+	<li><a href='//blog.8-p.info/2009/03/gnu-strlen' title='GNU strlen を読む'>GNU strlen を読む</a></li>
+	<li><a href='//blog.8-p.info/2009/03/textfield-js' title='JavaScript でプレースホルダつき入力欄を作る'>JavaScript でプレースホルダつき入力欄を作る</a></li>
+	<li><a href='//blog.8-p.info/2009/02/life' title='2月の反省と近況'>2月の反省と近況</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff-combine_graphs' title='New Class::Sniff has &#8220;combine_graphs&#8221;'>New Class::Sniff has &#8220;combine_graphs&#8221;</a></li>
+	<li><a href='//blog.8-p.info/2009/02/class-sniff' title='Class::Sniff で継承木をかく'>Class::Sniff で継承木をかく</a></li>
+	<li><a href='//blog.8-p.info/2009/02/simbl' title='SIMBL で Cocoa アプリケーションにコードをつぎたす'>SIMBL で Cocoa アプリケーションにコードをつぎたす</a></li>
+	<li><a href='//blog.8-p.info/2009/01/hreview' title='hReview is just a draft'>hReview is just a draft</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unwired-life' title='断線生活'>断線生活</a></li>
+	<li><a href='//blog.8-p.info/2009/01/dom-scripting' title='『DOM Scripting 標準ガイドブック』を読んだ'>『DOM Scripting 標準ガイドブック』を読んだ</a></li>
+	<li><a href='//blog.8-p.info/2009/01/object-kv-mapping' title='オブジェクトを key-value ストアに直列化する'>オブジェクトを key-value ストアに直列化する</a></li>
+	<li><a href='//blog.8-p.info/2009/01/chrome-ui-test' title='Google Chrome の UI テスト (実装編)'>Google Chrome の UI テスト (実装編)</a></li>
+	<li><a href='//blog.8-p.info/2009/01/refactoring' title='テストぬきリファクタリング'>テストぬきリファクタリング</a></li>
+	<li><a href='//blog.8-p.info/2009/01/unittest-js' title='UnittestJS でクロスブラウザテスト'>UnittestJS でクロスブラウザテスト</a></li>
+	<li><a href='//blog.8-p.info/2009/01/red-prompt' title='コマンドが失敗したらプロンプトを赤くする'>コマンドが失敗したらプロンプトを赤くする</a></li>
+	<li><a href='//blog.8-p.info/2009/01/blogging-in-english' title='Blogging in English'>Blogging in English</a></li>
+	<li><a href='//blog.8-p.info/2009/01/2009' title='2009'>2009</a></li>
+</ul>
+  </li>
+</ul>
+
+<ul><li id="linkcat-2" class="linkcat"><h2>Links</h2>
+	<ul class='xoxo blogroll'>
+<li><a href="http://collisions.doppac.cc/">collisions.doppac.cc</a></li>
+<li><a href="http://googletesting.blogspot.com/">Google Testing Blog</a></li>
+<li><a href="http://www.grafikcache.com/">Grafikcache</a></li>
+<li><a href="http://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="http://someru.blog74.fc2.com/">Hang Reviewers High</a></li>
+<li><a href="http://labs.ideo.com/">IDEO Labs</a></li>
+<li><a href="http://blog.makezine.com/">MAKE: Blog</a></li>
+<li><a href="http://d.hatena.ne.jp/KZR/">Radium Software</a></li>
+<li><a href="http://steps.dodgson.org/">steps to phantasien</a></li>
+
+	</ul>
+</li>
+</ul>
+
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+</p>
+</div>
+</div>
+
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

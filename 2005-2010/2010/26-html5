@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=26" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: HTML5</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article26">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/26-html5" class="name">HTML5</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:4.878195,1.404990&amp;cht=p&amp;chp=1.675516' alt='15:31' /></h1>
+
+<div class="attr">
+  Posted at 2010/05/16 15:31,
+  Modified at 2010/05/17 10:14
+  </div>
+
+<div class="text">
+<p>HTML 文章とそこから構築される DOM 木のペアを考える。いくつかのブラウザで、ペアの集合を図にするとこんなかんじになると思う。それぞれのブラウザの共通部分のなかのごく小さい部分が、いままでの、仕様として明確に定義された HTML だった。</p>
+<div class="image image_normal image_normal3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1273990582-html.png" alt="image:1:1273990582-html.png" /></div>
+<p>世の中の多くの HTML 文章は、実際には仕様にそっていない。各ブラウザはがんばってそこから DOM 木を作っていて、その DOM 木が一致することもある。というか、一致しないとユーザーが困るのでなんとか一致させている。</p>
+<p>HTML5 がいままでの HTML と大きくちがうのは、この、世の中の色々な HTML と周辺の問題とを、仕様として明確に定義しようとしているところだ。</p>
+<div class="image image_normal image_normal3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1273990573-html5.png" alt="image:2:1273990573-html5.png" /></div>
+<p>例えば</p>
+<ul>
+<li>エンコーディングをいかにして推測するか?</li>
+<li>&amp;amp; ではない単体の &amp; をどう扱うべきか</li>
+<li>DOCTYPE が &quot;-//O'Reilly and Associates//DTD HTML Extended Relaxed 1.0//&quot; ではじまっていたらどうするか?</li>
+<li>要素の入れ子がおかしいときはどうするべきか?</li>
+</ul>
+<p>なんてことがひたすら明文化されていて、規格の仕様書というより実装の仕様書といったほうが似つかわしいことになっている。きれいだとは思わないけど、すごいとは思う。泣ける。</p>
+<h2 id="article26_1" class="ah1 topic">Validator.nu の HTML5 パーサ</h2>
+<p>HTML5 の validation サービスとして有名な <a href="http://validator.nu/">Validator.nu</a> はパーサ部分を単体でつかえる。パーサは <a href="https://jaxp.dev.java.net/">JAXP</a> に準拠しているので、Java まわりのほかのもの、たとえば Scala の XML まわりとも組み合わせられる。</p>
+<pre>import nu.validator.htmlparser.sax.HtmlParser
+import scala.xml.parsing.NoBindingFactoryAdapter
+import scala.xml.TopScope
+
+import org.xml.sax.InputSource
+import java.io.StringReader
+
+object Main {
+  def main(argv: Array[String]) = {
+    val adapter = new NoBindingFactoryAdapter
+
+    val parser = new HtmlParser
+    parser.setContentHandler(adapter)
+
+    val reader = new StringReader(&quot;&lt;p&gt;1&lt;b&gt;2&lt;i&gt;3&lt;/b&gt;4&lt;/i&gt;5&lt;/p&gt;&quot;)
+
+    adapter.scopeStack.push(TopScope)
+    parser.parse(new InputSource(reader))
+
+    println(adapter.rootElem)
+  }
+}
+</pre>
+<p>このパーサは Firefox 4 でも使われるらしい。といっても Firefox は Java じゃなくて C++ で書かれている。</p>
+<p><a href="http://journal.mycom.co.jp/news/2009/07/13/020/index.html">FirefoxにHTML 5パーサ、Java→C++自動変換で性能改善3%</a></p>
+<blockquote>
+<p>ここからが興味深い。Henri Sivonen氏はValidator.nu (X)HTML5 Validatorを取り込むにあたって、JavaのソースコードをC++に自動変換する処理を追加。手動で実施することなく、自動的に変換したコードをGeckoに取り込ませることに成功したという。</p>
+</blockquote>
+<p>実際にソースをみてみると <a href="http://code.google.com/p/javaparser/">JavaParser</a> のパーサをつかって Java のソースコードをパースして C++ のコードを吐く、という部分があるのがわかる。ただ、これは変換元の Java 側の協力あってのもので、あらゆる Java のコードが C++ に変換できるわけではない。</p>
+<pre>    public final void endTokenization() throws SAXException {
+        Portability.releaseElement(formPointer);
+        formPointer = null;
+        Portability.releaseElement(headPointer);
+        headPointer = null;
+        while (currentPtr &gt; -1) {
+            stack[currentPtr].release();
+            currentPtr--;
+        }
+        Portability.releaseArray(stack);
+        stack = null;
+        while (listPtr &gt; -1) {
+            if (listOfActiveFormattingElements[listPtr] != null) {
+                listOfActiveFormattingElements[listPtr].release();
+            }
+            listPtr--;
+        }
+        Portability.releaseArray(listOfActiveFormattingElements);        
+        listOfActiveFormattingElements = null;
+        // [NOCPP[                                                              
+        idLocations.clear();
+        // ]NOCPP]                                                              
+        Portability.releaseArray(charBuffer);
+        charBuffer = null;
+        end();
+    }
+</pre>
+<p>こんなふうに &quot;portability&quot; の名のもとに資源の開放を明示的におこなったり、それでも足りなくて NOCPP でかこったりしている。hacky ですね。</p>
+</div>
+<div class="comments" id="article26_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="26" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

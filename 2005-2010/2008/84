@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="blog.css" />
+  <title>2008-07-30T23:17:47+09:00</title>
+</head>
+
+<body>
+  <div class="entry">
+    <h1>2008-07-30T23:17:47+09:00</h1>
+
+    <p>
+しかし Google ブックマークは UI も好みなので、移行はむずかしい。
+</p>
+<p>
+ブックマークの一覧:
+</p>
+<pre class="wiki">
+★ Foo
+★ Bar
+</pre>
+<p>
+ここで削除すると (もちろんページ遷移無しに) Foo の ★ が ☆ になる
+</p>
+<pre class="wiki">
+☆ Foo
+★ Bar
+</pre>
+<p>
+ここで ☆ をクリックするとまた ★ に戻って、つまりアンドゥなのです。
+</p>
+<p>
+Twitter 使っている人だと Fav 一覧と同じっていえばいいか。これ良い。
+</p>
+<p>
+Google にログインしてブックマークのフィードとってラベルで検閲して 8-p.info にコピー、が簡単さ (自分で書くコード少ない) と便利さ (Google ブックマーク) と正しさ (公開) のちょうどなバランスだと思いました。
+</p>
+  </div>
+</body>
+</html>

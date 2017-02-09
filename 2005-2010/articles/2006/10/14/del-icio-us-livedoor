@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: del.icio.us とか livedoor クリップとか</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135932680">
+  <h2 class="entry-title"><a href="/articles/2006/10/14/del-icio-us-livedoor" title="del.icio.us とか livedoor クリップとか">del.icio.us とか livedoor クリップとか</a></h2>
+  <div class="published">
+    October 14th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>Internet Explorer 以外のブラウザを使ったことがないひとにとっては、ブラウザ == Internet Explorer なのと同じで、ソーシャルブックマーク == はてなブックマークなひともいるのかもしれない。</p>
+
+<p>というわけで、はてなブックマークと del.icio.us や livedoor クリップを比べて、気になったところを列挙してみる。</p>
+    
+    
+    
+    <h3>タイトル</h3>
+
+<p>タイトルが全ユーザーで共有なのは、はてなブックマークだけ。</p>
+
+<p>微妙なものを全体で共有したがるのは、アンテナの更新範囲指定のころから続くはてな社の伝統。ひとりが上手く編集してくれれば、みんなそれに乗っかれるって理屈はわからなくはないけど、タイトルくらい自分で編集するからそっとしておいてくれ、とも思う。</p>
+
+<h3>被お気に入りの表示</h3>
+
+<p>こんな重要情報をユーザーに提供しなくてどうするんだ。</p>
+
+<p>del.icio.us にも livedoor クリップにもあります。</p>
+
+<h3>お気に入り</h3>
+
+<p>livedoor クリップの「ウォッチリスト」は</p>
+
+<ul>
+<li>2カラム</li>
+<li>ページ全体の読み込みの後に、個々のユーザーのブックマークを遅延読み込み</li>
+<li>新着のみ表示(前回のアクセスから追加されたクリップのみを表示)あり</li>
+</ul>
+
+<p>と、かなり凝っていている。</p>
+
+<p>どうせフィードリーダーで読むんだから、そんなにがんばらなくてもと思うんだけど、mala さんのウォッチリストのタイトルが <a href="http://clip.livedoor.com/watchlist/mala__">livedoor clip jsonp api sample</a> となっているので、ようするにそういうことなのかもしれない。</p>
+
+<h3>バックアップ</h3>
+
+<p>del.icio.us では、自分のブックマーク全部を https://secure.del.icio.us/settings/ゆーざー/bookmarks/export から HTML 形式でダウンロードできる。</p>
+
+<p>さらに、1リクエストで自分のブックマーク全部をとってくる <a href="http://del.icio.us/help/api/posts">API</a> もある。これは hatebimport を作ってる側からするとかなりうらやましい。</p>
+
+<h3>URI でのしぼりこみ</h3>
+
+<p>(追記: はてなブックマークも検索機能でほぼ代替可能なようです。詳しくは <a href="http://d.hatena.ne.jp/acqua_alta/20061014/sbm">なつみかん＠はてな - はてブの特徴</a> で)</p>
+
+<p>Wikipedia のページに wikipedia とか、Flickr のページに flickr とか、URI に含まれている文字列をタグでもつけるのは不毛だと思う。</p>
+
+<p>del.icio.us には URI でのしぼりこみは無いし、はてなブックマークは全ブックマーク対象でしか使えない。livedoor クリップはユーザーごとに URI でしぼりこめるので、例えば <a href="http://clip.livedoor.com/clips/kyanny/site/search.cpan.org">金子さんがブックマークしている search.cpan.org のページ</a> なんて探し方ができる。</p>
+
+<p>ちなみに、livedoor クリップの URI しぼりこみは、ホスト名だけに見せかけてちゃんと URI 全体に使えます。<a href="http://clip.livedoor.com/site/http://blog.livedoor.jp/dqnplus/">livedoor クリップ - サイト「http://blog.livedoor.jp/dqnplus/」の新着ページ</a>とかもシステム上はできるので、せめて livedoor ブログくらいはデフォルトでユーザー名までふくめるように (はてなブックマークにおけるはてなダイアリーみたいに) してほしい。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/socialbookmark" rel="tag" title="socialbookmark">socialbookmark</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+	<h3 id="comments">3 Responses to &#8220;del.icio.us とか livedoor クリップとか&#8221;</h3> 
+	<ol class="commentlist">
+	
+		<li class="alt" id="comment-134737650">
+			<cite><span>mala</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134737650" title="">October 14th, 2006 at 01:55 PM</a></small>
+			<p>このページ、IEで真っ白になりますね。
+metaタグのcharset宣言がtitleより後ろになので判別失敗してます。</p>
+
+<p>＞せめて livedoor ブログくらいはデフォルトでユーザー名までふくめるように (はてなブックマークにおけるはてなダイアリーみたいに) してほしい</p>
+
+<p>これ、やるのは簡単ですけど自社サービスだけ特別扱いするのって感じ悪いですよね。
+やるとしてもフィード取ってきてchannel/linkをベースにするとか、そういうのになるでしょう(たぶん)</p>
+		</li>
+  
+		<li class="" id="comment-134673000">
+			<cite><span>カトウ</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134673000" title="">October 14th, 2006 at 03:54 PM</a></small>
+			<p>mata charset を title より前に移動しました。ありがとうございます。</p>
+
+<p>自社サービスだけ特別扱いするのは感じ悪いかもしれませんが、自社サービスすらうまく扱えていないのも、ユーザーの利便より技術的きれいさを優先しすぎているように思います。</p>
+		</li>
+  
+		<li class="alt" id="comment-134667510">
+			<cite><span>とりあえず</span></cite> Says:
+			<br />
+			<small class="commentmetadata"><a href="#comment-134667510" title="">October 15th, 2006 at 06:50 AM</a></small>
+			<p>現時点ではlivedoorクリップが優秀ってことなんでしょうか。</p>
+		</li>
+  
+	</ol>
+
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/10/14/del-icio-us-livedoor/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=19" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Kindle 2 (1ヶ月目)</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article19">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/19-kindle-2-1" class="name">Kindle 2 (1ヶ月目)</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:0.532325,5.750860&amp;cht=p&amp;chp=3.560472' alt='22:49' /></h1>
+
+<div class="attr">
+  Posted at 2010/03/07 22:49,
+  Modified at 2010/03/07 23:28
+  </div>
+
+<div class="text">
+<p>Kindle 2を買って1ヶ月がたった。毎日洋書をばりばり読んでます! とはいかないのだけど、それなりに使っている。</p>
+<h2 id="article19_1" class="ah1 topic">辞書はあんまり使わなかった</h2>
+<p>ひとのをみて魅力的だった辞書機能は思ったより使わなかった。私はまだ知らない単語が多くて、そのたび辞書を引いていては本が読めない。Kindle の辞書機能をもってしても、まだ単語にカーソルをあわせたり、辞書全画面表示に遷移するのを待ったりはだるくて、紙で読んでるときと同じように文脈から意味を補ってごまかしている。</p>
+<h2 id="article19_2" class="ah1 topic">買った本</h2>
+<p>Kindle Store の品揃えは良い。でもたまに無い本もある。&quot;Code Complete&quot; が無かったので「Microsoft vs. Amazon」みたいなことを妄想しそうになったけど &quot;Framework Design Guidelines&quot; はあったので、たぶん考え過ぎだろう。<a href="http://www.pragprog.com/">The Pragmatic Bookshelf</a> 系の本もないけど、これは彼らのサイトで DRM free な mobi, ePub, PDF を売っている。</p>
+<p>買った本はどれもまだ読み終わっていないので、しばらく買うのは我慢している。でも 37signals の &quot;Rework&quot; は買ってしまいそうな気がする。</p>
+<h3 id="article19_2_1" class="ah2 topic">Effective C++</h3>
+<p>第二版の訳はまえに読んでいて、第三版をどうするかと思っていたところだったので買った。コードの部分が画像になっているのがやや損した気分になる。Kindle で出すときにソースコードをどう組むかは <a href="http://pragdave.blogs.pragprog.com/pragdave/2009/05/displaying-code-on-the-kindle.html">Dave Thomas</a> も悩んでいた。</p>
+<h3 id="article19_2_2" class="ah2 topic">Framework Design Guidelines</h3>
+<p>サンプルを読んでいたら著者紹介の途中で終わったので笑った。サンプルの作成ってどのくらい自由度があるんだろう。そのうちに CM にはいる前のテレビ番組のように「引き」を作るようになるんだろうか。</p>
+<h3 id="article19_2_3" class="ah2 topic">Coders at Work</h3>
+<p>上2つはサンプルを読み終えてから買ったんだけど、これは勢いで。本文が Gill Sans みたいなサンセリフ体で組んであるのが目新しい。</p>
+<h2 id="article19_3" class="ah1 topic">Optimized for Larger Screens</h2>
+<div class="image image_right image_right3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1267969794-larger.png" alt="image:1:1267969794-larger.png" /></div>
+<p>Kindle Store をみるとたまに目につくのが &quot;Optimized for Larger Screens&quot; というやつで、たとえば <a href="http://www.amazon.com/dp/B00139XSRO">Cocoa Programming for Mac OS X</a> なんかにある。Kindle DX や Kindle for PC とかで読んだ方がいいよ、ということらしい。A4 PDF との相性の良さもあって、これから出版社側が「プログラマならふつう Kindle DX でしょ」みたいになっていくと、Kindle 2 ユーザーとしては困るなと思う。</p>
+</div>
+<div class="comments" id="article19_comments">
+<div class="meta">3 comments</div>
+<div class="comment" id="article19_c1">
+<span class="owner">oogatta</span> :
+<span class="text">全く気にせず買ってました。恐縮です。以後気をつけます。</span>
+<span class="date">(2010/03/10 19:39)</span>
+</div>
+<div class="comment" id="article19_c2">
+<span class="owner">kzys</span> :
+<span class="text">Larger のはなし? いまから Kindle for iPad にそなえているわけですね。</span>
+<span class="date">(2010/03/11 01:06)</span>
+</div>
+<div class="comment" id="article19_c3">
+<span class="owner">oogatta</span> :
+<span class="text">僕は iPad 初期型よりは、自宅用にでけえ Kindle が欲しいです。</span>
+<span class="date">(2010/03/16 22:08)</span>
+</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="19" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

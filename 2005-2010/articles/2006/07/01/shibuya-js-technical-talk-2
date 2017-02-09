@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Shibuya.js Technical Talk #2</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-136614210">
+  <h2 class="entry-title"><a href="/articles/2006/07/01/shibuya-js-technical-talk-2" title="Shibuya.js Technical Talk #2">Shibuya.js Technical Talk #2</a></h2>
+  <div class="published">
+    July 1st, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>Shibuya.js の <a href="http://shibuyajs.org/articles/2006/06/15/technical-talk-2">Technical Talk #2</a> に行ってきました。</p>
+
+<p><a href="http://www.amazon.co.jp/o/ASIN/B0007MTBO2/8pinfo-22/ref=nosim"><img src="http://images-jp.amazon.com/images/P/B0007MTBO2.01.LZZZZZZZ.jpg" alt="コカ・コーラCMソング集 1962-89"></a></p>
+
+<p>とにかく brazil さんが素晴らしかった。内容は Ruby の高橋さんの「Ruby はバベル17言語」と同じ系統で、それ単体でも十分面白いんだけど、スライドのデザインが Tom Peters! って感じでかっこよすぎ。デザイン重要だ。</p>
+    
+    
+    
+    <h3>私の考える JavaScript</h3>
+
+<ul>
+<li>複数の言語文化を背景にもつ JavaScript は、同じく複数の言語文化を背景にもつ夏目漱石、あるいは日本語に学べるところがある。
+<ul>
+<li>本居宣長: 複数の言語を、どれかの方向に統一する</li>
+<li>夏目漱石: 複数の言語を、ばらばらのまま扱う</li>
+</ul></li>
+<li>ばらばらのまま扱うのは、大変だけどエキサイティングなはず。</li>
+<li>Perl, Python, Ruby を正妻に、JavaScript を恋人にするのではなく、すべての言語を恋人にするべき。</li>
+<li>恋人のコレクションは、言語のコレクションで、それは表現のコレクションになる。</li>
+<li>JavaScript は場である。スタイルが無いのが JavaScript Way である。バリエーションが可能性を保証する。</li>
+<li>JSAN のようなモジュール化は大切。</li>
+<li>$ 関数のような愛称をライブラリの中で使うべきではない。社内で愛称で呼び合うのはダメな社内恋愛。社内ではフルネームで呼び合うのが大人。</li>
+<li>グローバルな名前空間をクリーンに保つことが、言語を Mixable に保ち、それがバリエーションにつながる。</li>
+</ul>
+
+<h3>JavaScript インタプリタ (SpiderMonkey) 埋め込み</h3>
+
+<ul>
+<li>JavaScript は C な Lisp だ。</li>
+<li>SpiderMonkey。Mozilla 由来で、低レベルな C API のみを提供。
+<ul>
+<li>連携や API でいうと Rhino が優秀。</li>
+</ul></li>
+<li><del>GC が accumulate GC</del>。保守的な GC ではないので、C 側で生成したオブジェクトも、放っておくと回収されちゃって SEGV る。</li>
+<li><ins>accumulate じゃなくて accurate GC でした。</ins></li>
+<li>ドキュメントがあんまり揃っていない。</li>
+<li>連携は弱い。XPCOM も面倒。最近は OpenOffice.org の UNO に注目。</li>
+</ul>
+
+<h3>wema3</h3>
+
+<ul>
+<li>wema の歴史。</li>
+<li>wema3 は現在進捗状況10%。</li>
+<li>JSON でやりとりするようにした。サーバー側は Perl, Ruby, Haskell で3つ書くかも。</li>
+<li>JavaScript もライブラリが整備されてきたので、wema3 のコード量はかなり減ってきている。</li>
+<li><del>壁紙が本当にプリキュアだった。</del>オリジナルじゃなくて、二次創作イラストなのがさらにガチっぽい。dnbkktkr!</li>
+<li><ins><a href="http://www.kawa.net/photo/20060630-shibuyajs/">20060630 Shibuya.JS Technical Talk #2</a> の写真を見たらプリキュアじゃなかった。まちがい。</ins></li>
+</ul>
+
+<h3>JavaScript で Java VM</h3>
+
+<ul>
+<li>Orto という JavaScript で書いた Java VM を、わりと前から作っています。</li>
+<li>Web で8秒以上ひとを待たせてはダメ。</li>
+<li>Ajax は実行環境がバラバラすぎ。Flash はアプリケーションを書くには向かない。Java は起動が遅い。</li>
+<li>Java→JavaScript って意味では Google の GWT に似てるけど、Orto はバイトコードレベルまで降りてる。</li>
+<li>コード量は一万行くらい。</li>
+<li>J2ME/CLDC の MIDP のクラスを実装してる。</li>
+<li>多倍長演算ができていないので、だれか助けてください。</li>
+</ul>
+
+<h3>Inside LDR (1)</h3>
+
+<ul>
+<li>MacBook 黒 + Safari だった。</li>
+<li>LDR は API ありき。全機能に API からアクセスできる。サーバーとのやりとりは JSON。</li>
+<li>関数型言語っぽい Template がある。</li>
+<li>updater で id と 関数をむすびつけて、update でそれを実行するような仕組みがある。id は正規表現で指定できる。</li>
+<li>body だけにイベントハンドラをつけて、イベントが起きてからイベントハンドラ検索がはしるようになっている。</li>
+<li>ユーザーが読む可能性があるものはとにかく先読みしてキャッシュ。待ち時間ゼロを実現。</li>
+<li>Function.prototype
+<ul>
+<li>Function.prototype.later: あとで実行</li>
+<li>Function.prototype._try: エラーを無視</li>
+<li>Function.prototype.forEachArgs: 可変個引数の受け渡しを楽に</li>
+</ul></li>
+<li>LDR は難読化してない。ソースに全部書いてあるので、読みましょう。</li>
+</ul>
+
+<h3>The Ajax Experience 報告</h3>
+
+<ul>
+<li>Ajaxian のひとがやってるカンファレンス。高い。日本人が4人しかいなかった。</li>
+<li>Dojo が流行っていた。</li>
+<li>dojo.storage: ブラウザ側にデータ保存。ローカルキャッシュなんかもできる。</li>
+<li>Flash との連携系は要注目。socket.js とか。</li>
+</ul>
+
+<h3>Lightning Talks</h3>
+
+<h4>ActionScript でクロージャ、継続渡し</h4>
+
+<ul>
+<li>継続: show(func(x)) を func(x, show) みたいな感じにする。</li>
+<li>深い再帰→表示みたいなものを、段階的に表示できるので、ユーザービリティもあがるよ。</li>
+</ul>
+
+<h4>イラレで JavaScript</h4>
+
+<ul>
+<li>Adobe Illustrator は JavaScript で操作できる上に、JavaScript に濃い拡張がされてて、include, import, 演算子の override なんかができる。</li>
+<li>おどろき盤を遺伝的アルゴリズムで自動生成して、さらに Flash を吐いたりなんてこともできる。</li>
+<li>あとデザイナー系女子モテ。</li>
+</ul>
+
+<h4>GDD - GreaseMonkey Driven Development</h4>
+
+<ul>
+<li>Greasemonkey のエディタはちゃんと設定しましょう。</li>
+<li>@include * な test.user.js というファイルを作っておいて、エディタで開きっぱなしで Web ブラウズ。不満があった時点で書き始めると良い。</li>
+</ul>
+
+<h4>Script.acluo.us は遅い?</h4>
+
+<ul>
+<li>「高速」でぐぐると二位らしい。</li>
+<li>できあいのエフェクトだけで満足するな。その先が面白いよ。</li>
+<li>イベントハンドル、変化率を関数で指定、エフェクトの合成、ScopedQueue。</li>
+</ul>
+
+<h4>Comet の実装</h4>
+
+<ul>
+<li>英語の発音が苦手なはてのさん。</li>
+<li>connection ひとつだけはりっぱで、sever-side push する。</li>
+<li>応答性がとてもよいアプリケーションができる。</li>
+<li>実装方法はいくつかある
+<ul>
+<li>long poll: XMLHttpRequest つなぎっぱ。</li>
+<li>iframe: iframe に window.parent をいじる script を流しこむ。</li>
+<li>x-mixed-replace: Netscape 由来で Gecko 系のみで使える。XMLHttpRequest#multipart  で指定。</li>
+</ul></li>
+</ul>
+
+<h4>J4P5 - PHP5 で JavaScript を動かす</h4>
+
+<ul>
+<li>JavaScript で実装して、サーバーサイドの言語で実装し直すのは面倒。</li>
+<li>実装
+<ul>
+<li>php-js: SpiderMonkey ベース。文字列経由の API しかない。</li>
+<li>J4PS: PHP で書いた JavaScript のインタプリタ。プロジェクトが死んでるっぽい。</li>
+<li>python-spidermonkey: SpiderMonkey ベース。Python のクラスを JS 側に流し込める。プロジェクトが死んでるっぽい。</li>
+<li>JavaScript::SpiderMonkey: Perl。良さげだし生きてる。</li>
+<li>Ruby-JS: NGS JavaScript Interpreter なのが嫌。</li>
+<li>Ruby-SpiderMonkey: いまつくってます。</li>
+</ul></li>
+<li>プロジェクト死にすぎ。</li>
+</ul>
+
+<h4>MochiKit</h4>
+
+<ul>
+<li>関数型言語かぶれにおすすめ。</li>
+<li>小分けにモジュール化されてる。全体をモテ非モテでならべると、どちらかといえば非モテよりの機能を紹介します。</li>
+<li>関数型言語っぽいのや、DOM 関数。シグナルをつかったイベントハンドリングなんかができるよ。</li>
+</ul>
+
+<h4>Server Side JavaScript の歴史と未来</h4>
+
+<ul>
+<li>LT の時間にあんなにスプーの画像を用意して竹迫さんは何をするつもりだったんだろう。</li>
+<li>Server Side JavaScript は実は商用になってるようなやつがいろいろあるよ。</li>
+<li>Ajaja というのを今作っています。</li>
+</ul>
+
+<h4>Live Music Programming with Rhino + JSyn</h4>
+
+<ul>
+<li>前回は無音だったけど、今回は音がメインで画面は Terminal.app。</li>
+<li>VHS の音声を会場全体に出力できなかったみたいで、nagayama さんが発表用のマイクで音を拾っていた。youpy さんの VHS へのこだわりは異常。</li>
+</ul>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+      <li><a href="/tags/javascript" rel="tag" title="javascript">javascript</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/07/01/shibuya-js-technical-talk-2/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=31" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Perl で狭義のモックを作る Test::Double</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article31">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/31-perl-test-double" class="name">Perl で狭義のモックを作る Test::Double</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:5.052728,1.230457&amp;cht=p&amp;chp=3.769911' alt='19:51' /></h1>
+
+<div class="attr">
+  Posted at 2010/07/27 19:51,
+  Modified at 2010/07/27 20:54
+  </div>
+
+<div class="text">
+<p>Ruby の <a href="http://mocha.rubyforge.org/">Mocha</a> や Python の <a href="http://code.google.com/p/pymox/">Mox</a> は「特定の順序で特定のメソッドが特定の引数と呼ばれるか」というところにフォーカスしているように思う。</p>
+<p>そもそも「モック」をそういう狭義の意味でつかう一派もいるらしい。Wikipedia の <a href="http://en.wikipedia.org/wiki/Mock_object">Mock object</a> にはこうある。</p>
+<blockquote>
+<p>Mock objects in this sense do a little more: their method implementations contain assertions of their own. This means that a true mock, in this sense, will examine the context of each call— perhaps checking the order in which its methods are called, perhaps performing tests on the data passed into the method calls as arguments.</p>
+</blockquote>
+<p>その数個前の段落からリンクされている『レガシーコード改善ガイド』にはこうあった。</p>
+<blockquote>
+<p>モックオブジェクトは、想定されるメソッド呼び出しを事前に設定し、メソッド呼び出し後に検証を指示することで、その呼び出しが実際に行われたかどうかを確認できる仕組みです。</p>
+</blockquote>
+<p>さて、Perl の Test::MockObject にも next_call, call_pos といった「n 番目に呼ばれたメソッドはなにか、どうよばれたか」というのを検査する手段はある。でも、個人的には Mocha や Mox のようなインターフェースが好きなので <a href="http://github.com/kzys/test-double">Test::Double</a> というのを書いてみた。</p>
+<h2 id="article31_1" class="ah1 topic">Test::Double</h2>
+<p>たとえば write_file メソッドが「引数に渡された $io に対して $io-&gt;print('hello') を呼び出す」みたいなことをテストしたいとすると</p>
+<pre>my $double = Test::Double-&gt;new;
+$double-&gt;expects('print')-&gt;with('hello');
+  
+$double-&gt;verify_ok(
+    sub { my $io = shift; write_file($io); }
+);
+</pre>
+<p>こんな感じ。メソッド名は Mocha 風、verify を明示的に呼ぶのは Mox 風という感じで、ベタな移植ではない。</p>
+<p>expects は AUTOLOAD をハックしてメソッド呼び出し風に書けるほうが、と一瞬思ったけど、そうすると &quot;expects&quot; というメソッドがあるクラスの振りをしづらいので、明示的にメソッドを呼ぶ形にした。あと Mox の <a href="http://code.google.com/p/pymox/wiki/MoxDocumentation#Comparators">Comparators</a> をみて、メソッド風インターフェースの限界を感じたのもある。Perl でこういうの作るよりは Test::More::like とか使えるほうがうれしいと思う。</p>
+<p>もうちょっと使ってみて、インターフェースとか固まったら CPAN にあげる予定。意見募集中です。</p>
+</div>
+<div class="comments" id="article31_comments">
+<div class="meta">3 comments</div>
+<div class="comment" id="article31_c1">
+<span class="owner">kzys</span> :
+<span class="text">Test::Mock ないし Test::Expectation があった...</span>
+<span class="date">(2010/07/27 21:07)</span>
+</div>
+<div class="comment" id="article31_c2">
+<span class="owner">mrmt</span> :
+<span class="text">s/excepts/expects/</span>
+<span class="date">(2010/09/09 01:12)</span>
+</div>
+<div class="comment" id="article31_c3">
+<span class="owner">kzys</span> :
+<span class="text">直しました。ありがとうございます。</span>
+<span class="date">(2010/09/12 18:10)</span>
+</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="31" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

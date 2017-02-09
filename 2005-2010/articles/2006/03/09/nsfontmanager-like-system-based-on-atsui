@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: NSFontManager-like system based on ATSUI</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-135506960">
+  <h2 class="entry-title"><a href="/articles/2006/03/09/nsfontmanager-like-system-based-on-atsui" title="NSFontManager-like system based on ATSUI">NSFontManager-like system based on ATSUI</a></h2>
+  <div class="published">
+    March 9th, 2006
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>Mozilla のはなしを書いた後、山下さんから直にメールをいただきました。</p>
+
+<p>それによると、</p>
+
+<ul>
+<li>cairo-mac はコンパイルできないけど、cairo-cocoa ならコンパイルだけは通るはず。</li>
+<li>Thebes はまだ実装が固まってないので、Mac の作業もちょっとストップがかけられている。</li>
+<li>Firefox 2.0 までは Cocoa は使えないはずなので、NSFontManager のようなものを ATSUI ベースで作ろうと思っている。</li>
+</ul>
+
+<p>で、その ATSUI ベースの NSFontManager のはなしが、<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=246527">Bug 246527 - Missing fonts in font menu / GfxMac ignores some fonts (nsDeviceContextMac :: InitFontInfoList()  is broken)</a> にあがっています。</p>
+
+<p>Mac の Firefox は、Gecko とか XUL の層で(アプリケーション層じゃなくてライブラリの層で)損をしていると思うのでなんとかしたいところです。ここが良くなれば Thunderbird も XULRunner ベースのものも良くなるだろうし。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/mozilla" rel="tag" title="mozilla">mozilla</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/03/09/nsfontmanager-like-system-based-on-atsui/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

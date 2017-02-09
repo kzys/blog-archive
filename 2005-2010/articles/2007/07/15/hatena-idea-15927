@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Hatena Idea #15927</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134797890">
+  <h2 class="entry-title"><a href="/articles/2007/07/15/hatena-idea-15927" title="Hatena Idea #15927">Hatena Idea #15927</a></h2>
+  <div class="published">
+    July 15th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p><a href="http://i.hatena.ne.jp/idea/15927">はてなアイデア - Mac OS X, Firefox 2で、コメント記入中に漢字変換確定のつもりでリターンを押下すると、コメントが確定されてまいます。</a></p>
+
+<pre><code>--- HatenaStar.js~  2007-07-15 09:12:16.000000000 +0900
++++ HatenaStar.js   2007-07-15 20:06:24.000000000 +0900
+@@ -514,7 +514,7 @@
+                 top = Ten.Geometry.getScroll().y + 'px';
+             }
+         }
+-        this.windowObserver = new Ten.Observer(document.body, 'onkeydown', this, 'handleEscape');
++        this.windowObserver = new Ten.Observer(document.body, 'onkeypress', this, 'handleEscape');
+         this.visible = true;
+     },
+     handleEscape: function(e) {
+@@ -1117,7 +1117,7 @@
+         this.loadImage = img;
+         this.hideLoadImage();
+         form.appendChild(img);
+-        new Ten.Observer(input,'onkeydown',this,'sendComment');
++        new Ten.Observer(input,'onkeypress',this,'sendComment');
+     }
+ });
+</code></pre>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/hatena,javascript" rel="tag" title="hatena,javascript">hatena,javascript</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

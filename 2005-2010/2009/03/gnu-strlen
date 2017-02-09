@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" type="text/css" href="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.css" />
+
+  <link rel="alternate" type="application/rss+xml"
+             href="//blog.8-p.info/2009/feed" title="Japanese + English" />
+  <link rel="alternate" type="application/atom+xml"
+             href="//blog.8-p.info/2009/tag/lang-en/feed/atom" title="English" />
+
+  <link rel="icon" href="//blog.8-p.info/favicon.ico" type="image/vnd.microsoft.icon" />
+  <title>GNU strlen を読む - blog.8-p.info</title>
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//blog.8-p.info/2009/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//blog.8-p.info/2009/wp-includes/wlwmanifest.xml" /> 
+
+
+</head>
+
+<body>
+
+<div id="header">
+  <div class="main">
+    <h1><a href="/">blog.8-p.info</a></h1>
+    <p>加藤和良 (1984年うまれ) の個人的なブログです。</p>
+  </div>
+  <div class="sidebar">
+    <form method="get" action="//blog.8-p.info/2009/">
+      <div id="search">
+        <input type="text" class="text" id="searchKeyword"  name="s"
+               value="" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="body">
+  <div class="entry" id="entry482">
+  <h2 class="entry-title"><a href="//blog.8-p.info/2009/03/gnu-strlen">GNU strlen を読む</a>
+      </h2>
+  <div class="yui-g meta">
+    <div class="date yui-u first">
+      2009-03-15 02:50    </div>
+    <div class="tags yui-u">
+          </div>
+  </div>
+  <div class="body"><p>Hacker News でみかけた <a href="http://news.ycombinator.com/item?id=510326">Glibc&#8217;s strlen implementation: Probably not what you&#8217;d guess</a> というスレッドが面白かった。スレッドでは GNU の他に OpenBSD (べたな C, i386, x86-64) と Apple (SSE3 を使っている) にもリンクがあるんだけど、ここでは GNU strlen の実装についてだけ説明します。</p>
+<h3>実装</h3>
+<p>GNU strlen は文字列から long word 単位でおおまかに NUL っぽいものを探してから、バイト単位でこまかく探す、という方法をとっている。</p>
+<p><a href="http://sources.redhat.com/cgi-bin/cvsweb.cgi/libc/string/strlen.c?rev=1.1.2.1&#038;content-type=text/x-cvsweb-markup&#038;cvsroot=glibc">strlen.c</a> にある strlen は、トリッキーなところを丁寧にコメントで補っているせいもあってやや長い。まず、strlen の引数の str のアドレスが long word にそろっていない場合、最初の for ループにはいる。</p>
+<pre>
+  for (char_ptr = str; ((unsigned long int) char_ptr
+                        &#038; (sizeof (longword) - 1)) != 0;
+       ++char_ptr)
+    if (*char_ptr == '\0')
+      return char_ptr - str;
+</pre>
+<p>このループはふつうに文字単位で回っていて、NUL でも抜けられる。ただ、さらに終了条件としてポインタのアドレスの下の桁も見ていることに注意してほしい。もし NUL がなくても、文字列の先頭が long word にそろった時点でこのループは終了してしまう。</p>
+<p>次に、char* を long int* にキャストして himagic と lomagic という定数を定義している。</p>
+<pre>
+  longword_ptr = (unsigned long int *) char_ptr;
+
+  /* ... */
+  magic_bits = 0x7efefeffL;
+  himagic = 0x80808080L;
+  lomagic = 0x01010101L;
+</pre>
+<p>magic_bits は #if 0 の中でだけ使っている == 使っていないので無視していい。himagic は 0&#215;80808080 で2進数だと</p>
+<pre>
+1000 0000 1000 0000 1000 0000 1000 0000
+</pre>
+<p>こう表せる。lomagic は 0&#215;01010101 なので</p>
+<pre>
+0000 0001 0000 0001 0000 0001 0000 0001
+</pre>
+<p>こうだ。実装では long word が 32bit より長いマシンではこのパターンをもう一回くりかえし、64bit より上のマシンだと abort している。</p>
+<p>ここから long word 単位のループにはいる。for 文直後のコメントは magic_bits 時代のものだと思う。</p>
+<pre>
+  for (;;)
+    {
+      /* ... */
+
+      longword = *longword_ptr++;
+
+      if (
+#if 0
+...
+#else
+          ((longword - lomagic) &#038; himagic)
+#endif
+          != 0)
+        {
+</pre>
+<p>たとえば &#8220;hi&#8221; だと longword - lomagic は</p>
+<pre>
+  h           i           NUL
+  0110 1000   0110 1001   0000 0000   XXXX XXXX
+- 0000 0001 | 0000 0001 | 0000 0001 | 0000 0001
+
+  0110 0111   0110 0111   1111 1111   XXXX XXXX
+</pre>
+<p>NUL から1を引いたときに上から繰り下がって、NUL の桁の全ビットが立つ。X は未定義なのでここではスルーしてほしい。</p>
+<p>これに himagic を &#038; すると</p>
+<pre>
+  0110 0111   0110 0111   1111 1111   XXXX XXXX
+&#038; 1000 0000 | 1000 0000 | 1000 0000 | 1000 0000
+
+  0000 0000   0000 0000   1000 0000   XXXX XXXX
+</pre>
+<p>ここで結果が 0 にならない場合、longword のなかの文字のどれかが NUL である可能性があるので、if のなかで文字単位で探している。</p>
+<pre>
+        {
+          const char *cp = (const char *) (longword_ptr - 1);
+
+          if (cp[0] == 0)
+            return cp - str;
+          if (cp[1] == 0)
+            return cp - str + 1;
+          if (cp[2] == 0)
+            return cp - str + 2;
+          if (cp[3] == 0)
+            return cp - str + 3;
+          if (sizeof (longword) > 4)
+            {
+              if (cp[4] == 0)
+                return cp - str + 4;
+              if (cp[5] == 0)
+                return cp - str + 5;
+              if (cp[6] == 0)
+                return cp - str + 6;
+              if (cp[7] == 0)
+                return cp - str + 7;
+            }
+        }
+</pre>
+<p>日本人としては、ループから if に入る条件が char の MSB が立たないことを期待しすぎていると思った。</p>
+<h3>感想</h3>
+<p>NUL 終端文字列の長さをとる処理はどうやっても O(n) だ。Joel Spolsky は NUL 終端文字列を「文字列を格納する最悪の方法のひとつ」と評しているし、文字列の長さは番兵で表現せずに別の場所にいれておいたほうがいいと思う。</p>
+<p>とはいえ、計算上はどうしようもない問題でも、計算機上ではまだ工夫の余地があるというのは面白かった。教科書的にはアルゴリズムで O(n) の定数を削るよりもデータ構造を検討するべきなんだけど、これ libc ですからね。</p>
+</div>
+</div>
+
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are open, but there are no comments. -->
+
+	 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="//blog.8-p.info/2009/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email"><small>Mail (will not be published, for <a href="http://en.gravatar.com/">Gravatar</a>) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="482" />
+</p>
+
+</form>
+
+
+</div>
+
+<div id="footer">Powered by <a href="http://wordpress.org/">WordPress</a></div>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-329758-2");
+pageTracker._trackPageview();
+</script>
+
+<script type="text/javascript" src="//blog.8-p.info/2009/wp-content/themes/b8i/ALL.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+(function () {
+  var elements = document.body.getElementsByTagName('pre');
+  var i, pre;
+  for (i = 0; i < elements.length; i++) {
+    pre = elements[i];
+    if ((pre.innerText || pre.textContent).match(/^[%\(]/)) {
+      ;
+    } else {
+      pre.className += ' prettyprint';
+    }
+  }
+  prettyPrint();
+
+  (new TextField($('searchKeyword'))).setPlaceholder('Search');
+})();
+//]]></script>
+
+</body>
+</html>

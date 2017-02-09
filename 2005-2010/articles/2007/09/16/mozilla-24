@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Mozilla 24</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134684290">
+  <h2 class="entry-title"><a href="/articles/2007/09/16/mozilla-24" title="Mozilla 24">Mozilla 24</a></h2>
+  <div class="published">
+    September 16th, 2007
+  </div>
+  <div class="entry-content">
+    
+    
+    
+    
+    <p>yoko さんと cho45 さん、secondlife さんにお会いしました。こんばんわ！</p>
+
+<h3>Shibuya.js</h3>
+
+<ul>
+<li>最速チュパカブラ研究会のかたの Gecko 内部についての発表が、内容・見た目ともにすごかった。NHK スペシャルのような 3DCG をみた。</li>
+<li>光成さんは淡々と SHA-1 の真っ当な高速化についてはなし、時間ぴったりにおさめてかっこ良い。</li>
+<li>CSS Nite 関係の「ネタ」は正直苦手。あらゆる暴力はいずれ自分にも向けられるんだという根拠の無い不安にさいなまれる。</li>
+</ul>
+
+<h3>ブラウザ</h3>
+
+<ul>
+<li>(Shibuya.js は家で見ていて、この途中から会場に到着)</li>
+<li>いろいろなしがらみの中で発言する Microsoft のひとが良かった。</li>
+<li>しがらみのない Opera 使用者のひとは放言が多くて退屈。まあベンダーのひとではないから仕方がないか。</li>
+<li>Firefox は新機能もセキュリティホールも演出無しで外に出るから、マーケティングは大変そうだ。</li>
+</ul>
+
+<h3>LiveCoding</h3>
+
+<ul>
+<li>中嶋さんのネットワークゲームは見た目には華やかなところまで進んだものの完成はせず。残念。</li>
+<li>secondlife さんの ActionScript で文字を動かすのが丁寧で良かった。</li>
+</ul>
+
+<h3>US</h3>
+
+<ul>
+<li>Dave さんの「オープンソースプロジェクトに参加するには」が面白かった。IRC は基本らしいので、がんばって慣れよう。</li>
+</ul>
+
+<p>US 中継が終わったところで帰りました。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/event" rel="tag" title="event">event</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>

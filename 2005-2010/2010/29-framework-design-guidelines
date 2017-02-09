@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=29" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: Framework Design Guidelines を (半分まで) 読んだ</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article29">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/29-framework-design-guidelines" class="name">Framework Design Guidelines を (半分まで) 読んだ</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:1.867502,4.415683&amp;cht=p&amp;chp=3.246312' alt='12:46' /></h1>
+
+<div class="attr">
+  Posted at 2010/06/12 12:46,
+  Modified at 2010/06/12 12:46
+  </div>
+
+<div class="text">
+<p>Microsoft の人々が .NET のライブラリを作る際にこんなことを考えて作ったんですよ、という &quot;Framework Design Guidelines&quot; (邦訳も『.NETのクラスライブリ設計』という名前で出ている) という本があり、それをずっと読んでいる。やっと半分まで来たんだけど、ここまででも十分に良い本だった。</p>
+<p>最初 (1.1.4 にある Chris Sells の注) から</p>
+<blockquote>
+<p>Please don't innovate in library design. Make the API to your library as boring as possible. You want the functionality to be interesting, not the API.</p>
+</blockquote>
+<p>と、しびれる。ほんとねー、おれは最近の DSL ブームはねえ、ってそれはいまはいいや。</p>
+<p>本自体は &quot;Property Design&quot; みたいな個々の細かな話題について、議論があって、まとめで DO/CONSIDER/DO NOT/AVOID のどれかではじまる文章の箇条書きで指針が示される、というかたちになっている。フレームワークといっても、論調はふつうのプログラミングの指針と大きな差異はない。ただ 2.2.1 では</p>
+<blockquote>
+<p>The problem is that most design methodologies (including most commonly used object-oriented design methodologies) are optimized for the maintainability of the resulting implementation, not for usability of the resulting API.</p>
+</blockquote>
+<p>なので、そういうのは、でかいフレームワークの API 層の design には向かないよ、と主張されている。</p>
+<p>.NET 固有のこともいくつかでてくるけど Java, Scala みたいな親戚や、Perl, Python, Ruby みたいなスクリプト言語でも、クラスがあってインターフェースがあって例外があって、みたいなところで共通部分は多い。そういう言語をつかってプログラミングをしているひとなら、学べる部分はかなりあると思う。私は最近スクリプト言語を書くことが多いので、感心したり、自分のつかっている言語の語彙の貧弱さを残念がったりしている。</p>
+<h2 id="article29_1" class="ah1 topic">注釈</h2>
+<p>ちょっと珍しいのが記名の注釈が多いところで、地の文での議論に対して &quot;Krzysztof Cwalina&quot; みたいな名前付きで、補ったり、反論したり、注釈どうしで盛り上がったりするところがたまにある。</p>
+<p>例えば、3.5 Names of Class, Structs, and Interfaces では Krzysztof Cwalina の「インターフェースに &quot;I&quot; がついてるのがあるけど、あれは歴史的事情で、いま考えるとやんなくてよかったよ。」という注に「COM とか Java からきたんだよね &quot;I&quot; つけるの。慣れてる人も多いし。」「個人的には好きだよ。」「ハンガリアン記法の応用だよね。」「System._AppDomain はまずったわー。AppDomain が implements してるんだから IAppDomain にすべき。」「HttpSessionState も　IHttpSessionState あるとおもうと違うんだよねえ。」と、なんていうんですか、bikeshed で社内 Wiki 炎上みたいな、ガイドラインとしては見解統一しようよと思いつつも、読む分には面白い。</p>
+<p>4.3 Choosing Between Class and Interface でも Chris Anderson が「.NET やったときは、なんというか、COM の複雑さ厳格さに反動がきててねえ、インターフェースも GUID も variant　もIDL も、全部だめなものにみえててさ。いまならもうちょっと中立的な目でみれると思うんだけど。」と突然の告白がはじまっていて笑ってしまう。</p>
+<h2 id="article29_2" class="ah1 topic">まとめ</h2>
+<p>というわけで &quot;Framework Design Guidelines&quot; (『.NETのクラスライブリ設計』) はおすすめだよという話でした。DVD の内容は <a href="http://blogs.msdn.com/b/brada/archive/2009/04/01/framework-design-guidelines-book-extra-content-from-the-dvd-posted.aspx">Web からもダウンロード</a> できます。</p>
+</div>
+<div class="comments" id="article29_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="29" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

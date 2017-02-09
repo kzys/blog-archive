@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Last-Modified" content="Sun, 26 Dec 2010 16:30:19 GMT" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="author" content="Office Blackboard" />
+<meta name="generator" content="Tokyo Promenade 0.9.18" />
+<meta name="robots" content="index,follow" />
+<link rel="start" href="/2010/promenade.cgi" type="text/html; charset=UTF-8" title="the top page" />
+<link rel="help" href="/2010/promenade.cgi?name=tp-help-en&amp;adjust=front" title="the help page" />
+<link rel="alternate" href="/recent.atom" type="application/atom+xml" title="Atom feed of recet articles" />
+<!--
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=mdate" type="application/atom+xml" title="Atom feed by modification date" />
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;act=timeline&amp;order=xdate" type="application/atom+xml" title="Atom feed by comment date" />
+-->
+<link rel="alternate" href="/2010/promenade.cgi?format=atom&amp;id=44" type="application/atom+xml" title="(Atom feed of this article)" />
+<link rel="stylesheet" href="/2010/promenade.css" type="text/css" />
+<title>blog.8-p.info: 最近の Web</title>
+</head>
+<body class="ua_generic env_generic">
+<div id="frame" class="frame_normal">
+<div id="main" class="view_single">
+
+<div class="article" id="article44">
+<h1 class="attr ah0"><a href="http://blog.8-p.info/2010/44-web" class="name">最近の Web</a> <img src='https://chart.googleapis.com/chart?chs=40x40&amp;chd=t:0.287979,5.995206&amp;cht=p&amp;chp=4.398230' alt='23:57' /></h1>
+
+<div class="attr">
+  Posted at 2010/11/08 23:57,
+  Modified at 2010/11/09 00:18
+  </div>
+
+<div class="text">
+<div class="image image_normal image_normal3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1289228726-instagram.png" alt="image:1:1289228726-instagram.png" /></div>
+<p>最近ひさびさに新しくアカウントをとったのが Instagram で</p>
+<ul>
+<li>iPhone で写真をとって</li>
+<li>トイカメラとかそういう風の加工をして</li>
+<li>アップロードして</li>
+<li>フォローしたりされたりして</li>
+<li>フォローした人々の新しい写真が一覧できて</li>
+<li>コメントつけたりライクしたりできて</li>
+</ul>
+<p>と書き出すとぜんぜんだめな感じがするんだけど、使ってみるとそうでもなくて、ぽつぽつ写真をアップロードしている。</p>
+<p>ちゃんと写ってる写真を白く飛ばしたりとか、周辺減光させてみたりとか、前はすごくかっこわるいと思ってたんだけど、だんだん慣れてきた。ただ (ピチカート・ファイヴの「大都会交響楽」のビデオみたいな) フィルムっぽい枠をつける加工はさすがに嘘すぎて使えていない。あと食事の写真をとるのも苦手で、生活の写真をとろうと思うと、自分の生活を「良く」見せようとする作為に自分で気づいて、恥ずかしくなって途中でやめてしまう。</p>
+<h2 id="article44_1" class="ah1 topic">Facebook</h2>
+<p>Facebook も見てはいる。流れのはやいスレ (?) に書き込むと、ページ遷移する間もなくいろいろ画面上に通知がとどいたりして、新しい世代のソフトウェアをさわっている気持ちになる。すごい。</p>
+<p>ただ、通知と一緒にとどくメールは送りすぎだと思う。なんとかしようと設定画面をみたら、チェックボックスが50個くらいならんでいて、かっこわるかった。</p>
+<div class="image image_normal image_normal3 image_ratio"><img src="http://blog.8-p.info/2010/upload/1289228714-facebook.png" alt="image:2:1289228714-facebook.png" /></div>
+<p>結局、Facebook はソーシャルの Microsoft Office みたいなもので、世界は征服して、大学を中退したひとは大金持ちになるかもしれないけど、かっこよくはないなあと思う。あるいはこういう設定地獄みたいなものがメジャー感で、メジャー感をかっこよく思えない自分がだめなのかもしれない。</p>
+</div>
+<div class="comments" id="article44_comments">
+<div class="meta">0 comments</div>
+<form method="post" action="/2010/promenade.cgi" class="riddleform">
+<dl class="riddleformlist">
+<dt>riddle for guest comment authorization:</dt>
+<dd>
+<span class="question">Where is the capital city of Japan?</span> ...
+<input type="text" name="umridans" value="" size="12" />
+<input type="submit" value="answer" />
+<input type="hidden" name="id" value="44" />
+</dd>
+</dl>
+</form>
+</div>
+</div>
+</div>
+<div id="about">
+  <p>
+    <a href="/">blog.8-p.info</a> は
+    <a href="http://8-p.info/me/">加藤和良</a> の個人的なブログで、プログラミングのはなしが多めです。
+  </p>
+</div>
+</div>
+</body>
+</html>

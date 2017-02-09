@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>blog.8-p.info: Physics Simulation Toys</title>
+  <meta name="generator" content="Mephisto" />
+  <link href="/stylesheets/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="header">
+    <h1>
+      <a href="/2007/"><img src="/images/title.png" alt="blog.8-p.info"/></a>
+    </h1>
+
+    <div class="misc">
+      <!-- Google CSE Search Box -->
+    </div>
+  </div>
+
+  
+  <div id="content" class="autopagerize_page_element">
+
+<div class="entry entry-134512900">
+  <h2 class="entry-title"><a href="/articles/2006/08/11/physics-simulation-toys" title="Physics Simulation Toys">Physics Simulation Toys</a></h2>
+  <div class="published">
+    August 11th, 2006
+  </div>
+  <div class="entry-content">
+    
+    <p>物理シミュレーションで遊べるソフトウェアをちょっとまとめてみた。</p>
+
+<p>このなかだと Modulobe, Physical Illustrator, RigidChips は触ったことがあって、「すげー」とは思ったんだけど本気でハマるまではいかなかった。子供の頃は LEGO にかなりハマっていたし、スペースワープ、BJPM, piece process puzzle なんかも買っているくらいなので、これ系にもハマる素質はあると思うんだけど。あー、でもこの 3 つも、定期的に全組み替えして遊ぶまではハマれなかったな……。</p>
+
+<p>ゴールや他人の存在が無いとおちおち遊べない大人になっているのだとしたらこわい。</p>
+    
+    
+    
+    <h3><a href="http://www.armadillorun.com/">Armadillo Run</a></h3>
+
+<p>ボールがゴールにいくまでの道をつくるパズルゲーム。基本的な構造物と物理演算だけで出来ているらしい。<a href="http://japanese.engadget.com/2006/07/05/physics-game-armadillo-run/">Engadget Japanese の紹介</a>のうまさのせいか、<a href="http://b.hatena.ne.jp/entry/http://japanese.engadget.com/2006/07/05/physics-game-armadillo-run/">はてなブックマークでやたらブックマーク</a>されていたり、福岡の SICP 勉強会が<a href="http://d.hatena.ne.jp/brazil/20060722/1153542856">途中から Armadillo Run 大会になる</a>など、どうも「流行っている」という印象がある。</p>
+
+<h3><a href="http://www.modulobe.com/">Modulobe</a></h3>
+
+<blockquote>
+    <p>Modulobeは，モジュールと呼ばれる部品を組み合わせて， 仮想生物を簡単に作れる物理シミュレーション・システムです．</p>
+</blockquote>
+
+<p><a href="http://eto.com/">江渡さん</a>と、かのパネキットの <a href="http://www.din.or.jp/~ku_/">kuni さん</a>が関わっている。<a href="http://www.modulobe.com/icc.html">NTT ICC「アート＆テクノロジーの過去と未来」展</a>ではトラックボールを用いた専用インターフェースがついていた。</p>
+
+<h3><a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=56347faf-a639-4f3b-9b87-1487fd4b5a53&amp;displaylang=en">Physics Illustrator for Tablet PC</a></h3>
+
+<p>Microsoft Research の物理シミュレータ。絵を書いてちょっと指定するだけで「絵」が「物」になる。<a href="http://blog-tech.rikunabi-next.yahoo.co.jp/blog/hirabayashi/73">平林さん曰く「手書きの『ピタゴラ・シミュレータ』」</a>。
+Tablet PC 専用ということになっていて、操作もマウスジェスチャ(マウスじゃないけど)的。実際は普通の Windows でも動く。</p>
+
+<h3><a href="http://www.languagegame.org:8080/propella/96">ODECo</a></h3>
+
+<blockquote>
+    <p>ODECo とは、オープンソースの物理シミュレーションエンジン ODE をベースにした、誰でも簡単に2次元のシミュレーション作品を作れるツールです。</p>
+</blockquote>
+
+<p>Squeak で動く ODE ベースの物理シミュレータ。言語バインディングで「遊べる」のか、といわれるかもしれないけど、そこは Squeak なので。</p>
+
+<h3><a href="http://www.iamas.ac.jp/~takeya04/software.html">RigidChips</a></h3>
+
+<p>IAMAS の竹谷氏のつくっている物理シミュレータ。パネキットっぽいらしい。</p>
+    
+  </div>
+
+  <div class="entrymeta">
+    <ul>
+      
+      <li><a href="/tags/simulation" rel="tag" title="simulation">simulation</a></li>
+      
+    </ul>
+
+    
+  </div>
+</div>
+
+
+  <div class="commentsblock">
+    
+
+
+
+
+<!--
+<h3 id="respond">Leave a Reply</h3>
+<form id="comment-form" method="post" action="/articles/2006/08/11/physics-simulation-toys/comments#comment-form">
+  <p><input type="text" id="comment_author" name="comment[author]" value="" /><label for="author"><small>Name (required)</small></label></p>
+  <p><input type="text" id="comment_author_email" name="comment[author_email]" value="" /><label for="email"><small>Mail (will not be published)</small></label></p>
+  <p><input type="text" id="comment_author_url" name="comment[author_url]" value="" /><label for="url"><small>Website</small></label></p>
+  <p><textarea name="comment[body]" id="comment" cols="100%" rows="10"></textarea></p>
+  <p><input name="submit" type="submit" id="submit" value="Submit Comment" /></p>
+</form>
+-->
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  <div id="footer">
+    <p>
+      All articles are written by <a href="http://8-p.info/">KATO Kazuyoshi</a>.
+    </p>
+  </div>
+
+</body>
+</html>
