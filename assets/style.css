@@ -23,8 +23,7 @@ a:active {
 h1 {
     font-size: 1.5rem;
     font-weight: normal;
-    margin: 1rem 0;
-    padding: 0;
+    margin: 1rem;
 }
 
 h2 {
@@ -36,18 +35,20 @@ h2 {
 header .content, #container {
     max-width: 50rem;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0;
 }
 
-@media (min-width: 640px) {
-    .row {
-        display: flex;
-        flex-direction: row;
-    }
+#about {
+    font-size: 90%;
+    margin: 1rem;
+}
 
-    .row .column {
-        flex: 1;
-    }
+#past {
+    font-size: 90%;
+    margin: 1rem;
+}
+
+@media (min-width: 50rem) {
 }
 
 ul {
@@ -68,8 +69,8 @@ ul {
 #present li {
     display: flex;
 }
-#present .published {
-    width: 5rem;
+#present li .published {
+    min-width: 4rem;
 }
 
 li {
@@ -79,13 +80,13 @@ li {
 }
 
 li.japanese {
-    border-left: 2px solid #c00;
-    padding-left: 1rem;
+    border-left: .2rem solid #c00;
+    padding-left: .8rem;
 }
 
 li.english {
-    border-left: 2px solid #00c;
-    padding-left: 1rem;
+    border-left: .2rem solid #00c;
+    padding-left: .8rem;
 }
 
 .published {
@@ -94,12 +95,8 @@ li.english {
     font-size: 70%;
 }
 
-#about {
-    font-size: 90%;
-}
-
 #past ul {
-    margin: 1rem 0;
+    margin: 0;
     padding: 0;
 }
 
