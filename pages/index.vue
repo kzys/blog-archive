@@ -37,20 +37,30 @@
         })
     }
 
+    async function loadYear(year) {
+        let english = await axios.get('https://blog.8-p.info/en/index.json');
+        let japanese = await axios.get('https://blog.8-p.info/ja/index.json');
+
+        let items = loadItems(english.data.items, 'english')
+            .concat(loadItems(japanese.data.items, 'japanese'));
+
+        return items.sort((a, b) => {
+            return -(a.published - b.published);
+        }).filter(x => {
+            return x.published.getFullYear() === year;
+        });
+    }
+
     export default {
+        data () {
+            return { items: [] };
+        },
+
         async asyncData (context) {
-            let english = await axios.get('https://blog.8-p.info/en/index.json');
-            let japanese = await axios.get('https://blog.8-p.info/ja/index.json');
-
-            let items = loadItems(english.data.items, 'english')
-                .concat(loadItems(japanese.data.items, 'japanese'));
-
-            let sorted = items.sort((a, b) => {
-                return -(a.published - b.published);
-            });
+            let items = await loadYear(2017);
 
             return {
-                items: sorted,
+                items: items,
             };
         },
 
