@@ -35,13 +35,14 @@
 
 <script>
     import axios from 'axios'
-    import dateFns from 'date-fns'
+    import dateParse from 'date-fns/parse'
+    import dateFormat from 'date-fns/format'
 
     const SCALE = 20;
 
     function loadItems(items, language) {
         return items.map(x => {
-            let m = dateFns.parse(x.published);
+            let m = dateParse(x.published);
             return { title: x.title, published: m, url: x.url, language: language }
         })
     }
@@ -51,7 +52,7 @@
         return xs.map(x => {
             return {
                 ...x,
-                published: dateFns.format(x.published, 'MMM DD'),
+                published: dateFormat(x.published, 'MMM DD'),
                 top: (first - x.published) / (1000 * 60 * 60 * 24) * SCALE,
             };
         });
