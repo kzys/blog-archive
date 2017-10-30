@@ -56,28 +56,26 @@ ul {
     padding: 0;
 }
 
-ul a {
+#present a, #legend a {
     text-decoration: none;
     color: #333 !important;
 }
 
-#present-dynamic {
+#present {
     position: relative;
 }
 
-#present-dynamic li {
+#present li {
     display: flex;
 }
-#present-dynamic .published {
+#present .published {
     width: 5rem;
 }
 
 li {
     padding: 0;
     margin: 0;
-    line-height: 20px;
-    font-size: 14px;
-    height: 20px;
+    line-height: 2rem;
 }
 
 li.japanese {
@@ -92,6 +90,12 @@ li.english {
 
 .published {
     color: #999;
+    font-family: Monaco, monospace;
+    font-size: 70%;
+}
+
+#about {
+    font-size: 90%;
 }
 
 #past ul {

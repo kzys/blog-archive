@@ -2,24 +2,21 @@
     <div id="container">
         <h1><strong>blog</strong>.8-p.info</h1>
 
-        <div v-if="items[0]" id="present-dynamic"
-             v-bind:style="{ position: 'relative', height: height + 'px'}">
+        <div id="about">
+            <p>
+                日本語のブログは <a href="/ja/">滞舎路日記</a>、英語のブログは <a href="/en/">Kazu's Log</a> で書いています。
+            </p>
+        </div>
+        <div v-if="items[0]" id="present"
+             v-bind:style="{ position: 'relative' }">
             <ul>
                 <li v-for="item in items"
                     v-bind:class="item.language"
-                    v-bind:style="{ position: 'absolute', top: item.top + 'px'}">
+                    v-bind:style="{ top: item.top + 'px'}">
                     <div class="published column">{{ item.published }}</div>
                     <a v-bind:href="item.url">{{ item.title }}</a>
                 </li>
             </ul>
-        </div>
-        <div v-else="" id="present" class="row">
-            <div class="column">
-                <h2><a href="/ja/">滞舎路日記</a></h2>
-            </div>
-            <div class="column">
-                <h2><a href="/en/">Kazu's Log</a></h2>
-            </div>
         </div>
 
         <div id="past">
