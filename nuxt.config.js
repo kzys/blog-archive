@@ -1,6 +1,9 @@
 module.exports = {
-    build: {
-        vendor: ['axios']
-    },
-    css: [ '@/assets/style.css' ]
-}
+    css: ['@/assets/style.css'],
+    head: {
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+        ]
+    }
+};
