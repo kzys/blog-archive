@@ -7,16 +7,8 @@
                 日本語のブログは <a href="/ja/">滞舎路日記</a>、英語のブログは <a href="/en/">Kazu's Log</a> で書いています。
             </p>
         </div>
-        <div v-if="items[0]" id="present"
-             v-bind:style="{ position: 'relative' }">
-            <ul>
-                <li v-for="item in items"
-                    v-bind:class="item.language"
-                    v-bind:style="{ top: item.top + 'px'}">
-                    <div class="published column">{{ item.published }}</div>
-                    <a v-bind:href="item.url">{{ item.title }}</a>
-                </li>
-            </ul>
+        <div v-if="items[0]" id="present">
+            <article-list v-bind:articles="items"></article-list>
         </div>
 
         <div id="past">
@@ -36,26 +28,13 @@
 <script>
     import axios from 'axios'
     import dateParse from 'date-fns/parse'
-    import dateFormat from 'date-fns/format'
-
-    const SCALE = 20;
+    import ArticleList from '~/components/ArticleList.vue'
 
     function loadItems(items, language) {
         return items.map(x => {
             let m = dateParse(x.published);
             return { title: x.title, published: m, url: x.url, language: language }
         })
-    }
-
-    function addTop(xs) {
-        let first = xs[0].published;
-        return xs.map(x => {
-            return {
-                ...x,
-                published: dateFormat(x.published, 'MMM DD'),
-                top: (first - x.published) / (1000 * 60 * 60 * 24) * SCALE,
-            };
-        });
     }
 
     export default {
@@ -69,11 +48,9 @@
             let sorted = items.sort((a, b) => {
                 return -(a.published - b.published);
             });
-            let itemsWithTop = addTop(sorted);
 
             return {
-                items: itemsWithTop,
-                height: itemsWithTop[itemsWithTop.length-1].top + SCALE,
+                items: sorted,
             };
         },
 
@@ -82,5 +59,7 @@
                 title: 'blog.8-p.info',
             }
         },
+
+        components: { ArticleList }
     }
 </script>
