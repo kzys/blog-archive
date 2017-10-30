@@ -15,5 +15,15 @@
   "homepage": "https://bitbucket.org/kzys/blog_8-p_info#readme",
   "devDependencies": {
     "typescript": "^2.0.10"
+  },
+  "dependencies": {
+    "axios": "^0.17.0",
+    "date-fns": "^1.29.0",
+    "moment": "^2.19.1",
+    "normalize.css": "^7.0.0",
+    "nuxt": "^1.0.0-rc11"
+  },
+  "scripts": {
+    "generate": "nuxt generate"
   }
 }

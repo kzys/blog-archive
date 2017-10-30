@@ -26,6 +26,10 @@ build:
     - npm-install
     - script:
         code: LANG=en_US.UTF-8 RUBYOPT=-EUTF-8 bundle exec rake publish
+    - script:
+        code: npm run generate
+    - script:
+        code: rsync -r --copy-dirlinks dist/ build/public/
 
 deploy:
   steps:
