@@ -34,7 +34,7 @@ h2 {
 }
 
 header .content, #container {
-    max-width: 60rem;
+    max-width: 50rem;
     margin: 0 auto;
     padding: 0 1rem;
 }
