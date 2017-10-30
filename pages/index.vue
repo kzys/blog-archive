@@ -68,8 +68,8 @@
                 };
             }
 
-            let english = await axios.get('http://localhost:3000/2017-en.json');
-            let japanese = await axios.get('http://localhost:3000/2017-ja.json');
+            let english = await axios.get('/en/index.json');
+            let japanese = await axios.get('/ja/index.json');
 
             let items = loadItems(english.data.items, 'english')
                 .concat(loadItems(japanese.data.items, 'japanese'));
