@@ -57,6 +57,10 @@
         },
 
         async asyncData (context) {
+            if (context.isStatic) {
+                return
+            }
+
             let items = await loadYear(2017);
 
             return {
