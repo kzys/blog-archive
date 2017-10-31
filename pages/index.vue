@@ -57,7 +57,7 @@
         },
 
         async asyncData (context) {
-            if (context.isStatic) {
+            if (! context.isClient) {
                 return
             }
 
