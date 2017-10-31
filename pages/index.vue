@@ -38,8 +38,8 @@
     }
 
     async function loadYear(year) {
-        let english = await axios.get('https://blog.8-p.info/en/index.json');
-        let japanese = await axios.get('https://blog.8-p.info/ja/index.json');
+        let english = await axios.get('/en/index.json');
+        let japanese = await axios.get('/ja/index.json');
 
         let items = loadItems(english.data.items, 'english')
             .concat(loadItems(japanese.data.items, 'japanese'));
@@ -56,16 +56,8 @@
             return { items: [] };
         },
 
-        async asyncData (context) {
-            if (! context.isClient) {
-                return
-            }
-
-            let items = await loadYear(2017);
-
-            return {
-                items: items,
-            };
+        async mounted () {
+            this.items = await loadYear(2017);
         },
 
         head () {
