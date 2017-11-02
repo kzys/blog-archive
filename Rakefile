@@ -50,6 +50,7 @@ task :build => [ '2011/_site', '2005-2010' ] do |task, args|
 
   symlink_dirs('build/private')
   sh('ruby make-index.rb build/private')
+  cp_r(Dir.glob('build/private/*.json'), 'static')
 end
 
 task :publish => [:build] do |task, args|

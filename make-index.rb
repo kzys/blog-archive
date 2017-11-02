@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 require 'find'
 require 'date'
-require 'erb'
 require 'fileutils'
+require 'json'
+require 'cgi'
 
 class Article
   include Comparable
@@ -11,10 +12,11 @@ class Article
     @path = path
     @published_at = fetch_published_at
     @title = fetch_title
+    @language = fetch_language
   end
   attr_reader :path
   attr_reader :published_at
-  attr_reader :title
+  attr_reader :title, :language
 
   def <=>(other)
     self.published_at <=> other.published_at
@@ -65,13 +67,23 @@ class Article
       end
     end
   end
+
+  def fetch_language
+    content = File.read(@path).encode('UTF-8', invalid: :replace, replace: '?')
+    if content =~ />lang-en</
+      'en'
+    elsif @published_at.year == 2011
+      'en'
+    else
+      'ja'
+    end
+  end
 end
 
 html_dir = File.absolute_path(ARGV.shift)
 views_dir = File.absolute_path(File.join(Dir.pwd, 'views'))
 
 Dir.chdir(html_dir) do
-  template = ERB.new(File.read(File.join(views_dir, 'previous.html.erb')))
   articles = Dir.glob('*/**/*').select do |f|
     basename = File.basename(f)
     File.file?(f) and f !~ %r{/(page|tag)/} and (basename != 'index.html') and (basename =~ /\.html$/ or basename !~ /\./) and File.read(f) !~ /<rss/
@@ -81,30 +93,22 @@ Dir.chdir(html_dir) do
     a.published_at <=> b.published_at
   end
 
-  years = {}
+  first_year = articles[0].published_at.year
+  last_year = articles[-1].published_at.year
 
-  articles.each do |article|
-    years[article.published_at.year] ||= {}
-    years[article.published_at.year][article.published_at.month] ||= []
-    years[article.published_at.year][article.published_at.month].push(article)
-  end
-
-  html = template.result(binding)
-
-  File.open('index.html', 'w') do |f|
-    f.write(html)
-  end
-
-  FileUtils.mkdir_p('2005-2011')
-  File.open('2005-2011/index.html', 'w') do |f|
-    f.write(html)
-  end
-end
-
-Dir.chdir(html_dir) do
-  template = ERB.new(File.read(File.join(views_dir, 'index.html.erb')))
-  html = template.result(binding)
-  File.open('index.html', 'w') do |f|
-    f.write(html)
+  (first_year..last_year).each do |year|
+    File.open("#{year}.json", 'w') do |f|
+      items = articles.select do |a|
+        a.published_at.year == year
+      end.map do |a|
+        {
+            :published => a.published_at.to_time,
+            :title => CGI.unescapeHTML(a.title),
+            :url => "http://blog.8-p.info/#{a.path}",
+            :language => a.language
+        }
+      end
+      f.write(JSON.generate({ :items => items }))
+    end
   end
 end

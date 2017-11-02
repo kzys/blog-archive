@@ -10,12 +10,7 @@
 
         <div class="past">
             <ul>
-                <li><nuxt-link to="/2017/">2017</nuxt-link></li>
-                <li><nuxt-link to="/2016/">2016</nuxt-link></li>
-                <li><nuxt-link to="/2015/">2015</nuxt-link></li>
-                <li><nuxt-link to="/2014/">2014</nuxt-link></li>
-                <li><nuxt-link to="/2013/">2013</nuxt-link></li>
-                <li><nuxt-link to="/2012/">2012</nuxt-link></li>
+                <li v-for="year in recentYears"><nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link></li>
             </ul>
         </div>
 
@@ -25,7 +20,7 @@
 
         <div class="past">
             <ul>
-                <li><a href="/2005-2011/">2011 - 2005</a></li>
+                <li v-for="year in pastYears"><nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link></li>
             </ul>
         </div>
     </div>
@@ -34,6 +29,12 @@
     import axios from 'axios'
     import dateParse from 'date-fns/parse'
     import ArticleList from '~/components/ArticleList.vue'
+
+    let years = [];
+    for (let i = 5; i <= 17; i++) {
+        years.push(2000 + i);
+    }
+    years.reverse();
 
     function loadItems(items, language) {
         return items.map(x => {
@@ -52,8 +53,6 @@
 
     async function loadYear(year) {
         let items = [];
-
-        console.log(year);
 
         if (year >= 2017) {
             items = items.concat(await loadFromNewHugo())
@@ -78,6 +77,8 @@
 
         data () {
             return {
+                recentYears: years.slice(0, 5),
+                pastYears: years.slice(5),
                 year: 0,
                 items: [],
             };

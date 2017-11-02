@@ -1,5 +1,5 @@
 let years = [];
-for (let i = 12; i <= 17; i++) {
+for (let i = 5; i <= 17; i++) {
     years.push(2000 + i);
 }
 
