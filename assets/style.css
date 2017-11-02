@@ -46,9 +46,7 @@ header .content, #container {
 .past {
     font-size: 90%;
     margin: 1rem;
-}
-
-@media (min-width: 50rem) {
+    line-height: 2rem;
 }
 
 ul {
@@ -60,10 +58,6 @@ ul {
 h1 a, #present a {
     text-decoration: none;
     color: #333 !important;
-}
-
-#present {
-    position: relative;
 }
 
 #present li {
@@ -95,12 +89,6 @@ li.en {
     font-size: 70%;
 }
 
-.past ul {
-    margin: 0;
-    padding: 0;
-}
-
-.past li {
-    display: inline;
+.past span {
     margin-right: 1rem;
 }

@@ -8,11 +8,9 @@
             </p>
         </div>
 
-        <div class="past">
-            <ul>
-                <li v-for="year in years"><nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link></li>
-            </ul>
-        </div>
+        <p class="past">
+            <span v-for="year in years"><nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link>&Tab;</span>
+        </p>
 
         <div id="present">
             <article-list v-bind:articles="items"></article-list>
