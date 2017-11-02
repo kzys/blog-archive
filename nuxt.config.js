@@ -1,3 +1,8 @@
+let years = [];
+for (let i = 12; i <= 17; i++) {
+    years.push(2000 + i);
+}
+
 module.exports = {
     css: ['@/assets/style.css'],
     head: {
@@ -13,13 +18,13 @@ module.exports = {
                 name: 'top',
                 path: '/',
                 component: resolve(__dirname, 'pages/_year/index.vue'),
-            })
+            });
         }
     },
 
     generate: {
-        routes: [
-            '/',
-        ]
+        routes: years.map(x => {
+            return '/' + x + '/';
+        }).concat('/')
     },
 };
