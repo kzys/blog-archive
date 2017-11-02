@@ -7,6 +7,19 @@ module.exports = {
         ]
     },
     router: {
-        middleware: 'proxy'
-    }
+        middleware: 'proxy',
+        extendRoutes(routes, resolve) {
+            routes.push({
+                name: 'top',
+                path: '/',
+                component: resolve(__dirname, 'pages/_year/index.vue'),
+            })
+        }
+    },
+
+    generate: {
+        routes: [
+            '/',
+        ]
+    },
 };

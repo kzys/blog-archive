@@ -43,7 +43,7 @@ header .content, #container {
     margin: 1rem;
 }
 
-#past {
+.past {
     font-size: 90%;
     margin: 1rem;
 }
@@ -57,7 +57,7 @@ ul {
     padding: 0;
 }
 
-#present a, #legend a {
+h1 a, #present a {
     text-decoration: none;
     color: #333 !important;
 }
@@ -95,12 +95,12 @@ li.en {
     font-size: 70%;
 }
 
-#past ul {
+.past ul {
     margin: 0;
     padding: 0;
 }
 
-#past li {
+.past li {
     display: inline;
     margin-right: 1rem;
 }
