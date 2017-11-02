@@ -4,6 +4,37 @@ const { URL } = require('url');
 const fs = require('fs');
 const chrono = require('chrono-node');
 
+
+async function process2013Japanese() {
+    let res = await axios.get('http://2013.8-p.info/japanese/');
+    let dom = new jsdom.JSDOM(res.data, { url: 'http://2013.8-p.info/japanese/' });
+    let articles = Array.from(dom.window.document.querySelectorAll('#content .row'));
+
+    return articles.map(li => {
+        let a = li.querySelector('.title a');
+        let posted = li.querySelector('.date').textContent;
+        return {
+            published: chrono.parseDate(posted + ' 2013').toISOString(),
+            url: a.href,
+            title: a.textContent,
+            language: 'ja',
+        };
+    });
+}
+
+async function process2013English() {
+    let pages = await getPages('http://2013.8-p.info');
+
+    let links = pages.map(page => {
+        return getLinks(page, getPublished2013, getTitle2013);
+    })
+    return flatMap(links);
+}
+
+async function process2013() {
+    return (await process2013English()).concat(await process2013Japanese());
+}
+
 async function process2016() {
     let res = await axios.get('http://2016.8-p.info/post/');
     let dom = new jsdom.JSDOM(res.data);
@@ -43,7 +74,7 @@ async function getPage(base) {
     let res = await axios.get(base.toString());
     let dom = new jsdom.JSDOM(res.data, { url: base.toString() });
     let doc = dom.window.document;
-    let relNext = doc.querySelector('a[rel="next"]');
+    let relNext = doc.querySelector('a[rel="next"]') || doc.querySelector('a.older');
     if (relNext && ! relNext.parentNode.classList.contains("disabled")) {
         return [doc, new URL(relNext.href, base)];
     } else {
@@ -62,15 +93,34 @@ async function getPages(start) {
     return pages;
 }
 
-function getLinks(doc) {
+function getPublished2013(article) {
+    let date = article.querySelector('h1 div.date');
+    return chrono.parseDate(date.textContent.replace(/\s*#/, '') + ' 2013');
+}
+
+function getTitle2013(article) {
+    let h1 = article.querySelector('h1');
+    let title = h1.lastChild.textContent.replace(/^[\n\s]*/, '').replace(/[\n\s]*$/, '');
+    if (title.length === 0) {
+        let subtitles = Array.from(article.querySelectorAll('h2'));
+        if (subtitles.length === 0) {
+            return 'Untitled';
+        }
+        return subtitles.map(e => e.textContent).join(' / ');
+    } else {
+        return title;
+    }
+}
+
+function getLinks(doc, getPublished, getTitle) {
     let articles = Array.from(doc.querySelectorAll('article'));
     return articles.map(article => {
-        let mainLink = article.querySelector('h2 a');
-        let meta = article.querySelector('div.meta');
+        let mainLink = article.querySelector('h2 a') || article.querySelector('h1 div.date a');
+        let meta = article.querySelector('div.meta') || article.querySelector('h1 div.date');
         return {
             url: mainLink.href,
-            title: mainLink.textContent,
-            published: meta.querySelector('abbr').title,
+            title: getTitle(article),
+            published: getPublished(article),
             language: meta.textContent.match(/written in Japanese/) ? 'ja' : 'en',
         };
     });
@@ -82,20 +132,36 @@ function flatMap(xs) {
     }, []);
 }
 
+
+function getPublished2014(article) {
+    let meta = article.querySelector('div.meta');
+    return chrono.parseDate(meta.querySelector('abbr').title);
+}
+
+function getTitle2014(article) {
+    return article.querySelector('h2 a').textContent;
+}
+
 async function process2014() {
     let pages = await getPages('http://2014.8-p.info');
     let links = pages.map(page => {
-        return getLinks(page);
+        return getLinks(page, getPublished2014, getTitle2014);
     });
     return flatMap(links);
 }
 
+process2013().then(obj => {
+    fs.writeFileSync('static/2013.json', JSON.stringify({ items: obj }));
+});
 process2014().then(obj => {
     fs.writeFileSync('static/2014.json', JSON.stringify({ items: obj }));
 });
+
+/*
 process2015().then(obj => {
     fs.writeFileSync('static/2015.json', JSON.stringify({ items: obj }));
 });
 process2016().then(obj => {
     fs.writeFileSync('static/2016.json', JSON.stringify({ items: obj }));
 });
+*/
