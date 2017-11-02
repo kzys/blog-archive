@@ -10,18 +10,12 @@
 
         <div class="past">
             <ul>
-                <li v-for="year in recentYears"><nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link></li>
+                <li v-for="year in years"><nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link></li>
             </ul>
         </div>
 
         <div id="present">
             <article-list v-bind:articles="items"></article-list>
-        </div>
-
-        <div class="past">
-            <ul>
-                <li v-for="year in pastYears"><nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link></li>
-            </ul>
         </div>
     </div>
 </template>
@@ -77,8 +71,7 @@
 
         data () {
             return {
-                recentYears: years.slice(0, 5),
-                pastYears: years.slice(5),
+                years: years,
                 year: 0,
                 items: [],
             };
@@ -95,5 +88,11 @@
             let newItems = await loadYear(this.year);
             this.items.push(... newItems);
         },
+
+        head() {
+            return {
+                title: 'blog.8-p.info / ' + this.year,
+            }
+        }
     }
 </script>
