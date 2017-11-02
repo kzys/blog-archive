@@ -43,7 +43,7 @@ header .content, #container {
     margin: 1rem;
 }
 
-.past {
+div.past {
     font-size: 90%;
     margin: 1rem;
     line-height: 2rem;
@@ -89,6 +89,7 @@ li.en {
     font-size: 70%;
 }
 
-.past span {
+div.past div {
+    display: inline;
     margin-right: 1rem;
 }

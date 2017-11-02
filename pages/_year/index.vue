@@ -8,9 +8,12 @@
             </p>
         </div>
 
-        <p class="past">
-            <span v-for="year in years"><nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link>&Tab;</span>
-        </p>
+        <div class="past">
+            <!-- span doesn't work correctly, but why? -->
+            <div v-for="year in years">
+                <nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link>&Tab;
+            </div>
+        </div>
 
         <div id="present">
             <article-list v-bind:articles="items"></article-list>
@@ -21,12 +24,6 @@
     import axios from 'axios'
     import dateParse from 'date-fns/parse'
     import ArticleList from '~/components/ArticleList.vue'
-
-    let years = [];
-    for (let i = 5; i <= 17; i++) {
-        years.push(2000 + i);
-    }
-    years.reverse();
 
     function loadItems(items, language) {
         return items.map(x => {
@@ -64,12 +61,22 @@
         });
     }
 
+    function createYears() {
+        let years = [];
+        for (let i = 5; i <= 17; i++) {
+            years.push(2000 + i);
+        }
+        years.reverse();
+
+        return years;
+    }
+
     export default {
         components: { ArticleList },
 
         data () {
             return {
-                years: years,
+                years: createYears(),
                 year: 0,
                 items: [],
             };
