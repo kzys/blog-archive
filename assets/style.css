@@ -43,16 +43,16 @@ header .content, #container {
     margin: 1rem;
 }
 
-div.past {
-    font-size: 90%;
-    margin: 1rem;
-    line-height: 2rem;
-}
-
 ul {
     list-style: none;
     margin: 1rem 0;
     padding: 0;
+}
+
+.past {
+    font-size: 90%;
+    margin: 1rem;
+    line-height: 2rem;
 }
 
 h1 a, #present a {
@@ -89,7 +89,7 @@ li.en {
     font-size: 70%;
 }
 
-div.past div {
+.past li {
     display: inline;
     margin-right: 1rem;
 }

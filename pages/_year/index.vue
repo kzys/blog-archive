@@ -8,12 +8,12 @@
             </p>
         </div>
 
-        <div class="past">
+        <ul class="past">
             <!-- span doesn't work correctly, but why? -->
-            <div v-for="year in years">
-                <nuxt-link v-bind:to="'/' + year + '/'">{{ year }}</nuxt-link>&Tab;
-            </div>
-        </div>
+            <li v-for="y in years">
+                <nuxt-link v-bind:to="'/' + y + '/'">{{ y }}</nuxt-link>&Tab;
+            </li>
+        </ul>
 
         <div id="present">
             <article-list v-bind:articles="items"></article-list>
@@ -76,7 +76,7 @@
 
         data () {
             return {
-                years: createYears(),
+                years: [],
                 year: 0,
                 items: [],
             };
@@ -92,6 +92,7 @@
         async mounted () {
             let newItems = await loadYear(this.year);
             this.items.push(... newItems);
+            this.years.push(... createYears())
         },
 
         head() {
