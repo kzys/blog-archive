@@ -79,12 +79,12 @@ li {
     line-height: 2rem;
 }
 
-li.japanese {
+li.ja {
     border-left: .2rem solid #c00;
     padding-left: .8rem;
 }
 
-li.english {
+li.en {
     border-left: .2rem solid #00c;
     padding-left: .8rem;
 }

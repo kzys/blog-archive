@@ -41,8 +41,8 @@
         let english = await axios.get('/en/index.json');
         let japanese = await axios.get('/ja/index.json');
 
-        let items = loadItems(english.data.items, 'english')
-            .concat(loadItems(japanese.data.items, 'japanese'));
+        let items = loadItems(english.data.items, 'en')
+            .concat(loadItems(japanese.data.items, 'ja'));
 
         return items.sort((a, b) => {
             return -(a.published - b.published);
