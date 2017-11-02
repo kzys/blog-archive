@@ -4,6 +4,37 @@ const { URL } = require('url');
 const fs = require('fs');
 const chrono = require('chrono-node');
 
+function strip(str) {
+    return str.replace(/^[\n\s]*/, '').replace(/[\n\s]*$/, '');
+}
+
+async function getPage(base) {
+    let res = await axios.get(base.toString());
+    let dom = new jsdom.JSDOM(res.data, { url: base.toString() });
+    let doc = dom.window.document;
+    let relNext = doc.querySelector('a[rel="next"]') || doc.querySelector('a.older');
+    if (relNext && ! relNext.parentNode.classList.contains("disabled")) {
+        return [doc, new URL(relNext.href, base)];
+    } else {
+        return [doc, null];
+    }
+}
+
+async function process2012() {
+    let [doc, next] = await getPage('http://2012.8-p.info');
+    let lis = Array.from(doc.querySelectorAll('#articles li'));
+
+    return lis.map(li => {
+        let a = li.querySelector('a');
+        let posted = strip(li.querySelector('.posted').textContent.replace(/‐/, ''));
+        return {
+            published: chrono.parseDate(posted + ' 2012').toISOString(),
+            url: a.href,
+            title: a.textContent,
+            language: a.href.indexOf('/japanese/') !== -1 ? 'ja' : 'en',
+        };
+    });
+}
 
 async function process2013Japanese() {
     let res = await axios.get('http://2013.8-p.info/japanese/');
@@ -68,18 +99,6 @@ async function process2015() {
             language: a.href.indexOf('/ja/') !== -1 ? 'ja' : 'en',
         };
     });
-}
-
-async function getPage(base) {
-    let res = await axios.get(base.toString());
-    let dom = new jsdom.JSDOM(res.data, { url: base.toString() });
-    let doc = dom.window.document;
-    let relNext = doc.querySelector('a[rel="next"]') || doc.querySelector('a.older');
-    if (relNext && ! relNext.parentNode.classList.contains("disabled")) {
-        return [doc, new URL(relNext.href, base)];
-    } else {
-        return [doc, null];
-    }
 }
 
 async function getPages(start) {
@@ -150,18 +169,18 @@ async function process2014() {
     return flatMap(links);
 }
 
+process2012().then(obj => {
+    fs.writeFileSync('static/2012.json', JSON.stringify({ items: obj }));
+});
 process2013().then(obj => {
     fs.writeFileSync('static/2013.json', JSON.stringify({ items: obj }));
 });
 process2014().then(obj => {
     fs.writeFileSync('static/2014.json', JSON.stringify({ items: obj }));
 });
-
-/*
 process2015().then(obj => {
     fs.writeFileSync('static/2015.json', JSON.stringify({ items: obj }));
 });
 process2016().then(obj => {
     fs.writeFileSync('static/2016.json', JSON.stringify({ items: obj }));
 });
-*/

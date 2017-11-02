@@ -15,6 +15,7 @@
                 <li><nuxt-link to="/2015/">2015</nuxt-link></li>
                 <li><nuxt-link to="/2014/">2014</nuxt-link></li>
                 <li><nuxt-link to="/2013/">2013</nuxt-link></li>
+                <li><nuxt-link to="/2012/">2012</nuxt-link></li>
             </ul>
         </div>
 
@@ -24,7 +25,6 @@
 
         <div class="past">
             <ul>
-                <li><a href="http://2012.8-p.info/">2012</a></li>
                 <li><a href="/2005-2011/">2011 - 2005</a></li>
             </ul>
         </div>
