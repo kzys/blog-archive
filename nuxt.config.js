@@ -25,6 +25,7 @@ module.exports = {
     generate: {
         routes: years.map(x => {
             return '/' + x + '/';
-        }).concat('/')
+        }).concat('/'),
+        minify: { collapseWhitespace: false }
     },
 };

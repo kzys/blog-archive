@@ -9,7 +9,6 @@
         </div>
 
         <ul class="past">
-            <!-- span doesn't work correctly, but why? -->
             <li v-for="y in years">
                 <nuxt-link v-bind:to="'/' + y + '/'">{{ y }}</nuxt-link>&Tab;
             </li>
@@ -76,7 +75,6 @@
 
         data () {
             return {
-                years: [],
                 year: 0,
                 items: [],
             };
@@ -85,14 +83,19 @@
         asyncData(context) {
             let year = context.route.params.year || (new Date).getFullYear();
             return {
-                year: parseInt(year, 10)
+                year: parseInt(year, 10),
+                years: createYears()
             };
         },
 
         async mounted () {
-            let newItems = await loadYear(this.year);
-            this.items.push(... newItems);
-            this.years.push(... createYears())
+            loadYear(this.year)
+                .then(newItems => {
+                    this.items.push(...newItems);
+                })
+                .catch(e => {
+                    console.log(e);
+                })
         },
 
         head() {
