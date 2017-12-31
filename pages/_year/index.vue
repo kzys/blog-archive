@@ -4,6 +4,10 @@
 
         <div id="about">
             <p>
+                Currently I'm trying to blog in English at <a href="/en/">Kazu's Log</a>, but I also have
+                <a href="/ja/">滞舎路日記</a> to blog in Japanese.
+            </p>
+            <p>
                 日本語のブログは <a href="/ja/">滞舎路日記</a>、英語のブログは <a href="/en/">Kazu's Log</a> で書いています。
             </p>
         </div>
@@ -62,7 +66,7 @@
 
     function createYears() {
         let years = [];
-        for (let i = 5; i <= 17; i++) {
+        for (let i = 5; i <= 18; i++) {
             years.push(2000 + i);
         }
         years.reverse();

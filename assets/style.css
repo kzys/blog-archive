@@ -43,6 +43,10 @@ header .content, #container {
     margin: 1rem;
 }
 
+#about p {
+    line-height: 1.5;
+}
+
 ul {
     list-style: none;
     margin: 1rem 0;
