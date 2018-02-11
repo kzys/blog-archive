@@ -1,3 +1,5 @@
+/* colors are from http://clrs.cc/ */
+
 @import 'normalize.css';
 
 body {
@@ -6,41 +8,51 @@ body {
     font-family: 'Helvetica Neue', sans-serif;
 }
 
-/* back to basics */
 a:link {
-    color: #009;
+    color: #0074D9;
 }
 a:visited {
-    color: #606;
+    color: #85144b;
 }
 a:hover {
-    color: #00f;
+    color: #FF851B;
 }
 a:active {
-    color: #00f;
+    color: #FF851B;
+}
+
+h1, h2 {
+    font-size: 1rem;
+    padding: 0 0 1rem 0;
+    margin: 0;
 }
 
 h1 {
-    font-size: 1.5rem;
+    float: left;
     font-weight: normal;
-    margin: 1rem;
 }
 
 h2 {
-    font-size: 1rem;
-    margin: 0;
-    padding: 0;
+    float: right;
 }
 
-header .content, #container {
-    max-width: 50rem;
+header {
+    border-bottom: 1px solid #111;
+    clear: both;
+    overflow: hidden;
+    margin: 1rem;
+    padding: 0 .5rem;
+}
+
+#container {
     margin: 0 auto;
     padding: 0;
 }
 
 #about {
-    font-size: 90%;
+    font-size: 1rem;
     margin: 1rem;
+    padding: 0 .5rem;
 }
 
 #about p {
@@ -57,6 +69,22 @@ ul {
     font-size: 90%;
     margin: 1rem;
     line-height: 2rem;
+    padding: 0 .5rem;
+}
+
+.past a {
+    text-decoration: none;
+    color: #111 !important;
+    position: relative;
+    padding: 2px;
+}
+
+.past a:hover {
+    border-bottom: .2rem solid #DDDDDD;
+}
+
+.past a.active {
+    border-bottom: .2rem solid #111;
 }
 
 h1 a, #present a {
@@ -64,31 +92,49 @@ h1 a, #present a {
     color: #333 !important;
 }
 
-#present li {
-    display: flex;
-}
-#present li .published {
-    min-width: 4rem;
-}
-
-li {
+#posts {
+    margin: 1rem;
     padding: 0;
+}
+
+#posts li {
+    display: flex;
+    padding: .1rem 0;
     margin: 0;
-    line-height: 2rem;
+    line-height: 1.5rem;
 }
 
-li.ja {
-    border-left: .2rem solid #c00;
-    padding-left: .8rem;
+@media (min-width: 640px) {
+    #posts li {
+        line-height: 2rem;
+    }    
 }
 
-li.en {
-    border-left: .2rem solid #00c;
-    padding-left: .8rem;
+#posts li .published {
+    min-width: 4rem;
+    margin: auto 0;
+}
+
+#posts li:before {
+    content: "";
+    border-radius: 50%;
+    border: .5rem solid #111;
+    width: 0;
+    height: 0;
+    margin: auto 1rem auto 0;
+}
+
+/* brewer RdBu */
+#posts li.ja:before {
+    border-color: #FF4136;
+}
+
+#posts li.en:before {
+    border-color: #FFDC00;
 }
 
 .published {
-    color: #999;
+    color: #aaa;
     font-family: Monaco, monospace;
     font-size: 70%;
 }

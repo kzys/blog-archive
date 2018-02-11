@@ -1,24 +1,25 @@
 <template>
     <div id="container">
-        <h1><a href="/"><strong>blog</strong>.8-p.info</a> / {{ year }}</h1>
+        <header>
+            <h1><a href="/"><strong>blog</strong>.8-p.info</a></h1>
+            <h2>{{ year }}</h2>
+        </header>
 
         <div id="about">
             <p>
-                Currently I'm trying to blog in English at <a href="/en/">Kazu's Log</a>, but I also have
-                <a href="/ja/">滞舎路日記</a> to blog in Japanese.
-            </p>
-            <p>
-                日本語のブログは <a href="/ja/">滞舎路日記</a>、英語のブログは <a href="/en/">Kazu's Log</a> で書いています。
+                Kazuyoshi Kato is a Japanese software developer who works in Seattle.
             </p>
         </div>
 
         <ul class="past">
             <li v-for="y in years">
-                <nuxt-link v-bind:to="'/' + y + '/'">{{ y }}</nuxt-link>&Tab;
+                <nuxt-link
+                    v-bind:to="`/${y}/`" 
+                    v-bind:class="y == year ? 'active' : ''">{{ y }}</nuxt-link>&Tab;
             </li>
         </ul>
 
-        <div id="present">
+        <div id="posts">
             <article-list v-bind:articles="items"></article-list>
         </div>
     </div>
@@ -65,9 +66,10 @@
     }
 
     function createYears() {
+        let thisYear = (new Date).getFullYear();
         let years = [];
-        for (let i = 5; i <= 18; i++) {
-            years.push(2000 + i);
+        for (let year = 2005; year <= thisYear; year++) {
+            years.push(year);
         }
         years.reverse();
 
@@ -81,6 +83,7 @@
             return {
                 year: 0,
                 items: [],
+                years: createYears()
             };
         },
 
