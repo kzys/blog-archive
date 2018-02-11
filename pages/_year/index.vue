@@ -50,7 +50,7 @@
         if (year >= 2017) {
             items = items.concat(await loadFromNewHugo())
         } else {
-            let json = await axios.get('/' + year + '.json');
+            let json = await axios.get(`/json/${year}.json`);
             items = items.concat(loadItems(json.data.items));
 
             if (year === 2016) {
