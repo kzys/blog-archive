@@ -1,0 +1,215 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+}
+
+pre {
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+#paginator {
+  margin: 0 1em;
+}
+
+#newer {
+  float: left;
+}
+
+#older {
+  float: right;
+}
+
+header, nav, article, section {
+  display: block;
+}
+
+header, article, footer .inner, #archives {
+  margin: 1em;
+  padding: 0;
+  clear: both;
+}
+
+
+#cse {
+  margin: 1em 0 0 0;
+}
+#cse .gsc-tabsArea {
+  display: none;
+}
+#cse .gsc-search-box {
+  margin: 0;
+  width: 20em;
+}
+#cse .gsc-webResult {
+  margin: 1em 0 0 0;
+  padding: 0;
+}
+#cse .gsc-adBlock {
+  border: 1px solid #ccc;
+  margin: 1em 0 0 0;
+}
+#cse .gs-snippet {
+  margin: 0;
+}
+#cse .gsc-resultsHeader {
+  border: none;
+}
+#cse .gsc-cursor-box {
+  margin: 1em 0 0 0;
+}
+#cse .gsc-cursor-current-page {
+  color: #000;
+}
+.gsc-control-cse {
+  padding: 0;
+}
+
+h1, h2, h3, footer p, a.permalink, nav a, .date, address, #paginator {
+  font: normal 1em 'Helvetica Neue', sans-serif;
+}
+#container {
+  background: #fff;
+  clear: both;
+  overflow: hidden;
+}
+#container, header {
+  padding-bottom: 1em;
+}
+#paginator div {
+  font-size: 200%;
+}
+
+blockquote {
+  margin: 0 0 0 2em;
+}
+a {
+  color: rgb(76,188,215);
+}
+a:visited {
+  color: rgb(93,39,109);
+}
+header {
+  margin-top: 0;
+  overflow: hidden;
+  padding: 1em 0;
+  border-bottom: 1px solid #000;
+}
+header h1 {
+  padding: 0;
+  margin: 0;
+}
+footer {
+  margin-top: 1em;
+}
+footer a {
+  color: #000 !important;
+  font-weight: bold;
+  text-decoration: none;
+}
+footer .inner {
+  padding: 1em 0.5em:
+}
+footer .text {
+  float: left;
+}
+footer .text p {
+  margin: 0 0 1em 0;
+}
+footer #badge {
+  float: right;
+  padding-bottom: 1em;
+}
+address {
+  margin: 2em 0 0 0;
+  font-style: normal;
+}
+
+article h1, article h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 200%;
+  font-weight: bold;
+}
+article p {
+  padding: 0;
+  margin: 1em 0 0 0;
+  max-width: 40em;
+  line-height: 1.4;
+}
+article pre {
+  background: #f0f0f0;
+  padding: 1em 2em;
+  margin: 1em -2em 0 -2em;
+}
+article .header h2 {
+  float: left;
+  margin-right: 1em;
+}
+.header {
+  overflow: hidden;
+  clear: both;
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+article .header .permalink, #paginator a {
+  font-size: 200%;
+  color: #ccc !important;
+  text-decoration: none;
+}
+
+article.quote h2 {
+  display: none;
+}
+article.quote blockquote {
+  margin: 0;
+  padding: 0;
+}
+article.quote p {
+}
+article.quote p.by {
+  font-size: 100%;
+}
+
+.header h2 {
+  float: left;
+}
+article h3 {
+  font-size: 1em;
+  margin: 2em 0 0 0;
+}
+.header .date {
+  font-size: 200%;
+  color: #f00;
+}
+article .content {
+  margin: 0;
+}
+
+/*
+.sun {
+  padding: 0 0em 0 6em;
+}
+.mon {
+  padding: 0 1em 0 5em;
+}
+.tue {
+  padding: 0 2em 0 4em;
+}
+.wed {
+  padding: 0 3em 0 3em;
+}
+.thr {
+  padding: 0 4em 0 2em;
+}
+.fri {
+  padding: 0 5em 0 1em;
+}
+.sat {
+  padding: 0 6em 0 0em;
+}
+*/

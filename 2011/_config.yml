@@ -1,0 +1,4 @@
+permalink: /:month/:day/:title.html
+source: src
+paginate: 3
+url: //blog.8-p.info/2011/

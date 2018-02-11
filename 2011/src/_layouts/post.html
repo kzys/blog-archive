@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<div id="container">
+  <article>
+    <section>
+      <div class="header">
+        <div class="date">
+          <time pubdate="pubdate"
+                datetime="{{ page.date | date: '%Y-%m-%d' }}">
+            {{ page.date | date: "%b %-d" }}
+          </time>
+        </div>
+        <h2>{{ page.title }}</h2>
+      </div>
+      <div class="content">{{ content }}</div>
+    </section>
+  </article>
+</div>

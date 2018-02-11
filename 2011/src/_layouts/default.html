@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} - Kato Kazuyoshi{% else %}Kato Kazuyoshi{% endif %}</title>
+    {% if site.server %}
+    <base href="/" />
+    {% else %}
+    <base href="//blog.8-p.info/2011/" />
+    {% endif %}
+
+    <link rel="stylesheet" type="text/css"
+          href="http://www.google.com/cse/style/look/default.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <link rel="alternate" type="application/atom+xml"
+          href="//blog.8-p.info/recent.atom" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    {{ content }}
+    <footer>
+      <div class="inner">
+        <div class="text">
+          <p>
+            {% if page.title %}
+            This post is a part of
+            <a href="//blog.8-p.info/">my blog</a>.
+            {% else %}
+            Hello.
+            {% endif %}
+            My name is
+            <a href="http://8-p.info/me/">Kato Kazuyoshi</a>.
+            I code for food, and for fun.
+          </p>
+          <p>
+            Feel free to contact me at kato.kazuyoshi@gmail.com.
+          </p>
+        </div>
+        <div id="badge">
+        </div>
+      </div>
+    </footer>
+
+    <script src="modernizr-1.6.js"></script>
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script src="footer.js"></script>
+  </body>
+</html>
