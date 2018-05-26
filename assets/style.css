@@ -8,17 +8,51 @@ body {
     font-family: 'Helvetica Neue', sans-serif;
 }
 
+/* back to basics */
 a:link {
-    color: #0074D9;
+    color: #009;
 }
 a:visited {
-    color: #85144b;
+    color: #606;
 }
 a:hover {
-    color: #FF851B;
+    color: #00f;
 }
 a:active {
-    color: #FF851B;
+    color: #00f;
+}
+
+.content {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* header */
+
+header {
+    background: #f0f0f0;
+    clear: both;
+    float: none;
+
+    & .content {
+        font-size: 90%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    & a {
+        color: #111 !important;
+        text-decoration: none;
+    }
+
+    & a.blog {
+        font-weight: bold;
+    }
+    
+    & div.column {
+        padding: 1rem 0;
+    }
 }
 
 h1, h2 {
@@ -36,65 +70,39 @@ h2 {
     float: right;
 }
 
-header {
-    border-bottom: 1px solid #111;
-    clear: both;
-    overflow: hidden;
-    margin: 1rem;
-    padding: 0 .5rem;
-}
-
-#container {
-    margin: 0 auto;
-    padding: 0;
-}
-
-#about {
-    font-size: 1rem;
-    margin: 1rem;
-    padding: 0 .5rem;
-}
-
-#about p {
-    line-height: 1.5;
+nav {
+    margin: 1rem 0;
 }
 
 ul {
     list-style: none;
-    margin: 1rem 0;
+    margin: 0;
     padding: 0;
 }
 
-.past {
-    font-size: 90%;
-    margin: 1rem;
+ul.past {
+    font-size: 80%;
+    margin-right: 1rem;
     line-height: 2rem;
-    padding: 0 .5rem;
+
+    & a {
+        text-decoration: none;
+        color: #111 !important;
+    }
+
+    & a:hover {
+        border-bottom: .2rem solid #DDDDDD;
+    }
+    
+    & a.active {
+        border-bottom: .2rem solid #111;
+    }
 }
 
-.past a {
-    text-decoration: none;
-    color: #111 !important;
-    position: relative;
-    padding: 2px;
-}
-
-.past a:hover {
-    border-bottom: .2rem solid #DDDDDD;
-}
-
-.past a.active {
-    border-bottom: .2rem solid #111;
-}
 
 h1 a, #present a {
     text-decoration: none;
     color: #333 !important;
-}
-
-#posts {
-    margin: 1rem;
-    padding: 0;
 }
 
 #posts li {
@@ -105,6 +113,10 @@ h1 a, #present a {
 }
 
 @media (min-width: 640px) {
+    nav ul.past {
+        display: flex;
+        justify-content: space-between;
+    }
     #posts li {
         margin: .5rem 0;
     }    

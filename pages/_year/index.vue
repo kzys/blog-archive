@@ -1,33 +1,30 @@
 <template>
-    <div id="container">
-        <header>
-            <h1><a href="/"><strong>blog</strong>.8-p.info</a></h1>
-            <h2>{{ year }}</h2>
-        </header>
+    <div>
+        <Header/>
+        <nav>
+            <div class="content">
+                <ul class="past">
+                    <li v-for="y in years">
+                        <nuxt-link
+                            v-bind:to="`/${y}/`" 
+                            v-bind:class="y == year ? 'active' : ''">{{ y }}</nuxt-link>&Tab;
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-        <div id="about">
-            <p>
-                Kazuyoshi Kato is a Japanese software developer who works in Seattle.
-            </p>
-        </div>
-
-        <ul class="past">
-            <li v-for="y in years">
-                <nuxt-link
-                    v-bind:to="`/${y}/`" 
-                    v-bind:class="y == year ? 'active' : ''">{{ y }}</nuxt-link>&Tab;
-            </li>
-        </ul>
-
-        <div id="posts">
-            <article-list v-bind:articles="items"></article-list>
-        </div>
+        <main id="posts">
+            <div class="content">
+                <article-list v-bind:articles="items"></article-list>
+            </div>
+        </main>
     </div>
 </template>
 <script>
     import axios from 'axios'
     import dateParse from 'date-fns/parse'
     import ArticleList from '~/components/ArticleList.vue'
+    import Header from '~/components/Header.vue'
 
     function loadItems(items, language) {
         return items.map(x => {
@@ -77,7 +74,7 @@
     }
 
     export default {
-        components: { ArticleList },
+        components: { ArticleList, Header },
 
         data () {
             return {
