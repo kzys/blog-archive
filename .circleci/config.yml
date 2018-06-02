@@ -34,11 +34,10 @@ jobs:
       - image: circleci/node:10-stretch
     working_directory: ~/work
     steps:
+      - run: sudo apt-get install -qq -y s3cmd python-pip libpython-dev
+      - run: sudo pip install -q awscli --upgrade
       - attach_workspace:
           at: ~/work/dist
-      - run:
-          name: "Install awscli and s3cmd"
-          command: sudo apt-get install -qq -y awscli s3cmd
       - run: s3cmd sync --acl-public --guess-mime-type --cf-invalidate dist/ s3://blog.8-p.info-2017/
       - run:
           name: Invalidate /*
