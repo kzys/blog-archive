@@ -40,7 +40,7 @@ jobs:
       - run:
           name: "Install AWS CLI"
           command: sudo pip install -q awscli --upgrade
-      - run: s3cmd sync . s3://blog.8-p.info-2017/
+      - run: s3cmd sync --acl-public --guess-mime-type --cf-invalidate . s3://blog.8-p.info-2017/
       - run:
           name: Invalidate /*
           command: aws cloudfront create-invalidation --distribution-id EZLOTA1EGTZ45 --paths '/*'
