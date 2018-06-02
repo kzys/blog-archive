@@ -1,18 +1,27 @@
+a:link {
+  color: #0af;
+}
+a:visited {
+  color: #666;
+}
+a:active {
+  color: #0ff;
+}
+a:hover {
+  color: #fb0;
+}
 
+a img {
+  border: none;
+}
 
-
-
-
-/*
-     FILE ARCHIVED ON 11:43:05 Oct 13, 2007 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 8:33:33 Dec 17, 2014.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
-
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
-*/
-@import url(/web/20071013114305/http://8-p.info/style/anchor.css);
-@import url(/web/20071013114305/http://8-p.info/style/pre.css);
+pre {
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 
 h1, h2, h3, p {
   margin: 0;
