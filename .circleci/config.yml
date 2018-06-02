@@ -8,6 +8,7 @@ jobs:
 
     steps:
       - checkout
+      - run: sudo apt-get install -qq -y rsync
 
       # Download and cache dependencies
       - restore_cache:
