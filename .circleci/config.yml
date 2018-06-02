@@ -23,6 +23,7 @@ jobs:
             - node_modules
           key: deps-{{ checksum ".circleci/config.yml" }}-{{ checksum "package.json" }}
       - run: npm run generate
+      - run: rsync -rv 2005-2010/ dist/
       - persist_to_workspace:
           root: ~/work/dist
           paths:
