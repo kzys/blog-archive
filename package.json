@@ -16,12 +16,12 @@
   "devDependencies": {
     "chrono-node": "^1.3.5",
     "jsdom": "^11.11.0",
-    "typescript": "^2.7.1"
+    "typescript": "^2.9.1"
   },
   "dependencies": {
     "axios": "^0.17.1",
     "date-fns": "^1.29.0",
-    "moment": "^2.20.1",
+    "moment": "^2.22.2",
     "normalize.css": "^7.0.0",
     "nuxt": "^1.4.0"
   }
