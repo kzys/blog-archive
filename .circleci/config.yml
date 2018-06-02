@@ -39,7 +39,7 @@ jobs:
       - run:
           name: "Install awscli and s3cmd"
           command: sudo apt-get install -qq -y awscli s3cmd
-      - run: s3cmd sync --acl-public --guess-mime-type --cf-invalidate . s3://blog.8-p.info-2017/
+      - run: s3cmd sync --acl-public --guess-mime-type --cf-invalidate dist/ s3://blog.8-p.info-2017/
       - run:
           name: Invalidate /*
           command: aws cloudfront create-invalidation --distribution-id EZLOTA1EGTZ45 --paths '/*'
