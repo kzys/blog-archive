@@ -2,8 +2,9 @@ version: 0.2
 phases:
   install:
     commands:
+      - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
       - apt-get update -y
-      - apt-get install -y rsync
+      - apt-get install -y nodejs rsync
       - gem install jekyll
   build:
     commands:
