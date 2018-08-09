@@ -14,6 +14,7 @@ phases:
       - mkdir build
       - rsync -r 2005-2010/ build/
       - rsync -r 2011/_site/ build/2011/
+      - rsync -r dist/ build/
 artifacts:
   files:
     - 'build/**/*'
