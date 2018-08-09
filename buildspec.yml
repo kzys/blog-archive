@@ -14,4 +14,4 @@ phases:
 artifacts:
   files:
     - 'build/**/*'
-  name: blog-archive-$(date +%Y%m%d)
+  name: $CODEBUILD_BUILD_ID.zip
