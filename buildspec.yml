@@ -3,7 +3,6 @@ phases:
   install:
     commands:
       - gem install jekyll
-      - cd 2011 && jekyll build
   build:
     commands:
       - cd 2011 && jekyll build
