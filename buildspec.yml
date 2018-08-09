@@ -4,3 +4,9 @@ phases:
     commands:
       - gem install jekyll
       - cd 2011 && jekyll build
+  build:
+    commands:
+      - cd 2011 && jekyll build
+      - mkdir build
+      - rsync -r 2005-2010/ build/
+      - rsync -r 2011/_site/ build/2011/
