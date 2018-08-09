@@ -6,9 +6,11 @@ phases:
       - apt-get update -y
       - apt-get install -y nodejs rsync
       - gem install jekyll
+      - npm install
   build:
     commands:
       - cd 2011 && jekyll build && cd ..
+      - npm run generate
       - mkdir build
       - rsync -r 2005-2010/ build/
       - rsync -r 2011/_site/ build/2011/
