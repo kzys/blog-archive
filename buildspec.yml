@@ -13,5 +13,5 @@ phases:
       - rsync -r 2011/_site/ build/2011/
 artifacts:
   files:
-    - 'build/*'
+    - 'build/**/*'
   name: blog-archive-$(date +%Y%m%d)
