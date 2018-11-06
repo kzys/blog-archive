@@ -1,10 +1,15 @@
+const postcss_nested = require('postcss-nested')
+
 let years = [];
 for (let i = 5; i <= 18; i++) {
     years.push(2000 + i);
 }
 
 module.exports = {
-    css: ['@/assets/style.css'],
+    css: [ 'normalize.css', '@assets/style.css'],
+    build: {
+        postcss: [ postcss_nested ]
+    },    
     head: {
         meta: [
             { charset: 'utf-8' },
