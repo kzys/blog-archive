@@ -1,30 +1,32 @@
 <template>
     <div>
-        <Header/>
-        <nav>
-            <div class="content">
-                <ul class="past">
-                    <li v-for="y in years">
-                        <nuxt-link
-                            v-bind:to="`/${y}/`" 
-                            v-bind:class="y == year ? 'active' : ''">{{ y }}</nuxt-link>&Tab;
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <Intro />
+
+        <ul class="years">
+            <li v-for="y in years">
+                <nuxt-link
+                    v-bind:to="`/${y}/`" 
+                    v-bind:class="y == year ? 'active' : ''">{{ y }}</nuxt-link>&Tab;
+            </li>
+        </ul>
+
+        <Calendar v-bind:year="year" v-bind:articles="items"/>
 
         <main id="posts">
-            <div class="content">
-                <article-list v-bind:articles="items"></article-list>
-            </div>
+            <ArticleList v-bind:articles="items"></ArticleList>
         </main>
     </div>
 </template>
 <script>
+    import * as d3 from 'd3';
     import axios from 'axios'
     import dateParse from 'date-fns/parse'
     import ArticleList from '~/components/ArticleList.vue'
     import Header from '~/components/Header.vue'
+    import Calendar from '~/components/Calendar.vue'
+    import Intro from '~/components/Intro.vue'
+
+    const CellSize = 20;
 
     function loadItems(items, language) {
         return items.map(x => {
@@ -74,7 +76,7 @@
     }
 
     export default {
-        components: { ArticleList, Header },
+        components: { ArticleList, Header, Calendar, Intro },
 
         data () {
             return {
@@ -109,3 +111,34 @@
         }
     }
 </script>
+<style scoped>
+    h2 {
+        margin: 1rem 1.5rem;
+    }
+
+    ul.years {
+        display: block;
+        margin: 1rem 1.5rem;
+        padding: 0;
+        line-height: 1.5;
+    }
+
+    ul.years li {
+        display: inline;
+        margin: 0 1rem 0 0;
+    }
+
+    @media (min-width: 800px) {
+        ul.years {
+            display: flex;
+            list-style: none;
+            margin: 1rem;
+            justify-content: space-between;
+        }
+
+        ul.years li {
+            display: block;
+            margin: 0 .5rem;
+        }
+    }
+</style>
