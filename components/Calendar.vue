@@ -17,6 +17,10 @@
             }
         },
 
+        mounted() {
+            this.render();
+        },
+
         methods: {
             render() {
                 let dateMap = {};
@@ -26,8 +30,9 @@
                     dateMap[key] = x;
                 })
 
-                let begin = new Date(this.year, 0, 1);
-                let end = new Date(this.year+1, 0, 1);
+                let year = parseInt(this.year);
+                let begin = new Date(year, 0, 1);
+                let end = new Date(year+1, 0, 1);
 
                 let width = (CellSize * 2) + d3.timeWeek.count(d3.timeYear(begin), end) * (CellSize + 1)
                 let height = (CellSize + 1) * 7 /* days */;
