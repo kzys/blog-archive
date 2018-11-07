@@ -1,8 +1,8 @@
 <template>
     <ul>
-        <li v-for="article in formattedArticles"
+        <li v-for="article in _articles"
             v-bind:class="article.language"
-            v-bind:style="{ top: article.top + 'px'}">
+            v-bind:style="{ top: article.top + 'px'}" :key="article.url">
             <div class="published column">{{ article.published }}</div>
             <a v-bind:href="article.url">{{ article.title }}</a>
         </li>
@@ -12,10 +12,9 @@
     import dateFormat from 'date-fns/format'
 
     export default {
-        name: 'article-list',
         props: [ 'articles' ],
         computed: {
-            formattedArticles: function () {
+            _articles: function () {
                 return this.articles.map(x => {
                     return {
                         ...x,
@@ -26,3 +25,33 @@
         }
     }
 </script>
+<style scoped>
+ul {
+    list-style: none;
+    margin: 0 1.5rem;
+    padding: 0;
+}
+ul a {
+    text-decoration: none;
+    color: #000;
+    border-bottom: 2px solid #000;
+    color: #000;
+}
+
+ul li {
+    margin: 1rem 0;
+}
+
+li.ja a {
+    border-color: #ff4136;
+}
+
+li.en a {
+    border-color: #7FDBFF;
+}
+
+.published {
+    font-size: 80%;
+    font-weight: bold;
+}
+</style>

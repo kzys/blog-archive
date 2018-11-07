@@ -1,7 +1,8 @@
 <template>
     <div>
         <Intro />
-        <YearView v-for="x in years" v-bind:year="x.year" v-bind:articles="x.items" :key="x.year"/>
+        <YearView v-for="x in years" :key="x.year"
+        v-bind:year="x.year" v-bind:articles="x.items" v-bind:expand="x.expand"/>
     </div>
 </template>
 <script>
@@ -43,8 +44,14 @@
                     }
                     this.years.sort((a, b) => -(a.year - b.year));
 
-                    if (this.year !== 0) {
-                        this.years = this.years.filter(x => x.year === this.year);
+                    if (this.year === 0) {
+                        this.years = this.years.map(x => {
+                            return {...x, expand: x.year === (new Date).getFullYear()}
+                        });
+                    } else {
+                        this.years = this.years.filter(x => x.year === this.year).map(x => {
+                            return {...x, expand: true}
+                        });
                     }
                 })
                 .catch(e => {
@@ -87,7 +94,7 @@
                 let ja = await axios.get(`/ja/index.json`);
                 items.push(...this.formatItems(ja.data.items, 'ja'));
 
-                return items;
+                return items.sort((a, b) => -(a.published - b.published));
             }
         }
     }

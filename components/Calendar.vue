@@ -79,6 +79,6 @@
 </script>
 <style scoped>
 .svg-container {
-    margin: 1rem;
+    margin: 1rem 1.5rem;
 }
 </style>

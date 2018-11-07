@@ -2,6 +2,7 @@
     <div class="year">
         <h2><nuxt-link v-bind:to="`/${ year }/`">{{ year }}</nuxt-link></h2>
         <Calendar v-bind:year="year" v-bind:articles="articles"/>
+        <ArticleList v-bind:articles="articles" v-if="expand"/>
     </div>
 </template>
 <script>
@@ -9,7 +10,7 @@
     import ArticleList from '~/components/ArticleList.vue'
 
     export default {
-        props: ['year', 'articles'],
+        props: ['year', 'articles', 'expand'],
         components: { Calendar, ArticleList },
     }
 </script>
