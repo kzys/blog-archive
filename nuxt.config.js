@@ -6,7 +6,7 @@ for (let i = 5; i <= 18; i++) {
 }
 
 module.exports = {
-    css: [ 'normalize.css', '@assets/style.css'],
+    css: [ 'normalize.css', '@assets/style.css', '@fortawesome/fontawesome-free/css/all.css' ],
     build: {
         postcss: [ postcss_nested ]
     },    

@@ -1,8 +1,20 @@
 <template>
     <div class="year">
-        <h2><nuxt-link v-bind:to="`/${ year }/`">{{ year }}</nuxt-link></h2>
-        <Calendar v-bind:year="year" v-bind:articles="articles"/>
-        <ArticleList v-bind:articles="articles" v-if="expand"/>
+        <div class="header row" v-on:click="expand = !expand">
+            <h2 class="column row">
+                <span class="label column"><nuxt-link v-bind:to="`/${ year }/`">{{ year }}</nuxt-link></span>
+                <span class="column">
+                    <i class="fas fa-angle-up" v-if="expand"></i>
+                    <i class="fas fa-angle-down" v-else></i>
+                </span>
+            </h2>
+            <div class="column">
+                <Calendar v-bind:year="year" v-bind:articles="articles"/>
+            </div>
+        </div>
+        <div>
+            <ArticleList v-bind:articles="articles" v-show="expand"/>
+        </div>
     </div>
 </template>
 <script>
@@ -16,18 +28,52 @@
 </script>
 <style scoped>
     h2 {
-        font-size: 120%;
         margin: 1rem 1.5rem;
         padding: 0;
-        text-align: center;
+        align-items: center;
+        font-size: 120%;
+
+        /* always flex */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @media (min-width: 800px) {
+        h2 .label {
+            font-size: 200%;
+            margin-right: 1rem;
+        }
+    }
+
+    h2 .fas {
+        vertical-align: middle;
+    }
+
+    .header {
+        cursor: pointer;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+    div.label {
+        margin-right: 1rem;
     }
 
     div.year {
-        margin: 1rem 0;
+        border-top: 1px solid #ccc;
+        margin: 0;
+        padding: .5rem 1rem;
     }
 
     a {
         text-decoration: none;
-        color: #000;
+        color: #333;
+    }
+
+    .expand {
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid #000;
     }
 </style>

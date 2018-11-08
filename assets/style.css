@@ -2,7 +2,7 @@
 
 body {
     background: #fff;
-    color: #111;
+    color: #333;
     font-family: 'Helvetica Neue', sans-serif;
 
     margin: 0;
@@ -10,8 +10,15 @@ body {
 }
 
 @media (min-width: 800px) {
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 800px) {
     body {
-        margin: 0 2rem;
+        margin: 0;
     }
 }
 

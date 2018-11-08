@@ -30,10 +30,14 @@
         line-height: 1.4rem;
     }
 
+    .intro {
+        margin: 0;
+        padding: 1rem;
+    }
+
     @media (min-width: 800px) {
-        .row {
-            display: flex;
-            justify-content: space-between;
+        h1 {
+            text-align: right;
         }
         .column {
             width: 50%;
@@ -41,7 +45,7 @@
     }
 
     .before {
-        margin: 0 1.5rem;
+        margin: 1rem 1.5rem;
     }
 
     .ja {
