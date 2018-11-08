@@ -19,6 +19,7 @@
         font-size: 120%;
         margin: 1rem 1.5rem;
         padding: 0;
+        text-align: center;
     }
 
     div.year {
