@@ -7,6 +7,8 @@ body {
 
     margin: 0;
     padding: 0;
+
+    line-height: 1.4;
 }
 
 @media (min-width: 800px) {
@@ -16,20 +18,9 @@ body {
     }
 }
 
-@media (min-width: 800px) {
-    body {
-        margin: 0;
-    }
-}
-
-
 h1 {
     margin: 0;
     padding: 0;
-}
-
-p, ul {
-    line-height: 1.4;
 }
 
 /* back to basics */
@@ -44,94 +35,4 @@ a:hover {
 }
 a:active {
     color: #00f;
-}
-
-.content {
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-/* header */
-
-header {
-    background: #f0f0f0;
-    clear: both;
-    float: none;
-
-    & .content {
-        font-size: 90%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    & a {
-        color: #111 !important;
-        text-decoration: none;
-    }
-
-    & a.blog {
-        font-weight: bold;
-    }
-    
-    & div.column {
-        padding: 1rem 0;
-    }
-}
-
-nav {
-    margin: 1rem 0;
-}
-
-h1 a, #present a {
-    text-decoration: none;
-    color: #333 !important;
-}
-
-#posts li {
-    display: flex;
-    padding: .1rem 0;
-    margin: .1rem 0;
-    line-height: 1.5rem;
-}
-
-@media (min-width: 640px) {
-    nav ul.past {
-        display: flex;
-        justify-content: space-between;
-    }
-    #posts li {
-        margin: .5rem 0;
-    }    
-}
-
-#posts ul {
-    margin: 0 1.5rem;
-    padding: 0;
-}
-
-#posts li .published {
-    min-width: 4rem;
-    margin: auto 0;
-}
-
-#posts li:before {
-    content: "";
-    border-radius: 50%;
-    border: .5rem solid #111;
-    width: 0;
-    height: 0;
-    margin: auto 1rem auto 0;
-}
-
-#posts li.ja:before {
-    border-color: #FF4136;
-}
-
-#posts li.en:before {
-    border-color: #7FDBFF;
-}
-
-.past li {
-    display: inline;
-    margin-right: 1rem;
 }

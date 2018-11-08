@@ -27,12 +27,11 @@
     .column {
         margin: 1rem .5rem;
         padding: 1rem;
-        line-height: 1.4rem;
     }
 
     .intro {
         margin: 0;
-        padding: 1rem;
+        padding: .5rem;
     }
 
     @media (min-width: 800px) {
@@ -41,6 +40,10 @@
         }
         .column {
             width: 50%;
+        }
+
+        .intro {
+            padding: 1rem;
         }
     }
 

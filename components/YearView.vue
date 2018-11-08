@@ -39,10 +39,20 @@
         align-items: center;
     }
 
+    div.year {
+        border-top: 1px solid #ccc;
+        margin: 0;
+        padding: .5rem;
+    }
+
     @media (min-width: 800px) {
         h2 .label {
             font-size: 200%;
             margin-right: 1rem;
+        }
+
+        div.year {
+            padding: .5rem 1rem;
         }
     }
 
@@ -58,12 +68,6 @@
 
     div.label {
         margin-right: 1rem;
-    }
-
-    div.year {
-        border-top: 1px solid #ccc;
-        margin: 0;
-        padding: .5rem 1rem;
     }
 
     a {
