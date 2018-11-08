@@ -33,9 +33,8 @@ ul {
 }
 ul a {
     text-decoration: none;
-    color: #000;
-    border-bottom: 2px solid #000;
-    color: #000;
+    color: #333;
+    border-bottom: 2px solid #333;
 }
 
 ul li {

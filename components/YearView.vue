@@ -74,10 +74,4 @@
         text-decoration: none;
         color: #333;
     }
-
-    .expand {
-        text-align: center;
-        cursor: pointer;
-        border: 1px solid #000;
-    }
 </style>

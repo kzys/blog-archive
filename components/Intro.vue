@@ -4,15 +4,15 @@
         <div class="row">
             <div class="column ja">
                 <a href="https://blog.8-p.info/ja/">滞舎路日記</a> is my Japanese blog since mid-2016,
-                where I've been writing about tech, living abroad and random thoughts.
+                where I write about tech, living abroad and some random thoughts.
             </div>
             <div class="column en">
                 <a href="https://blog.8-p.info/en/">Kazu's Log</a> is my English blog since 2017,
-                where I occasionally write about tech.
+                where I write about tech, hopefully more often.
             </div>
         </div>                
         <div class="before">
-            Previously, I was doing one-blog-per-year experiment from 2008 to 2016.
+            Previously I was doing one-blog-per-year experiment from 2008 to 2016.
             It sounds crazy, and it may be.
         </div>
     </div>
