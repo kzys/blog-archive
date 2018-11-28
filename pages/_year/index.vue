@@ -29,34 +29,33 @@
         },
 
         async mounted () {
-            this.loadYears()
+            this.loadCurrentBlog('en')
                 .then(xs => {
-                    let perYear = {};
-
-                    xs.forEach(x => {
-                        let year = x.published.getFullYear();
-                        perYear[year] = (perYear[year] || []);
-                        perYear[year].push(x);
-                    })
-
-                    for (let year in perYear) {
-                        this.years.push({ year: parseInt(year), items: perYear[year] });
-                    }
-                    this.years.sort((a, b) => -(a.year - b.year));
-
-                    if (this.year === 0) {
-                        this.years = this.years.map(x => {
-                            return {...x, expand: x.year === (new Date).getFullYear()}
-                        });
-                    } else {
-                        this.years = this.years.filter(x => x.year === this.year).map(x => {
-                            return {...x, expand: true}
-                        });
-                    }
+                    this.updateYears(xs);
                 })
                 .catch(e => {
                     console.log(e);
+                });
+
+            this.loadCurrentBlog('ja')
+                .then(xs => {
+                    this.updateYears(xs);
                 })
+                .catch(e => {
+                    console.log(e);
+                });
+
+            setTimeout(() => {
+                for (let i = 5; i <= 16; i++) {
+                    this.loadOldBlog(2000 + i)
+                        .then(xs => {
+                            this.updateYears(xs);
+                        })
+                        .catch(e => {
+                            console.log(e);
+                        });
+                }
+            }, 1000)
         },
 
         head() {
@@ -75,26 +74,41 @@
                 })
             },
 
-            async loadYears() {
-                let items = [];
+            updateYears(items) {
+                items.forEach(x => {
+                    let year = x.published.getFullYear();
+                    let existing = this.years.find(x => x.year === year);
+                    if (existing) {
+                        existing.items.push(x);
+                    } else {
+                        this.years.push({ year: year, items: [x] });
+                    }
+                })
 
-                let years = [];
-                for (let i = 5; i <= 16; i++) {
-                    years.push(2000 + i);
+                let years = this.years;
+
+                if (this.year !== 0) {
+                    years = years.filter(x => x.year === this.year);
                 }
+                
+                let now = new Date();
+                this.years = years.map(x => {
+                    return {
+                        year: x.year,
+                        expand: this.year === 0 ? x.year === now.getFullYear() : true, 
+                        items: x.items.sort((a, b) => -(a.published - b.published))
+                    };
+                }).sort((a, b) => -(a.year - b.year));
+            },
 
-                for (let index in years) {
-                    let json = await axios.get(`/json/${ years[index] }.json`);
-                    items.push(...this.formatItems(json.data.items));
-                }
+            async loadCurrentBlog(lang) {
+                let res = await axios.get(`/${lang}/index.json`);
+                return this.formatItems(res.data.items, lang);
+            },
 
-                let en = await axios.get(`/en/index.json`);
-                items.push(...this.formatItems(en.data.items, 'en'));
-
-                let ja = await axios.get(`/ja/index.json`);
-                items.push(...this.formatItems(ja.data.items, 'ja'));
-
-                return items.sort((a, b) => -(a.published - b.published));
+            async loadOldBlog(year) {
+                let res = await axios.get(`/json/${ year }.json`);
+                return this.formatItems(res.data.items);
             }
         }
     }
