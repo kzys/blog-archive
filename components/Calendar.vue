@@ -53,12 +53,23 @@
                     .attr('alignment-baseline', 'middle')
                     .text(d => ['', 'Mon', '', 'Wed', '', 'Fri', ''][d])
 
-                svg.selectAll('rect')
-                    .data(d3.timeDay.range(begin, end))
-                    .enter()
+                let xs = d3.timeDay.range(begin, end).map(d => {
+                    return { date: d, item: dateMap[ymd(d)] };
+                });
+
+                let rect = svg.selectAll('rect')
+                    .data(xs);
+
+                rect.enter()
                     .append('rect')
-                    .attr('fill', d => {
-                        let x = dateMap[ymd(d)];
+                    .attr('x', d => TextWidth + d3.timeWeek.count(d3.timeYear(begin), d.date) * (CellSize + 1))
+                    .attr('y', d => d3.timeDay.count(d3.timeWeek(d.date), d.date) * (CellSize + 1))
+                    .attr('width', CellSize)
+                    .attr('height', CellSize)
+                    .attr('fill', '#fff');
+
+                rect.attr('fill', d => {
+                        let x = d.item;
 
                         if (! x) {
                             return '#f0f0f0';
@@ -69,11 +80,7 @@
                         } else {
                             return '#7FDBFF';
                         }
-                    })
-                    .attr('x', d => TextWidth + d3.timeWeek.count(d3.timeYear(begin), d) * (CellSize + 1))
-                    .attr('y', d => d3.timeDay.count(d3.timeWeek(d), d) * (CellSize + 1))
-                    .attr('width', CellSize)
-                    .attr('height', CellSize);
+                    });
             }
         }
     }
