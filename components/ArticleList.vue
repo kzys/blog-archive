@@ -41,6 +41,19 @@ ul li {
     margin: 1rem 0;
 }
 
+@media (min-width: 800px) {
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    ul li {
+        display: block;
+        width: 15rem;
+        margin: 1rem;
+    }
+}
+
 li.ja a {
     border-color: #ff4136;
 }
