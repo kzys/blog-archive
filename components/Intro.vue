@@ -1,6 +1,9 @@
 <template>
     <div class="intro">
         <h1>blog.8-p.info</h1>
+        <p>
+            Hello! My name is Kazuyoshi Kato. I'm a software developer, Japanese and Seattle transplant.
+        </p>
         <div class="row">
             <div class="column ja">
                 <a href="https://blog.8-p.info/ja/">滞舎路日記</a> is my Japanese blog since mid-2016,
@@ -11,15 +14,16 @@
                 where I write about tech, hopefully more often.
             </div>
         </div>                
-        <div class="before">
-            Previously I was doing one-blog-per-year experiment from 2008 to 2016.
+        <p>
+            Previously, from 2008 to 2016, I was having a new blog every year to try different software
+            without worrying much about data migration.
             It sounds crazy, and it may be.
-        </div>
+        </p>
     </div>
 </template>
 <style scoped>
     h1 {
-        font-size: 120%;
+        font-size: 100%;
         margin: 1rem 1.5rem;
         padding: 0;
     }
@@ -47,8 +51,8 @@
         }
     }
 
-    .before {
-        margin: 1rem 1.5rem;
+    .intro p {
+        margin: .5rem 1.5rem;
     }
 
     .ja {
