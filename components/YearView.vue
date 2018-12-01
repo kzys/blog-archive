@@ -42,7 +42,6 @@
     div.year {
         border-top: 1px solid #ccc;
         margin: 0;
-        padding: .5rem;
     }
 
     @media (min-width: 800px) {
@@ -52,7 +51,6 @@
         }
 
         div.year {
-            padding: .5rem 1rem;
         }
     }
 
@@ -64,6 +62,8 @@
         cursor: pointer;
         flex-direction: row-reverse;
         align-items: center;
+
+        padding: 10px;
     }
 
     div.label {

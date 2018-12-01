@@ -87,7 +87,7 @@
 </script>
 <style scoped>
 .svg-container {
-    margin: 1rem;
+    margin: 0px;
 }
 .svg-container svg {
     margin: 0 auto;

@@ -45,12 +45,13 @@ ul li {
     ul {
         display: flex;
         flex-wrap: wrap;
+        margin: 0 30px;
     }
 
     ul li {
         display: block;
         width: 15rem;
-        margin: 1rem;
+        margin: 10px;
 
         /* Safari is a bit buggy without the below */
         border: 1px solid #fff;

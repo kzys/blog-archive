@@ -29,13 +29,8 @@
     }
 
     .column {
-        margin: 1rem .5rem;
-        padding: 1rem;
-    }
-
-    .intro {
-        margin: 0;
-        padding: .5rem;
+        margin: 10px 20px;
+        padding: 15px;
     }
 
     @media (min-width: 800px) {
@@ -45,14 +40,15 @@
         .column {
             width: 50%;
         }
+    }
 
-        .intro {
-            padding: 1rem;
-        }
+    .intro {
+        padding: 10px 0;
     }
 
     .intro p {
-        margin: .5rem 1.5rem;
+        padding: 0;
+        margin: 10px 40px;
     }
 
     .ja {
