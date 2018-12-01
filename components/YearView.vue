@@ -28,7 +28,7 @@
 </script>
 <style scoped>
     h2 {
-        margin: 1rem 1.5rem;
+        margin: 1rem 0;
         padding: 0;
         align-items: center;
         font-size: 120%;
@@ -44,16 +44,6 @@
         margin: 0;
     }
 
-    @media (min-width: 800px) {
-        h2 .label {
-            font-size: 200%;
-            margin-right: 1rem;
-        }
-
-        div.year {
-        }
-    }
-
     h2 .fas {
         vertical-align: middle;
     }
@@ -63,7 +53,7 @@
         flex-direction: row-reverse;
         align-items: center;
 
-        padding: 10px;
+        padding: 5px;
     }
 
     div.label {
@@ -73,5 +63,16 @@
     a {
         text-decoration: none;
         color: #333;
+    }
+
+    @media (min-width: 800px) {
+        h2 .label {
+            font-size: 200%;
+            margin-right: 1rem;
+        }
+
+        .header {
+            padding: 20px 10px;
+        }
     }
 </style>

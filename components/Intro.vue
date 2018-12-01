@@ -24,31 +24,42 @@
 <style scoped>
     h1 {
         font-size: 100%;
-        margin: 1rem 1.5rem;
+        margin: 1rem 5px;
         padding: 0;
     }
 
-    .column {
-        margin: 10px 20px;
-        padding: 15px;
-    }
-
-    @media (min-width: 800px) {
-        h1 {
-            text-align: right;
-        }
-        .column {
-            width: 50%;
-        }
-    }
-
     .intro {
-        padding: 10px 0;
+        padding: 5px;
+    }
+
+    .column {
+        margin: 10px 5px;
+        padding: 10px;
     }
 
     .intro p {
         padding: 0;
-        margin: 10px 40px;
+        margin: 10px 5px;
+    }
+
+    @media (min-width: 800px) {
+        .intro {
+            padding: 10px;
+        }        
+
+        .intro p {
+            margin: 10px 30px;
+        }
+
+        h1 {
+            text-align: right;
+        }
+
+        .column {
+            margin: 5px 10px;
+            padding: 15px;
+            width: 50%;
+        }
     }
 
     .ja {

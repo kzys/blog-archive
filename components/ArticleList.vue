@@ -28,7 +28,7 @@
 <style scoped>
 ul {
     list-style: none;
-    margin: 0 1.5rem;
+    margin: 0 10px;
     padding: 0;
 }
 ul a {
