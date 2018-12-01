@@ -51,6 +51,9 @@ ul li {
         display: block;
         width: 15rem;
         margin: 1rem;
+
+        /* Safari is a bit buggy without the below */
+        border: 1px solid #fff;
     }
 }
 
