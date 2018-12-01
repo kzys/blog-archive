@@ -57,22 +57,31 @@
                     return { date: d, item: dateMap[ymd(d)] };
                 });
 
-                let rect = svg.selectAll('rect')
-                    .data(xs);
+                let circle = svg.selectAll('circle').data(xs);
 
-                rect.enter()
-                    .append('rect')
-                    .attr('x', d => TextWidth + d3.timeWeek.count(d3.timeYear(begin), d.date) * (CellSize + 1))
-                    .attr('y', d => d3.timeDay.count(d3.timeWeek(d.date), d.date) * (CellSize + 1))
-                    .attr('width', CellSize)
-                    .attr('height', CellSize)
+                function cx(d) {
+                    let count = d3.timeWeek.count(d3.timeYear(begin), d.date);
+                    return TextWidth + count * (CellSize + 1) + (CellSize/2);
+                }
+
+                function cy(d) {
+                    let count = d3.timeDay.count(d3.timeWeek(d.date), d.date);
+                    return count * (CellSize + 1) + (CellSize/2);
+                }
+
+                circle.enter()
+                    .append('circle')
+                    .attr('cx', cx)
+                    .attr('cy', cy)
+                    .attr('r', CellSize * 0.4)
                     .attr('fill', '#fff');
 
-                rect.attr('fill', d => {
+                circle
+                    .attr('fill', d => {
                         let x = d.item;
 
                         if (! x) {
-                            return '#f0f0f0';
+                            return '#f6f6f6';
                         }
 
                         if (x.language === 'ja') {
