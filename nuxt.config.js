@@ -1,7 +1,8 @@
 const postcss_nested = require('postcss-nested')
 
+// Statically generate pages from 2005 to 2019
 let years = [];
-for (let i = 5; i <= 18; i++) {
+for (let i = 5; i <= 19; i++) {
     years.push(2000 + i);
 }
 

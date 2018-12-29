@@ -46,15 +46,7 @@
                 });
 
             setTimeout(() => {
-                for (let i = 5; i <= 16; i++) {
-                    this.loadOldBlog(2000 + i)
-                        .then(xs => {
-                            this.updateYears(xs);
-                        })
-                        .catch(e => {
-                            console.log(e);
-                        });
-                }
+                this.loadOldBlogs();
             }, 1000)
         },
 
@@ -109,6 +101,19 @@
             async loadOldBlog(year) {
                 let res = await axios.get(`/json/${ year }.json`);
                 return this.formatItems(res.data.items);
+            },
+
+            // Load blogs from 2005 to 2016
+            async loadOldBlogs() {
+                for (let i = 5; i <= 16; i++) {
+                    this.loadOldBlog(2000 + i)
+                        .then(xs => {
+                            this.updateYears(xs);
+                        })
+                        .catch(e => {
+                            console.log(e);
+                        });
+                }
             }
         }
     }
