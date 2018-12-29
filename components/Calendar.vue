@@ -6,8 +6,9 @@
 <script>
     import * as d3 from 'd3';
 
-    const CellSize = 12;
+    const CellSize = 15;
     const TextWidth = 30;
+    const CircleSize = 5;
 
     export default {
         props: ['year', 'articles'],
@@ -49,7 +50,7 @@
                     .enter()
                     .append('text')
                     .attr('x', d => 0)
-                    .attr('y', d => d * (CellSize + 1) + (CellSize/2))
+                    .attr('y', d => d * (CellSize + 1) + (CellSize / 2))
                     .attr('alignment-baseline', 'middle')
                     .text(d => ['', 'Mon', '', 'Wed', '', 'Fri', ''][d])
 
@@ -73,7 +74,7 @@
                     .append('circle')
                     .attr('cx', cx)
                     .attr('cy', cy)
-                    .attr('r', CellSize * 0.4)
+                    .attr('r', CircleSize)
                     .attr('fill', '#fff');
 
                 circle
