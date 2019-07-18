@@ -8,6 +8,11 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: "Install Hugo"
+          command: ls -l hugo || wget -O - https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.tar.gz | tar zxvf -
+      - run: cd v2 && ../hugo
+      - run: cp -r v2/public dist
       - run: sudo apt-get install -qq -y rsync
 
       # Download and cache dependencies
@@ -23,7 +28,6 @@ jobs:
           paths:
             - node_modules
           key: deps-{{ checksum ".circleci/config.yml" }}-{{ checksum "package.json" }}
-      - run: npm run generate
       - run: rsync -rv 2005-2010/ dist/
       - persist_to_workspace:
           root: ~/work/dist
