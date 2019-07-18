@@ -1,0 +1,4 @@
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+{{ $script := resources.Get "v2.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $script.Permalink }}"></script>

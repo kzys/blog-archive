@@ -3,7 +3,4 @@
 {{ $style := resources.Get "v2.css" | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
-{{ $script := resources.Get "v2.js" | resources.Minify | resources.Fingerprint }}
-<script src="{{ $script.Permalink }}"></script>
-
 <title>blog.8-p.info</title>
