@@ -10,7 +10,26 @@ function addPosts(selection, items) {
     div.append('h2')
         .text(x => x.year)
 
-    let li = div
+    let width = 320
+    let height = 240
+    let svg = div.append('svg')
+        .attr('width', width)
+        .attr('height', height)
+
+    let x = d3.scaleLinear().domain([1, 31]).range([20, 300])
+    let y = d3.scaleLinear().domain([0, 11]).range([20, 220])
+    
+    svg.selectAll('circle')
+        .data(x => x.items)
+        .join('circle')
+        .attr('fill', '#ccc')
+        .attr('cx', d => x(d.date.getDate()))
+        .attr('cy', d => y(d.date.getMonth()))
+        .attr('r', 5)
+
+    let ul = div.append('ul')
+
+    let li = ul
         .selectAll('li')
         .data(x => {
             return x.items;
@@ -24,6 +43,22 @@ function addPosts(selection, items) {
     li.append('a')
         .text(x => x.title)
         .attr('href', x => x.url);
+}
+
+function groupByYear(items) {
+    let years = {}
+    items.forEach(x => {
+        let k = x.date.getFullYear()
+        years[k] = years[k] || []
+        years[k].push(x)
+    })
+    let yearsList = []
+    for (k in years) [
+        yearsList.push({ year: k, items: years[k] })
+    ]
+    yearsList.reverse()
+
+    return yearsList
 }
 
 async function main() {
@@ -40,19 +75,7 @@ async function main() {
         return { ...x, date: timeParse(x.published) };
     })
 
-    let years = {}
-    items.forEach(x => {
-        let k = x.date.getFullYear()
-        years[k] = years[k] || []
-        years[k].push(x)
-    })
-    let yearsList = []
-    for (k in years) [
-        yearsList.push({ year: k, items: years[k] })
-    ]
-    yearsList.reverse()
-
-    addPosts(d3.select('#root'), yearsList);
+    addPosts(d3.select('#root'), groupByYear(items));
 }
 
 main();
