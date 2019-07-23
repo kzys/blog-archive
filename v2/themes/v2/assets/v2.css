@@ -48,10 +48,21 @@ li span {
     margin-right: 1rem;
 }
 
-circle.lang-ja {
-    fill: #aaa;
+li {
+    border-left: 4px solid #000;
+    padding-left: 10px;
 }
 
+circle.lang-ja {
+    fill: #f33;
+}
 li.lang-ja {
-    color: #aaa;
+    border-color: #f33;
+}
+
+li.lang-en {
+    border-color: #33f;
+}
+circle.lang-en {
+    fill: #33f;
 }
