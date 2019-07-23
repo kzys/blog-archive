@@ -105,7 +105,7 @@ async function main() {
 
     render(items)
 
-    for (let year = 2016; year >= 2008; year--) {
+    for (let year = 2016; year >= 2005; year--) {
         let xs = await d3.json(`/json/${year}.json`);
         items.push(...xs.items);
     }
