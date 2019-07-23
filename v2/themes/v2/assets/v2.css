@@ -47,3 +47,11 @@ li span {
     flex-shrink: 0;
     margin-right: 1rem;
 }
+
+circle.lang-ja {
+    fill: #aaa;
+}
+
+li.lang-ja {
+    color: #aaa;
+}

@@ -14,12 +14,11 @@ function enterDiv(div) {
 
     let x = d3.scaleLinear().domain([1, 31]).range([20, 300])
     let y = d3.scaleLinear().domain([0, 11]).range([20, 220])
-    let fill = d3.scaleOrdinal(d3.schemeCategory10)
     
     svg.selectAll('circle')
         .data(x => x.items)
         .join('circle')
-        .attr('fill', d => fill(d.language))
+        .attr('class', d => 'lang-' + d.language)
         .attr('cx', d => x(d.date.getDate()))
         .attr('cy', d => y(d.date.getMonth()))
         .attr('r', 4)
@@ -33,6 +32,8 @@ function enterDiv(div) {
         })
         .join(enter => {
             let li = enter.append('li')
+                .attr('class', d => 'lang-' + d.language)
+
             
             li.append('span')
                 .attr('class', 'date')
@@ -45,21 +46,22 @@ function enterDiv(div) {
 }
 
 function addPosts(selection, items) {
-    let div = selection
+    selection
         .selectAll('div')
         .data(items)
-        .join(enter => {
-            let div = enter.append('div')
-                .attr('class', x => 'y'+x.year)
-            
-            div.append('h2').text(x => x.year)
-            div.append('svg')
-            div.append('ul')
-            enterDiv(div)
-        },
-        update => {
-            enterDiv(update)
-        })
+        .join(
+            enter => {
+                let div = enter.append('div')
+                    .attr('class', x => 'y'+x.year)
+                div.append('h2').text(x => x.year)
+                div.append('svg')
+                div.append('ul')
+                enterDiv(div)
+            },
+            update => {
+                enterDiv(update)
+            }
+        )
 }
 
 function groupByYear(items) {
