@@ -95,7 +95,7 @@ async function render(items) {
     addPosts(d3.select('#root'), groupByYear(sorted));
 }
 
-async function main() {
+async function loadLastDecade() {
     let items = [];
 
     let ja = await d3.json('/ja/index.json');
@@ -105,11 +105,16 @@ async function main() {
 
     render(items)
 
-    for (let year = 2016; year >= 2005; year--) {
+    let now = new Date()
+
+    for (let year = 2016; year >= Math.max(now.getFullYear() - 10, 2005); year--) {
         let xs = await d3.json(`/json/${year}.json`);
         items.push(...xs.items);
     }
     render(items)
 }
 
-main();
+async function loadYear(year) {
+    let xs = await d3.json(`/json/${year}.json`);
+    render(xs.items);
+}

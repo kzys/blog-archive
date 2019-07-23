@@ -1,1 +1,8 @@
-single
+{{ define "main" }}
+<h1>blog.8-p.info / {{ .Params.year }}</h1>
+<p>{{.Content}}</p>
+<ul id="root"></ul>
+<script>
+window.onload = function () { loadYear({{ .Params.year }}) }
+</script>
+{{end}}
