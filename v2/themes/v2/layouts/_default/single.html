@@ -1,8 +1,8 @@
 {{ define "main" }}
-<h1>blog.8-p.info / {{ .Params.year }}</h1>
+<h1>blog.8-p.info / {{ .Title }}</h1>
 <p>{{.Content}}</p>
 <ul id="root"></ul>
 <script>
-window.onload = function () { loadYear({{ .Params.year }}) }
+window.onload = function () { loadYear({{ .Title }}) }
 </script>
 {{end}}

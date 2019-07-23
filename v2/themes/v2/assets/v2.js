@@ -81,18 +81,26 @@ function groupByYear(items) {
 }
 
 async function render(items) {
-    let sorted = items.sort((a, b) => {
-        return a.published.localeCompare(b.published) * -1;
-    })
-    sorted = sorted.map(x => {
+    addPosts(d3.select('#root'), groupByYear(items));
+}
+
+function parseAndSort(items) {
+    let parsed = items.map(x => {
         let date = timeParse(x.published) || timeParse2(x.published) || timeParse3(x.published) || timeParse4(x.published);
         if (date == null) {            
             console.log("Failed to parse " + x.published)
         }
         return { ...x, date: date };
     })
-
-    addPosts(d3.select('#root'), groupByYear(sorted));
+    return parsed.sort((a, b) => {
+        if (a > b) {
+            return -1
+        } else if (a < b) {
+            return 1
+        } else {
+            return 0
+        }
+    })
 }
 
 async function loadLastDecade() {
@@ -103,7 +111,7 @@ async function loadLastDecade() {
     items.push(...ja.items.map(x => { return { ...x, language: 'ja' } } ));
     items.push(...en.items.map(x => { return { ...x, language: 'en' } } ));
 
-    render(items)
+    render(parseAndSort(items))
 
     let now = new Date()
 
@@ -111,10 +119,25 @@ async function loadLastDecade() {
         let xs = await d3.json(`/json/${year}.json`);
         items.push(...xs.items);
     }
-    render(items)
+    render(parseAndSort(items))
 }
 
 async function loadYear(year) {
-    let xs = await d3.json(`/json/${year}.json`);
-    render(xs.items);
+    if (year >= 2016) {
+        let items = [];
+
+        let ja = await d3.json('/ja/index.json');
+        let en = await d3.json('/en/index.json');
+        items.push(...ja.items.map(x => { return { ...x, language: 'ja' } } ));
+        items.push(...en.items.map(x => { return { ...x, language: 'en' } } ));
+
+        let filtered = parseAndSort(items).filter(x => {
+            return x.date.getFullYear() == year;
+        })
+
+        render(filtered)
+    } else {
+        let xs = await d3.json(`/json/${year}.json`);
+        render(parseAndSort(xs.items));    
+    }
 }

@@ -4,5 +4,14 @@
 <ul id="root"></ul>
 <script>
         window.onload = function () { loadLastDecade() }
-</script>        
+</script>
+
+<hr/>
+
+<div>
+    {{ range .Pages }}
+    <a href="{{ .Permalink }}">{{ .Title }}</a>
+    {{ end }}
+</div>
+
 {{ end }}
