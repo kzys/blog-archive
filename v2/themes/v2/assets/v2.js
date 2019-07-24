@@ -93,9 +93,9 @@ function parseAndSort(items) {
         return { ...x, date: date };
     })
     return parsed.sort((a, b) => {
-        if (a > b) {
+        if (a.date > b.date) {
             return -1
-        } else if (a < b) {
+        } else if (a.date < b.date) {
             return 1
         } else {
             return 0
@@ -103,7 +103,7 @@ function parseAndSort(items) {
     })
 }
 
-async function loadLastDecade() {
+async function loadRecent(n) {
     let items = [];
 
     let ja = await d3.json('/ja/index.json');
@@ -115,7 +115,7 @@ async function loadLastDecade() {
 
     let now = new Date()
 
-    for (let year = 2016; year >= Math.max(now.getFullYear() - 10, 2005); year--) {
+    for (let year = 2016; year > Math.max(now.getFullYear() - n, 2005); year--) {
         let xs = await d3.json(`/json/${year}.json`);
         items.push(...xs.items);
     }
