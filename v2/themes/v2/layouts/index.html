@@ -5,13 +5,4 @@
 <script>
         window.onload = function () { loadRecent(5) }
 </script>
-
-<hr/>
-
-<div>
-    {{ range .Pages }}
-    <a href="{{ .Permalink }}">{{ .Title }}</a>
-    {{ end }}
-</div>
-
 {{ end }}
