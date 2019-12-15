@@ -5,23 +5,55 @@ let timeParse4 = d3.timeParse("%Y-%m-%d %H:%M:%S %Z");
 
 let timeFormat = d3.timeFormat("%Y-%m-%d");
 
+let ymd = d3.timeFormat('%Y-%m-%d');
+
+function monthToX(m) {
+    return Math.ceil(m % 4) * 150
+}
+function monthToY(m) {
+    return Math.floor(m / 4) * 150;
+}
+
 function enterDiv(div) {
-    let width = 320
-    let height = 240
+    let width = 640
+    let height = 480
     let svg = div.select('svg')
         .attr('width', width)
         .attr('height', height)
+    let dayToX = d3.scaleLinear().domain([0, 6]).range([20, 100 - 20])
+    let weekToY = d3.scaleLinear().domain([0, 4]).range([20, 80 - 20])
 
-    let x = d3.scaleLinear().domain([1, 31]).range([20, 300])
-    let y = d3.scaleLinear().domain([0, 11]).range([20, 220])
-    
     svg.selectAll('circle')
-        .data(x => x.items)
+        .data(x => {
+            let dateToPostCount = {};
+            x.items.forEach(i => {
+                let key = ymd(i.date);
+                if (dateToPostCount[key]) {
+                    dateToPostCount[key]++
+                } else {
+                    dateToPostCount[key] = 1
+                }
+            })
+            let begin = new Date(x.year, 1, 1)
+            let xs = d3.timeDay.range(d3.timeYear.floor(begin), d3.timeYear.ceil(begin));
+            return xs.map(d => {
+                let key = ymd(d);
+                return { date: d, count: dateToPostCount[key] || 0 }
+            })
+        })
         .join('circle')
-        .attr('class', d => 'lang-' + d.language)
-        .attr('cx', d => x(d.date.getDate()))
-        .attr('cy', d => y(d.date.getMonth()))
-        .attr('r', 4)
+        .attr('cx', function (x) {
+            let d = x.date;
+            return monthToX(d.getMonth()) + dayToX(d.getDay());
+        })
+        .attr('cy', function (x) {
+            let d = x.date;
+            let week = d3.timeWeek.count(d3.timeMonth.floor(d), d);
+            return monthToY(d.getMonth()) + weekToY(week);
+        })
+        .attr('r', function (x) {
+            return 2 + x.count;
+        });
 
     let ul = div.select('ul')
 
