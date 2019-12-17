@@ -8,14 +8,15 @@ let timeFormat = d3.timeFormat("%Y-%m-%d");
 let ymd = d3.timeFormat('%Y-%m-%d');
 
 function monthToX(m) {
-    return Math.ceil(m % 4) * 150
+    return Math.ceil(m % 4) * 100
 }
 function monthToY(m) {
     return Math.floor(m / 4) * 150;
 }
 
 function enterDiv(div) {
-    let width = 640
+    let rect = div.node()
+    let width = rect ? rect.getBoundingClientRect().width : 640
     let height = 480
     let svg = div.select('svg')
         .attr('width', width)
@@ -152,6 +153,16 @@ async function loadRecent(n) {
         items.push(...xs.items);
     }
     render(parseAndSort(items))
+
+    var timeout;
+    window.onresize = function () {
+        if (timeout == null) {
+            timeout = window.setTimeout(function () {
+                render(parseAndSort(items))
+                timeout = null;
+            }, 100)
+        }
+    }
 }
 
 async function loadYear(year) {
