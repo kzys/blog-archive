@@ -47,7 +47,7 @@ ul {
     margin: 1rem;
     padding: 0;
     text-indent: 0;
-    list-style: none;
+    list-style: circle;
     line-height: 2;
 }
 
@@ -56,28 +56,19 @@ li {
     display: flex;
 }
 
+ul li::before {
+    content: "\2022";
+    color: #ccc;
+    padding-right: 1rem;
+}
+
+ul li.lang-ja::before {
+    color: #f66;
+}
+
 li span {
     flex-shrink: 0;
     margin-right: 1rem;
-}
-
-li {
-    border-left: 4px solid #000;
-    padding-left: 10px;
-}
-
-circle.lang-ja {
-    fill: #f33;
-}
-li.lang-ja {
-    border-color: #f33;
-}
-
-li.lang-en {
-    border-color: #33f;
-}
-circle.lang-en {
-    fill: #33f;
 }
 
 .year svg {

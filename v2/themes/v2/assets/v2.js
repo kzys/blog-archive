@@ -63,9 +63,9 @@ function enterDiv(div) {
         })
         .attr('fill', function (x) {
             if (x.count.ja) {
-                return '#f00'
+                return '#f66'
             } else if (x.count.en) {
-                return '#00f'
+                return '#ccc'
             } else {
                 return '#000'
             }
