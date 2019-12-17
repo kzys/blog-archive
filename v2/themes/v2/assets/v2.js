@@ -11,18 +11,19 @@ function monthToX(m) {
     return Math.ceil(m % 4) * 100
 }
 function monthToY(m) {
-    return Math.floor(m / 4) * 150;
+    return Math.floor(m / 4) * 100;
 }
 
 function enterDiv(div) {
-    let rect = div.node()
-    let width = rect ? rect.getBoundingClientRect().width : 640
-    let height = 480
+    let dayToX = d3.scaleLinear().domain([0, 6]).range([20, 100 - 20])
+    let weekToY = d3.scaleLinear().domain([0, 4]).range([20, 80 - 20])
+
+    let width = monthToX(11) + dayToX(6) + 20
+    let height = monthToY(11) + weekToY(4) + 20
+
     let svg = div.select('svg')
         .attr('width', width)
         .attr('height', height)
-    let dayToX = d3.scaleLinear().domain([0, 6]).range([20, 100 - 20])
-    let weekToY = d3.scaleLinear().domain([0, 4]).range([20, 80 - 20])
 
     svg.selectAll('circle')
         .data(x => {
@@ -85,7 +86,7 @@ function addPosts(selection, items) {
         .join(
             enter => {
                 let div = enter.append('div')
-                    .attr('class', x => 'y'+x.year)
+                    .attr('class', x => 'year y'+x.year)
                 div.append('h2').text(x => x.year)
                 div.append('svg')
                 div.append('ul')
@@ -153,16 +154,6 @@ async function loadRecent(n) {
         items.push(...xs.items);
     }
     render(parseAndSort(items))
-
-    var timeout;
-    window.onresize = function () {
-        if (timeout == null) {
-            timeout = window.setTimeout(function () {
-                render(parseAndSort(items))
-                timeout = null;
-            }, 100)
-        }
-    }
 }
 
 async function loadYear(year) {

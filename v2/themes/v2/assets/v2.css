@@ -79,3 +79,8 @@ li.lang-en {
 circle.lang-en {
     fill: #33f;
 }
+
+.year svg {
+    margin: 0 auto;
+    display: block;
+}
