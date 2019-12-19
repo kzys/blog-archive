@@ -1,7 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0 auto;
 
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Helvetica Neue", "Arial", sans-serif;
 
     line-height: 1;
     margin: 0;
@@ -10,12 +14,16 @@ body {
     color: #555;
 }
 
-h1 {
-    margin: 0;
+header {
+    border-bottom: 1px solid #ddd;
+}
+
+header .content {
     padding: 1rem;
-    font-size: 150%;
-    font-weight: normal;
-    border-bottom: 1px solid #000;
+}
+
+h1 {
+    font-size: 100%;
 }
 
 p {
