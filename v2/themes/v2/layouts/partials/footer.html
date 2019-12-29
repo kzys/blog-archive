@@ -1,10 +1,8 @@
-<hr/>
-
-<div>
+<footer>
     {{ range .Site.RegularPages.ByTitle.Reverse }}
     <a href="{{ .Permalink }}">{{ .Title }}</a>
     {{ end }}
-</div>
+</footer>
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
 {{ $script := resources.Get "v2.js" | resources.Minify | resources.Fingerprint }}
