@@ -9,6 +9,7 @@ jobs:
     steps:
       - checkout
       - run: sudo apt-get install -qq -y ruby rsync
+      - run: mkdir -p v2/data/posts/
       - run: ruby prepare-data.rb > v2/data/posts/all.json
       - run:
           name: "Install Hugo"
