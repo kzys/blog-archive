@@ -8,12 +8,13 @@ jobs:
 
     steps:
       - checkout
+      - run: sudo apt-get install -qq -y ruby rsync
+      - run: ruby prepare-data.rb > v2/data/posts/all.json
       - run:
           name: "Install Hugo"
           command: ls -l hugo || wget -O - https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.tar.gz | tar zxvf -
       - run: cd v2 && ../hugo
       - run: cp -r v2/public dist
-      - run: sudo apt-get install -qq -y rsync
       - run: rsync -rv 2005-2010/ dist/
       - persist_to_workspace:
           root: ~/work/dist
