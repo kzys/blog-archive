@@ -9,8 +9,15 @@ else
 hugo_url=https://github.com/gohugoio/hugo/releases/download/v$(hugo_version)/hugo_$(hugo_version)_Linux-64bit.tar.gz
 endif
 
-build: $(hugo_bin)
+build: $(hugo_bin) data/posts/all.json
 	cd v2 && $(hugo_bin)
+
+data/posts/all.json:
+	mkdir -p $(shell dirname $@)
+	ruby prepare-data.rb > $@
+
+clean:
+	rm -fr data/posts/all.json
 
 upload:
 	echo
